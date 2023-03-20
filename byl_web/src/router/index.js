@@ -5,6 +5,7 @@ import HomeView from '../views/HomeView.vue'
 import DonateBoardListPage from "@/views/donateBoard/DonateBoardListPage.vue"
 import DonateBoardRegisterPage from "@/views/donateBoard/DonateBoardRegisterPage.vue"
 import DonateBoardReadPage from "@/views/donateBoard/DonateBoardReadPage.vue"
+import DonateBoardModifyPage from "@/views/donateBoard/DonateBoardModifyPage.vue"
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,16 @@ const routes = [
     name: 'DonateBoardReadPage',
     components: {
       default: DonateBoardReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/donate-board-modify/:boardId',
+    name: 'DonateBoardModifyPage',
+    components: {
+      default: DonateBoardModifyPage
     },
     props: {
       default: true
