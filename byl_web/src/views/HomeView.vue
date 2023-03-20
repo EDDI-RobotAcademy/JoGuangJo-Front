@@ -1,15 +1,14 @@
 <template>
-  <hello-world />
+  <v-container>
+  </v-container>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
 
   export default {
-    name: 'Home',
+    name: 'HomeView',
 
     components: {
-      HelloWorld,
     },
   }
 </script>
