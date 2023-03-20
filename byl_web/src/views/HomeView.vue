@@ -4,8 +4,8 @@
       <nav>
         <router-link to="/donate-board-list">책 기부 게시판</router-link>
       </nav>
+      <router-view/>
     </div>
-    <router-view/>
   </v-container>
 </template>
 
