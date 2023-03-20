@@ -1,15 +1,20 @@
 <template>
-  <hello-world />
+  <v-container>
+    <div id="home">
+      <nav>
+        <router-link to="/donate-board-list">책 기부 게시판</router-link>
+      </nav>
+    </div>
+    <router-view/>
+  </v-container>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+export default {
 
-  export default {
-    name: 'Home',
-
-    components: {
-      HelloWorld,
-    },
-  }
+}
 </script>
+
+<style>
+
+</style>
