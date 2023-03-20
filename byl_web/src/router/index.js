@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 import DonateBoardListPage from "@/views/donateBoard/DonateBoardListPage.vue"
+import DonateBoardRegisterPage from "@/views/donateBoard/DonateBoardRegisterPage.vue"
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/donate-board-list',
     name: 'DonateBoardListPage',
     component: DonateBoardListPage
+  },
+  {
+    path: '/donate-board-register',
+    name: 'DonateBoardRegisterPage',
+    component: DonateBoardRegisterPage
   },
 ]
 
