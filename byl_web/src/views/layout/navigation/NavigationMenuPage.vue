@@ -30,6 +30,17 @@
                 <v-icon right>mdi-account-cog</v-icon>
             </v-btn>
 
+            <v-text-field v-model="search" hide-details prepend-inner-icon="mdi-magnify" solo-inverted
+                color="white"
+                flat
+                placeholder="검색"
+                @keydown.enter="searchPage()" />
+
+            <v-btn text @click="searchPage()">
+                <span>검색</span>
+                <v-icon right>mdi-magnify</v-icon>
+            </v-btn>
+
         </v-app-bar>
 
         <v-navigation-drawer app v-model="navigation_drawer">
@@ -70,6 +81,7 @@ export default {
     name: "NavigationMenuPage",
     data() {
         return {
+            search: '',
             isTrue: false,
             navigation_drawer: false,
             links: [
@@ -83,6 +95,17 @@ export default {
         }
     },
     methods: {
+        searchPage() {
+            if(this.search.trim() !== '') {
+             // 검색어가 있는 경우, 검색 결과 페이지로 이동합니다.
+                this.$router.push({
+                path: '/search',
+                query: { q: this.search.trim() } // 검색어를 쿼리 파라미터로 전달합니다.
+      });
+    } else {
+        alert('검색결과가 없습니다.');
+    }
+  },
         clickToggle () {
             this.isTrue = !this.isTrue;
         }
