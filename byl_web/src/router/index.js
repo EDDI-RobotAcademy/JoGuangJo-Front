@@ -16,6 +16,12 @@ import SignUpPage from "@/views/member/SignUpPage";
 import SignInPage from "@/views/member/SignInPage";
 import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
 
+import DonateChoicePage from "@/views/donate/DonateChoicePage.vue";
+import DonateVisitPage from "@/views/donate/DonateVisitPage.vue";
+import DonateMailPage from "@/views/donate/DonateMailPage.vue";
+import DonateSearchPage from "@/views/donate/DonateSearchPage.vue";
+
+
 
 Vue.use(VueRouter)
 
@@ -33,6 +39,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
+  
   {
     path: '/sign-up-choice',
     name: 'SignUpChoiceView',
@@ -53,6 +60,7 @@ const routes = [
     name: 'SignInView',
     component: SignInView
   },
+
   {
     path: '/board-list-page',
     name: 'JpaBoardListPage',
@@ -93,11 +101,33 @@ const routes = [
     name: 'SignInPage',
     component: SignInPage
   },
+
   {
     path: '/search-password',
     name: 'SearchMemberPasswordPage',
     component: SearchMemberPasswordPage
-  }
+  },
+  
+  {
+    path: '/donate-choice',
+    name: 'DonateChoicePage',
+    component: DonateChoicePage
+  },
+  {
+    path: '/donate-visit',
+    name: 'DonateVisitPage',
+    component: DonateVisitPage
+  },
+  {
+    path: '/donate-mail',
+    name: 'DonateMailPage',
+    component: DonateMailPage
+  },
+  {
+    path: '/donate-search',
+    name: 'DonateSearchPage',
+    component: DonateSearchPage
+  },
 ]
 
 const router = new VueRouter({
