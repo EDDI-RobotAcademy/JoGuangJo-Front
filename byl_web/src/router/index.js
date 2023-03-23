@@ -11,9 +11,9 @@ import ReviewBoardRegisterPage from "@/views/board/reviewBoard/ReviewBoardRegist
 import ReviewBoardReadPage from "@/views/board/reviewBoard/ReviewBoardReadPage.vue"
 import ReviewBoardModifyPage from "@/views/board/reviewBoard/ReviewBoardModifyPage.vue"
 
-import SignUpPage from "@/views/member/SignUpPage";
-import SignInPage from "@/views/member/SignInPage";
-import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
+import SignUpPage from "@/views/member/SignUpPage.vue";
+import SignInPage from "@/views/member/SignInPage.vue";
+import FindPasswordPage from "@/views/member/FindPasswordPage.vue";
 
 import DonateChoicePage from "@/views/donate/DonateChoicePage.vue";
 import DonateVisitPage from "@/views/donate/DonateVisitPage.vue";
@@ -90,11 +90,10 @@ const routes = [
     name: 'SignInPage',
     component: SignInPage
   },
-
   {
-    path: '/search-password',
-    name: 'SearchMemberPasswordPage',
-    component: SearchMemberPasswordPage
+    path: '/find-password',
+    name: 'FindPasswordPage',
+    component: FindPasswordPage
   },
   
   {

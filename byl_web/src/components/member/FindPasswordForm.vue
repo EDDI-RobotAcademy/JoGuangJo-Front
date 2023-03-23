@@ -98,7 +98,7 @@
   import axios from "axios";
   
   export default {
-    name: "SearchMemberPasswordForm",
+    name: "FindPasswordForm",
     data() {
       return {
         email: "",

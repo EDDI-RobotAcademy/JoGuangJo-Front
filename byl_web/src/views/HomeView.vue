@@ -7,6 +7,9 @@
       <router-link to="/donate-choice">책 기부하기</router-link>  |
       <router-link to="/qnaBoard-list">질문 게시판</router-link>  |
       <router-link to="/reviewBoard-list">독후감상문 게시판</router-link>  |
+      <router-link to="/sign-up">회원가입 페이지</router-link>  |
+      <router-link to="/sign-in">로그인 페이지</router-link>  |
+      <router-link to="/find-password">회원 비밀번호 찾기 페이지</router-link>  |
     </nav>
   </v-container>
 </template>
