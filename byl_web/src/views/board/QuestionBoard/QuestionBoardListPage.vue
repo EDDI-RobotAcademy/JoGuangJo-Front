@@ -4,7 +4,7 @@
             <router-link :to="{ name: 'QuestionBoardRegisterPage' }">
                 게시물 작성
             </router-link>
-        <question-board-list :questionboards="questionboards" />
+        <question-board-list :questionBoards="questionBoards" />
     </v-container>
 </template>
 
@@ -17,8 +17,7 @@ export default {
     name: "QuestionBoardListPage",
     computed: {
     ...mapState([
-        'questionboards'
-        // 네이밍 회의 진행 후 수정 or 그대로 진행하기
+        'questionBoards'
     ]),
     },
     mounted () {
