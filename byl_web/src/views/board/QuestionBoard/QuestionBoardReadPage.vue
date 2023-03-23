@@ -31,6 +31,7 @@ export default {
         ...mapActions([
             'requestQuestionBoardToSpring'
         ]),
+    },
     
     created () {
         console.log('questionboardId: ' + this.questionboardId)
