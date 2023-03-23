@@ -86,6 +86,7 @@ export default {
             navigation_drawer: false,
             links: [
             { icon: 'mdi-home', text: 'Home', name: 'home', route: '/' },
+            { icon: 'mdi-home', text: 'Product', name: 'product', route: '/products'}
             ],
             icons: [
             "mdi-instagram",
