@@ -2,7 +2,7 @@
   <v-container>
     <div align="center">
       <h2>게시물 수정</h2>
-      <jpa-board-modify-form v-if="board" :board="board" @submit="onSubmit"/>
+      <review-board-modify-form v-if="board" :board="board" @submit="onSubmit"/>
       <p v-else>로딩중 ........</p>
     </div>
   </v-container>
@@ -10,12 +10,12 @@
 
 <script>
 
-import JpaBoardModifyForm from '@/components/board/JpaBoardModifyForm.vue'
+import ReviewBoardModifyForm from '@/components/board/reviewBoard/ReviewBoardModifyForm.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-    components: { JpaBoardModifyForm },
-    name: "JpaBoardModifyPage",
+    components: { ReviewBoardModifyForm },
+    name: "ReviewBoardModifyPage",
     props: {
         boardId: {
             type: String,
@@ -36,7 +36,7 @@ export default {
 
             await this.requestBoardModifyToSpring({ boardId, title, content, writer })
             await this.$router.push({
-                name: 'JpaBoardReadPage',
+                name: 'ReviewBoardReadPage',
                 params: { boardId: this.boardId }
             })
         }

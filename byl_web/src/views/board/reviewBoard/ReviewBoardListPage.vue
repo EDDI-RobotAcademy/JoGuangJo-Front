@@ -1,21 +1,21 @@
 <template>
   <v-container>
     <h2>Vue + Spring + JPA Boards</h2>
-    <router-link :to="{ name: 'JpaBoardRegisterPage' }">
+    <router-link :to="{ name: 'ReviewBoardRegisterPage' }">
       게시물 작성
     </router-link>
-    <jpa-board-list :boards="boards"/>
+    <review-board-list :boards="boards"/>
   </v-container>
 </template>
 
 <script>
 
-import JpaBoardList from '@/components/board/JpaBoardList.vue'
+import ReviewBoardList from '@/components/board/reviewBoard/ReviewBoardList.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  components: { JpaBoardList },
-  name: "JpaBoardListPage",
+  components: { ReviewBoardList },
+  name: "ReviewBoardListPage",
   computed: {
     ...mapState([
       'boards'

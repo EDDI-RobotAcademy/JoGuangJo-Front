@@ -2,13 +2,13 @@
   <v-container>
     <div align="center">
       <h2>Vue + Spring 게시판 읽기</h2>
-      <jpa-board-read v-if="board" :board="board"/>
+      <review-board-read v-if="board" :board="board"/>
       <p v-else>로딩중 .......... </p>
-      <router-link :to="{ name: 'JpaBoardModifyPage', params: { boardId } }">
+      <router-link :to="{ name: 'ReviewBoardModifyPage', params: { boardId } }">
         게시물 수정
       </router-link>
       <button @click="onDelete">삭제</button>
-      <router-link :to="{ name: 'JpaBoardListPage' }">
+      <router-link :to="{ name: 'ReviewBoardListPage' }">
         돌아가기
       </router-link>
     </div>
@@ -17,12 +17,12 @@
 
 <script>
 
-import JpaBoardRead from '@/components/board/JpaBoardRead.vue'
+import ReviewBoardRead from '@/components/board/reviewBoard/ReviewBoardRead.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  components: { JpaBoardRead },
-    name: "JpaBoardReadPage",
+  components: { ReviewBoardRead },
+    name: "ReviewBoardReadPage",
     props: {
         boardId: {
             type: String,

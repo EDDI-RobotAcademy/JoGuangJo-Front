@@ -18,7 +18,7 @@
           {{ board.boardId }}
         </td>
         <td align="left">
-          <router-link :to="{ name: 'JpaBoardReadPage',
+          <router-link :to="{ name: 'ReviewBoardReadPage',
                             params: { boardId: board.boardId.toString() }}">
             {{ board.title }}
           </router-link>
@@ -37,7 +37,7 @@
 <script>
 
 export default {
-    name: "JpaBoardList",
+    name: "ReviewBoardList",
     props: {
         boards: {
             type: Array

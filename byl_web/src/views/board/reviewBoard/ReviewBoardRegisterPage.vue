@@ -1,17 +1,17 @@
 <template>
   <v-container>
     <h2>게시물 작성</h2>
-    <jpa-board-register-form @submit="onSubmit"/>
+    <review-board-register-form @submit="onSubmit"/>
   </v-container>
 </template>
 
 <script>
-import JpaBoardRegisterForm from '@/components/board/JpaBoardRegisterForm.vue'
+import ReviewBoardRegisterForm from '@/components/board/reviewBoard/ReviewBoardRegisterForm.vue'
 import { mapActions } from 'vuex'
 
 export default {
-    components: { JpaBoardRegisterForm },
-    name: "JpaBoardRegisterPage",
+    components: { ReviewBoardRegisterForm },
+    name: "ReviewBoardRegisterPage",
     methods: {
         ...mapActions ([
             'requestCreateBoardToSpring'
@@ -20,7 +20,7 @@ export default {
             const board = await this.requestCreateBoardToSpring(payload)
             console.log('board: ' + JSON.stringify(board.data))
             await this.$router.push({
-                name: 'JpaBoardReadPage',
+                name: 'ReviewBoardReadPage',
                 params: { boardId: board.data.boardId.toString() }
             })
         }

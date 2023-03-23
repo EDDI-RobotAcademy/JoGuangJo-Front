@@ -37,7 +37,7 @@
 
 <script>
 export default {
-    name: "JpaBoardRead",
+    name: "ReviewBoardRead",
     props: {
         board: {
             type: Object,

@@ -36,7 +36,7 @@
 
       <div>
         <button type="submit">수정 완료</button>
-        <router-link :to="{ name: 'JpaBoardReadPage',
+        <router-link :to="{ name: 'ReviewBoardReadPage',
                             params: { boardId: board.boardId.toString() }}">
           취소
         </router-link>
@@ -48,7 +48,7 @@
 <script>
 
 export default {
-    name: "JpaBoardModifyForm",
+    name: "ReviewBoardModifyForm",
     props: {
         board: {
             type: Object,

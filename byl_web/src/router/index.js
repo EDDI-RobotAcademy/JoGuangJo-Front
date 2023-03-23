@@ -4,15 +4,10 @@ import HomeView from '../views/HomeView.vue'
 import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
 import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
 
-import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
-import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
-import CommonSignUpView from "@/views/signUp/CommonSignUpView.vue";
-import SignInView from "@/views/signUp/SignInView.vue";
-
-import JpaBoardListPage from "@/views/board/JpaBoardListPage.vue"
-import JpaBoardRegisterPage from "@/views/board/JpaBoardRegisterPage.vue"
-import JpaBoardReadPage from "@/views/board/JpaBoardReadPage.vue"
-import JpaBoardModifyPage from "@/views/board/JpaBoardModifyPage.vue"
+import ReviewBoardListPage from "@/views/board/reviewBoard/ReviewBoardListPage.vue"
+import ReviewBoardRegisterPage from "@/views/board/reviewBoard/ReviewBoardRegisterPage.vue"
+import ReviewBoardReadPage from "@/views/board/reviewBoard/ReviewBoardReadPage.vue"
+import ReviewBoardModifyPage from "@/views/board/reviewBoard/ReviewBoardModifyPage.vue"
 
 import SignUpPage from "@/views/member/SignUpPage";
 import SignInPage from "@/views/member/SignInPage";
@@ -51,58 +46,38 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
-  
-  {
-    path: '/sign-up-choice',
-    name: 'SignUpChoiceView',
-    component: SignUpChoiceView
-  },
-  {
-    path: '/enterprise-sing-up',
-    name: 'EnterpriseSignUpView',
-    component: EnterpriseSignUpView
-  },
-  {
-    path: '/common-sing-up',
-    name: 'CommonSignUpView',
-    component: CommonSignUpView
-  },
-  {
-    path: '/SignInView',
-    name: 'SignInView',
-    component: SignInView
-  },
 
   {
-    path: '/board-list-page',
-    name: 'JpaBoardListPage',
-    component: JpaBoardListPage
+    path: '/reviewBoard-list',
+    name: 'ReviewBoardListPage',
+    component: ReviewBoardListPage
   },
   {
-    path: '/board-register',
-    name: 'JpaBoardRegisterPage',
-    component: JpaBoardRegisterPage
+    path: '/reviewBoard-register',
+    name: 'ReviewBoardRegisterPage',
+    component: ReviewBoardRegisterPage
   },
   {
-    path: '/board-read/:boardId',
-    name: 'JpaBoardReadPage',
+    path: '/reviewBoard-read/:boardId',
+    name: 'ReviewBoardReadPage',
     components: {
-      default: JpaBoardReadPage
+      default: ReviewBoardReadPage
     },
     props: {
       default: true
     }
   },
   {
-    path: '/board-modify/:boardId',
-    name: 'JpaBoardModifyPage',
+    path: '/reviewBoard-modify/:boardId',
+    name: 'ReviewBoardModifyPage',
     components: {
-      default: JpaBoardModifyPage
+      default: ReviewBoardModifyPage
     },
     props: {
       default: true
     }
   },
+
   {
     path: '/sign-up',
     name: 'SignUpPage',
