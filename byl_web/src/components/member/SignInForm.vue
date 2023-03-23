@@ -99,8 +99,12 @@
     },
     methods: {
       onSubmit() {
-        const { email, password } = this;
-        this.$emit("submit", { email, password });
+        if (this.password.length <= 8) {
+          alert('more')
+        } else {
+          const { email, password } = this;
+          this.$emit("submit", { email, password });
+        }
       },
     },
   };
