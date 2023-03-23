@@ -1,32 +1,32 @@
 <template>
     <v-container>
         <h2>질문 게시판 입니다.</h2>
-            <router-link :to="{ name: 'QuestionBoardRegisterPage' }">
+            <router-link :to="{ name: 'QnaBoardRegisterPage' }">
                 게시물 작성
             </router-link>
-        <question-board-list :questionboards="questionboards" />
+        <qnaBoard-list :qnaBoards="qnaBoards" />
     </v-container>
 </template>
 
 <script>
-import QuestionBoardList from '@/components/board/QuestionBoard/QuestionBoardList.vue'
+import QnaBoardList from '@/components/board/qnaBoard/QnaBoardList.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-    components: { QuestionBoardList },
-    name: "QuestionBoardListPage",
+    components: { QnaBoardList },
+    name: "QnaBoardListPage",
     computed: {
     ...mapState([
-        'questionboards'
+        'qnaBoards'
         // 네이밍 회의 진행 후 수정 or 그대로 진행하기
     ]),
     },
     mounted () {
-    this.requestQuestionBoardListToSpring()
+    this.requestQnaBoardListToSpring()
     },
     methods: {
     ...mapActions([
-        'requestQuestionBoardListToSpring'
+        'requestQnaBoardListToSpring'
     ])
     }
 }

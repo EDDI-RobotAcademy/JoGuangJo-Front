@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
-import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
+
+
+import QnaBoardListPage from "@/views/board/qnaBoard/QnaBoardListPage.vue"
+import QnaBoardRegisterPage from "@/views/board/qnaBoard/QnaBoardRegisterPage.vue"
 
 import ReviewBoardListPage from "@/views/board/reviewBoard/ReviewBoardListPage.vue"
 import ReviewBoardRegisterPage from "@/views/board/reviewBoard/ReviewBoardRegisterPage.vue"
@@ -29,14 +31,14 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/question-board-list-page',
-    name: 'QuestionBoardList',
-    component: QuestionBoardList
+    path: '/qnaBoard-list',
+    name: 'QnaBoardListPage',
+    component: QnaBoardListPage
   },
   {
-    path: '/question-board-register-page',
-    name: 'QuestionBoardRegisterPage',
-    component: QuestionBoardRegisterPage
+    path: '/qnaBoard-register',
+    name: 'QnaBoardRegisterPage',
+    component: QnaBoardRegisterPage
   },
   {
     path: '/about',
