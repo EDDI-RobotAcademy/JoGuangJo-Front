@@ -20,7 +20,7 @@ export default {
             console.log(payload)
             await this.requestCreateQuestionBoardToSpring(payload)
             await this.$router.push({
-                name: 'QuestionBoardListPage'
+                name: 'QuestionBoardList'
             })
         }
     }
