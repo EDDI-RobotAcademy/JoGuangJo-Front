@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
+import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
 
 import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
 import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
@@ -24,6 +26,16 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/question-board-list-page',
+    name: 'QuestionBoardList',
+    component: QuestionBoardList
+  },
+  {
+    path: '/question-board-register-page',
+    name: 'QuestionBoardRegisterPage',
+    component: QuestionBoardRegisterPage
   },
   {
     path: '/about',
