@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import DonateMailForm from "@/components/donate/DonateMailForm";
+    import DonateMailForm from "@/components/donate/DonateMailForm.vue";
     
     export default {
       name: "DonateMailPage",
