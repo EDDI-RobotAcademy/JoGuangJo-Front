@@ -14,6 +14,10 @@ import JpaBoardRegisterPage from "@/views/board/JpaBoardRegisterPage.vue"
 import JpaBoardReadPage from "@/views/board/JpaBoardReadPage.vue"
 import JpaBoardModifyPage from "@/views/board/JpaBoardModifyPage.vue"
 
+import SignUpPage from "@/views/member/SignUpPage";
+import SignInPage from "@/views/member/SignInPage";
+import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
+
 
 Vue.use(VueRouter)
 
@@ -66,7 +70,6 @@ const routes = [
     name: 'JpaBoardListPage',
     component: JpaBoardListPage
   },
-
   {
     path: '/board-register',
     name: 'JpaBoardRegisterPage',
@@ -92,6 +95,21 @@ const routes = [
       default: true
     }
   },
+  {
+    path: '/sign-up',
+    name: 'SignUpPage',
+    component: SignUpPage
+  },
+  {
+    path: '/sign-in',
+    name: 'SignInPage',
+    component: SignInPage
+  },
+  {
+    path: '/search-password',
+    name: 'SearchMemberPasswordPage',
+    component: SearchMemberPasswordPage
+  }
 ]
 
 const router = new VueRouter({

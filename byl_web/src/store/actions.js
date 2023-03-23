@@ -24,5 +24,4 @@ export default {
             commit(REQUEST_QUESTION_BOARD_LIST_TO_SPRING, res.data)
         })
     }
-
 }
