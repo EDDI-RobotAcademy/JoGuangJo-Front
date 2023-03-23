@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
 import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
+import QuestionBoardReadPage from "@/views/board/QuestionBoard/QuestionBoardReadPage.vue"
 
 import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
 import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
@@ -140,6 +141,16 @@ const routes = [
     name: 'DonateSearchPage',
     component: DonateSearchPage
   },
+  {
+  path: '/question-board-read-page/:questionboardId',
+  name: 'QuestionBoardReadPage',
+  components: {
+    default: QuestionBoardReadPage
+    },
+    props: {
+      default: true
+    }
+  }
 ]
 
 const router = new VueRouter({
