@@ -1,19 +1,15 @@
 import {
-<<<<<<< Updated upstream
     REQUEST_QUESTION_BOARD_LIST_TO_SPRING,
-    REQUEST_QUESTION_BOARD_TO_SPRING
-=======
+    REQUEST_QUESTION_BOARD_TO_SPRING,
     REQUEST_PRODUCT_LIST_TO_SPRING,
     REQUEST_PRODUCT_TO_SPRING,
     REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
     REQUEST_ALL_PRODUCT_TO_SPRING,
->>>>>>> Stashed changes
 } from './mutation-types'
 
 import axios from 'axios'
 
 export default {
-<<<<<<< Updated upstream
     requestCreateQuestionBoardToSpring({}, payload){
         const { title, writer, content } = payload
         return axios.post('http://localhost:7777/questionBoard/register',
@@ -39,7 +35,7 @@ export default {
         .then((res) => {
             commit(REQUEST_QUESTION_BOARD_TO_SPRING, res.data)
         })
-=======
+    },
     requestCreateProductToSpring ({}, payload) {
 
         console.log('payload: ' + payload)
@@ -100,6 +96,5 @@ export default {
                 commit(REQUEST_ALL_PRODUCT_TO_SPRING, res.data)
                 console.log("allProduct: " + res.data)
             })
->>>>>>> Stashed changes
     },
 }
