@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
+import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
+import QuestionBoardReadPage from "@/views/board/QuestionBoard/QuestionBoardReadPage.vue"
 
 import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
 import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
@@ -16,6 +19,12 @@ import SignUpPage from "@/views/member/SignUpPage";
 import SignInPage from "@/views/member/SignInPage";
 import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
 
+import DonateChoicePage from "@/views/donate/DonateChoicePage.vue";
+import DonateVisitPage from "@/views/donate/DonateVisitPage.vue";
+import DonateMailPage from "@/views/donate/DonateMailPage.vue";
+import DonateSearchPage from "@/views/donate/DonateSearchPage.vue";
+
+
 
 Vue.use(VueRouter)
 
@@ -26,6 +35,16 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/question-board-list-page',
+    name: 'QuestionBoardList',
+    component: QuestionBoardList
+  },
+  {
+    path: '/question-board-register-page',
+    name: 'QuestionBoardRegisterPage',
+    component: QuestionBoardRegisterPage
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
@@ -33,6 +52,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
+  
   {
     path: '/sign-up-choice',
     name: 'SignUpChoiceView',
@@ -53,6 +73,7 @@ const routes = [
     name: 'SignInView',
     component: SignInView
   },
+
   {
     path: '/board-list-page',
     name: 'JpaBoardListPage',
@@ -93,10 +114,42 @@ const routes = [
     name: 'SignInPage',
     component: SignInPage
   },
+
   {
     path: '/search-password',
     name: 'SearchMemberPasswordPage',
     component: SearchMemberPasswordPage
+  },
+  
+  {
+    path: '/donate-choice',
+    name: 'DonateChoicePage',
+    component: DonateChoicePage
+  },
+  {
+    path: '/donate-visit',
+    name: 'DonateVisitPage',
+    component: DonateVisitPage
+  },
+  {
+    path: '/donate-mail',
+    name: 'DonateMailPage',
+    component: DonateMailPage
+  },
+  {
+    path: '/donate-search',
+    name: 'DonateSearchPage',
+    component: DonateSearchPage
+  },
+  {
+  path: '/question-board-read-page/:questionboardId',
+  name: 'QuestionBoardReadPage',
+  components: {
+    default: QuestionBoardReadPage
+    },
+    props: {
+      default: true
+    }
   }
 ]
 
