@@ -4,6 +4,7 @@
       <v-carousel-item v-for="(item, i) in items.slice(0, 5)" :key="i" :src="item.src"></v-carousel-item>
     </v-carousel>
 
+
     <v-container>
   <v-row>
     <v-col cols="12" sm="6" class="text-center">

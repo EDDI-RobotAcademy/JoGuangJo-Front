@@ -12,6 +12,7 @@
   </v-container>
 </template>
 
+
 <script>
 import MainPageForm from '@/components/main/MainPageForm.vue'
 
