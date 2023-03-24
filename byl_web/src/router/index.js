@@ -25,6 +25,11 @@ import DonateMailPage from "@/views/donate/DonateMailPage.vue";
 import DonateSearchPage from "@/views/donate/DonateSearchPage.vue";
 
 
+import JpaProductListPage from "@/views/lecture/product/JpaProductListPage.vue"
+import JpaProductRegisterPage from "@/views/lecture/product/JpaProductRegisterPage.vue"
+import JpaProductReadPage from "@/views/lecture/product/JpaProductReadPage.vue"
+import JpaProductModifyPage from "@/views/lecture/product/JpaProductModifyPage.vue"
+
 
 Vue.use(VueRouter)
 
@@ -150,7 +155,38 @@ const routes = [
     props: {
       default: true
     }
-  }
+  },
+  {
+    path: '/product-list-page',
+    name: 'JpaProductListPage',
+    component: JpaProductListPage
+  },
+  {
+    path: '/product-register',
+    name: 'JpaProductRegisterPage',
+    component: JpaProductRegisterPage
+  },
+  {
+    path: '/product-read/:productId',
+    name: 'JpaProductReadPage',
+    components: {
+      default: JpaProductReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/product-modify/:productId',
+    name: 'JpaProductModifyPage',
+    components: {
+      default: JpaProductModifyPage
+    },
+    props: {
+      default: true
+    }
+  },
+  
 ]
 
 const router = new VueRouter({
