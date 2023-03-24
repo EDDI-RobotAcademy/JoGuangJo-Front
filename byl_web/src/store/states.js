@@ -1,6 +1,6 @@
 export default {
-    questionboards: [],
-    questionboard: {},
+    questionBoards: [],
+    questionBoard: {},
 
     isAuthenticated: false
 
