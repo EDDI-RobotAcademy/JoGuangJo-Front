@@ -1,7 +1,17 @@
 export default {
-    questionboards: [],
-    questionboard: {},
+<<<<<<< Updated upstream
+    questionBoards: [],
+    questionBoard: {},
 
     isAuthenticated: false
 
+=======
+   
+    products: [],
+    product: {},
+    productImages: [],
+    allOfProducts: [],
+
+    isAuthenticated: false,
+>>>>>>> Stashed changes
 }

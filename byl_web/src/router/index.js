@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
 import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
+import QuestionBoardReadPage from "@/views/board/QuestionBoard/QuestionBoardReadPage.vue"
 
 import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
 import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
@@ -23,6 +24,11 @@ import DonateVisitPage from "@/views/donate/DonateVisitPage.vue";
 import DonateMailPage from "@/views/donate/DonateMailPage.vue";
 import DonateSearchPage from "@/views/donate/DonateSearchPage.vue";
 
+
+import JpaProductListPage from "@/views/lecture/product/JpaProductListPage.vue"
+import JpaProductRegisterPage from "@/views/lecture/product/JpaProductRegisterPage.vue"
+import JpaProductReadPage from "@/views/lecture/product/JpaProductReadPage.vue"
+import JpaProductModifyPage from "@/views/lecture/product/JpaProductModifyPage.vue"
 
 
 Vue.use(VueRouter)
@@ -140,6 +146,47 @@ const routes = [
     name: 'DonateSearchPage',
     component: DonateSearchPage
   },
+  {
+  path: '/question-board-read-page/:questionboardId',
+  name: 'QuestionBoardReadPage',
+  components: {
+    default: QuestionBoardReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/product-list-page',
+    name: 'JpaProductListPage',
+    component: JpaProductListPage
+  },
+  {
+    path: '/product-register',
+    name: 'JpaProductRegisterPage',
+    component: JpaProductRegisterPage
+  },
+  {
+    path: '/product-read/:productId',
+    name: 'JpaProductReadPage',
+    components: {
+      default: JpaProductReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/product-modify/:productId',
+    name: 'JpaProductModifyPage',
+    components: {
+      default: JpaProductModifyPage
+    },
+    props: {
+      default: true
+    }
+  },
+  
 ]
 
 const router = new VueRouter({
