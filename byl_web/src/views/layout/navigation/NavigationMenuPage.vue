@@ -42,6 +42,19 @@
                 <v-icon right>mdi-magnify</v-icon>
             </v-btn>
 
+            <v-menu bottom left>
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-menu-down</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item v-for="item in searchOptions" :key="item.text" @click="selectedOption=item">
+                    <v-list-item-title>{{ item.text }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+
         </v-app-bar>
 
         <v-navigation-drawer app v-model="navigation_drawer">
@@ -87,13 +100,19 @@ export default {
             navigation_drawer: false,
             links: [
             { icon: 'mdi-home', text: 'Home', name: 'home', route: '/' },
-            { icon: 'mdi-home', text: 'Product', name: 'product', route: '/products'}
+            { icon: 'mdi-cart', text: 'Product', name: 'product', route: '/product-list-page'}
             ],
             icons: [
             "mdi-instagram",
             "mdi-youtube",
             "mdi-facebook"
             ],
+            selectedOption: { text: '상품명', value: 'productName' },
+            searchOptions: [
+                { text: '상품명', value: 'productName' },
+                { text: '작성자', value: 'author' },
+                { text: '내용', value: 'content' }
+    ]
         }
     },
     methods: {
