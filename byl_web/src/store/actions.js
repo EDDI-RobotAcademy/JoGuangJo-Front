@@ -83,7 +83,6 @@ export default {
                 alert("문제 발생!")
             })
     },
-
     requestProductImageToSpring ({ commit }, productId) {
         return axios.get(`http://localhost:7777/product/imageList/${productId}`)
             .then((res) => {
@@ -95,6 +94,28 @@ export default {
             .then((res) => {
                 commit(REQUEST_ALL_PRODUCT_TO_SPRING, res.data)
                 console.log("allProduct: " + res.data)
+            })
+    },
+    requestQuestionBoardModifyToSpring ({}, payload) {
+        console.log("수정 요청 테스트 완료")
+        const { title, content, questionBoardId } = payload
+        return axios.put(`http://localhost:7777/questionBoard/${questionBoardId}`,
+            { title, content })
+            .then(() => {
+                alert("질문 게시글 수정 성공")
+            })
+            .catch(() => {
+                alert("질문 게시글 문제 발생!")
+            })
+    },
+    requestDeleteQuestionBoardToSpring ({}, questionBoardId) {
+        console.log("삭제 요청 테스트 완료")
+        return axios.delete(`http://localhost:7777/questionBoard/${questionBoardId}`)
+            .then(() => {
+                alert("질문 게시글 삭제 성공")
+            })
+            .catch(() => {
+                alert("질문 게시글 문제 발생!")
             })
     },
 }

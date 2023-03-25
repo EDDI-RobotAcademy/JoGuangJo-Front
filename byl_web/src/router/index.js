@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
 import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
 import QuestionBoardReadPage from "@/views/board/QuestionBoard/QuestionBoardReadPage.vue"
+import QuestionBoardModifyPage from "@/views/board/QuestionBoard/QuestionBoardModifyPage.vue"
 
 import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
 import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
@@ -147,7 +148,7 @@ const routes = [
     component: DonateSearchPage
   },
   {
-  path: '/question-board-read-page/:questionboardId',
+  path: '/question-board-read-page/:questionBoardId',
   name: 'QuestionBoardReadPage',
   components: {
     default: QuestionBoardReadPage
@@ -185,6 +186,16 @@ const routes = [
     props: {
       default: true
     }
+  },
+  {
+    path: '/questionBoard-modify/:questionBoardId',
+    name: 'QuestionBoardModifyPage',
+    components: {
+      default: QuestionBoardModifyPage
+      },
+      props: {
+        default: true
+      }
   },
   
 ]
