@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <v-app-bar color="dark" class="flex-grow-0" app>
+        <v-app-bar color="white" class="flex-grow-0" app elevation="0"> 
             <v-app-bar-nav-icon @click="navigation_drawer = !navigation_drawer"/>
                 <router-link to="/">
                     <v-img class="mx-2" src="@/assets/main/main_logo.png"
@@ -12,7 +12,32 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn v-if="isAuthenticated == true" text color="grey" v-on:click="resign">
+            <v-menu bottom left class="custom-menu">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-menu-down</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item v-for="item in searchOptions" :key="item.text" @click="selectedOption=item">
+                    <v-list-item-title>{{ item.text }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+
+
+            <v-text-field v-model="search" hide-details prepend-inner-icon="mdi-magnify" solo-inverted
+                color="white"
+                flat
+                @keydown.enter="searchPage()" 
+                style="max-width: 200px;"
+                class="search-elements"/>
+
+            <v-btn text @click="searchPage()" class="search-elements"> 
+                <span>검색</span>
+            </v-btn>
+
+              <v-btn v-if="isAuthenticated == true" text color="grey" v-on:click="resign">
                 <span>회원 탈퇴</span>
                 <v-icon right>mdi-login</v-icon>
             </v-btn>
@@ -28,30 +53,6 @@
                 <span>Sign Out</span>
                 <v-icon right>mdi-exit-to-app</v-icon>
             </v-btn>
-
-            <v-text-field v-model="search" hide-details prepend-inner-icon="mdi-magnify" solo-inverted
-                color="white"
-                flat
-                placeholder="검색"
-                @keydown.enter="searchPage()" />
-
-            <v-btn text @click="searchPage()">
-                <span>검색</span>
-                <v-icon right>mdi-magnify</v-icon>
-            </v-btn>
-
-            <v-menu bottom left>
-                <template v-slot:activator="{ on }">
-                  <v-btn icon v-on="on">
-                    <v-icon>mdi-menu-down</v-icon>
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item v-for="item in searchOptions" :key="item.text" @click="selectedOption=item">
-                    <v-list-item-title>{{ item.text }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
 
         </v-app-bar>
 
@@ -105,9 +106,9 @@ export default {
             { icon: 'mdi-cart', text: 'Product', name: 'product', route: '/product-list-page'}
             ],
             icons: [
+            "mdi-facebook",
             "mdi-instagram",
-            "mdi-youtube",
-            "mdi-facebook"
+            "mdi-youtube"
             ],
             selectedOption: { text: '상품명', value: 'productName' },
             searchOptions: [
@@ -172,3 +173,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.search-elements {
+    height: 48px; 
+    border-radius: 10px;
+}
+</style>
