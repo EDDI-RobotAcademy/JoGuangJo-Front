@@ -40,7 +40,45 @@
               <v-menu
                 ref="visitDateMenu"
                 v-model="visitDateMenu"
+                :close-on-content-click="false"
+                :return-value.sync="visitDate"
+                transition="scale-transition"
+                offset-y
               >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="formData.visitDate"
+                    label="방문 날짜 (당일 선택 불가)"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="formData.visitDate"
+                  label="방문 날짜"
+                  :min="minDate"
+                  :allowed-dates="allowedDates"
+                  scrollable
+                  required
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="visitDateMenu = false"
+                  >
+                    취소
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.visitDateMenu.save(formData.visitDate)"
+                  >
+                    확인
+                  </v-btn>
+                </v-date-picker>
               </v-menu>
 
               <v-menu
@@ -61,6 +99,7 @@ export default {
         name: "",
         email: "",
         phoneNumber: "",
+        visitDate: null,
       },
       nameRules: [(v) => !!v || "이름을 입력하세요"],
       emailRules: [
@@ -71,6 +110,7 @@ export default {
         (v) => !!v || "휴대전화번호 10자리를 입력하세요 (하이픈 생략 가능)",
         (v) => /^\d{3}-\d{4}-\d{4}$/.test(v) || "유효하지 않은 휴대전화번호 형식입니다",
       ],
+      minDate: this.calculateMinDate(),
     };
   },
 
@@ -92,6 +132,17 @@ export default {
   methods: {
     updatePhoneNumber(event) {
       event.target.value = this.formattedPhoneNumber;
+    },
+    calculateMinDate() {
+      const today = new Date();
+      today.setDate(today.getDate() + 1);
+      return today.toISOString().substr(0, 10);
+    },
+    allowedDates(date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const selectedDate = new Date(date);
+      return selectedDate > today;
     },
 
 
