@@ -14,6 +14,10 @@
 
             <v-text-field
               label="이름"
+              v-model="formData.name"
+              :rules="nameRules"
+              prepend-icon="mdi-account"
+              required
             ></v-text-field>
 
             <v-text-field
@@ -40,13 +44,14 @@
 
 <script>
 export default {
-  name: 'DonateVisitForm'
-};
-</script>
   name: "DonateVisitForm",
   data() {
     return {
+      valid: false,
+      formData: {
+        name: "",
       },
+      nameRules: [(v) => !!v || "이름을 입력하세요"],
     };
   },
 
