@@ -129,6 +129,32 @@
                 </v-time-picker>
               </v-menu>
 
+            <div class="d-flex">
+              <v-text-field v-model="formData.zipcode" label="우편번호" readonly required />
+              <v-btn text large outlined style="font-size: 13px" class="mt-3 ml-5" color="blue lighten-1" @click="callDaumAddressApi">
+                내 주소 찾기
+              </v-btn>
+            </div>
+
+            <div>
+              <v-text-field v-model="formData.city" label="도시" readonly required />
+            </div>
+
+            <div>
+              <v-text-field v-model="formData.street" label="기본 주소" readonly required />
+            </div>
+
+            <div>
+              <v-text-field v-model="formData.addressDetail" label="상세 주소 및 기타 메모(공동현관 비밀번호 등)" required />
+            </div>
+            
+            <v-btn color="primary" :disabled="!valid" type="submit">방문 수거 신청하기</v-btn>
+
+          </v-col>
+        </v-row>
+      </v-form>
+    </div>
+      
 </template>
 
 <script>
@@ -143,6 +169,10 @@ export default {
         phoneNumber: "",
         visitDate: null,
         visitTime: null,
+        zipcode: "",
+        city: "",
+        street: "",
+        addressDetail: "",
       },
       nameRules: [(v) => !!v || "이름을 입력하세요"],
       emailRules: [
@@ -187,7 +217,44 @@ export default {
       const selectedDate = new Date(date);
       return selectedDate > today;
     },
+    checkFormValidity() {
+      this.validForm = this.formData.street !== "" && this.formData.addressDetail !== "";
+    },
 
+    callDaumAddressApi() {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          let fullRoadAddr = data.roadAddress;
+          let extraRoadAddr = "";
 
+          if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+            extraRoadAddr += data.bname;
+          }
+
+          if (data.buildingName !== "" && data.apartment === "Y") {
+            extraRoadAddr += extraRoadAddr !== "" ? ", " + data.buildingName : data.buildingName;
+          }
+
+          if (extraRoadAddr !== "") {
+            extraRoadAddr = " (" + extraRoadAddr + ")";
+          }
+
+          if (fullRoadAddr !== "") {
+            fullRoadAddr += extraRoadAddr;
+          }
+
+          this.formData.city = data.sido;
+          this.formData.zipcode = data.zonecode;
+          this.formData.street = data.sigungu + " " + fullRoadAddr;
+        },
+      }).open();
+    },
+
+    submit() {
+      if (this.$refs.form.validate()) {
+        this.$emit("submit", this.formData);
+      }
+    },
+  },
 };
 </script>
