@@ -84,7 +84,49 @@
               <v-menu
                 ref="visitTimeMenu"
                 v-model="visitTimeMenu"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                :return-value.sync="visitTime"
+                transition="scale-transition"
+                offset-y
               >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="visitTime"
+                    label="방문 시간 (오전10시 ~ 오후8시 사이만, 30분 단위로 선택 가능)"
+                    prepend-icon="mdi-clock-time-four-outline"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  label="방문 시간"
+                  v-model="formData.visitTime"
+                  format="ampm"
+                  :ampm="true"
+                  :step="60"
+                  :allowed-hours="[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]"
+                  :allowed-minutes="[0, 30]"
+                  required
+                  >
+                  <v-spacer></v-spacer>
+
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="visitTimeMenu = false"
+                  >
+                    취소
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.visitTimeMenu.save(formData.visitTime)"
+                  >
+                    확인
+                  </v-btn>
+                </v-time-picker>
               </v-menu>
 
 </template>
@@ -100,6 +142,7 @@ export default {
         email: "",
         phoneNumber: "",
         visitDate: null,
+        visitTime: null,
       },
       nameRules: [(v) => !!v || "이름을 입력하세요"],
       emailRules: [
