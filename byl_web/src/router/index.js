@@ -31,6 +31,7 @@ import JpaProductRegisterPage from "@/views/lecture/product/JpaProductRegisterPa
 import JpaProductReadPage from "@/views/lecture/product/JpaProductReadPage.vue"
 import JpaProductModifyPage from "@/views/lecture/product/JpaProductModifyPage.vue"
 
+import ProductListPage from "@/views/product/ProductListPage.vue"
 
 Vue.use(VueRouter)
 
@@ -197,6 +198,11 @@ const routes = [
         default: true
       }
   },
+  {
+    path: '/product-list',
+    name: 'ProductListPage',
+    component: ProductListPage
+  }
   
 ]
 
