@@ -30,6 +30,11 @@
 
             <v-text-field
               label="휴대전화번호"
+              v-model="formattedPhoneNumber"
+              :rules="phoneNumberRules"
+              prepend-icon="mdi-cellphone"
+              required
+              @input="updatePhoneNumber"
             ></v-text-field>
 
               <v-menu
@@ -55,19 +60,39 @@ export default {
       formData: {
         name: "",
         email: "",
+        phoneNumber: "",
       },
       nameRules: [(v) => !!v || "이름을 입력하세요"],
       emailRules: [
         (v) => !!v || "이메일을 입력하세요",
         (v) => /.+@.+/.test(v) || "유효하지 않은 이메일 형식입니다",
       ],
+      phoneNumberRules: [
+        (v) => !!v || "휴대전화번호 10자리를 입력하세요 (하이픈 생략 가능)",
+        (v) => /^\d{3}-\d{4}-\d{4}$/.test(v) || "유효하지 않은 휴대전화번호 형식입니다",
+      ],
     };
   },
 
   computed: {
+    formattedPhoneNumber: {
+      get() {
+        return this.formData.phoneNumber;
+      },
+      set(value) {
+        const formatted = value
+          .replace(/\D/g, "")
+          .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+          .replace(/-$/, "");
+        this.formData.phoneNumber = formatted;
+      },
+    },
   },
 
   methods: {
+    updatePhoneNumber(event) {
+      event.target.value = this.formattedPhoneNumber;
+    },
 
 
 };
