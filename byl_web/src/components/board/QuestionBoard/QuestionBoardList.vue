@@ -19,7 +19,7 @@
                 </td>
                 <td align="left">
                     <router-link :to=" { name: 'QuestionBoardReadPage', 
-                        params: { questionboardId: questionBoard.questionBoardId.toString() }}">
+                        params: { questionBoardId: questionBoard.questionBoardId.toString() }}">
                             {{ questionBoard.title }}
                         </router-link>
                 </td>
