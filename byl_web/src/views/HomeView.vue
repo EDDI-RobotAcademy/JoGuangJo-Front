@@ -15,7 +15,7 @@
     </div>
     
     <nav>
-      <router-link to="/question-board-list-page">질문 게시판</router-link>
+      <router-link to="/qna-board-list-page">질문 게시판</router-link>
     </nav>
   </v-container>
 </template>

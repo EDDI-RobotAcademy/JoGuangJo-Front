@@ -22,7 +22,7 @@
         </table>
         <div>
             <button type="submit">등록</button>
-            <router-link :to="{ name:'QuestionBoardList' }">
+            <router-link :to="{ name:'QnaBoardListPage' }">
                 돌아가기
             </router-link>
         </div>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-    name: "QuestionBoardRegisterForm",
+    name: "QnaBoardRegisterForm",
     data() {
         return {
             title: '제목을 입력 해주세요.',

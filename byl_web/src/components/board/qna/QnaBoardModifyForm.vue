@@ -5,7 +5,7 @@
         <tr>
             <td>게시글 번호</td>
             <td>
-                <input type="text" :value="questionBoard.questionBoardId" disabled/>
+                <input type="text" :value="qnaBoard.qnaBoardId" disabled/>
             </td>
         </tr>
         <tr>
@@ -17,13 +17,13 @@
         <tr>
             <td>작성자</td>
             <td>
-                <input type="text" :value="questionBoard.writer" disabled/>
+                <input type="text" :value="qnaBoard.writer" disabled/>
             </td>
         </tr>
         <tr>
             <td>등록일자</td>
             <td>
-                <input type="text" :value="questionBoard.regDate" disabled/>
+                <input type="text" :value="qnaBoard.regDate" disabled/>
             </td>
         </tr>
         <tr>
@@ -36,8 +36,8 @@
 
         <div>
         <button type="submit">수정 완료</button>
-        <router-link :to="{ name: 'QuestionBoardReadPage',
-                            params: { questionBoardId: questionBoard.questionBoardId.toString() }}">
+        <router-link :to="{ name: 'QnaBoardReadPage',
+                            params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
             취소
         </router-link>
         </div>
@@ -47,9 +47,9 @@
 
 <script>
 export default {
-    name: "QuestionBoardModifyForm",
+    name: "QnaBoardModifyForm",
     props: {
-        questionBoard: {
+        qnaBoard: {
             type: Object,
             required: true,
         }
@@ -63,10 +63,10 @@ export default {
         }
     },
     created () {
-        this.title = this.questionBoard.title
-        this.writer = this.questionBoard.writer
-        this.content = this.questionBoard.content
-        this.regDate = this.questionBoard.regDate
+        this.title = this.qnaBoard.title
+        this.writer = this.qnaBoard.writer
+        this.content = this.qnaBoard.content
+        this.regDate = this.qnaBoard.regDate
     },
     methods: {
         onSubmit () {

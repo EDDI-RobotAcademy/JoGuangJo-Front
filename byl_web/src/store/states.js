@@ -1,6 +1,6 @@
 export default {
-    questionBoards: [],
-    questionBoard: {},
+    qnaBoards: [],
+    qnaBoard: {},
     products: [],
     product: {},
     productImages: [],
