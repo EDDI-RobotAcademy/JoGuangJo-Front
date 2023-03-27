@@ -8,26 +8,26 @@
                 <th align="center" width="150">작성자</th>
                 <th align="center" width="300">등록일자</th>
             </tr>
-            <tr v-if="!questionBoards || (Array.isArray(questionBoards) && questionBoards.length === 0)">
+            <tr v-if="!qnaBoards || (Array.isArray(qnaBoards) && qnaBoards.length === 0)">
                 <td colspan="4">
                 현재 등록된 게시물이 없습니다!
                 </td>
             </tr>
-            <tr v-else v-for="questionBoard in questionBoards" :key="questionBoard.questionBoardId">
+            <tr v-else v-for="qnaBoard in qnaBoards" :key="qnaBoard.qnaBoardId">
                 <td align="center">
-                    {{ questionBoard.questionBoardId }}
+                    {{ qnaBoard.qnaBoardId }}
                 </td>
                 <td align="left">
-                    <router-link :to=" { name: 'QuestionBoardReadPage', 
-                        params: { questionBoardId: questionBoard.questionBoardId.toString() }}">
-                            {{ questionBoard.title }}
+                    <router-link :to=" { name: 'QnaBoardReadPage', 
+                        params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
+                            {{ qnaBoard.title }}
                         </router-link>
                 </td>
                 <td align="right">
-                    {{ questionBoard.writer }}
+                    {{ qnaBoard.writer }}
                 </td>
                 <td align="center">
-                    {{ questionBoard.regDate }}
+                    {{ qnaBoard.regDate }}
                 </td>
             </tr>
         </table>
@@ -36,9 +36,9 @@
 
 <script>
 export default {
-    name: "QuestionBoardList",
+    name: "QnaBoardListForm",
     props: {
-        questionBoards: {
+        qnaBoards: {
             type: Array
         }
     }

@@ -1,6 +1,6 @@
 import {
-    REQUEST_QUESTION_BOARD_LIST_TO_SPRING,
-    REQUEST_QUESTION_BOARD_TO_SPRING,
+    REQUEST_QNA_BOARD_LIST_TO_SPRING,
+    REQUEST_QNA_BOARD_TO_SPRING,
     REQUEST_PRODUCT_LIST_TO_SPRING,
     REQUEST_PRODUCT_TO_SPRING,
     REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
@@ -10,9 +10,9 @@ import {
 import axios from 'axios'
 
 export default {
-    requestCreateQuestionBoardToSpring({}, payload){
+    requestCreateQnaBoardToSpring({}, payload){
         const { title, writer, content } = payload
-        return axios.post('http://localhost:7777/questionBoard/register',
+        return axios.post('http://localhost:7777/qnaBoard/register',
         { title, writer, content })
         .then((res) =>{
             alert('게시물 등록 성공!')
@@ -22,18 +22,18 @@ export default {
             alert('문제 발생')
         })
     },
-    requestQuestionBoardListToSpring({commit}) {
+    requestQnaBoardListToSpring({commit}) {
         console.log("list 요청 테스트 완료.");
-        return axios.get('http://localhost:7777/questionBoard/list')
+        return axios.get('http://localhost:7777/qnaBoard/list')
         .then((res) => {
-            commit(REQUEST_QUESTION_BOARD_LIST_TO_SPRING, res.data)
+            commit(REQUEST_QNA_BOARD_LIST_TO_SPRING, res.data)
         })
     },
-    requestQuestionBoardToSpring ({ commit }, questionBoardId) {
+    requestQnaBoardToSpring ({ commit }, qnaBoardId) {
         console.log("read 요청 테스트 완료")
-        return axios.get(`http://localhost:7777/questionBoard/${questionBoardId}`)
+        return axios.get(`http://localhost:7777/qnaBoard/${qnaBoardId}`)
         .then((res) => {
-            commit(REQUEST_QUESTION_BOARD_TO_SPRING, res.data)
+            commit(REQUEST_QNA_BOARD_TO_SPRING, res.data)
         })
     },
     requestCreateProductToSpring ({}, payload) {
@@ -96,10 +96,10 @@ export default {
                 console.log("allProduct: " + res.data)
             })
     },
-    requestQuestionBoardModifyToSpring ({}, payload) {
+    requestQnaBoardModifyToSpring ({}, payload) {
         console.log("수정 요청 테스트 완료")
-        const { title, content, questionBoardId } = payload
-        return axios.put(`http://localhost:7777/questionBoard/${questionBoardId}`,
+        const { title, content, qnaBoardId } = payload
+        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`,
             { title, content })
             .then(() => {
                 alert("질문 게시글 수정 성공")
@@ -108,9 +108,9 @@ export default {
                 alert("질문 게시글 문제 발생!")
             })
     },
-    requestDeleteQuestionBoardToSpring ({}, questionBoardId) {
+    requestDeleteQnaBoardToSpring ({}, qnaBoardId) {
         console.log("삭제 요청 테스트 완료")
-        return axios.delete(`http://localhost:7777/questionBoard/${questionBoardId}`)
+        return axios.delete(`http://localhost:7777/qnaBoard/${qnaBoardId}`)
             .then(() => {
                 alert("질문 게시글 삭제 성공")
             })

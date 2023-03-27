@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import QuestionBoardList from "@/views/board/QuestionBoard/QuestionBoardListPage.vue"
-import QuestionBoardRegisterPage from "@/views/board/QuestionBoard/QuestionBoardRegisterPage.vue"
-import QuestionBoardReadPage from "@/views/board/QuestionBoard/QuestionBoardReadPage.vue"
-import QuestionBoardModifyPage from "@/views/board/QuestionBoard/QuestionBoardModifyPage.vue"
+import QnaBoardListPage from "@/views/board/qna/QnaBoardListPage.vue"
+import QnaBoardRegisterPage from "@/views/board/qna/QnaBoardRegisterPage.vue"
+import QnaBoardReadPage from "@/views/board/qna/QnaBoardReadPage.vue"
+import QnaBoardModifyPage from "@/views/board/qna/QnaBoardModifyPage.vue"
 
 import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
 import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
@@ -42,14 +42,14 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/question-board-list-page',
-    name: 'QuestionBoardList',
-    component: QuestionBoardList
+    path: '/qna-board-list-page',
+    name: 'QnaBoardListPage',
+    component: QnaBoardListPage
   },
   {
-    path: '/question-board-register-page',
-    name: 'QuestionBoardRegisterPage',
-    component: QuestionBoardRegisterPage
+    path: '/qna-board-register-page',
+    name: 'QnaBoardRegisterPage',
+    component: QnaBoardRegisterPage
   },
   {
     path: '/about',
@@ -149,10 +149,10 @@ const routes = [
     component: DonateSearchPage
   },
   {
-  path: '/question-board-read-page/:questionBoardId',
-  name: 'QuestionBoardReadPage',
+  path: '/qna-board-read-page/:qnaBoardId',
+  name: 'QnaBoardReadPage',
   components: {
-    default: QuestionBoardReadPage
+    default: QnaBoardReadPage
     },
     props: {
       default: true
@@ -189,10 +189,10 @@ const routes = [
     }
   },
   {
-    path: '/questionBoard-modify/:questionBoardId',
-    name: 'QuestionBoardModifyPage',
+    path: '/qna-modify/:qnaBoardId',
+    name: 'QnaBoardModifyPage',
     components: {
-      default: QuestionBoardModifyPage
+      default: QnaBoardModifyPage
       },
       props: {
         default: true
