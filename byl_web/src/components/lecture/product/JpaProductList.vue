@@ -1,6 +1,10 @@
 <template>
   <div>
     <h3>상품 목록</h3>
+    <div class="search">
+      <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
+      <button @click="searchProducts">검색</button>   
+    </div>
     <table>
       <tr>
         <th align="center" width="100">상품</th>
@@ -8,7 +12,7 @@
         <th align="center" width="150">판매자</th>
         <th align="center" width="300">등록일자</th>
       </tr>
-      <tr v-if="!products || (Array.isArray(products) && products.length === 0)">
+      <tr v-if="!displayedProducts || (Array.isArray(displayedProducts) && displayedProducts.length === 0)">
         <td colspan="4">
         </td>
       </tr>
@@ -37,6 +41,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: "JpaProductList",
@@ -48,24 +53,55 @@ export default {
   data() {
     return {
       currentPage: 1,
-      pageSize: 2 // 수정 가능
+      pageSize: 5, // 수정 가능
+      searchQuery: '',
+      displayedProducts: [],
+      noticeItems: []
     };
   },
   computed: {
     pageCount() {
-      if (this.products) {
-        return Math.ceil(this.products.length / this.pageSize);
+      if (this.displayedProducts) {
+        return Math.ceil(this.displayedProducts.length / this.pageSize);
       }
       return 0;
     },
     paginatedProducts() {
       const startIndex = (this.currentPage - 1) * this.pageSize;
       const endIndex = startIndex + this.pageSize;
-      return this.products ? this.products.slice(startIndex, endIndex) : [];
+      return this.displayedProducts ? this.displayedProducts.slice(startIndex, endIndex) : [];
     }
+  },
+  created() {
+    //브라우저 새로고침 해도 상품 목록 계속 보이게 수정
+    if(this.products && this.products.length > 0) {
+    this.searchProducts();
+    }
+  },
+  watch: {
+    products() {
+    //브라우저 새로고침 해도 상품 목록 계속 보이게 수정
+    // 상품 목록이 변경될 때마다 searchProducts() 호출
+    if (this.products && this.products.length > 0) {
+      this.searchProducts();
+    }
+  }
+  },
+  methods: {
+    searchProducts() {
+  const query = this.searchQuery.toLowerCase();
+  if (query === '') {
+    this.displayedProducts = this.products;
+  } else {
+    this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(query));
+  }
+  this.currentPage = 1;
+}
   }
 };
 </script>
+
+
   
   <style>
   table {
@@ -123,6 +159,30 @@ export default {
   .pagination button:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+  .search input[type="text"] { 
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 200px;
+      margin-right: 10px;
+      font-size: 16px;
+      background-repeat: no-repeat;
+      background-position: 5px center;
+      padding-left: 35px;
+  }
+  .search button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
   }
   
   </style>
