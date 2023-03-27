@@ -22,6 +22,10 @@
 
             <v-text-field
               label="이메일"
+              v-model="formData.email"
+              :rules="emailRules"
+              prepend-icon="mdi-email"
+              required
             ></v-text-field>
 
             <v-text-field
@@ -50,8 +54,13 @@ export default {
       valid: false,
       formData: {
         name: "",
+        email: "",
       },
       nameRules: [(v) => !!v || "이름을 입력하세요"],
+      emailRules: [
+        (v) => !!v || "이메일을 입력하세요",
+        (v) => /.+@.+/.test(v) || "유효하지 않은 이메일 형식입니다",
+      ],
     };
   },
 
