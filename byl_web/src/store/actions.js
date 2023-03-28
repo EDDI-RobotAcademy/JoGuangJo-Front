@@ -5,6 +5,7 @@ import {
     REQUEST_PRODUCT_TO_SPRING,
     REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
     REQUEST_ALL_PRODUCT_TO_SPRING,
+    REQUEST_QNA_COMMENT_LIST_FROM_SPRING,
 } from './mutation-types'
 
 import axios from 'axios'
@@ -118,4 +119,20 @@ export default {
                 alert("질문 게시글 문제 발생!")
             })
     },
+    requestQnaCommentListFromSpring({commit}, qnaBoardId ){
+        return axios.get(`http://localhost:7777/qnaBoard/qnaComment/${qnaBoardId}`)
+        .then((res) => {
+            commit(REQUEST_QNA_COMMENT_LIST_FROM_SPRING, res.data)
+        })
+    },
+    requestQnaCommentRegisterToSpring({}, payload) {
+        const { comment, qnaBoardId} = payload
+        return axios.post(`http://localhost:7777/qnaBoard/qnaComment/register`, { comment, qnaBoardId })
+        .then(() => {
+            alert('댓글 등록을 완료하였습니다.')
+        })
+        .catch(() =>{
+            alert('댓글 등록 실패.')
+        })
+    }
 }

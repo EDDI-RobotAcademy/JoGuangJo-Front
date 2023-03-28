@@ -6,5 +6,8 @@ export default {
     productImages: [],
     allOfProducts: [],
 
+    qnaComments: [],
+    qnaComment: {},
+
     isAuthenticated: false,
 }
