@@ -17,7 +17,7 @@ import SignInPage from "@/views/member/SignInPage";
 import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
 
 import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue";
-import DonateVisitView from "@/views/boards/donate/DonateVisiView.vue";
+import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue";
 import DonateMailView from "@/views/boards/donate/DonateMailView.vue";
 import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue";
 
