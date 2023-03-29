@@ -2,8 +2,12 @@
   <div>
     <h3>상품 목록</h3>
     <div class="search">
+      <select v-model="searchBy">
+        <option value="productName">상품명</option>
+        <option value="seller">판매자</option>
+      </select>
       <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
-      <button @click="searchProducts">검색</button>   
+      <button @click="searchProducts">검색</button>
     </div>
     <table>
       <tr>
@@ -56,7 +60,8 @@ export default {
       pageSize: 5, // 수정 가능
       searchQuery: '',
       displayedProducts: [],
-      noticeItems: []
+      noticeItems: [],
+      searchBy: 'productName'
     };
   },
   computed: {
@@ -93,10 +98,15 @@ export default {
   if (query === '') {
     this.displayedProducts = this.products;
   } else {
-    this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(query));
+    if (this.searchBy === 'productName') {
+      this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(query));
+    } else if (this.searchBy === 'seller') {
+      this.displayedProducts = this.products.filter(product => product.writer.toLowerCase().includes(query));
+    }
   }
   this.currentPage = 1;
 }
+
   }
 };
 </script>
@@ -184,5 +194,21 @@ export default {
       cursor: pointer;
       border-radius: 5px;
   }
+  .search select {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .search select:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+  
   
   </style>
