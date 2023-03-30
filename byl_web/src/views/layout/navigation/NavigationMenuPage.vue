@@ -158,12 +158,23 @@ export default {
                 })
         },
         resign () {
+
+        // localStorage에 "userInfo"라는 키에 매핑되어있는 값을 token에 저장
         let token = localStorage.getItem("userInfo")
-        const length = token.length
+        console.log("초기 데이터" + token)
+        let length = token.length
+        // token은 {}(중괄호) 로 묶여있으므로 해당하는 중괄호 제거
+        token = token.substr(2, length - 4)
+        // 해당하는 값들에서 우리가 전달하고 싶은 token값만 선별
+        console.log(token.split(',')[0].split(':')[1])
+        // 해당하는 토큰값은 ""(쌍따옴표)로 묶여있음 해당하는 것은 Spring에서 제거(이유없음)
         console.log('token: ' + token + ', length: ' + length)
-        token = token.substr(1, length - 2)
-        console.log('token: ' + token)
-        axios.post("http://localhost:7777/member/resign", token)
+        let userToken = token.split(',')[0].split(':')[1]
+        const userLength = userToken.length; 
+        userToken = userToken.substr(1, userLength - 2)
+        
+        console.log('token: ' + userToken + ' !!!! length: ' + length)
+        axios.post("http://localhost:7777/member/resign", userToken)
             .then(() => {
                 alert("회원탈퇴 완료");
                 localStorage.removeItem("userInfo");
