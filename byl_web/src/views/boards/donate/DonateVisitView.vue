@@ -1,11 +1,11 @@
 <template>
   <v-container>
-  <donate-visit-form/>
-</v-container>
+    <donate-visit-form/>
+  </v-container>
 </template>
 
 <script>
-import DonateVisitForm from "@/components/donate/DonateVisitForm";
+import DonateVisitForm from "@/components/boards/donate/DonateVisitForm";
 
 export default {
   name: "DonateVisitPage",

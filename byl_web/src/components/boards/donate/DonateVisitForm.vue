@@ -148,8 +148,8 @@
               <v-text-field v-model="formData.addressDetail" label="상세 주소 및 기타 메모(공동현관 비밀번호 등)" required />
             </div>
             
-            <v-btn color="primary" :disabled="!valid" type="submit">방문 수거 신청하기</v-btn>
-
+            <v-btn color="primary" :disabled="!isFormValid" type="submit">방문 수거 신청하기</v-btn>
+  
           </v-col>
         </v-row>
       </v-form>
@@ -199,6 +199,17 @@ export default {
           .replace(/-$/, "");
         this.formData.phoneNumber = formatted;
       },
+    },
+    isFormValid() {
+      return (
+        this.valid &&
+        this.formData.visitDate &&
+        this.formData.visitTime &&
+        this.formData.zipcode &&
+        this.formData.city &&
+        this.formData.street &&
+        this.formData.addressDetail
+      );
     },
   },
 

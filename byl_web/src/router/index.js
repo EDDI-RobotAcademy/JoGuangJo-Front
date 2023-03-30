@@ -1,15 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
 import QnaBoardListPage from "@/views/board/qna/QnaBoardListPage.vue"
 import QnaBoardRegisterPage from "@/views/board/qna/QnaBoardRegisterPage.vue"
 import QnaBoardReadPage from "@/views/board/qna/QnaBoardReadPage.vue"
 import QnaBoardModifyPage from "@/views/board/qna/QnaBoardModifyPage.vue"
-
-import SignUpChoiceView from "@/views/signUp/SignUpChoiceView.vue";
-import EnterpriseSignUpView from "@/views/signUp/EnterpriseSignUpView.vue";
-import CommonSignUpView from "@/views/signUp/CommonSignUpView.vue";
-import SignInView from "@/views/signUp/SignInView.vue";
 
 import JpaBoardListPage from "@/views/board/JpaBoardListPage.vue"
 import JpaBoardRegisterPage from "@/views/board/JpaBoardRegisterPage.vue"
@@ -20,11 +16,10 @@ import SignUpPage from "@/views/member/SignUpPage";
 import SignInPage from "@/views/member/SignInPage";
 import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
 
-import DonateChoicePage from "@/views/donate/DonateChoicePage.vue";
-import DonateVisitPage from "@/views/donate/DonateVisitPage.vue";
-import DonateMailPage from "@/views/donate/DonateMailPage.vue";
-import DonateSearchPage from "@/views/donate/DonateSearchPage.vue";
-
+import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue";
+import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue";
+import DonateMailView from "@/views/boards/donate/DonateMailView.vue";
+import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue";
 
 import JpaProductListPage from "@/views/lecture/product/JpaProductListPage.vue"
 import JpaProductRegisterPage from "@/views/lecture/product/JpaProductRegisterPage.vue"
@@ -42,6 +37,17 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/about',
+    name: 'about',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+
+
+  //태현씨 qna 게시판
+  {
     path: '/qna-board-list-page',
     name: 'QnaBoardListPage',
     component: QnaBoardListPage
@@ -52,35 +58,28 @@ const routes = [
     component: QnaBoardRegisterPage
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
-  
-  {
-    path: '/sign-up-choice',
-    name: 'SignUpChoiceView',
-    component: SignUpChoiceView
+  path: '/qna-board-read-page/:qnaBoardId',
+  name: 'QnaBoardReadPage',
+  components: {
+    default: QnaBoardReadPage
+    },
+    props: {
+      default: true
+    }
   },
   {
-    path: '/enterprise-sing-up',
-    name: 'EnterpriseSignUpView',
-    component: EnterpriseSignUpView
-  },
-  {
-    path: '/common-sing-up',
-    name: 'CommonSignUpView',
-    component: CommonSignUpView
-  },
-  {
-    path: '/SignInView',
-    name: 'SignInView',
-    component: SignInView
+    path: '/qna-modify/:qnaBoardId',
+    name: 'QnaBoardModifyPage',
+    components: {
+      default: QnaBoardModifyPage
+      },
+      props: {
+        default: true
+      }
   },
 
+
+  //채율씨 이름없는 게시판 -> 태현씨가 공지(notice) 게시판으로 바꿀 예정
   {
     path: '/board-list-page',
     name: 'JpaBoardListPage',
@@ -111,6 +110,9 @@ const routes = [
       default: true
     }
   },
+
+
+  //성희씨 회원가입, 로그인 페이지
   {
     path: '/sign-up',
     name: 'SignUpPage',
@@ -121,43 +123,37 @@ const routes = [
     name: 'SignInPage',
     component: SignInPage
   },
-
   {
     path: '/search-password',
     name: 'SearchMemberPasswordPage',
     component: SearchMemberPasswordPage
   },
   
+
+  //지영씨 기부 페이지
   {
     path: '/donate-choice',
-    name: 'DonateChoicePage',
-    component: DonateChoicePage
+    name: 'DonateChoiceView',
+    component: DonateChoiceView
   },
   {
     path: '/donate-visit',
-    name: 'DonateVisitPage',
-    component: DonateVisitPage
+    name: 'DonateVisitView',
+    component: DonateVisitView
   },
   {
     path: '/donate-mail',
-    name: 'DonateMailPage',
-    component: DonateMailPage
+    name: 'DonateMailView',
+    component: DonateMailView
   },
   {
     path: '/donate-search',
-    name: 'DonateSearchPage',
-    component: DonateSearchPage
+    name: 'DonateSearchView',
+    component: DonateSearchView
   },
-  {
-  path: '/qna-board-read-page/:qnaBoardId',
-  name: 'QnaBoardReadPage',
-  components: {
-    default: QnaBoardReadPage
-    },
-    props: {
-      default: true
-    }
-  },
+
+
+  //진우씨 상품게시판
   {
     path: '/product-list-page',
     name: 'JpaProductListPage',
@@ -188,16 +184,8 @@ const routes = [
       default: true
     }
   },
-  {
-    path: '/qna-modify/:qnaBoardId',
-    name: 'QnaBoardModifyPage',
-    components: {
-      default: QnaBoardModifyPage
-      },
-      props: {
-        default: true
-      }
-  },
+
+  //채율씨 상품게시판
   {
     path: '/product-list',
     name: 'ProductListPage',
