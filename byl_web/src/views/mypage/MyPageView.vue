@@ -15,16 +15,14 @@ export default {
     components: {
         MyPageForm
     },
-    props: {
-        memberId: {
-            type: String,
-            required: true,
-        }
-    },
+    mounted() {
+        // axios.post("http://localhost:7777/my-page/list")
+        //     .then(() => {
+        //         alert("http://localhost:7777/my-page/list 실행")
+        //         console.log("localStorage : " + localStorage.getItem("userInfo"))
+        //     })
+        
+    }
 }
 
 </script>
-
-<style>
-
-</style>
