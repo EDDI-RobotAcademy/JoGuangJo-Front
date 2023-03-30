@@ -10,7 +10,7 @@
             <tr>
                 <td>작성자</td>
                 <td>
-                    <input type="text" v-model="writer"/>
+                    <input  label="작성자" type="text" v-model="writer" disabled />
                 </td>
             </tr>
             <tr>
@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             title: '제목을 입력 해주세요.',
-            writer: '작성자를 입력 해주세요.',
+            writer: JSON.parse(localStorage.getItem('userInfo')).nickName,
             content: '질문 내용을 입력 해주세요.'
         }
     },
