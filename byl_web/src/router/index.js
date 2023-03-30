@@ -27,6 +27,7 @@ import JpaProductReadPage from "@/views/lecture/product/JpaProductReadPage.vue"
 import JpaProductModifyPage from "@/views/lecture/product/JpaProductModifyPage.vue"
 
 import ProductListPage from "@/views/product/ProductListPage.vue"
+import MyPage from "@/views/mypage/MyPageView.vue"
 
 Vue.use(VueRouter)
 
@@ -190,8 +191,15 @@ const routes = [
     path: '/product-list',
     name: 'ProductListPage',
     component: ProductListPage
-  }
+  },
   
+  {
+    path: '/my-page',
+    name: 'MyPage',
+    components: {
+      default: MyPage
+    }
+  }
 ]
 
 const router = new VueRouter({
