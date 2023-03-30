@@ -7,6 +7,7 @@
             <tr>
             &nbsp;&nbsp;&nbsp;
             <td>
+            <input  label="작성자" type="text" v-model="writer" disabled />
             <textarea v-model="comment"
                     cols="60" rows="3"
                     placeholder="내용을 입력해 주세요."
@@ -33,12 +34,13 @@ export default {
     data() {
     return {
         comment: '',
+        writer: JSON.parse(localStorage.getItem('userInfo')).nickName,
     }
     },
     methods: {
     onSubmitRegister() {
-        const {comment} = this
-        this.$emit('submit', {comment})
+        const {comment, writer} = this
+        this.$emit('submit', {comment, writer})
         },
     }
 }
