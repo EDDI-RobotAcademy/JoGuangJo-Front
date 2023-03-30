@@ -32,6 +32,17 @@
               </div>
 
               <div class="d-flex">
+                <v-text-field v-model="nickName" label="닉네임" :disabled="nickNamePass" required  color="black"/>
+
+                <v-btn text large outlined style="font-size: 13px; height: 55px"
+                                class="mt-0 ml-5 mr-0"
+                                @click="checkDuplicateNickName"
+                                :disabled="nickNamePass"
+              >닉네임 중복 확인
+                  </v-btn>
+              </div>
+
+              <div class="d-flex">
                 <v-text-field v-model="city" label="도시" :disabled="true" required/>
               </div>
 
@@ -56,7 +67,7 @@
 
               <v-btn type="submit" block x-large rounded
                      class="mt-6" color="purple lighten-1" 
-                     :disabled="(emailPass && streetPass) == false">
+                     :disabled="(emailPass && streetPass && nickNamePass) == false">
                 가입하기
               </v-btn>
 
@@ -78,6 +89,7 @@ export default {
       email: "",
       password: "",
       password_confirm: "",
+      nickName: "",
 
       city: '',
       street: '',
@@ -86,6 +98,8 @@ export default {
 
       emailPass: false,
       streetPass: false,
+
+      nickNamePass:false,//닉네임중복체크후 사용가능한 닉네임인지여부
 
       email_rule: [
         v => !!v || '이메일을 입력해주세요.',
@@ -109,9 +123,9 @@ export default {
   methods: {
     onSubmit () {
       //if (this.$refs.form.validate()) {
-      if (this.emailPass && this.streetPass) {
-        const { email, password, city, street, addressDetail, zipcode } = this
-        this.$emit("submit", { email, password, city, street, addressDetail, zipcode })
+      if (this.emailPass && this.streetPass && this.nickNamePass) {
+        const { email, password, city, street, addressDetail, zipcode, nickName } = this
+        this.$emit("submit", { email, password, city, street, addressDetail, zipcode, nickName })
       } else {
         alert('올바른 정보를 입력하세요!')
       }
@@ -143,6 +157,22 @@ export default {
               }
             })
       }
+    },
+    checkDuplicateNickName() {
+ 
+        const { nickName } = this;
+        axios
+          .post(`http://localhost:7777/member/check-nickName/${nickName}`)
+          .then((res) => {
+            if (res.data) {
+              alert("사용 가능한 닉네임 입니다!");
+              this.nickNamePass = true;
+            } else {
+              alert("중복된 닉네임 입니다!");
+              this.nickNamePass = false;
+            }
+          });
+      
     },
     callDaumAddressApi () {
       new window.daum.Postcode({
