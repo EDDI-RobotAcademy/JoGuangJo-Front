@@ -21,10 +21,10 @@ import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue";
 import DonateMailView from "@/views/boards/donate/DonateMailView.vue";
 import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue";
 
-import JpaProductListPage from "@/views/lecture/product/JpaProductListPage.vue"
-import JpaProductRegisterPage from "@/views/lecture/product/JpaProductRegisterPage.vue"
-import JpaProductReadPage from "@/views/lecture/product/JpaProductReadPage.vue"
-import JpaProductModifyPage from "@/views/lecture/product/JpaProductModifyPage.vue"
+import JpaProductListPage from "@/views/boards/product/ProductListPageView.vue"
+import JpaProductRegisterPage from "@/views/boards/product/ProductRegisterPageView.vue"
+import JpaProductReadPage from "@/views/boards/product/ProductReadPageView.vue"
+import JpaProductModifyPage from "@/views/boards/product/ProductModifyPageView.vue"
 
 import ProductListPage from "@/views/product/ProductListPage.vue"
 

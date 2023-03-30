@@ -10,7 +10,7 @@
   
   <script>
   
-  import JpaProductModifyForm from '@/components/lecture/product/JpaProductModifyForm.vue'
+  import JpaProductModifyForm from '@/components/boards/product/ProductModifyForm.vue'
   import { mapActions, mapState } from 'vuex'
   
   export default {

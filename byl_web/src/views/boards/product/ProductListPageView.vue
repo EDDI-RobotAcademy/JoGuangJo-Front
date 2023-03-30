@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import JpaProductList from "@/components/lecture/product/JpaProductList.vue";
+import JpaProductList from "@/components/boards/product/ProductListForm.vue";
 import { mapActions, mapState } from "vuex";
 
 export default {

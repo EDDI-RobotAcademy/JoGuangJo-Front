@@ -18,7 +18,7 @@
   
   <script>
   
-  import JpaProductRead from '@/components/lecture/product/JpaProductRead.vue'
+  import JpaProductRead from '@/components/boards/product/ProductReadForm.vue'
   import { mapActions, mapState } from 'vuex'
   
   export default {
