@@ -194,7 +194,7 @@ const routes = [
   },
   
   {
-    path: '/my-page',
+    path: '/mypage',
     name: 'MyPage',
     components: {
       default: MyPage
