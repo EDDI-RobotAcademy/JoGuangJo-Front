@@ -6,7 +6,7 @@
   </template>
   
   <script>
-  import JpaProductRegisterForm from '@/components/lecture/product/JpaProductRegisterForm.vue'
+  import JpaProductRegisterForm from '@/components/boards/product/ProductRegisterForm.vue'
   import { mapActions } from 'vuex'
   
   export default {
