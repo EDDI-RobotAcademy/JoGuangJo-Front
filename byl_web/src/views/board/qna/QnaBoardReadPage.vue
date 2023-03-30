@@ -56,10 +56,10 @@ export default {
             await this.$router.push({ name: 'QnaBoardListPage' })
         },
         async onSubmitRegister( payload ) {
-            const { comment } = payload
+            const { comment,writer } = payload
             const qnaBoardId = this.qnaBoardId
             console.log("댓글 등록" + qnaBoardId)
-            await this.requestQnaCommentRegisterToSpring( { comment, qnaBoardId} )
+            await this.requestQnaCommentRegisterToSpring( { comment, writer, qnaBoardId} )
             await this.$router.push({
                 name: 'QnaBoardReadPage',
                 params: { qnaBoardId: qnaBoard.data.qnaBoardId.toString() }
