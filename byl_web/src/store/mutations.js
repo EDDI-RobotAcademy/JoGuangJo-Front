@@ -8,6 +8,7 @@ import {
     REQUEST_QNA_COMMENT_LIST_FROM_SPRING
 } from './mutation-types'
 
+
 export default {
     [REQUEST_QNA_BOARD_LIST_TO_SPRING] (state, passingData) {
         state.qnaBoards = passingData
@@ -15,7 +16,6 @@ export default {
     [REQUEST_QNA_BOARD_TO_SPRING] (state, passingData) {
         state.qnaBoard = passingData
     },
-    // states로 구성하면 안됨(예약어)
     [REQUEST_PRODUCT_LIST_TO_SPRING] (state, passingData) {
         state.products = passingData
     },
