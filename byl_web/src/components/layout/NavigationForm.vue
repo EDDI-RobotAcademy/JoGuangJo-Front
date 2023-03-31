@@ -1,121 +1,192 @@
 <template>
     <nav>
-        <v-app-bar color="white" class="flex-grow-0" app elevation="0"> 
-            <v-app-bar-nav-icon @click="navigation_drawer = !navigation_drawer"/>
-                <router-link to="/">
-                    <v-img class="mx-2" src="@/assets/logo/logo.png"
-                        max-height="80" max-width="130" contain/>
-                </router-link>
-            <v-toolbar-title class="text-uppercase text--darken-4">
-                <span></span>
-            </v-toolbar-title>
+        <!-- 네비게이션바 -->
+        <v-app-bar color="white" dense app elevation="1">
+            <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
             <v-spacer></v-spacer>
 
-            <v-menu bottom left class="custom-menu">
-                <template v-slot:activator="{ on }">
-                  <v-btn icon v-on="on">
-                    <v-icon>mdi-menu-down</v-icon>
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item v-for="item in searchOptions" :key="item.text" @click="selectedOption=item">
-                    <v-list-item-title>{{ item.text }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-
-
-            <v-text-field v-model="search" hide-details prepend-inner-icon="mdi-magnify" solo-inverted
-                color="white"
-                flat
-                @keydown.enter="searchPage()" 
-                style="max-width: 200px;"
-                class="search-elements"/>
-
-            <v-btn text @click="searchPage()" class="search-elements"> 
-                <span>검색</span>
+            <v-btn
+            v-if="isAuthenticated == true"
+            v-on:click="resign"
+            active-class="yellow--text text--accent-4"
+            color="#FFDE59"
+            rounded
+            style="margin-right: 10px;"
+            >
+            회원 탈퇴
+            <v-icon right>mdi-login</v-icon>
             </v-btn>
 
-              <v-btn v-if="isAuthenticated == true" text color="grey" v-on:click="resign">
-                <span>회원 탈퇴</span>
-                <v-icon right>mdi-login</v-icon>
+            <v-btn
+            onclick="location.href='http://localhost:8080/sign-up'"
+            active-class="yellow--text text--accent-4"
+            color="#FFDE59"
+            rounded
+            style="margin-right: 10px;"
+            >
+            회원 가입
+            <v-icon right>mdi-account-plus-outline</v-icon>
             </v-btn>
-            <v-btn text color="grey" onclick="location.href='http://localhost:8080/sign-up'">
-                <span>Sign Up</span>
-                <v-icon right>mdi-account-plus-outline</v-icon>
+
+            <v-btn
+            v-if="isAuthenticated == false"
+            onclick="location.href='http://localhost:8080/sign-in'"
+            active-class="yellow--text text--accent-4"
+            color="#FFDE59"
+            rounded
+            >
+            로그인
+            <v-icon right>mdi-login</v-icon>
             </v-btn>
-            <v-btn v-if="isAuthenticated == false" text color="grey" onclick="location.href='http://localhost:8080/sign-in'">
-                <span>Sign In</span>
-                <v-icon right>mdi-login</v-icon>
-            </v-btn>
-            <v-btn v-else text color="grey" v-on:click="logout">
-                <span>Sign Out</span>
-                <v-icon right>mdi-exit-to-app</v-icon>
+
+            <v-btn
+            v-else
+            v-on:click="logout"
+            active-class="yellow--text text--accent-4"
+            color="#FFDE59"
+            rounded
+            >
+            로그아웃
+            <v-icon right>mdi-exit-to-app</v-icon>
             </v-btn>
 
         </v-app-bar>
-
-        <v-navigation-drawer app v-model="navigation_drawer">
-            <v-list-item>
-                <v-list-item-content>
-                    <v-card-text>
-                        <v-btn v-for="icon in icons" :key="icon" class="mx-1" icon>
-                            <v-icon size="24px">
-                                {{ icon }} 
-                            </v-icon>
-                        </v-btn>
-                    </v-card-text>
-                </v-list-item-content>
-            </v-list-item>
-
-            <v-divider></v-divider>
-
+        
+        <!-- 사이드바 -->
+        <v-navigation-drawer v-model="drawer" absolute temporary>
             <v-list nav dense>
-                <v-list-item v-for="link in links" :key="link.name" router :to="link.route">
-                    <v-list-item-action>
-                        <v-icon left>
-                        {{ link.icon }}
-                        </v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                        {{ link.text }}
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                
+                <v-list-item-group
+                v-model="group"
+                active-class="yellow--text text--accent-4"
+                >
+
+                <div align="center">
+                    <v-btn v-for="icon in icons" :key="icon" class="mx-1" icon>
+                                <v-icon size="24px">
+                                    {{ icon }} 
+                                </v-icon>
+                    </v-btn>
+                </div>
+                
+                <v-toolbar-title class="nav_drawer_logo">
+                    <img src="@/assets/logo/logo.png" alt="로고" width="100%" height="100%">
+                </v-toolbar-title>
+
+                <v-list-item>
+                    <v-text-field
+                        v-model="search"
+                        class="nav_search"
+                        placeholder="검색어를 입력하세요."
+                        prepend-icon="mdi-magnify"
+                        color="#FFDE59"
+                        clearable
+                        @keydown.enter="searchPage()"
+                    >
+                    </v-text-field>
+                        <v-btn
+                        active-class="yellow--text text--accent-4"
+                        color="#FFDE59"
+                        rounded
+                        @click="searchPage()"
+                        >
+                        검색
+                        </v-btn>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='/'"
+                    >
+                        <v-list-item-icon>
+                            <v-icon>mdi-home</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>홈으로 돌아가기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/donate-choice'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-hand-heart-outline</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>책 기부하기</v-list-item-title>
+                    </v-list-item>
+        
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/product-list'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-cart</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>쇼핑하기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/product-list'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-teddy-bear</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>굿즈 구매하기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/product-list'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-book</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>책 구매하기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/qna-board-list-page'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-help-circle-outline</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>QnA 문의하기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-information-outline</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>공지 보러가기</v-list-item-title>
+                    </v-list-item>
+
+
+                </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
     </nav>
 </template>
 
-<script>
 
+<script>
 import {mapState} from "vuex";
 import axios from "axios";
 
 export default {
-    name: "Navigation",
-    data() {
-        return {
-            search: '',
-            isTrue: false,
-            navigation_drawer: false,
-            links: [
-            { icon: 'mdi-home', text: 'Home', name: 'home', route: '/' },
-            { icon: 'mdi-cart', text: 'Product', name: 'product', route: '/product-list-page'}
-            ],
-            icons: [
-            "mdi-facebook",
-            "mdi-instagram",
-            "mdi-youtube"
-            ],
-            selectedOption: { text: '상품명', value: 'productName' },
-            searchOptions: [
-                { text: '상품명', value: 'productName' },
-                { text: '작성자', value: 'author' },
-                { text: '내용', value: 'content' }
-    ]
+        name: "NavigationForm",
+        data() {
+            return {
+                drawer: false,
+                group: null,
+                search: '',
+                isTrue: false,
+                links: [
+                { icon: 'mdi-home', text: 'Home', name: 'home', route: '/' },
+                { icon: 'mdi-cart', text: 'Product', name: 'product', route: '/product-list'}
+                ],
+                icons: [
+                "mdi-facebook",
+                "mdi-instagram",
+                "mdi-youtube"
+                ],
+                selectedOption: { text: '상품명', value: 'productName' },
+                searchOptions: [
+                    { text: '상품명', value: 'productName' },
+                    { text: '작성자', value: 'author' },
+                    { text: '내용', value: 'content' }
+        ]
         }
     }, 
     computed: {
@@ -185,9 +256,15 @@ export default {
 }
 </script>
 
+
 <style scoped>
-.search-elements {
-    height: 48px; 
-    border-radius: 10px;
+
+.nav_drawer_logo {
+    padding: 20px;
 }
+
+.nav_search ::placeholder {
+  font-size: 12px;
+}
+
 </style>

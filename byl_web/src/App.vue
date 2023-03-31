@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <navigation-form/>
-    <header-form/>
       <v-main>
         <router-view/>
       </v-main>
@@ -13,7 +12,6 @@
 <script>
 
 import NavigationForm from '@/components/layout/NavigationForm.vue';
-import HeaderForm from '@/components/layout/HeaderForm.vue'
 import FooterForm from '@/components/layout/FooterForm.vue';
 
 
@@ -25,7 +23,6 @@ export default {
   }),
   components: {
     NavigationForm,
-    HeaderForm,
     FooterForm
   }
 
