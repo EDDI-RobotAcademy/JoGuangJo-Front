@@ -71,7 +71,7 @@
                 </div>
                 
                 <v-toolbar-title class="nav_drawer_logo">
-                    <img src="@/assets/logo/logo.png" alt="로고" width="100%" height="100%">
+                    <img src="@/assets/logo/logo.gif" alt="로고" width="100%" height="100%">
                 </v-toolbar-title>
 
                 <v-list-item>
@@ -111,6 +111,22 @@
                         </v-list-item-icon>
                     <v-list-item-title>책 기부하기</v-list-item-title>
                     </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-card-account-details-star-outline</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>후원하기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-hand-back-right-outline</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>자원봉사 신청하기</v-list-item-title>
+                    </v-list-item>
         
                     <v-list-item
                     onclick="location.href='http://localhost:8080/product-list'">
@@ -134,6 +150,22 @@
                             <v-icon>mdi-book</v-icon>
                         </v-list-item-icon>
                     <v-list-item-title>책 구매하기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-lead-pencil</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>책 리뷰 쓰기</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item
+                    onclick="location.href='http://localhost:8080/'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-dots-circle</v-icon>
+                        </v-list-item-icon>
+                    <v-list-item-title>온오프 모임 참여하기</v-list-item-title>
                     </v-list-item>
 
                     <v-list-item
