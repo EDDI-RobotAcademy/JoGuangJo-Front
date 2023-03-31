@@ -1,16 +1,22 @@
 import {
+    // 태현씨 qna 게시판
     REQUEST_QNA_BOARD_LIST_TO_SPRING,
     REQUEST_QNA_BOARD_TO_SPRING,
+
+    // 태현씨 qna 게시판 - 댓글 기능
+    REQUEST_QNA_COMMENT_LIST_FROM_SPRING,
+
+    // 진우씨 상품 게시판
     REQUEST_PRODUCT_LIST_TO_SPRING,
     REQUEST_PRODUCT_TO_SPRING,
     REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
     REQUEST_ALL_PRODUCT_TO_SPRING,
-    REQUEST_QNA_COMMENT_LIST_FROM_SPRING,
 } from './mutation-types'
 
 import axios from 'axios'
 
 export default {
+    // 태현씨 qna 게시판
     requestCreateQnaBoardToSpring({}, payload){
         const { title, writer, content } = payload
         return axios.post('http://localhost:7777/qnaBoard/register',
@@ -51,6 +57,49 @@ export default {
                 alert('문제 발생!')
             })
     },
+
+    // 태현씨 qna 게시판 - 댓글 기능
+    requestQnaBoardModifyToSpring ({}, payload) {
+        console.log("수정 요청 테스트 완료")
+        const { title, content, qnaBoardId } = payload
+        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`,
+            { title, content })
+            .then(() => {
+                alert("질문 게시글 수정 성공")
+            })
+            .catch(() => {
+                alert("질문 게시글 문제 발생!")
+            })
+    },
+    requestDeleteQnaBoardToSpring ({}, qnaBoardId) {
+        console.log("삭제 요청 테스트 완료")
+        return axios.delete(`http://localhost:7777/qnaBoard/${qnaBoardId}`)
+            .then(() => {
+                alert("질문 게시글 삭제 성공")
+            })
+            .catch(() => {
+                alert("질문 게시글 문제 발생!")
+            })
+    },
+    requestQnaCommentListFromSpring({commit}, qnaBoardId ){
+        return axios.get(`http://localhost:7777/qnaBoard/qnaComment/${qnaBoardId}`)
+        .then((res) => {
+            commit(REQUEST_QNA_COMMENT_LIST_FROM_SPRING, res.data)
+        })
+    },
+    requestQnaCommentRegisterToSpring({}, payload) {
+        const { writer, comment, qnaBoardId} = payload
+        return axios.post(`http://localhost:7777/qnaBoard/qnaComment/register`, { writer, comment, qnaBoardId })
+        .then(() => {
+            alert('댓글 등록을 완료하였습니다.')
+        })
+        .catch(() =>{
+            alert('댓글 등록 실패.')
+        })
+    },
+
+
+    // 진우씨 상품 게시판
     requestProductListToSpring ({ commit }) {
         return axios.get('http://localhost:7777/product/list')
             .then((res) => {
@@ -96,43 +145,5 @@ export default {
                 commit(REQUEST_ALL_PRODUCT_TO_SPRING, res.data)
                 console.log("allProduct: " + res.data)
             })
-    },
-    requestQnaBoardModifyToSpring ({}, payload) {
-        console.log("수정 요청 테스트 완료")
-        const { title, content, qnaBoardId } = payload
-        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`,
-            { title, content })
-            .then(() => {
-                alert("질문 게시글 수정 성공")
-            })
-            .catch(() => {
-                alert("질문 게시글 문제 발생!")
-            })
-    },
-    requestDeleteQnaBoardToSpring ({}, qnaBoardId) {
-        console.log("삭제 요청 테스트 완료")
-        return axios.delete(`http://localhost:7777/qnaBoard/${qnaBoardId}`)
-            .then(() => {
-                alert("질문 게시글 삭제 성공")
-            })
-            .catch(() => {
-                alert("질문 게시글 문제 발생!")
-            })
-    },
-    requestQnaCommentListFromSpring({commit}, qnaBoardId ){
-        return axios.get(`http://localhost:7777/qnaBoard/qnaComment/${qnaBoardId}`)
-        .then((res) => {
-            commit(REQUEST_QNA_COMMENT_LIST_FROM_SPRING, res.data)
-        })
-    },
-    requestQnaCommentRegisterToSpring({}, payload) {
-        const { writer, comment, qnaBoardId} = payload
-        return axios.post(`http://localhost:7777/qnaBoard/qnaComment/register`, { writer, comment, qnaBoardId })
-        .then(() => {
-            alert('댓글 등록을 완료하였습니다.')
-        })
-        .catch(() =>{
-            alert('댓글 등록 실패.')
-        })
     }
 }
