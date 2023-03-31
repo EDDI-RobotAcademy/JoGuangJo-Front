@@ -1,17 +1,17 @@
 <template>
     <v-container>
       <h2>상품 등록</h2>
-      <jpa-product-register-form @submit="onSubmit"/>
+      <product-register-form @submit="onSubmit"/>
     </v-container>
   </template>
   
   <script>
-  import JpaProductRegisterForm from '@/components/boards/product/ProductRegisterForm.vue'
+  import ProductRegisterForm from '@/components/boards/product/ProductRegisterForm.vue'
   import { mapActions } from 'vuex'
   
   export default {
-      components: { JpaProductRegisterForm },
-      name: "JpaProductRegisterPage",
+      components: { ProductRegisterForm },
+      name: "ProductRegisterView",
       methods: {
           ...mapActions ([
               'requestCreateProductToSpring'
@@ -19,7 +19,7 @@
           async onSubmit (payload) {
               await this.requestCreateProductToSpring(payload)
               await this.$router.push({
-                  name: 'JpaProductListPage'
+                  name: 'ProductListView'
               })
           }
       }

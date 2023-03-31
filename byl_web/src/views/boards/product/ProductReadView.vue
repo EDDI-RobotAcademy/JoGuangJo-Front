@@ -2,13 +2,13 @@
   <v-container>
     <div align="center">
       <h2>게시물 보기</h2>
-      <jpa-product-read v-if="product" :product="product" :productImages="productImages"/>
+      <product-read-form v-if="product" :product="product" :productImages="productImages"/>
       <p v-else>로딩중 .......... </p>
-      <v-btn color="primary" :to="{ name: 'JpaProductModifyPage', params: { productId } }">
+      <v-btn color="primary" :to="{ name: 'ProductModifyView', params: { productId } }">
         수정
       </v-btn>
       <v-btn color="error" dark @click="onDelete">삭제</v-btn>
-      <v-btn :to="{ name: 'JpaProductListPage' }">
+      <v-btn :to="{ name: 'ProductListView' }">
         돌아가기
       </v-btn>
     </div>
@@ -18,12 +18,12 @@
   
   <script>
   
-  import JpaProductRead from '@/components/boards/product/ProductReadForm.vue'
+  import ProductReadForm from '@/components/boards/product/ProductReadForm.vue'
   import { mapActions, mapState } from 'vuex'
   
   export default {
-    components: { JpaProductRead },
-      name: "JpaProductReadPage",
+    components: { ProductReadForm },
+      name: "ProductReadView",
       props: {
           productId: {
               type: String,
@@ -41,7 +41,7 @@
           ]),
           async onDelete () {
               await this.requestDeleteProductToSpring(this.productId)
-              await this.$router.push({ name: 'JpaProductListPage' })
+              await this.$router.push({ name: 'ProductListView' })
           }
       },
       async created () {

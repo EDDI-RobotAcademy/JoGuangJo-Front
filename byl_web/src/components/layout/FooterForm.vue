@@ -13,11 +13,9 @@
     </v-footer>
 </template>
 
-
-
 <script>
 export default {
-    name: "Footer",
+    name: "FooterForm",
     data: () => ({
         icons: [
             "mdi-instagram",
@@ -27,3 +25,6 @@ export default {
     })
 }
 </script>
+
+<style>
+</style>

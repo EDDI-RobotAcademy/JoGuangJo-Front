@@ -3,7 +3,7 @@
         <v-app-bar color="white" class="flex-grow-0" app elevation="0"> 
             <v-app-bar-nav-icon @click="navigation_drawer = !navigation_drawer"/>
                 <router-link to="/">
-                    <v-img class="mx-2" src="@/assets/main/main_logo.png"
+                    <v-img class="mx-2" src="@/assets/logo/logo.png"
                         max-height="80" max-width="130" contain/>
                 </router-link>
             <v-toolbar-title class="text-uppercase text--darken-4">
@@ -95,7 +95,7 @@ import {mapState} from "vuex";
 import axios from "axios";
 
 export default {
-    name: "NavigationMenuPage",
+    name: "Navigation",
     data() {
         return {
             search: '',

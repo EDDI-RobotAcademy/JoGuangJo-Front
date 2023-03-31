@@ -42,7 +42,7 @@
   
         <div>
           <button type="submit">수정 완료</button>
-          <router-link :to="{ name: 'JpaProductReadPage',
+          <router-link :to="{ name: 'ProductReadView',
                               params: { productId: product.productId.toString() }}">
             취소
           </router-link>
@@ -54,7 +54,7 @@
   <script>
   
   export default {
-      name: "JpaProductModifyForm",
+      name: "ProductModifyForm",
       props: {
           product: {
               type: Object,

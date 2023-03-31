@@ -2,7 +2,7 @@
     <v-container>
       <div align="center">
         <h2>게시물 수정</h2>
-        <jpa-product-modify-form v-if="product" :product="product" @submit="onSubmit"/>
+        <product-modify-form v-if="product" :product="product" @submit="onSubmit"/>
         <p v-else>로딩중 ........</p>
       </div>
     </v-container>
@@ -10,12 +10,12 @@
   
   <script>
   
-  import JpaProductModifyForm from '@/components/boards/product/ProductModifyForm.vue'
+  import ProductModifyForm from '@/components/boards/product/ProductModifyForm.vue'
   import { mapActions, mapState } from 'vuex'
   
   export default {
-      components: { JpaProductModifyForm },
-      name: "JpaProductModifyPage",
+      components: { ProductModifyForm },
+      name: "ProductModifyView",
       props: {
           productId: {
               type: String,
@@ -37,7 +37,7 @@
               await this.requestProductModifyToSpring(
                   { productId, productName, content, writer, price })
               await this.$router.push({
-                  name: 'JpaProductReadPage',
+                  name: 'ProductReadView',
                   params: { productId: this.productId }
               })
           }

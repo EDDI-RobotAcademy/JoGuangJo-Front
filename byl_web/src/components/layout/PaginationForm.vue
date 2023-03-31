@@ -8,7 +8,7 @@
   
   <script>
   export default {
-    name: "Pagination",
+    name: "PaginationForm",
     props: {
       currentPage: {
         type: Number,

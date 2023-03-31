@@ -45,7 +45,7 @@
   <script>
   
   export default {
-      name: "JpaProductRead",
+      name: "ProductReadForm",
       props: {
           product: {
               type: Object,

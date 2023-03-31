@@ -7,17 +7,17 @@
     >
       판매 등록
     </button>
-    <jpa-product-list :products="products" />
+    <product-list-form :products="products" />
   </v-container>
 </template>
 
 <script>
-import JpaProductList from "@/components/boards/product/ProductListForm.vue";
+import ProductListForm from "@/components/boards/product/ProductListForm.vue";
 import { mapActions, mapState } from "vuex";
 
 export default {
-  components: { JpaProductList },
-  name: "JpaProductListPage",
+  components: { ProductListForm },
+  name: "ProductListView",
   computed: {
     ...mapState(["products", "isAuthenticated"]),
   },
@@ -28,7 +28,7 @@ export default {
     ...mapActions(["requestProductListToSpring"]),
     navigateToRegister() {
       if (this.isAuthenticated) {
-        this.$router.push({ name: "JpaProductRegisterPage" });
+        this.$router.push({ name: "ProductRegisterView" });
       } else {
         this.$router.push({ name: "SignInPage" });
       }
