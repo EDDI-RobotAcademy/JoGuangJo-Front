@@ -54,7 +54,7 @@
         </v-app-bar>
         
         <!-- 사이드바 -->
-        <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-navigation-drawer v-model="drawer" absolute temporary class="nav_drawer">
             <v-list nav dense>
                 
                 <v-list-item-group
@@ -96,8 +96,7 @@
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='/'"
-                    >
+                    onclick="location.href='/'">
                         <v-list-item-icon>
                             <v-icon>mdi-home</v-icon>
                         </v-list-item-icon>
@@ -209,9 +208,9 @@ export default {
                 { icon: 'mdi-cart', text: 'Product', name: 'product', route: '/product-list'}
                 ],
                 icons: [
-                "mdi-facebook",
                 "mdi-instagram",
-                "mdi-youtube"
+                "mdi-youtube",
+                "mdi-facebook"
                 ],
                 selectedOption: { text: '상품명', value: 'productName' },
                 searchOptions: [
@@ -290,6 +289,11 @@ export default {
 
 
 <style scoped>
+
+.nav_drawer {
+    position: fixed;
+    top: 0;
+}
 
 .nav_drawer_logo {
     padding: 20px;
