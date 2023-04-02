@@ -9,7 +9,6 @@
             <v-btn
             v-if="isAuthenticated == true"
             v-on:click="resign"
-            active-class="yellow--text text--accent-4"
             color="#FFDE59"
             rounded
             style="margin-right: 10px;"
@@ -20,7 +19,6 @@
 
             <v-btn
             onclick="location.href='http://localhost:8080/sign-up'"
-            active-class="yellow--text text--accent-4"
             color="#FFDE59"
             rounded
             style="margin-right: 10px;"
@@ -32,7 +30,6 @@
             <v-btn
             v-if="isAuthenticated == false"
             onclick="location.href='http://localhost:8080/sign-in'"
-            active-class="yellow--text text--accent-4"
             color="#FFDE59"
             rounded
             >
@@ -63,7 +60,7 @@
                 >
 
                 <div align="center">
-                    <v-btn v-for="icon in icons" :key="icon" class="mx-1" icon>
+                    <v-btn v-for="icon in icons" :key="icon" class="mx-1 icon_btn" icon>
                                 <v-icon size="24px">
                                     {{ icon }} 
                                 </v-icon>
@@ -86,7 +83,6 @@
                     >
                     </v-text-field>
                         <v-btn
-                        active-class="yellow--text text--accent-4"
                         color="#FFDE59"
                         rounded
                         @click="searchPage()"
@@ -288,6 +284,7 @@ export default {
 </script>
 
 
+
 <style scoped>
 
 .nav_drawer {
@@ -301,6 +298,19 @@ export default {
 
 .nav_search ::placeholder {
   font-size: 12px;
+}
+
+.v-list-item:hover .v-icon,
+.v-list-item:hover .v-list-item__title {
+  color: #FFC107;
+}
+.v-list-item:hover {
+  background-color: rgba(255, 242, 189, 0.5);
+}
+
+.icon_btn:hover {
+    background-color: rgba(255, 242, 189, 0.5);
+    color: #FFC107;
 }
 
 </style>
