@@ -14,6 +14,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // normalice.css 추가
 import 'normalize.css'
 
+// font.css 추가
+import '@/components/layout/css/Font.css';
+
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
