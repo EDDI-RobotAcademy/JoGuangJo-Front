@@ -2,16 +2,14 @@
     <nav>
         <!-- 네비게이션바 -->
         <v-app-bar color="white" dense app elevation="1">
-            <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click="drawer = true" class="drawer-icon"></v-app-bar-nav-icon>
 
             <v-spacer></v-spacer>
 
             <v-btn
             v-if="isAuthenticated == true"
             v-on:click="resign"
-            color="#FFDE59"
-            rounded
-            style="margin-right: 10px;"
+            class="btn"
             >
             회원 탈퇴
             <v-icon right>mdi-login</v-icon>
@@ -19,9 +17,7 @@
 
             <v-btn
             onclick="location.href='http://localhost:8080/sign-up'"
-            color="#FFDE59"
-            rounded
-            style="margin-right: 10px;"
+            class="btn"
             >
             회원 가입
             <v-icon right>mdi-account-plus-outline</v-icon>
@@ -30,8 +26,7 @@
             <v-btn
             v-if="isAuthenticated == false"
             onclick="location.href='http://localhost:8080/sign-in'"
-            color="#FFDE59"
-            rounded
+            class="btn"
             >
             로그인
             <v-icon right>mdi-login</v-icon>
@@ -40,9 +35,7 @@
             <v-btn
             v-else
             v-on:click="logout"
-            active-class="yellow--text text--accent-4"
-            color="#FFDE59"
-            rounded
+            class="btn"
             >
             로그아웃
             <v-icon right>mdi-exit-to-app</v-icon>
@@ -51,7 +44,7 @@
         </v-app-bar>
         
         <!-- 사이드바 -->
-        <v-navigation-drawer v-model="drawer" absolute temporary class="nav_drawer">
+        <v-navigation-drawer v-model="drawer" absolute temporary class="nav-drawer">
             <v-list nav dense>
                 
                 <v-list-item-group
@@ -60,21 +53,21 @@
                 >
 
                 <div align="center">
-                    <v-btn v-for="icon in icons" :key="icon" class="mx-1 icon_btn" icon>
+                    <v-btn v-for="icon in icons" :key="icon" class="mx-1 icon-btn" icon>
                                 <v-icon size="24px">
                                     {{ icon }} 
                                 </v-icon>
                     </v-btn>
                 </div>
                 
-                <v-toolbar-title class="nav_drawer_logo">
+                <v-toolbar-title class="nav-drawer-logo">
                     <img src="@/assets/logo/logo.gif" alt="로고" width="100%" height="100%">
                 </v-toolbar-title>
 
                 <v-list-item>
                     <v-text-field
                         v-model="search"
-                        class="nav_search"
+                        class="nav-search"
                         placeholder="검색어를 입력하세요."
                         prepend-icon="mdi-magnify"
                         color="#FFDE59"
@@ -287,17 +280,22 @@ export default {
 
 <style scoped>
 
-.nav_drawer {
+.nav-drawer {
     position: fixed;
     top: 0;
 }
 
-.nav_drawer_logo {
+.nav-drawer-logo {
     padding: 20px;
 }
 
-.nav_search ::placeholder {
+.nav-search ::placeholder {
   font-size: 12px;
+}
+
+.drawer-icon:hover {
+    background-color: rgba(255, 242, 189, 0.5);
+    color: #FFC107;
 }
 
 .v-list-item:hover .v-icon,
@@ -308,9 +306,21 @@ export default {
   background-color: rgba(255, 242, 189, 0.5);
 }
 
-.icon_btn:hover {
+.icon-btn:hover {
     background-color: rgba(255, 242, 189, 0.5);
     color: #FFC107;
 }
+
+.btn {
+    background-color: #fee789 !important;
+    color: black;
+    border-radius: 25px;
+    margin-right: 10px;
+  }
+
+.btn:hover {
+    background-color: #FFC107 !important;
+    color: white;
+  }
 
 </style>
