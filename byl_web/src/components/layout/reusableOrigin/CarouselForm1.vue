@@ -4,7 +4,7 @@
     <div>
       <v-carousel :cycle="true" :interval="interval" :width="carouselWidth" :height="carouselHeight" :hide-delimiters="hideDelimiters">
         <v-carousel-item v-for="(item, i) in items.slice(0, itemLimit)" :key="i">
-          <v-img :src="item.src" class="banner-img" alt="banner-img" />
+          <v-img :src="item.src" alt="banner-img" class="banner-img" />
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -51,6 +51,7 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
   </style>
   
