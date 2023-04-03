@@ -15,7 +15,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'normalize.css'
 
 // font.css 추가
-import '@/components/layout/css/Font.css';
+import '@/css/Font.css';
 
 Vue.use(BootstrapVue)
 
