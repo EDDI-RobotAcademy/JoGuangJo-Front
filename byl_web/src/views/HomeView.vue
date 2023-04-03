@@ -11,10 +11,6 @@ export default {
   name: "HomeView",
   components: {
     HomeViewForm
-  },
-  data() {
-    return {
-    };
-  },
-};
+  }
+}
 </script>

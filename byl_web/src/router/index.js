@@ -15,15 +15,15 @@ import JpaBoardReadPage from "@/views/board/JpaBoardReadPage.vue"
 import JpaBoardModifyPage from "@/views/board/JpaBoardModifyPage.vue"
 
 // 성희씨 회원가입, 로그인 페이지
-import SignUpPage from "@/views/member/SignUpPage";
-import SignInPage from "@/views/member/SignInPage";
-import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
+import SignUpPage from "@/views/member/SignUpPage.vue"
+import SignInPage from "@/views/member/SignInPage.vue"
+import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage.vue"
 
 // 지영씨 기부 페이지
-import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue";
-import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue";
-import DonateMailView from "@/views/boards/donate/DonateMailView.vue";
-import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue";
+import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue"
+import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue"
+import DonateMailView from "@/views/boards/donate/DonateMailView.vue"
+import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue"
 
 // 진우씨 상품 게시판
 import ProductListView from "@/views/boards/product/ProductListView.vue"
