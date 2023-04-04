@@ -204,7 +204,7 @@ const routes = [
   
   // 성희씨 마이페이지
   {
-    path: '/my-page',
+    path: '/mypage',
     name: 'MyPage',
     components: {
       default: MyPage
