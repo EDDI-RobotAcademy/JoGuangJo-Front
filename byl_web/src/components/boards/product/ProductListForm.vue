@@ -40,7 +40,7 @@
         </td>
       </tr>
     </table>
-    <Pagination :current-page="currentPage" :page-count="pageCount" @update:current-page="currentPage = $event" />
+    <Pagination-form :current-page="currentPage" :page-count="pageCount" @update:current-page="currentPage = $event" />
   </div>
 </template>
 
