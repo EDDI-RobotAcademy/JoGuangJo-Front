@@ -126,8 +126,8 @@ export default {
         })
     },
     requestQnaCommentRegisterToSpring({}, payload) {
-        const { writer, comment, qnaBoardId} = payload
-        return axios.post(`http://localhost:7777/qnaBoard/qnaComment/register`, { writer, comment, qnaBoardId })
+        const { writer, comment, qnaBoardId, qnaCommentId} = payload
+        return axios.post(`http://localhost:7777/qnaBoard/qnaComment/register`, { writer, comment, qnaBoardId, qnaCommentId })
         .then(() => {
             alert('댓글 등록을 완료하였습니다.')
         })
