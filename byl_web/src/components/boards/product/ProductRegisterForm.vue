@@ -36,7 +36,7 @@
   
       <div>
         <button type="submit">등록</button>
-        <router-link :to="{ name: 'JpaProductListPage' }">
+        <router-link :to="{ name: 'ProductListView' }">
           취소
         </router-link>
       </div>
@@ -46,7 +46,7 @@
   <script>
   
   export default {
-      name: "JpaBoardRegisterForm",
+      name: "ProductRegisterForm",
       data () {
           return {
               productName: '상품명을 입력하세요.',

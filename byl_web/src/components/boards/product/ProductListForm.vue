@@ -26,7 +26,7 @@
         </td>
         <td align="left">
           <router-link :to="{
-            name: 'JpaProductReadPage',
+            name: 'ProductReadView',
             params: { productId: product.productId.toString() }
           }">
             {{ product.productName }}
@@ -45,12 +45,12 @@
 </template>
 
 <script>
-import Pagination from "@/components/Pagination.vue";
+import PaginationForm from "@/components/layout/PaginationForm.vue";
 
 export default {
-  name: "JpaProductList",
+  name: "ProductListForm",
   components: {
-    Pagination
+    PaginationForm
   },
   props: {
     products: {

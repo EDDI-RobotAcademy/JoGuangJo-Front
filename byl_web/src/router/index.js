@@ -2,31 +2,39 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+// 태현씨 qna 게시판
 import QnaBoardListPage from "@/views/board/qna/QnaBoardListPage.vue"
 import QnaBoardRegisterPage from "@/views/board/qna/QnaBoardRegisterPage.vue"
 import QnaBoardReadPage from "@/views/board/qna/QnaBoardReadPage.vue"
 import QnaBoardModifyPage from "@/views/board/qna/QnaBoardModifyPage.vue"
 
+// 채율씨 공지 게시판으로 바뀔 예정
 import JpaBoardListPage from "@/views/board/JpaBoardListPage.vue"
 import JpaBoardRegisterPage from "@/views/board/JpaBoardRegisterPage.vue"
 import JpaBoardReadPage from "@/views/board/JpaBoardReadPage.vue"
 import JpaBoardModifyPage from "@/views/board/JpaBoardModifyPage.vue"
 
-import SignUpPage from "@/views/member/SignUpPage";
-import SignInPage from "@/views/member/SignInPage";
-import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage";
+// 성희씨 회원가입, 로그인 페이지
+import SignUpPage from "@/views/member/SignUpPage.vue"
+import SignInPage from "@/views/member/SignInPage.vue"
+import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage.vue"
 
-import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue";
-import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue";
-import DonateMailView from "@/views/boards/donate/DonateMailView.vue";
-import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue";
+// 지영씨 기부 페이지
+import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue"
+import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue"
+import DonateMailView from "@/views/boards/donate/DonateMailView.vue"
+import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue"
 
-import JpaProductListPage from "@/views/boards/product/ProductListPageView.vue"
-import JpaProductRegisterPage from "@/views/boards/product/ProductRegisterPageView.vue"
-import JpaProductReadPage from "@/views/boards/product/ProductReadPageView.vue"
-import JpaProductModifyPage from "@/views/boards/product/ProductModifyPageView.vue"
+// 진우씨 상품 게시판
+import ProductListView from "@/views/boards/product/ProductListView.vue"
+import ProductRegisterView from "@/views/boards/product/ProductRegisterView.vue"
+import ProductReadView from "@/views/boards/product/ProductReadView.vue"
+import ProductModifyView from "@/views/boards/product/ProductModifyView.vue"
 
+// 채율씨 상품 게시판 - 썸네일 테스트중
 import ProductListPage from "@/views/product/ProductListPage.vue"
+
+// 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
 
 Vue.use(VueRouter)
@@ -82,7 +90,7 @@ const routes = [
 
   //채율씨 이름없는 게시판 -> 태현씨가 공지(notice) 게시판으로 바꿀 예정
   {
-    path: '/board-list-page',
+    path: '/board-list',
     name: 'JpaBoardListPage',
     component: JpaBoardListPage
   },
@@ -156,20 +164,20 @@ const routes = [
 
   //진우씨 상품게시판
   {
-    path: '/product-list-page',
-    name: 'JpaProductListPage',
-    component: JpaProductListPage
+    path: '/product-list',
+    name: 'ProductListView',
+    component: ProductListView
   },
   {
     path: '/product-register',
-    name: 'JpaProductRegisterPage',
-    component: JpaProductRegisterPage
+    name: 'ProductRegisterView',
+    component: ProductRegisterView
   },
   {
     path: '/product-read/:productId',
-    name: 'JpaProductReadPage',
+    name: 'ProductReadView',
     components: {
-      default: JpaProductReadPage
+      default: ProductReadView
     },
     props: {
       default: true
@@ -177,14 +185,15 @@ const routes = [
   },
   {
     path: '/product-modify/:productId',
-    name: 'JpaProductModifyPage',
+    name: 'ProductModifyView',
     components: {
-      default: JpaProductModifyPage
+      default: ProductModifyView
     },
     props: {
       default: true
     }
   },
+
 
   //채율씨 상품게시판
   {
@@ -193,6 +202,7 @@ const routes = [
     component: ProductListPage
   },
   
+  // 성희씨 마이페이지
   {
     path: '/my-page',
     name: 'MyPage',
