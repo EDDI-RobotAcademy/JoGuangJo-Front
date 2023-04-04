@@ -145,5 +145,43 @@ export default {
                 commit(REQUEST_ALL_PRODUCT_TO_SPRING, res.data)
                 console.log("allProduct: " + res.data)
             })
+    },
+    requestQnaBoardModifyToSpring ({}, payload) {
+        console.log("수정 요청 테스트 완료")
+        const { title, content, qnaBoardId } = payload
+        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`,
+            { title, content })
+            .then(() => {
+                alert("질문 게시글 수정 성공")
+            })
+            .catch(() => {
+                alert("질문 게시글 문제 발생!")
+            })
+    },
+    requestDeleteQnaBoardToSpring ({}, qnaBoardId) {
+        console.log("삭제 요청 테스트 완료")
+        return axios.delete(`http://localhost:7777/qnaBoard/${qnaBoardId}`)
+            .then(() => {
+                alert("질문 게시글 삭제 성공")
+            })
+            .catch(() => {
+                alert("질문 게시글 문제 발생!")
+            })
+    },
+    requestQnaCommentListFromSpring({commit}, qnaBoardId ){
+        return axios.get(`http://localhost:7777/qnaBoard/qnaComment/${qnaBoardId}`)
+        .then((res) => {
+            commit(REQUEST_QNA_COMMENT_LIST_FROM_SPRING, res.data)
+        })
+    },
+    requestQnaCommentRegisterToSpring({}, payload) {
+        const { writer, comment, qnaBoardId, qnaCommentId} = payload
+        return axios.post(`http://localhost:7777/qnaBoard/qnaComment/register`, { writer, comment, qnaBoardId, qnaCommentId })
+        .then(() => {
+            alert('댓글 등록을 완료하였습니다.')
+        })
+        .catch(() =>{
+            alert('댓글 등록 실패.')
+        })
     }
 }

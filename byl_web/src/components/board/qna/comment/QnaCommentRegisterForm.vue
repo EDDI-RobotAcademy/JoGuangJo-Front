@@ -7,9 +7,9 @@
             <tr>
             &nbsp;&nbsp;&nbsp;
             <td>
-            <input  label="작성자" type="text" v-model="writer" disabled />
+            <input style="font-weight:bold;" label="작성자" type="text" v-model="writer" disabled />
             <textarea v-model="comment"
-                    cols="60" rows="3"
+                    cols="60" rows="1"
                     placeholder="내용을 입력해 주세요."
                     onfocus="this.placeholder=''"
                     onblur="this.placeholder='내용을 입력해 주세요.'">
