@@ -23,7 +23,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      with:
+        path: byl_web/node_modules
+        key: ${{ runner.os }}-node-${{ matrix.node-version }}-npm-${{ hashFiles('byl_web/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-${{ matrix.node-version }}-npm-
     - run: npm ci
       working-directory: byl_web
     - run: npm run build --if-present
