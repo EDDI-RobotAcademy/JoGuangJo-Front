@@ -34,5 +34,5 @@ jobs:
       working-directory: byl_web
     - run: npm run build --if-present
       working-directory: byl_web
-    - run: npm test testLunit
+    - run: npm test test.unit
       working-directory: byl_web
