@@ -35,4 +35,4 @@ jobs:
           ${{ runner.os }}-node-${{ matrix.node-version }}-npm-
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test test.unit
+    - run: npm run test test.unit
