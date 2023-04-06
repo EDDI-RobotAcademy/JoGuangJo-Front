@@ -209,7 +209,34 @@ const routes = [
     components: {
       default: MyPage
     }
-  }
+  },
+
+  // SNS 이동
+  {
+    path: '/instagram',
+    name: 'Instagram',
+    beforeEnter: (to, from, next) => {
+      window.location = 'https://www.instagram.com/bookyoulove.proj/';
+      // to : 이동하려는 라우트의 'Route' 객체
+      // from : 현재 라우트의 'Route' 객체
+      // next : 다음 단계로 진행하기 위해 호출해야 하는 함수
+      // 현재는 필요 없는 매개변수
+    }
+  },
+  {
+    path: '/youtube',
+    name: 'youtube',
+    beforeEnter: (to, from, next) => {
+      window.location = 'https://www.youtube.com/@_BYL';
+    }
+  },
+  {
+    path: '/facebook',
+    name: 'facebook',
+    beforeEnter: (to, from, next) => {
+      window.location = 'https://www.facebook.com/profile.php?id=100090712311488&mibextid=ZbWKwL';
+    },
+  },
 ]
 
 const router = new VueRouter({

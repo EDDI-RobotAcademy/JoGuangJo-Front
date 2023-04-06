@@ -89,6 +89,23 @@ export default {
             commit(REQUEST_QNA_COMMENT_LIST_FROM_SPRING, res.data)
         })
     },
+    
+    requestQnaCommentListFromSpring({commit}, qnaBoardId ){
+        return axios.get(`http://localhost:7777/qnaBoard/qnaComment/${qnaBoardId}`)
+        .then((res) => {
+            commit(REQUEST_QNA_COMMENT_LIST_FROM_SPRING, res.data)
+        })
+    },
+    requestQnaCommentDeleteToSpring({}, payload) {
+        const { qnaCommentId } = payload;
+        return axios.delete(`http://localhost:7777/qnaBoard/qnaComment/${qnaCommentId}`)
+        .then (() => {
+            alert("댓글 삭제 성공")
+        })
+        .catch(() => {
+            alert('댓글 삭제 실패')
+        })
+    },
 
 
     // 진우씨 상품 게시판
