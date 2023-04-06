@@ -6,11 +6,11 @@
             </v-card-text >
             <v-card-text v-else v-for="(qnaComment, index) in qnaComments" :key="qnaComment.qnaCommentId">
                 <div class="qna-comment">
-                    <p style="font-weight:bold;">{{ qnaComment.writer }} </p>
-                    <p>{{ qnaComment.comment}}</p>
-                    <v-text-field v-model="qnaComment.comment" label="댓글 수정" v-if="commentModify === index"></v-text-field>
-                    <button v-if="currentUser === qnaComment.writer && commentModify !== index" @click="startModify(index)">수정 | </button>
-                    <button v-if="currentUser === qnaComment.writer && commentModify === index" @click="saveComment(index)">수정 완료 | </button>
+                <p style="font-weight:bold;">{{ qnaComment.writer }} </p>
+                <p v-show="commentModify !== index">{{ qnaComment.comment }}</p>
+                <v-text-field v-model="qnaComment.comment" label="댓글 수정" v-show="commentModify === index"></v-text-field>
+                <button v-if="currentUser === qnaComment.writer && commentModify !== index" @click="startModify(index)">수정 | </button>
+                <button v-if="currentUser === qnaComment.writer && commentModify === index" @click="saveComment(qnaComment)">수정 완료 | </button>
                 </div>
             </v-card-text>
         </v-container>
@@ -21,6 +21,7 @@
 
 
 <script>
+import axios from "axios";
 export default {
     name: "QnaCommentListForm",
     props: {
@@ -39,13 +40,22 @@ export default {
     },
     methods: {
         startModify(index) {
-            console.log("수정 버튼 누름")
             this.commentModify = index;
         },
 
-        saveComment(index) {
-            console.log("수정 완료 버튼 누름")
+        saveComment(payload) {
             this.commentModify = null;
+            const { qnaCommentId, comment } = payload;
+
+            return axios.put(`http://localhost:7777/qnaBoard/qnaComment/${qnaCommentId}`, 
+                {comment})
+                .then((res) => {
+                    alert("질문 게시글의 댓글 " + qnaCommentId + "번 -> " + comment  +"로 수정 성공", res.data)
+                })
+                .catch(() => {
+                    alert("질문 게시글의 댓글 " + qnaCommentId + "번 수정 실패")
+                })
+        },
         },
     },
     created() {
