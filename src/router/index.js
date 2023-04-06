@@ -3,10 +3,10 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 // 태현씨 qna 게시판
-import QnaBoardListPage from "@/views/board/qna/QnaBoardListPage.vue"
-import QnaBoardRegisterPage from "@/views/board/qna/QnaBoardRegisterPage.vue"
-import QnaBoardReadPage from "@/views/board/qna/QnaBoardReadPage.vue"
-import QnaBoardModifyPage from "@/views/board/qna/QnaBoardModifyPage.vue"
+import QnaBoardListPage from "@/views/boards/qna/QnaBoardListView.vue"
+import QnaBoardRegisterPage from "@/views/boards/qna/QnaBoardRegisterView.vue"
+import QnaBoardReadPage from "@/views/boards/qna/QnaBoardReadView.vue"
+import QnaBoardModifyPage from "@/views/boards/qna/QnaBoardModifyView.vue"
 
 // 채율씨 공지 게시판으로 바뀔 예정
 import JpaBoardListPage from "@/views/board/JpaBoardListPage.vue"

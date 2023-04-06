@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import QnaBoardListForm from '@/components/board/qna/QnaBoardListForm.vue'
+import QnaBoardListForm from '@/components/boards/qna/QnaBoardListForm.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
