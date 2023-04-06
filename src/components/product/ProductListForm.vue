@@ -1,5 +1,6 @@
 <template>
  <div class="product-list-form">
+  
  <!--  <div class="sticky-bar">
       <p>최근 본 상품:</p>
       <ul>

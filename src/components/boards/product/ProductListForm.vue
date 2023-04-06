@@ -1,6 +1,6 @@
 <template>
   <div class="product-list-form">
-   <!-- <product-category-form/> -->
+   <product-category-form/>
     <v-container>
       <v-row>
         <v-col cols="12" sm="3" class="category-container">
@@ -63,13 +63,13 @@
 
 <script>
 import PaginationForm from "@/components/layout/PaginationForm.vue";
-//import ProductCategoryForm from "@/components/layout/ProductCategoryForm.vue";
+import ProductCategoryForm from "@/components/layout/ProductCategoryForm.vue";
 
 export default {
   name: "ProductListForm",
   components: {
     PaginationForm,
-    //ProductCategoryForm
+    ProductCategoryForm
   },
   props: {
     products: {
@@ -154,6 +154,7 @@ export default {
   }
 };
 </script>
+
 <style>
   .product-list-form {
   margin: 0 auto;
