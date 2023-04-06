@@ -56,7 +56,6 @@ export default {
                     alert("질문 게시글의 댓글 " + qnaCommentId + "번 수정 실패")
                 })
         },
-        },
     },
     created() {
         this.currentUser = JSON.parse(localStorage.getItem('userInfo')).nickName
