@@ -31,7 +31,7 @@ export default {
       let realtoken = token.substr(1, token.length - 2)
       console.log(realtoken)
       
-      axios.post("http://localhost:7777/my-page/list", realtoken)
+      axios.post("http://localhost:7777/mypage/list", realtoken)
             .then((res) => {
                 console.log('Response data:', res.data);
                 this.myPageData = res.data;

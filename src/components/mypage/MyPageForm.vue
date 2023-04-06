@@ -6,48 +6,42 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field :value="item.email" :label="'Email'" outlined>
+                <v-text-field :value="item.email" label="Email" outlined>
                   <template v-slot:append>
                     <v-btn color="primary" @click="editEmail(item)">Edit</v-btn>
                   </template>
                 </v-text-field>
               </v-col>
             </v-row>
-            <v-row>
+            
+            <v-row v-if="item.city">
               <v-col cols="6">
-                <v-text-field :value="item.city" :label="'City'" outlined>
-                  <template v-slot:append>
-                    <v-btn color="primary" @click="editCity(item)">Edit</v-btn>
-                  </template>
-                </v-text-field>
+                <v-text-field :value="item.city" label="City" outlined readonly></v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field :value="item.street" :label="'Street'" outlined>
-                  <template v-slot:append>
-                    <v-btn color="primary" @click="editStreet(item)">Edit</v-btn>
-                  </template>
-                </v-text-field>
+                <v-text-field :value="item.street" label="Street" outlined readonly></v-text-field>
               </v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="item.city">
               <v-col cols="6">
-                <v-text-field :value="item.zipcode" :label="'Zipcode'" outlined>
-                  <template v-slot:append>
-                    <v-btn color="primary" @click="editZipcode(item)">Edit</v-btn>
-                  </template>
-                </v-text-field>
+                <v-text-field :value="item.zipcode" label="Zipcode" outlined readonly></v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field :value="item.default_city" :label="'Default City'" outlined>
-                  <template v-slot:append>
-                    <v-btn color="primary" @click="editDefaultCity(item)">Edit</v-btn>
-                  </template>
-                </v-text-field>
-                <v-text-field :value="item.default_street" :label="'Default Street'" outlined>
-                  <template v-slot:append>
-                    <v-btn color="primary" @click="editDefaultStreet(item)">Edit</v-btn>
-                  </template>
-                </v-text-field>
+                <v-text-field v-model="item.default_street" label="Default Address" outlined></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row v-if="item.city">
+              <v-col cols="6">
+                <v-btn color="primary" @click="callDaumAddressApi(item)">Edit Address</v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn color="primary" @click="saveAddress(item)">Save Address</v-btn>
+              </v-col>
+            </v-row>
+
+            <v-row v-else>
+              <v-col cols="12">
+                <v-btn color="primary" @click="callDaumAddressApi(item)">Edit Address</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -58,6 +52,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: "MyPageForm",
@@ -67,25 +62,47 @@ export default {
       default: () => [],
     },
   },
+    data() {
+      return {
+        city: "",
+        zipcode: "",
+        street: "",
+      };
+  },
   methods: {
-    editEmail(item) {
-      console.log("Edit email:", item);
+    callDaumAddressApi (item) {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          let fullRoadAddr = data.roadAddress;
+          let extraRoadAddr = '';
+
+          if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+            extraRoadAddr += data.bname;
+          }
+          if (data.buildingName !== '' && data.apartment === 'Y') {
+            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+          }
+          if (extraRoadAddr !== '') {
+            extraRoadAddr = ' (' + extraRoadAddr + ')';
+          }
+          if (fullRoadAddr !== '') {
+            fullRoadAddr += extraRoadAddr;
+          }
+
+          item.city = data.sido;
+          item.zipcode = data.zonecode;
+          item.street = data.sigungu + ' ' + fullRoadAddr;
+          
+          console.log('Updated item:', item);
+        }
+      }).open()
     },
-    editCity(item) {
-      console.log("Edit city:", item);
-    },
-    editStreet(item) {
-      console.log("Edit street:", item);
-    },
-    editZipcode(item) {
-      console.log("Edit zipcode:", item);
-    },
-    editDefaultCity(item) {
-      console.log("Edit default city:", item);
-    },
-    editDefaultStreet(item) {
-      console.log("Edit default street:", item);
-    },
+    saveAddress (item) {
+      console.log("도시:" + item.city)
+      console.log("거리:" + item.street)
+      console.log("우편번호:" + item.zipcode)
+      console.log("상세주소:" + item.default_street)
+    }
   },
 };
 </script>
