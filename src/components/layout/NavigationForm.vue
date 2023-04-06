@@ -53,11 +53,11 @@
                 >
 
                 <div align="center">
-                    <v-btn v-for="icon in icons" :key="icon" class="mx-1 icon-btn" icon>
-                                <v-icon size="24px">
-                                    {{ icon }} 
-                                </v-icon>
-                    </v-btn>
+                    <router-link v-for="icon in icons" :key="icon" :to="getLink(icon)" class="deleteBlueUnderLine">
+                        <v-btn class="mx-1 icon-btn" icon>
+                            <v-icon size="24px">{{ icon }}</v-icon>
+                        </v-btn>
+                    </router-link>
                 </div>
                 
                 <v-toolbar-title class="nav-drawer-logo">
@@ -201,6 +201,11 @@ export default {
                 "mdi-youtube",
                 "mdi-facebook"
                 ],
+                links: {
+                "mdi-instagram": "/instagram",
+                "mdi-youtube": "/youtube",
+                "mdi-facebook": "/facebook"
+                },
                 selectedOption: { text: '상품명', value: 'productName' },
                 searchOptions: [
                     { text: '상품명', value: 'productName' },
@@ -271,6 +276,9 @@ export default {
                 localStorage.removeItem("userInfo");
                 this.$store.state.isAuthenticated = false;
             })
+        },
+        getLink(icon) {
+            return this.links[icon];
         }
     }
 }
@@ -323,4 +331,8 @@ export default {
     color: white;
   }
 
+.deleteBlueUnderLine {
+  text-decoration: none;
+  color: black;
+}
 </style>
