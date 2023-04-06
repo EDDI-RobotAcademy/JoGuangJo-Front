@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
       <label for="writer">판매자</label>
-      <input type="text" v-model="writer" id="writer" class="form-control" />
+      <input type="text" v-model="writer" id="writer" class="form-control" disabled/>
     </div>
     <div class="form-group">
       <label for="price">가격</label>
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       productName: '상품명을 입력하세요.',
-      writer: '판매자',
+      writer: JSON.parse(localStorage.getItem('userInfo')).nickName,
       content: '내용을 입력하세요.',
       price: 0,
       files: '',
