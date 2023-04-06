@@ -11,6 +11,7 @@
                 <v-text-field v-model="qnaComment.comment" label="댓글 수정" v-show="commentModify === index"></v-text-field>
                 <button v-if="currentUser === qnaComment.writer && commentModify !== index" @click="startModify(index)">수정 | </button>
                 <button v-if="currentUser === qnaComment.writer && commentModify === index" @click="saveComment(qnaComment)">수정 완료 | </button>
+                <button v-if="currentUser === qnaComment.writer" @click="deleteComment(qnaComment)">삭제</button>
                 </div>
             </v-card-text>
         </v-container>
@@ -22,6 +23,8 @@
 
 <script>
 import axios from "axios";
+import { mapActions } from 'vuex';
+
 export default {
     name: "QnaCommentListForm",
     props: {
@@ -39,6 +42,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions([
+            'requestQnaCommentDeleteToSpring'
+        ]),
         startModify(index) {
             this.commentModify = index;
         },
@@ -56,6 +62,10 @@ export default {
                     alert("질문 게시글의 댓글 " + qnaCommentId + "번 수정 실패")
                 })
         },
+        async deleteComment(payload ) {
+            const { qnaCommentId } = payload
+            await this.requestQnaCommentDeleteToSpring({qnaCommentId})
+            await this.$router.go(this.$router.currentRoute)
         },
     },
     created() {
