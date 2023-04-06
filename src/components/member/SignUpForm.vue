@@ -42,29 +42,6 @@
                   </v-btn>
               </div>
 
-              <div class="d-flex">
-                <v-text-field v-model="city" label="도시" :disabled="true" required/>
-              </div>
-
-              <div class="d-flex">
-                <v-text-field v-model="street" label="기본 주소" :disabled="true" required/>
-              </div>
-
-              <div class="d-flex">
-                <v-text-field v-model="addressDetail" label="상세 주소" :disabled="false" required/>
-              </div>
-
-              <div class="d-flex">
-                <v-text-field v-model="zipcode" label="우편번호" :disabled="true" required/>
-
-                <v-btn text large outlined style="font-size: 13px"
-                       class="mt-3 ml-5" color="blue lighten-1"
-                       @click="callDaumAddressApi"
-                       :disabled="false">
-                  주소 확인
-                </v-btn>
-              </div>
-
               <v-btn type="submit" block x-large rounded
                      class="mt-6" color="purple lighten-1" 
                      :disabled="(emailPass && streetPass && nickNamePass) == false">
@@ -97,7 +74,6 @@ export default {
       zipcode: '',
 
       emailPass: false,
-      streetPass: false,
 
       nickNamePass:false,//닉네임중복체크후 사용가능한 닉네임인지여부
 
@@ -123,13 +99,14 @@ export default {
   methods: {
     onSubmit () {
       //if (this.$refs.form.validate()) {
-      if (this.emailPass && this.streetPass && this.nickNamePass) {
+      if (this.emailPass && this.nickNamePass) {
         const { email, password, city, street, addressDetail, zipcode, nickName } = this
         this.$emit("submit", { email, password, city, street, addressDetail, zipcode, nickName })
       } else {
         alert('올바른 정보를 입력하세요!')
       }
     },
+    
     emailValidation () {
       const emailValid = this.email.match(
           /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -137,6 +114,7 @@ export default {
 
       this.emailPass = false;
     },
+    
     checkDuplicateEmail () {
       const emailValid = this.email.match(
           /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -158,8 +136,8 @@ export default {
             })
       }
     },
+    
     checkDuplicateNickName() {
- 
         const { nickName } = this;
         axios
           .post(`http://localhost:7777/member/check-nickName/${nickName}`)
@@ -174,36 +152,6 @@ export default {
           });
       
     },
-    callDaumAddressApi () {
-      new window.daum.Postcode({
-        oncomplete: (data) => {
-          let fullRoadAddr = data.roadAddress;
-          let extraRoadAddr = '';
-
-          if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-            extraRoadAddr += data.bname;
-          }
-
-          if (data.buildingName !== '' && data.apartment === 'Y') {
-            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-          }
-
-          if (extraRoadAddr !== '') {
-            extraRoadAddr = ' (' + extraRoadAddr + ')';
-          }
-
-          if (fullRoadAddr !== '') {
-            fullRoadAddr += extraRoadAddr;
-          }
-
-          this.city = data.sido;
-          this.zipcode = data.zonecode;
-          this.street = data.sigungu + ' ' + fullRoadAddr;
-
-          this.streetPass = true
-        }
-      }).open()
-    }
   }
 }
 </script>
