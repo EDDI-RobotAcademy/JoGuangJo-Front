@@ -54,6 +54,8 @@
 
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "MyPageForm",
   props: {
@@ -98,13 +100,20 @@ export default {
       }).open()
     },
     saveAddress (item) {
-      console.log("도시:" + item.city)
-      console.log("거리:" + item.street)
-      console.log("우편번호:" + item.zipcode)
-      console.log("상세주소:" + item.default_street)
+      const addressData = {
+      city: item.city,
+      street: item.street,
+      zipcode: item.zipcode,
+      detailAddress: item.default_street
+      }
+      axios.post("http://localhost:7777/mypage/saveAddress", addressData)
+              .then((res) => {
+                  console.log('Response data:', res.data);
+                  this.myPageData = res.data;
+              })
+      }
     }
-  },
-};
+  }
 </script>
 
 <style>
