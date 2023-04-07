@@ -26,10 +26,10 @@
     </v-container>
 </template>
 <script>
-import QnaBoardReadForm from '@/components/board/qna/QnaBoardReadForm.vue'
+import QnaBoardReadForm from '@/components/boards/qna/QnaBoardReadForm.vue'
 import { mapActions, mapState } from 'vuex'
-import QnaCommentListForm from '@/components/board/qna/comment/QnaCommentListForm.vue'
-import QnaCommentRegisterForm from '@/components/board/qna/comment/QnaCommentRegisterForm.vue'
+import QnaCommentListForm from '@/components/boards/qna/comment/QnaCommentListForm.vue'
+import QnaCommentRegisterForm from '@/components/boards/qna/comment/QnaCommentRegisterForm.vue'
 
 export default {
     components: { QnaBoardReadForm, QnaCommentListForm, QnaCommentRegisterForm },

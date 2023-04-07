@@ -7,7 +7,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import QnaBoardRegisterForm from '@/components/board/qna/QnaBoardRegisterForm.vue'
+import QnaBoardRegisterForm from '@/components/boards/qna/QnaBoardRegisterForm.vue'
 
 export default {
     components: { QnaBoardRegisterForm },

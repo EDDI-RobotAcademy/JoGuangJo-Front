@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import QnaBoardModifyForm from '@/components/board/qna/QnaBoardModifyForm.vue'
+import QnaBoardModifyForm from '@/components/boards/qna/QnaBoardModifyForm.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
