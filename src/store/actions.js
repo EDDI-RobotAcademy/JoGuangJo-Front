@@ -46,18 +46,15 @@ export default {
         })
     },
 
-    requestQnaBoardModifyToSpring ({}, payload) {
-        console.log("수정 요청 테스트 완료")
-        const { title, content, qnaBoardId } = payload
-        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`,
-            { title, content })
-            .then(() => {
-                alert("질문 게시글 수정 성공")
-            })
-            .catch(() => {
-                alert("질문 게시글 문제 발생!")
-            })
-    },
+    requestQnaBoardModifyToSpring ({}, { qnaBoardId, payload }) {
+        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`, payload)
+          .then(() => {
+            alert("질문 게시글 수정 성공")
+          })
+          .catch(() => {
+            alert("질문 게시글 문제 발생!")
+          })
+      },
 
     requestDeleteQnaBoardToSpring ({}, qnaBoardId) {
         console.log("삭제 요청 테스트 완료")
