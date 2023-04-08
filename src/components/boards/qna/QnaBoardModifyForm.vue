@@ -1,39 +1,21 @@
 <template>
-    <div>
     <form @submit.prevent="onSubmit">
-        <table>
-        <tr>
-            <td>게시글 번호</td>
-            <td>
-                <input type="text" :value="qnaBoard.qnaBoardId" disabled/>
-            </td>
-        </tr>
-        <tr>
-            <td>제목</td>
-            <td>
-                <input type="text" v-model="title"/>
-            </td>
-        </tr>
-        <tr>
-            <td>작성자</td>
-            <td>
-                <input type="text" :value="qnaBoard.writer" disabled/>
-            </td>
-        </tr>
-        <tr>
-            <td>등록일자</td>
-            <td>
-                <input type="text" :value="qnaBoard.regDate" disabled/>
-            </td>
-        </tr>
-        <tr>
-            <td>본문</td>
-            <td>
-                <textarea cols="50" rows="20" v-model="content"/>
-            </td>
-        </tr>
-        </table>
-
+        <div>
+            <label>게시글번호</label>
+            <input type="text" :value="qnaBoard.qnaBoardId" disabled/>
+        </div>
+        <div>
+            <label for="title">제목</label>
+            <input type="text" v-model="title" />
+        </div>
+        <div>
+            <label for="writer">작성자</label>
+            <input type="text" v-model="writer" disabled />
+        </div>
+        <div>
+            <label for="content">내용</label>
+            <quill-editor v-model="content" ref="editor"></quill-editor>
+        </div>
         <div>
         <button type="submit">수정 완료</button>
         <router-link :to="{ name: 'QnaBoardReadView',
@@ -42,24 +24,31 @@
         </router-link>
         </div>
     </form>
-    </div>
 </template>
 
 <script>
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import { quillEditor } from 'vue-quill-editor';
+
 export default {
     name: "QnaBoardModifyForm",
     props: {
         qnaBoard: {
             type: Object,
             required: true,
-        }
+        },
+        qnaBoardId: {
+            type: String,
+            required: true,
+        },
     },
     data () {
         return {
             title: '',
             content: '',
             writer: '',
-            regDate: '',
+            files: '',
         }
     },
     created () {
@@ -70,10 +59,30 @@ export default {
     },
     methods: {
         onSubmit () {
-            const { title, content } = this
-            this.$emit('submit', { title, content })
-        }
-    }
+            let qnaData = new FormData()
+
+            for (let idx = 0; idx < this.files.length; idx++) {
+                qnaData.append('imageFileList', this.files[idx])
+            }
+
+            const { title, writer, content } = this
+            let qnaInfo = {
+                title: title,
+                writer: writer,
+                content: content,
+            }
+
+            qnaData.append(
+                'qnaInfo',
+                new Blob([JSON.stringify(qnaInfo)], { type: 'application/json' })
+            );
+
+            this.$emit('submit', qnaData)
+        },
+    },
+    components: {
+        'quill-editor': quillEditor
+    },
 }
 </script>
 

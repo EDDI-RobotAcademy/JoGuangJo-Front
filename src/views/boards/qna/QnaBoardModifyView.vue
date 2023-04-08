@@ -3,6 +3,7 @@
         <div align="center">
             <h2>게시물 수정</h2>
             <qna-board-modify-form v-if="qnaBoard" :qnaBoard="qnaBoard" 
+            :qnaBoardId="qnaBoardId"
                     @submit="onSubmit"/>
             <p v-else>로딩중 ........</p>
         </div>
@@ -31,19 +32,18 @@ export default {
             'requestQnaBoardModifyToSpring',
         ]),
         async onSubmit (payload) {
-            const { title, content } = payload
             const qnaBoardId = this.qnaBoardId
             
-            await this.requestQnaBoardModifyToSpring({ qnaBoardId, title, content })
+            await this.requestQnaBoardModifyToSpring({ qnaBoardId, payload })
             await this.$router.push({
-                name: 'QnaBoardReadPage',
-                params: { qnaBoardId: this.qnaBoardId }
+                name: 'QnaBoardReadView',
+                params: { qnaBoardId: qnaBoardId }
             })
         }
     },
-    created () {
+    beforeMount () {
         this.requestQnaBoardToSpring(this.qnaBoardId)
-    }
+    },
 }
 </script>
 

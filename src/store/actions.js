@@ -17,17 +17,14 @@ import axios from 'axios'
 
 export default {
     // 태현씨 qna 게시판
-    requestCreateQnaBoardToSpring({}, payload){
-        const { title, writer, content } = payload
-        return axios.post('http://localhost:7777/qnaBoard/register',
-        { title, writer, content })
-        .then((res) =>{
+    requestCreateQnaBoardToSpring({}, payload) {
+        axios.post(`http://localhost:7777/qnaBoard/register`, payload)
+        .then(() => {
             alert('게시물 등록 성공!')
-            return res
         })
         .catch(() => {
             alert('문제 발생')
-        })
+        }) 
     },
 
     requestQnaBoardListToSpring({commit}) {
