@@ -36,7 +36,7 @@
 
         <div>
         <button type="submit">수정 완료</button>
-        <router-link :to="{ name: 'QnaBoardReadPage',
+        <router-link :to="{ name: 'QnaBoardReadView',
                             params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
             취소
         </router-link>

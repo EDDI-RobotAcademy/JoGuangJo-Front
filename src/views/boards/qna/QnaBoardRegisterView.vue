@@ -11,16 +11,15 @@ import QnaBoardRegisterForm from '@/components/boards/qna/QnaBoardRegisterForm.v
 
 export default {
     components: { QnaBoardRegisterForm },
-    name: "QnaBoardRegisterPage",
+    name: "QnaBoardRegisterView",
     methods: {
         ...mapActions ([
             'requestCreateQnaBoardToSpring'
         ]),
         async onSubmit (payload) {
-            console.log(payload)
             await this.requestCreateQnaBoardToSpring(payload)
             await this.$router.push({
-                name: 'QnaBoardListPage'
+                name: 'QnaBoardListView'
             })
         }
     }

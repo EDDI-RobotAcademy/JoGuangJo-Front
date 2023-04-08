@@ -18,7 +18,7 @@
                     {{ qnaBoard.qnaBoardId }}
                 </td>
                 <td align="left">
-                    <router-link :to=" { name: 'QnaBoardReadPage', 
+                    <router-link :to=" { name: 'QnaBoardReadView', 
                         params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
                             {{ qnaBoard.title }}
                         </router-link>

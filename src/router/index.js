@@ -3,10 +3,10 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 // 태현씨 qna 게시판
-import QnaBoardListPage from "@/views/boards/qna/QnaBoardListView.vue"
-import QnaBoardRegisterPage from "@/views/boards/qna/QnaBoardRegisterView.vue"
-import QnaBoardReadPage from "@/views/boards/qna/QnaBoardReadView.vue"
-import QnaBoardModifyPage from "@/views/boards/qna/QnaBoardModifyView.vue"
+import QnaBoardListView from "@/views/boards/qna/QnaBoardListView.vue"
+import QnaBoardRegisterView from "@/views/boards/qna/QnaBoardRegisterView.vue"
+import QnaBoardReadView from "@/views/boards/qna/QnaBoardReadView.vue"
+import QnaBoardModifyView from "@/views/boards/qna/QnaBoardModifyView.vue"
 
 // 채율씨 공지 게시판으로 바뀔 예정
 import JpaBoardListPage from "@/views/board/JpaBoardListPage.vue"
@@ -57,20 +57,20 @@ const routes = [
 
   //태현씨 qna 게시판
   {
-    path: '/qna-board-list-page',
-    name: 'QnaBoardListPage',
-    component: QnaBoardListPage
+    path: '/qna-board-list-view',
+    name: 'QnaBoardListView',
+    component: QnaBoardListView
   },
   {
-    path: '/qna-board-register-page',
-    name: 'QnaBoardRegisterPage',
-    component: QnaBoardRegisterPage
+    path: '/qna-board-register-view',
+    name: 'QnaBoardRegisterView',
+    component: QnaBoardRegisterView
   },
   {
-  path: '/qna-board-read-page/:qnaBoardId',
-  name: 'QnaBoardReadPage',
+  path: '/qna-board-read-view/:qnaBoardId',
+  name: 'QnaBoardReadView',
   components: {
-    default: QnaBoardReadPage
+    default: QnaBoardReadView
     },
     props: {
       default: true
@@ -78,9 +78,9 @@ const routes = [
   },
   {
     path: '/qna-modify/:qnaBoardId',
-    name: 'QnaBoardModifyPage',
+    name: 'QnaBoardModifyView',
     components: {
-      default: QnaBoardModifyPage
+      default: QnaBoardModifyView
       },
       props: {
         default: true

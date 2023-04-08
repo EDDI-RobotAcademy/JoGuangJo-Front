@@ -15,7 +15,7 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
     components: { QnaBoardModifyForm },
-    name: "QnaBoardModifyPage",
+    name: "QnaBoardModifyView",
     props: {
         qnaBoardId: {
             type: String,
