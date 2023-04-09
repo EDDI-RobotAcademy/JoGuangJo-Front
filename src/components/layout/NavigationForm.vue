@@ -157,7 +157,7 @@
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='http://localhost:8080/qna-board-list-page'">
+                    onclick="location.href='http://localhost:8080/qna-board-list-view'">
                         <v-list-item-icon>
                             <v-icon>mdi-help-circle-outline</v-icon>
                         </v-list-item-icon>

@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <h2>질문 게시판 입니다.</h2>
-            <router-link :to="{ name: 'QnaBoardRegisterPage' }">
+            <router-link :to="{ name: 'QnaBoardRegisterView' }">
                 게시물 작성
             </router-link>
         <qna-board-list-form :qnaBoards="qnaBoards" />
@@ -14,7 +14,7 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
     components: { QnaBoardListForm },
-    name: "QnaBoardListPage",
+    name: "QnaBoardListView",
     computed: {
     ...mapState([
         'qnaBoards'

@@ -4,11 +4,11 @@
             <h2>질문 게시판 상세 글 읽기</h2>
         <qna-board-read-form v-if="qnaBoard" :qnaBoard="qnaBoard"/>
             <p v-else>로딩중 .......... </p>
-            <router-link :to="{ name: 'QnaBoardModifyPage', params: { qnaBoardId } }">
+            <router-link :to="{ name: 'QnaBoardModifyView', params: { qnaBoardId } }">
                 게시물 수정
             </router-link>
             <button @click="onDelete">삭제</button>
-            <router-link :to="{ name: 'QnaBoardListPage' }">
+            <router-link :to="{ name: 'QnaBoardListView' }">
             돌아가기
             </router-link>
         <table>
@@ -33,7 +33,7 @@ import QnaCommentRegisterForm from '@/components/boards/qna/comment/QnaCommentRe
 
 export default {
     components: { QnaBoardReadForm, QnaCommentListForm, QnaCommentRegisterForm },
-    name: "QnaBoardReadPage",
+    name: "QnaBoardReadView",
     props: {
         qnaBoardId: {
             type: String,
@@ -53,7 +53,7 @@ export default {
         async onDelete () {
             console.log('qnaBoardId: ' + this.qnaBoardId)
             await this.requestDeleteQnaBoardToSpring(this.qnaBoardId)
-            await this.$router.push({ name: 'QnaBoardListPage' })
+            await this.$router.push({ name: 'QnaBoardListView' })
         },
         async onSubmitRegister( payload ) {
             const { comment,writer, qnaCommentId } = payload
@@ -61,7 +61,7 @@ export default {
             console.log("댓글 등록" + qnaBoardId)
             await this.requestQnaCommentRegisterToSpring( { comment, writer, qnaBoardId, qnaCommentId} )
             await this.$router.push({
-                name: 'QnaBoardReadPage',
+                name: 'QnaBoardReadView',
                 params: { qnaBoardId: qnaBoard.data.qnaBoardId.toString() }
             })
         },

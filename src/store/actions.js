@@ -17,17 +17,14 @@ import axios from 'axios'
 
 export default {
     // 태현씨 qna 게시판
-    requestCreateQnaBoardToSpring({}, payload){
-        const { title, writer, content } = payload
-        return axios.post('http://localhost:7777/qnaBoard/register',
-        { title, writer, content })
-        .then((res) =>{
+    requestCreateQnaBoardToSpring({}, payload) {
+        axios.post(`http://localhost:7777/qnaBoard/register`, payload)
+        .then(() => {
             alert('게시물 등록 성공!')
-            return res
         })
         .catch(() => {
             alert('문제 발생')
-        })
+        }) 
     },
 
     requestQnaBoardListToSpring({commit}) {
@@ -46,18 +43,15 @@ export default {
         })
     },
 
-    requestQnaBoardModifyToSpring ({}, payload) {
-        console.log("수정 요청 테스트 완료")
-        const { title, content, qnaBoardId } = payload
-        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`,
-            { title, content })
-            .then(() => {
-                alert("질문 게시글 수정 성공")
-            })
-            .catch(() => {
-                alert("질문 게시글 문제 발생!")
-            })
-    },
+    requestQnaBoardModifyToSpring ({}, { qnaBoardId, payload }) {
+        return axios.put(`http://localhost:7777/qnaBoard/${qnaBoardId}`, payload)
+          .then(() => {
+            alert("질문 게시글 수정 성공")
+          })
+          .catch(() => {
+            alert("질문 게시글 문제 발생!")
+          })
+      },
 
     requestDeleteQnaBoardToSpring ({}, qnaBoardId) {
         console.log("삭제 요청 테스트 완료")
