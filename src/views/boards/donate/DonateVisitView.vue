@@ -8,7 +8,7 @@
 import DonateVisitForm from "@/components/boards/donate/DonateVisitForm";
 
 export default {
-  name: "DonateVisitPage",
+  name: "DonateVisitView",
   components: {
     DonateVisitForm
   }
