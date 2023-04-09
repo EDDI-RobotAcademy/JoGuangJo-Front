@@ -373,6 +373,11 @@ export default {
           },
         }).open();
     },
+    onSubmit() {
+      this.$emit("submit", { formData: this.formData });
+    }
+  }
+}
 </script>
 
 <style>
