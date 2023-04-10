@@ -10,7 +10,7 @@
     </div>
     <div>
       <label for="content">내용</label>
-      <quill-editor v-model="content" ref="editor" ></quill-editor>
+      <quill-editor v-model="content" ref="editor"></quill-editor>
     </div>
     <div>
       <button type="submit">등록</button>
@@ -36,12 +36,19 @@ export default {
   },
   methods: {
     async onSubmit() {
+
+      if (!this.content || !this.title === null) {
+        alert('제목과 내용을 반드시 입력해주세요.');
+        return;
+      }
+
       const qnaData = new FormData();
+      
       const imgTags = this.$refs.editor.quill.root.querySelectorAll("img");
+
       for (const img of imgTags) {
         const dataUrl = img.src;
-        const blob = this.dataURLtoBlob(dataUrl);
-        console.log(blob)
+        const blob = dataUrl;
         const file = new File([blob], 'image.png', { type: 'image/png' });
         qnaData.append("imageFileList", file);
       }
@@ -57,20 +64,6 @@ export default {
 
       this.$emit("submit", qnaData);
     },
-    // base64 디코딩 하는 메소드
-    // 현재 적용이 안되는 것 같음 차후 삭제 예정
-    dataURLtoBlob(dataUrl) {
-      const arr = dataUrl.split(",");
-      console.log(dataUrl, "이거 url임");
-      const mime = arr[0].match(/:(.*?);/)[1];
-      const bstr = atob(arr[1]);
-      const n = bstr.length;
-      const u8arr = new Uint8Array(n);
-      for (let i = 0; i < n; i++) {
-        u8arr[i] = bstr.charCodeAt(i);
-      }
-      return new Blob([u8arr], { type: mime });
-    }
   },
   components: {
     'quill-editor': quillEditor
