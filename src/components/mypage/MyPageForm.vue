@@ -27,7 +27,7 @@
                 <v-text-field :value="item.zipcode" label="Zipcode" outlined readonly></v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field v-model="item.default_street" label="Default Address" outlined></v-text-field>
+                <v-text-field v-model="item.addressDetail" label="Default Address" outlined></v-text-field>
               </v-col>
             </v-row>
             <v-row v-if="item.city">
@@ -101,14 +101,18 @@ export default {
     },
     saveAddress (item) {
       const addressData = {
+      memberId : JSON.parse(localStorage.getItem("userInfo")).id,
       city: item.city,
       street: item.street,
       zipcode: item.zipcode,
-      detailAddress: item.default_street
+      addressDetail: item.addressDetail
       }
+      console.log(addressData)
       axios.post("http://localhost:7777/mypage/saveAddress", addressData)
               .then((res) => {
+                  
                   console.log('Response data:', res.data);
+                  
                   this.myPageData = res.data;
               })
       }
@@ -117,7 +121,4 @@ export default {
 </script>
 
 <style>
-  .text-center {
-    text-align: center;
-  }
 </style>

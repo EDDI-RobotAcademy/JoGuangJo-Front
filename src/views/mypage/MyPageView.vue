@@ -21,7 +21,7 @@ export default {
     },
     mounted() {
       console.log("mounted 라이프 사이클 실행")
-
+      
       let userInfo = localStorage.getItem("userInfo")
       console.log("초기 userInfo 데이터" + userInfo);
       
@@ -30,7 +30,7 @@ export default {
 
       let realtoken = token.substr(1, token.length - 2)
       console.log(realtoken)
-      
+
       axios.post("http://localhost:7777/mypage/list", realtoken)
             .then((res) => {
                 console.log('Response data:', res.data);
