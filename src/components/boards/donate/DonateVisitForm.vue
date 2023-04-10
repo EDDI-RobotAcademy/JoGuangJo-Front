@@ -236,6 +236,7 @@ export default {
     return {
       e1: 1,
       formData: {
+        memberId: JSON.parse(localStorage.getItem('userInfo')).id,
         name: "",
         email: "",
         phone: "",
