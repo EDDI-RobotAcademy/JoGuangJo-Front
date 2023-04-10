@@ -4,10 +4,12 @@
             <h2>질문 게시판 상세 글 읽기</h2>
         <qna-board-read-form v-if="qnaBoard" :qnaBoard="qnaBoard"/>
             <p v-else>로딩중 .......... </p>
-            <router-link :to="{ name: 'QnaBoardModifyView', params: { qnaBoardId } }">
-                게시물 수정
-            </router-link>
-            <button @click="onDelete">삭제</button>
+            <div v-if="isCurrentUser()">
+                <router-link :to="{ name: 'QnaBoardModifyView', params: { qnaBoardId } }">
+                    게시물 수정
+                </router-link>
+                <button @click="onDelete">삭제</button>
+            </div>
             <router-link :to="{ name: 'QnaBoardListView' }">
             돌아가기
             </router-link>
@@ -34,6 +36,11 @@ import QnaCommentRegisterForm from '@/components/boards/qna/comment/QnaCommentRe
 export default {
     components: { QnaBoardReadForm, QnaCommentListForm, QnaCommentRegisterForm },
     name: "QnaBoardReadView",
+    date() {
+        return {
+            currentUser : null,
+        }
+    },
     props: {
         qnaBoardId: {
             type: String,
@@ -50,6 +57,9 @@ export default {
             'requestQnaCommentRegisterToSpring',
             'requestQnaCommentListFromSpring'
         ]),
+        isCurrentUser() {
+            return this.currentUser === this.qnaBoard.writer
+        },
         async onDelete () {
             console.log('qnaBoardId: ' + this.qnaBoardId)
             await this.requestDeleteQnaBoardToSpring(this.qnaBoardId)
@@ -70,7 +80,14 @@ export default {
         console.log('qnaBoardId: ' + this.qnaBoardId)
         this.requestQnaBoardToSpring(this.qnaBoardId)
         this.requestQnaCommentListFromSpring(this.qnaBoardId)
+    },
+    mounted() {
+    const userInfo = localStorage.getItem('userInfo')
+    if (userInfo) {
+        this.currentUser = JSON.parse(userInfo).nickName
+        console.log(this.currentUser, " : 로그인 한 유저의 닉네임")
     }
+},
 }
 
 </script>
