@@ -34,12 +34,18 @@ export default {
     }
   },
   computed: {
-    ...mapState(['product', 'productImages']),
-    isCurrentUserAuthor() {
-      const currentUser = JSON.parse(localStorage.getItem('userInfo')).nickName;
-      return this.product.writer === currentUser;
-    },
+  ...mapState(['product', 'productImages']),
+  isLoggedIn() {
+    return !!localStorage.getItem('userInfo');
   },
+  isCurrentUserAuthor() {
+    if (!this.isLoggedIn) {
+      return false;
+    }
+    const currentUser = JSON.parse(localStorage.getItem('userInfo')).nickName;
+    return this.product.writer === currentUser;
+  },
+},
   methods: {
     ...mapActions([
       'requestProductToSpring',
