@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import state from "@/store/states.js"
+
+// (박지영) 사용자의 로그인 여부에 따라 특정 페이지 접근을 제한하기 위한 메서드
+function isAuthenticated() {
+  return state.isAuthenticated;
+}
 
 // 태현씨 qna 게시판
 import QnaBoardListView from "@/views/boards/qna/QnaBoardListView.vue"
@@ -148,12 +154,28 @@ const routes = [
   {
     path: '/donate-visit',
     name: 'DonateVisitView',
-    component: DonateVisitView
+    component: DonateVisitView,
+    beforeEnter: (to, from, next) => {
+      if (isAuthenticated()) {
+        next();
+      } else {
+        alert("방문기부를 신청하시려면 먼저 로그인을 하셔야 합니다");
+        next("/sign-in");
+      }
+    }
   },
   {
     path: '/donate-mail',
     name: 'DonateMailView',
-    component: DonateMailView
+    component: DonateMailView,
+    beforeEnter: (to, from, next) => {
+      if (isAuthenticated()) {
+        next();
+      } else {
+        alert("택배기부를 신청하시려면 먼저 로그인을 하셔야 합니다");
+        next("/sign-in");
+      }
+    }
   },
   {
     path: '/donate-search',
