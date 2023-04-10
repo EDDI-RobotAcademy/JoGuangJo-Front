@@ -36,6 +36,7 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 
 // 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
+import PassWordChange from "@/views/mypage/PassWordChangeView"
 
 Vue.use(VueRouter)
 
@@ -209,7 +210,14 @@ const routes = [
     components: {
       default: MyPage
     }
-  }
+  },
+  {
+    path: '/passwordChange',
+    name: 'PasswordChange',
+    components: {
+      default: PassWordChange
+    }
+  },
 ]
 
 const router = new VueRouter({
