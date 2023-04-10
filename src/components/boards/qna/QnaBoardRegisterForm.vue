@@ -35,27 +35,42 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
-      let qnaData = new FormData();
-
-      const { title, writer, content } = this
-      let qnaInfo = {
-        title: title,
-        writer: writer,
-        content: content,
+    async onSubmit() {
+      const qnaData = new FormData();
+      const imgTags = this.$refs.editor.quill.root.querySelectorAll("img");
+      for (const img of imgTags) {
+        const dataUrl = img.src;
+        const blob = this.dataURLtoBlob(dataUrl);
+        console.log(blob)
+        const file = new File([blob], 'image.png', { type: 'image/png' });
+        qnaData.append("imageFileList", file);
       }
 
       qnaData.append(
         "qnaInfo",
-        new Blob([JSON.stringify(qnaInfo)], {type: "application/json"})
-      )
+        new Blob([JSON.stringify({
+          title: this.title,
+          writer: this.writer,
+          content: this.content,
+        })], { type: "application/json" })
+      );
 
-      for (let idx = 0; idx < this.files.length; idx++) {
-        qnaData.append('imageFileList', this.files[idx])
+      this.$emit("submit", qnaData);
+    },
+    // base64 디코딩 하는 메소드
+    // 현재 적용이 안되는 것 같음 차후 삭제 예정
+    dataURLtoBlob(dataUrl) {
+      const arr = dataUrl.split(",");
+      console.log(dataUrl, "이거 url임");
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      const n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      for (let i = 0; i < n; i++) {
+        u8arr[i] = bstr.charCodeAt(i);
       }
-
-      this.$emit('submit', qnaData);
-}
+      return new Blob([u8arr], { type: mime });
+    }
   },
   components: {
     'quill-editor': quillEditor

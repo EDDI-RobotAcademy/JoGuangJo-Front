@@ -40,6 +40,7 @@ export default {
         return axios.get(`http://localhost:7777/qnaBoard/${qnaBoardId}`)
         .then((res) => {
             commit(REQUEST_QNA_BOARD_TO_SPRING, res.data)
+            console.log(res.data.imageResourcePath)
         })
     },
 
