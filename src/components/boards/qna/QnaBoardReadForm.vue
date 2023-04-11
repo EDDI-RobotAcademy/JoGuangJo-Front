@@ -1,5 +1,4 @@
 <template>
-    <div>
     <table>
         <tr>
             <td>게시물 번호</td>
@@ -28,21 +27,37 @@
         <tr>
             <td>본문</td>
             <td>
-                <textarea cols="50" rows="20" :value="qnaBoard.content" readonly/>
+                <div v-html="qnaBoard.content" readonly/>
+                <!-- <div>
+                    <img :src="imagePath" alt="이미지">
+                </div> -->
             </td>
         </tr>
     </table>
-    </div>
 </template>
 
 <script>
+import { quillEditor } from 'vue-quill-editor';
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+
 export default {
     name: "qnaBoardReadForm",
+    data() {
+    return {
+    //   imagePath: require('@/assets/qnaUploadImgs/사용자가 업로드한 이미지 UUID 네임.png')
+    };
+  },
     props: {
         qnaBoard: {
             type: Object,
             required: true,
-        }
+        },
+        
+    },
+    
+    components: {
+        'quill-eitor': quillEditor
     },
 }
 </script>

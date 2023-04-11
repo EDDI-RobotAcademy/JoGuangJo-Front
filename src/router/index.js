@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import state from "@/store/states.js"
+
+// (박지영) 사용자의 로그인 여부에 따라 특정 페이지 접근을 제한하기 위한 메서드
+function isAuthenticated() {
+  return state.isAuthenticated;
+}
 
 // 태현씨 qna 게시판
-import QnaBoardListPage from "@/views/board/qna/QnaBoardListPage.vue"
-import QnaBoardRegisterPage from "@/views/board/qna/QnaBoardRegisterPage.vue"
-import QnaBoardReadPage from "@/views/board/qna/QnaBoardReadPage.vue"
-import QnaBoardModifyPage from "@/views/board/qna/QnaBoardModifyPage.vue"
+import QnaBoardListView from "@/views/boards/qna/QnaBoardListView.vue"
+import QnaBoardRegisterView from "@/views/boards/qna/QnaBoardRegisterView.vue"
+import QnaBoardReadView from "@/views/boards/qna/QnaBoardReadView.vue"
+import QnaBoardModifyView from "@/views/boards/qna/QnaBoardModifyView.vue"
 
 // 채율씨 공지 게시판으로 바뀔 예정
 import JpaBoardListPage from "@/views/board/JpaBoardListPage.vue"
@@ -58,20 +64,20 @@ const routes = [
 
   //태현씨 qna 게시판
   {
-    path: '/qna-board-list-page',
-    name: 'QnaBoardListPage',
-    component: QnaBoardListPage
+    path: '/qna-board-list-view',
+    name: 'QnaBoardListView',
+    component: QnaBoardListView
   },
   {
-    path: '/qna-board-register-page',
-    name: 'QnaBoardRegisterPage',
-    component: QnaBoardRegisterPage
+    path: '/qna-board-register-view',
+    name: 'QnaBoardRegisterView',
+    component: QnaBoardRegisterView
   },
   {
-  path: '/qna-board-read-page/:qnaBoardId',
-  name: 'QnaBoardReadPage',
+  path: '/qna-board-read-view/:qnaBoardId',
+  name: 'QnaBoardReadView',
   components: {
-    default: QnaBoardReadPage
+    default: QnaBoardReadView
     },
     props: {
       default: true
@@ -79,9 +85,9 @@ const routes = [
   },
   {
     path: '/qna-modify/:qnaBoardId',
-    name: 'QnaBoardModifyPage',
+    name: 'QnaBoardModifyView',
     components: {
-      default: QnaBoardModifyPage
+      default: QnaBoardModifyView
       },
       props: {
         default: true
@@ -149,12 +155,28 @@ const routes = [
   {
     path: '/donate-visit',
     name: 'DonateVisitView',
-    component: DonateVisitView
+    component: DonateVisitView,
+    beforeEnter: (to, from, next) => {
+      if (isAuthenticated()) {
+        next();
+      } else {
+        alert("방문기부를 신청하시려면 먼저 로그인을 하셔야 합니다");
+        next("/sign-in");
+      }
+    }
   },
   {
     path: '/donate-mail',
     name: 'DonateMailView',
-    component: DonateMailView
+    component: DonateMailView,
+    beforeEnter: (to, from, next) => {
+      if (isAuthenticated()) {
+        next();
+      } else {
+        alert("택배기부를 신청하시려면 먼저 로그인을 하셔야 합니다");
+        next("/sign-in");
+      }
+    }
   },
   {
     path: '/donate-search',
@@ -218,6 +240,34 @@ const routes = [
       default: PassWordChange
     }
   },
+
+  // SNS 이동
+  {
+    path: '/instagram',
+    name: 'Instagram',
+    beforeEnter: (to, from, next) => {
+      window.location = 'https://www.instagram.com/bookyoulove.proj/';
+      // to : 이동하려는 라우트의 'Route' 객체
+      // from : 현재 라우트의 'Route' 객체
+      // next : 다음 단계로 진행하기 위해 호출해야 하는 함수
+      // 현재는 필요 없는 매개변수
+    }
+  },
+  {
+    path: '/youtube',
+    name: 'youtube',
+    beforeEnter: (to, from, next) => {
+      window.location = 'https://www.youtube.com/@_BYL';
+    }
+  },
+  {
+    path: '/facebook',
+    name: 'facebook',
+    beforeEnter: (to, from, next) => {
+      window.location = 'https://www.facebook.com/profile.php?id=100090712311488&mibextid=ZbWKwL';
+    },
+  },
+  
 ]
 
 const router = new VueRouter({

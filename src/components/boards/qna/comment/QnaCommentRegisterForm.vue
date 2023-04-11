@@ -31,6 +31,11 @@
 
 export default {
     name: "QnaCommentRegisterForm",
+        props: {
+        qnaBoard: {
+            type: Array
+        },
+    },
     data() {
     return {
         comment: '',

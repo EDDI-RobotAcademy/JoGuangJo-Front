@@ -7,20 +7,19 @@
 
 <script>
 import { mapActions } from 'vuex'
-import QnaBoardRegisterForm from '@/components/board/qna/QnaBoardRegisterForm.vue'
+import QnaBoardRegisterForm from '@/components/boards/qna/QnaBoardRegisterForm.vue'
 
 export default {
     components: { QnaBoardRegisterForm },
-    name: "QnaBoardRegisterPage",
+    name: "QnaBoardRegisterView",
     methods: {
         ...mapActions ([
             'requestCreateQnaBoardToSpring'
         ]),
         async onSubmit (payload) {
-            console.log(payload)
             await this.requestCreateQnaBoardToSpring(payload)
             await this.$router.push({
-                name: 'QnaBoardListPage'
+                name: 'QnaBoardListView'
             })
         }
     }

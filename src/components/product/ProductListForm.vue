@@ -1,5 +1,6 @@
 <template>
  <div class="product-list-form">
+  
  <!--  <div class="sticky-bar">
       <p>최근 본 상품:</p>
       <ul>
@@ -129,7 +130,34 @@ export default {
     totalPages() {
       return Math.ceil(this.sortedProducts.length / this.itemsPerPage);
     },
+    sortedProducts() {
+      let sorted = this.products.slice();
+      if (this.sortBy === "이름순") {
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (this.sortBy === "낮은 가격순") {
+        sorted.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+      } else if (this.sortBy === "높은 가격순") {
+        sorted.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+      } else if (this.sortBy === "최신순") {
+        sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+      }
+
+      if (this.selectedCategory !== "전체") {
+        sorted = sorted.filter((product) => product.category === this.selectedCategory);
+      }
+
+      return sorted;
+    },
+  paginatedProducts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.sortedProducts.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.sortedProducts.length / this.itemsPerPage);
+    },
   },
+  
   methods: {
     addToCart(product) {
       // 여기에 장바구니 추가 기능을 구현하세요.
