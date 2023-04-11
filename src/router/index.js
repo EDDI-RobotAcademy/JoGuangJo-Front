@@ -42,6 +42,7 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 
 // 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
+import PassWordChange from "@/views/mypage/PassWordChangeView"
 
 Vue.use(VueRouter)
 
@@ -232,6 +233,13 @@ const routes = [
       default: MyPage
     }
   },
+  {
+    path: '/passwordChange',
+    name: 'PasswordChange',
+    components: {
+      default: PassWordChange
+    }
+  },
 
   // SNS 이동
   {
@@ -259,6 +267,7 @@ const routes = [
       window.location = 'https://www.facebook.com/profile.php?id=100090712311488&mibextid=ZbWKwL';
     },
   },
+  
 ]
 
 const router = new VueRouter({
