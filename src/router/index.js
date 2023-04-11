@@ -42,7 +42,8 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 
 // 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
-import PassWordChange from "@/views/mypage/PassWordChangeView"
+import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
+import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
 
 Vue.use(VueRouter)
 
@@ -143,6 +144,11 @@ const routes = [
     path: '/search-password',
     name: 'SearchMemberPasswordPage',
     component: SearchMemberPasswordPage
+  },
+  {
+    path: '/membertyperequest',
+    name: 'MemberTypeRequest',
+    component: MemberTypeRequest
   },
   
 
