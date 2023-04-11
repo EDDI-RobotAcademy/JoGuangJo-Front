@@ -27,7 +27,7 @@ import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage.vu
 
 // 지영씨 기부 페이지
 import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue"
-import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue"
+import DonateVisitRegisterView from "@/views/boards/donate/DonateVisitRegisterView.vue"
 import DonateMailView from "@/views/boards/donate/DonateMailView.vue"
 import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue"
 
@@ -159,9 +159,9 @@ const routes = [
     component: DonateChoiceView
   },
   {
-    path: '/donate-visit',
-    name: 'DonateVisitView',
-    component: DonateVisitView,
+    path: '/donate-visit-register',
+    name: 'DonateVisitRegisterView',
+    component: DonateVisitRegisterView,
     beforeEnter: (to, from, next) => {
       if (isAuthenticated()) {
         next();

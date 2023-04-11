@@ -62,6 +62,7 @@
           <v-radio-group
             v-model="formData.quality"
             :rules="qualityRules"
+            label="기부 도서 상태(상/중/하)"
             hint="기부할 도서의 전체 상태를 알려주세요"
             persistent-hint
             prepend-icon="mdi-book"
@@ -231,7 +232,7 @@
 
 <script>
 export default {
-  name: "DonateVisitForm",
+  name: "DonateVisitRegisterForm",
   data() {
     return {
       e1: 1,
