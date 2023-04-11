@@ -15,6 +15,9 @@ import {
 
     //지영씨 마이페이지-기부내역
     REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING,
+    REQUEST_MY_DONATE_VISIT_READ_TO_SPRING,
+
+
 } from './mutation-types'
 
 import axios from 'axios'
@@ -201,5 +204,41 @@ export default {
             console.error(error);
         });
     },
+
+    requestMyDonateVisitReadToSpring ({ commit }, donateVisitId) {
+        console.log("read 요청 테스트 완료")
+        return axios.get(`http://localhost:7777/donate/myDonateRead/${donateVisitId}`)
+        .then((res) => {
+            commit(REQUEST_MY_DONATE_VISIT_READ_TO_SPRING, res.data)
+            console.log("백에서 보낸 데이터 : ", res.data)
+            console.log("프론트가 donateVisitId 로 요청했고, 백이 해당 donate 데이터 응답했음");
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    },
+
+    requestMyDonateVisitModifyToSpring ({}, { donateVisitId, payload }) {
+        return axios.put(`http://localhost:7777/donate/myDonateModify/${donateVisitId}`, payload)
+          .then(() => {
+            alert("해당 기부글을 수정했습니다!")
+          })
+          .catch(() => {
+            alert("해당 기부글을 수정하는 중에 문제가 발생했습니다!")
+          })
+      },
+
+    requestMyDonateVisitDeleteSpring ({}, donateVisitId) {
+        console.log("삭제 요청 테스트 완료")
+        return axios.delete(`http://localhost:7777/donate/myDonateDelete/${donateVisitId}`)
+            .then(() => {
+                alert("해당 기부글을 삭제했습니다!")
+            })
+            .catch(() => {
+                alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!")
+            })
+    },
+
+
 
 }

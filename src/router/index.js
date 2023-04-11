@@ -47,6 +47,9 @@ import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
 
 // 지영씨 마이페이지-나의기부내역
 import MyDonateVisitListView from "@/views/mypage/myDonate/MyDonateVisitListView.vue"
+import MyDonateVisitReadView from "@/views/mypage/myDonate/MyDonateVisitReadView.vue"
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -255,6 +258,19 @@ const routes = [
     name: 'MyDonateVisitListView',
     component: MyDonateVisitListView
   },
+  {
+    path: '/mypage/my-donate-read/:donateVisitId',
+    name: 'MyDonateVisitReadView',
+    components: {
+      default: MyDonateVisitReadView
+      },
+      props: {
+        default: true
+      }
+  },
+
+
+
   // SNS 이동
   {
     path: '/instagram',
