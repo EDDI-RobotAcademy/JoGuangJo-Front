@@ -32,6 +32,9 @@
   </template>
   
   <script>
+  import axios from "axios";
+
+
   export default {
   name: "MemberTypeRequestForm",
   data() {
@@ -48,18 +51,17 @@
         return;
       } 
 
-      const requestData = {
+      const memberTypeRequestData = {
         memberId: JSON.parse(localStorage.getItem("userInfo")).id,
         memberType: this.selectedMemberType,
         message: this.requestMessage,
       };
-      console.log(requestData.memberId)
-      console.log(requestData.memberType)
-      console.log(requestData.message)
+      console.log(memberTypeRequestData.memberId)
+      console.log(memberTypeRequestData.memberType)
+      console.log(memberTypeRequestData.message)
       try {
-        const response = await axios.post(
-          "http://localhost:7777/mypage/memberTypeRequest",
-          requestData
+        const response = await axios.post("http://localhost:7777/mypage/memberTypeRequest", 
+        memberTypeRequestData
         );
         if (response.data) {
           alert("잘 됨.");
