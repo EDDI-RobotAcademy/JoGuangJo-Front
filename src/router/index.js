@@ -44,6 +44,7 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 import MyPage from "@/views/mypage/MyPageView.vue"
 import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
 import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
+import MemberTypeRequestListView from "@/views/mypage/MemberTypeRequestListView.vue"
 
 Vue.use(VueRouter)
 
@@ -244,6 +245,13 @@ const routes = [
     name: 'PasswordChange',
     components: {
       default: PassWordChange
+    }
+  },
+  {
+    path: '/memberTypeRequestListView',
+    name: 'MemberTypeRequestListView',
+    components: {
+      default: MemberTypeRequestListView
     }
   },
 
