@@ -1,12 +1,14 @@
 <template>
     <div>
+      <v-container max-width="1200">
         <v-data-table :headers="headers" :items="memberTypeRequests">
-            <template v-slot:item.createdAt="{ item }">
-                {{ formatDate(item.createdAt) }}
-            </template>
+          <template v-slot:item.createdAt="{ item }">
+            {{ formatDate(item.createdAt) }}
+          </template>
         </v-data-table>
+      </v-container>
     </div>
-</template>
+  </template>
 
 <script>
 import axios from "axios";
@@ -16,18 +18,20 @@ name: "MemberTypeRequestListForm",
 data() {
     return {
     headers: [
+        { text: "Request Id", value: "memberTypeRequestId"},
         { text: "Nickname", value: "nickname" },
         { text: "Member Type", value: "memberType" },
-        { text: "Message", value: "message" },
         { text: "Registration Date", value: "regDate" },
     ],
+
     memberTypeRequests: [],
     };
 },
 async created() {
     try {
-    const response = await axios.get("/api/memberTypeRequests");
+    const response = await axios.get("http://localhost:7777/mypage/memberTypeRequestList");
     this.memberTypeRequests = response.data;
+    console.log('this.memberTypeRequests : ' + this.memberTypeRequests )
     } catch (error) {
     console.error("Error fetching member type requests:", error);
     }
