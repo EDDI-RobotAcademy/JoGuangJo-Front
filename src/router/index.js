@@ -27,7 +27,7 @@ import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage.vu
 
 // 지영씨 기부 페이지
 import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue"
-import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue"
+import DonateVisitRegisterView from "@/views/boards/donate/DonateVisitRegisterView.vue"
 import DonateMailView from "@/views/boards/donate/DonateMailView.vue"
 import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue"
 
@@ -44,6 +44,11 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 import MyPage from "@/views/mypage/MyPageView.vue"
 import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
 import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
+
+// 지영씨 마이페이지-나의기부내역
+import MyDonateVisitListView from "@/views/mypage/myDonate/MyDonateVisitListView.vue"
+import MyDonateVisitReadView from "@/views/mypage/myDonate/MyDonateVisitReadView.vue"
+
 
 Vue.use(VueRouter)
 
@@ -159,9 +164,9 @@ const routes = [
     component: DonateChoiceView
   },
   {
-    path: '/donate-visit',
-    name: 'DonateVisitView',
-    component: DonateVisitView,
+    path: '/donate-visit-register',
+    name: 'DonateVisitRegisterView',
+    component: DonateVisitRegisterView,
     beforeEnter: (to, from, next) => {
       if (isAuthenticated()) {
         next();
@@ -246,6 +251,25 @@ const routes = [
       default: PassWordChange
     }
   },
+
+  // 지영씨 마이페이지-나의기부내역
+  {
+    path: '/mypage/my-donate-list',
+    name: 'MyDonateVisitListView',
+    component: MyDonateVisitListView
+  },
+  {
+    path: '/mypage/my-donate-read/:donateVisitId',
+    name: 'MyDonateVisitReadView',
+    components: {
+      default: MyDonateVisitReadView
+      },
+      props: {
+        default: true
+      }
+  },
+
+
 
   // SNS 이동
   {
