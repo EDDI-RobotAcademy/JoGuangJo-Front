@@ -118,6 +118,7 @@
   .logo {
     margin-left: 0px;
   }
+  
   .card {
     border: none !important;
     box-shadow: none !important;

@@ -156,6 +156,7 @@
   </script>
   
   <style scoped>
+    
   .card {
     border: none !important;
     box-shadow: none !important;
