@@ -226,7 +226,7 @@ const routes = [
 
   //채율씨 상품게시판
   {
-    path: '/product-list',
+    path: '/product-list-page',
     name: 'ProductListPage',
     component: ProductListPage
   },

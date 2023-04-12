@@ -1,12 +1,12 @@
 <template>
-  <div class="grey lighten-5" style="font-family: Arial">
+  <div class="white" style="font-family: Arial">
     <v-row justify="center">
       <v-col cols="auto" style="padding-bottom: 90px">
         <router-link to="/">
           <v-img
-              :src="require('@/assets/logo.png')" width="120" class="mx-auto mb-6"/>
+              :src="require('@/assets/logo/logo.png')" width="400" class="mx-auto mb-6"/>
         </router-link>
-        <v-card width="460">
+        <v-card width="460" class="card">
           <v-card-text class="text-center px-12 py-16">
             <v-form @submit.prevent="onSubmit" ref="form">
               <div class="text-h4 font-weight-black mb-10">회원 가입</div>
@@ -40,15 +40,35 @@
                                 :disabled="nickNamePass"
               >닉네임 중복 확인
                   </v-btn>
-              </div>
+              </div><br><br>
 
-              <v-btn type="submit" block x-large rounded
-                     class="mt-6" color="purple lighten-1" 
-                     :disabled="(emailPass && streetPass && nickNamePass) == false">
-                가입하기
+              <v-textarea
+               label="이용약관"
+               value="이용약관 내용을 여기에 삽입하세요."
+               readonly
+               outlined
+               height="100"
+               class="mt-4"
+              ></v-textarea>
+              <v-checkbox
+               v-model="termsAccepted"
+               label="이용약관에 동의합니다."
+               color="black"
+               class="mt-4"
+              ></v-checkbox>
+
+              <v-btn
+               type="submit"
+               block
+               x-large
+               rounded
+               class="mt-6"
+               color="#fee789"
+               :disabled="!termsAccepted || (emailPass && streetPass && nickNamePass) == false"
+              >
+              가입하기
               </v-btn>
-
-            </v-form>
+              </v-form>
           </v-card-text>
         </v-card>
       </v-col>
@@ -76,6 +96,7 @@ export default {
       emailPass: false,
 
       nickNamePass:false,//닉네임중복체크후 사용가능한 닉네임인지여부
+      termsAccepted: false,//이용약관
 
       email_rule: [
         v => !!v || '이메일을 입력해주세요.',
@@ -157,5 +178,10 @@ export default {
 </script>
 
 <style scoped>
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
 
 </style>

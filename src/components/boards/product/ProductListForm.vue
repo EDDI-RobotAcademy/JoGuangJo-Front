@@ -1,9 +1,14 @@
 <template>
-  <div class="product-list-form">
-   <product-category-form/>
+  <div class="full-container">
+  <div class="full-left1">
+    <img src='@/assets/logo/logo.gif' alt="logo" width="250" height="100%" class="logo-img1">
+    <product-category-form/>
+  </div>
+  <div class="full-right1">
+  <div class="product-list-form1">
     <v-container>
       <v-row>
-        <v-col cols="12" sm="3" class="category-container">
+   <!-- <v-col cols="12" sm="3" class="category-container">
           <h2 class="title">카테고리</h2>
           <v-list dense>
             <v-list-item-group color="primary">
@@ -14,11 +19,11 @@
               </v-list-item>
             </v-list-item-group>
           </v-list>
-        </v-col>
-        <v-col cols="12" sm="9">
-          <v-row>
-            <v-col cols="12" sm="6">
-              <h2 class="title">상품 목록</h2>
+        </v-col> -->
+        <v-col>
+          <v-row style="width:100%">
+            <v-col class="product-list1">
+              <h2 class="title1">상품 목록</h2>
             </v-col>
             <v-col cols="12" sm="6" class="text-sm-right filter-container">
               <v-select
@@ -47,10 +52,15 @@
                   <p class="product-price">{{ item.price }}원</p>
                   <p class="product-date">{{ item.regDate }}</p>
                   <p class="product-seller">판매자: {{ item.writer }}</p>
+                  <div class="button-container">
+                  <v-btn @click="onCartClick(item)" class="btn1">장바구니</v-btn>
+                  <v-btn @click="onBuyClick(item)" class="btn1">바로구매</v-btn>
+                  <v-btn @click="onLikeClick(item)" class="btn1">♥</v-btn>
+                  </div>
                 </v-card-text>
-                <v-card-actions class="justify-center">
+             <!--   <v-card-actions class="justify-center">
                   <v-btn color="primary" text @click="addToCart(item)">장바구니에 담기</v-btn>
-                </v-card-actions>
+                </v-card-actions>  일단 버튼 만들었으니까 주석 -->
               </v-card>
             </v-col>
           </v-row>
@@ -59,6 +69,8 @@
       </v-row>
     </v-container>
   </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -79,8 +91,8 @@ export default {
   data() {
   return {
     sortBy: "",
-    selectedCategory: "전체",
-    categories: ["전체", "카테고리1", "카테고리2", "카테고리3"], //내꺼
+   // selectedCategory: "전체",
+   // categories: ["전체", "카테고리1", "카테고리2", "카테고리3"], //내꺼
     currentPage: 1,
     pageSize: 12, // 수정 가능
     searchQuery: '',
@@ -151,16 +163,50 @@ export default {
       }
       this.currentPage = 1;
     }
-  }
+  },
+  onSee(item) {
+        this.$emit('see', item);
+      },
+      onCartClick(item) {
+        this.$emit('add-to-cart', item);
+      },
+      onBuyClick(item) {
+        this.$emit('buy', item);
+      },
+     // onLikeClick(item) {
+     //   this.$emit('like', item);
+     //  },       (찜하기버튼 한칸아래로 밀림)
 };
 </script>
 
-<style>
-  .product-list-form {
-  margin: 0 auto;
-  margin-bottom: 100px;
+<style scoped>
+.logo-img1 {
+  margin-top: -90px;
+  margin-left: 55px;
 }
-  .title {
+.full-container {
+  display: flex;
+  margin-right: 90px;
+}
+.full-left1 {
+  width: 20%;
+  height: 100%;
+  margin-top: 100px;
+  margin-left: -70px;
+}
+.full-right1 {
+  width: 80%;
+  height: 100%;
+}
+  .product-list-form1 {
+    margin: auto;
+  margin-bottom: 100px;
+  height: 100%;
+  margin-left: 80px; /* 수정 */
+  width: 1100px;
+
+}
+  .title1 {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -200,6 +246,27 @@ export default {
   .filter-item .v-input__control {
     min-width: 80px;
   }
+  
+  .btn1 {
+    background-color: #fee789 !important;
+    color: black;
+    margin-left: -19px;
+  }
+
+  .btn:hover1 {
+    background-color: #FFC107 !important;
+    color: white;
+  }
+
+  .button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 추가 */
+  margin-right: -20px;
+  margin-top: auto; /* 추가 */
+  margin-bottom: auto; /* 추가 */
+}
+
 
 
 /*table {
