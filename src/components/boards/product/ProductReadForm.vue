@@ -196,7 +196,9 @@ export default {
   line-height: 1.5;
   color: #212529;
 }
+
 .text-container {
   margin-left: -400px;
 }
+
 </style>
