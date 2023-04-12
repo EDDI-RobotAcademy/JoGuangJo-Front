@@ -10,7 +10,11 @@ import {
     REQUEST_PRODUCT_LIST_TO_SPRING,
     REQUEST_PRODUCT_TO_SPRING,
     REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
-    REQUEST_ALL_PRODUCT_TO_SPRING
+    REQUEST_ALL_PRODUCT_TO_SPRING,
+
+    // 지영씨 마이페이지-기부내역
+    REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING,
+    REQUEST_MY_DONATE_VISIT_READ_TO_SPRING
     
 } from './mutation-types'
 
@@ -42,5 +46,14 @@ export default {
     },
     [REQUEST_ALL_PRODUCT_TO_SPRING] (state, passingData) {
         state.allOfProducts = passingData
+    },
+
+    // 지영씨 마이페이지-기부내역
+    [REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING] (state, passingData) {
+        state.donateVisits = passingData
+    },
+    [REQUEST_MY_DONATE_VISIT_READ_TO_SPRING] (state, passingData) {
+        state.donateVisit = passingData
     }
+
 }
