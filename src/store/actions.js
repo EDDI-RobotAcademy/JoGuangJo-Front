@@ -12,12 +12,12 @@ import {
     REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
     REQUEST_ALL_PRODUCT_TO_SPRING,
 
+    // 태현씨 장바구니
+    REQUEST_CART_LIST_FROM_SPRING
 
     //지영씨 마이페이지-기부내역
     REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING,
     REQUEST_MY_DONATE_VISIT_READ_TO_SPRING,
-
-
 } from './mutation-types'
 
 import axios from 'axios'
@@ -177,6 +177,19 @@ export default {
     },
 
 
+    // 태현씨 장바구니
+
+
+        requestCartListFromSpring({commit}, memberId) {
+            console.log("list 요청 테스트 완료.");
+            console.log("actions.js\n cart memberId " + memberId);
+            return axios.get(`http://localhost:7777/cart/list/${memberId}`)
+            .then((res) => {
+                commit(REQUEST_CART_LIST_FROM_SPRING, res.data)
+            })
+        },
+
+
     // 지영씨 기부 페이지, 마이페이지-기부내역
     requestDonateVisitRegisterToSpring ({}, payload) {
         const { formData } = payload
@@ -238,7 +251,4 @@ export default {
                 alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!")
             })
     },
-
-
-
 }

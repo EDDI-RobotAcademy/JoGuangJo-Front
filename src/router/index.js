@@ -52,6 +52,9 @@ import MyDonateVisitListView from "@/views/mypage/myDonate/MyDonateVisitListView
 import MyDonateVisitReadView from "@/views/mypage/myDonate/MyDonateVisitReadView.vue"
 
 
+// 태현씨 장바구니
+import CartListView from "@/views/cart/CartListView.vue"
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -290,6 +293,15 @@ const routes = [
   },
 
 
+
+
+  // 태현씨 장바구니
+
+  {
+    path: '/cart-list-view',
+    name: 'CartListView',
+    component: CartListView,
+  },
 
   // SNS 이동
   {
