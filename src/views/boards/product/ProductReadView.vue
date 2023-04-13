@@ -10,7 +10,9 @@
       <v-btn color="error" dark @click="onDelete" v-if="isCurrentUserAuthor">
         삭제
       </v-btn>
-
+      <v-btn color="success" :to="{ name: 'ProductOrderView', params: { productId } }" v-if="isLoggedIn && !isCurrentUserAuthor">
+        구매하기
+      </v-btn>
       <v-btn :to="{ name: 'ProductListView' }">
         돌아가기
       </v-btn>
@@ -23,6 +25,8 @@
 
 import ProductReadForm from '@/components/boards/product/ProductReadForm.vue'
 import { mapActions, mapState } from 'vuex'
+
+// const productModule = 'productModule'
 
 export default {
   components: { ProductReadForm },

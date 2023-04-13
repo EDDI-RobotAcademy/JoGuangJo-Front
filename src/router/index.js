@@ -27,7 +27,7 @@ import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage.vu
 
 // 지영씨 기부 페이지
 import DonateChoiceView from "@/views/boards/donate/DonateChoiceView.vue"
-import DonateVisitView from "@/views/boards/donate/DonateVisitView.vue"
+import DonateVisitRegisterView from "@/views/boards/donate/DonateVisitRegisterView.vue"
 import DonateMailView from "@/views/boards/donate/DonateMailView.vue"
 import DonateSearchView from "@/views/boards/donate/DonateSearchView.vue"
 
@@ -42,6 +42,15 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 
 // 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
+import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
+import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
+import MemberTypeRequestListView from "@/views/mypage/MemberTypeRequestListView.vue"
+import MemberTypeRead from "@/components/mypage/MemberTypeReadForm.vue"
+
+// 지영씨 마이페이지-나의기부내역
+import MyDonateVisitListView from "@/views/mypage/myDonate/MyDonateVisitListView.vue"
+import MyDonateVisitReadView from "@/views/mypage/myDonate/MyDonateVisitReadView.vue"
+
 
 // 태현씨 장바구니
 import CartListView from "@/views/cart/CartListView.vue"
@@ -146,6 +155,7 @@ const routes = [
     name: 'SearchMemberPasswordPage',
     component: SearchMemberPasswordPage
   },
+
   
 
   //지영씨 기부 페이지
@@ -155,9 +165,9 @@ const routes = [
     component: DonateChoiceView
   },
   {
-    path: '/donate-visit',
-    name: 'DonateVisitView',
-    component: DonateVisitView,
+    path: '/donate-visit-register',
+    name: 'DonateVisitRegisterView',
+    component: DonateVisitRegisterView,
     beforeEnter: (to, from, next) => {
       if (isAuthenticated()) {
         next();
@@ -235,6 +245,54 @@ const routes = [
       default: MyPage
     }
   },
+  {
+    path: '/passwordChange',
+    name: 'PasswordChange',
+    components: {
+      default: PassWordChange
+    }
+  },
+  {
+    path: '/membertyperequest',
+    name: 'MemberTypeRequest',
+    component: MemberTypeRequest
+  },
+  {
+    path: '/memberTypeRequestListView',
+    name: 'MemberTypeRequestListView',
+    components: {
+      default: MemberTypeRequestListView
+    }
+  },
+  {
+    path: "/memberTypeRead/:id",
+    name: "MemberTypeReadForm",
+    components: {
+      default: MemberTypeRead
+    },
+    props: {
+      default: true
+    }
+  },
+
+  // 지영씨 마이페이지-나의기부내역
+  {
+    path: '/mypage/my-donate-list',
+    name: 'MyDonateVisitListView',
+    component: MyDonateVisitListView
+  },
+  {
+    path: '/mypage/my-donate-read/:donateVisitId',
+    name: 'MyDonateVisitReadView',
+    components: {
+      default: MyDonateVisitReadView
+      },
+      props: {
+        default: true
+      }
+  },
+
+
 
 
   // 태현씨 장바구니
@@ -271,6 +329,7 @@ const routes = [
       window.location = 'https://www.facebook.com/profile.php?id=100090712311488&mibextid=ZbWKwL';
     },
   },
+  
 ]
 
 const router = new VueRouter({

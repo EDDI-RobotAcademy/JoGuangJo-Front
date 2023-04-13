@@ -27,7 +27,7 @@
     </div>
     <div class="form-buttons">
       <button type="submit" class="btn btn-primary">등록</button>
-      <router-link :to="{ name: 'JpaProductListPage' }" class="btn btn-secondary">
+      <router-link :to="{ name: 'ProductListView' }" class="btn btn-secondary">
         취소
       </router-link>
     </div>
