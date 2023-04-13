@@ -43,6 +43,9 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 // 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
 
+// 태현씨 장바구니
+import CartListView from "@/views/cart/CartListView.vue"
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -231,6 +234,15 @@ const routes = [
     components: {
       default: MyPage
     }
+  },
+
+
+  // 태현씨 장바구니
+
+  {
+    path: '/cart-list-view',
+    name: 'CartListView',
+    component: CartListView,
   },
 
   // SNS 이동

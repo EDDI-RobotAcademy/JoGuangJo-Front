@@ -11,6 +11,9 @@ import {
     REQUEST_PRODUCT_TO_SPRING,
     REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
     REQUEST_ALL_PRODUCT_TO_SPRING,
+
+    // 태현씨 장바구니
+    REQUEST_CART_LIST_FROM_SPRING
 } from './mutation-types'
 
 import axios from 'axios'
@@ -168,4 +171,16 @@ export default {
                 console.log("allProduct: " + res.data)
             })
     },
+
+    // 태현씨 장바구니
+
+
+        requestCartListFromSpring({commit}, memberId) {
+            console.log("list 요청 테스트 완료.");
+            console.log("actions.js\n cart memberId " + memberId);
+            return axios.get(`http://localhost:7777/cart/list/${memberId}`)
+            .then((res) => {
+                commit(REQUEST_CART_LIST_FROM_SPRING, res.data)
+            })
+        },
 }
