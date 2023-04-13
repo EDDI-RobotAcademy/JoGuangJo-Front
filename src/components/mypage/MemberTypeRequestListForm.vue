@@ -1,46 +1,49 @@
 <template>
-    <div>
-      <v-container max-width="1200">
-        <v-data-table :headers="headers" :items="memberTypeRequests">
-          <template v-slot:item.createdAt="{ item }">
-            {{ formatDate(item.createdAt) }}
-          </template>
-        </v-data-table>
-      </v-container>
-    </div>
-  </template>
+  <div>
+    <v-container max-width="1200">
+      <v-data-table :headers="headers" :items="memberTypeRequests" @click:row="goToDetail">
+        <template v-slot:item.createdAt="{ item }">
+          {{ formatDate(item.createdAt) }}
+        </template>
+      </v-data-table>
+    </v-container>
+  </div>
+</template>
 
 <script>
 import axios from "axios";
 
 export default {
-name: "MemberTypeRequestListForm",
-data() {
+  name: "MemberTypeRequestListForm",
+  data() {
     return {
-    headers: [
-        { text: "Request Id", value: "memberTypeRequestId"},
+      headers: [
+        { text: "Request Id", value: "memberTypeRequestId" },
         { text: "Nickname", value: "nickname" },
         { text: "Member Type", value: "memberType" },
         { text: "Registration Date", value: "regDate" },
-    ],
+      ],
 
-    memberTypeRequests: [],
+      memberTypeRequests: [],
     };
-},
-async created() {
+  },
+  async created() {
     try {
-    const response = await axios.get("http://localhost:7777/mypage/memberTypeRequestList");
-    this.memberTypeRequests = response.data;
-    console.log('this.memberTypeRequests : ' + this.memberTypeRequests )
+      const response = await axios.get("http://localhost:7777/mypage/memberTypeRequestList");
+      this.memberTypeRequests = response.data;
+      console.log("this.memberTypeRequests : " + this.memberTypeRequests);
     } catch (error) {
-    console.error("Error fetching member type requests:", error);
+      console.error("Error fetching member type requests:", error);
     }
-},
-methods: {
+  },
+  methods: {
     formatDate(date) {
-    const d = new Date(date);
-    return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+      const d = new Date(date);
+      return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
     },
-},
+    goToDetail(item) {
+      this.$router.push({ name: "MemberTypeReadForm", params: { id: item.memberTypeRequestId } });
+    },
+  },
 };
 </script>
