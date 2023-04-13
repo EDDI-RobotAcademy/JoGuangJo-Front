@@ -44,7 +44,7 @@
 
               <v-btn type="submit" block x-large rounded
                      class="mt-6" color="purple lighten-1" 
-                     :disabled="(emailPass && streetPass && nickNamePass) == false">
+                     :disabled="(emailPass && nickNamePass) == false">
                 가입하기
               </v-btn>
 
@@ -67,11 +67,6 @@ export default {
       password: "",
       password_confirm: "",
       nickName: "",
-
-      city: '',
-      street: '',
-      addressDetail: '',
-      zipcode: '',
 
       emailPass: false,
 
