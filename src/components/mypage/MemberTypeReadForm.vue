@@ -27,7 +27,6 @@
       };
     },
     async created() {
-        console.log("짜잔!")
       try {
         const response = await axios.get(`http://localhost:7777/mypage/memberTypeRequest/${this.$route.params.id}`);
         this.memberTypeRequest = response.data;
@@ -42,9 +41,25 @@
       },
       async acceptRequest() {
         // Handle request acceptance logic here
+        const requestData = {
+            requestId: this.memberTypeRequest.memberTypeRequestId,
+            memberId: this.memberTypeRequest.memberId
+        };
+        try {
+            axios.post('http://localhost:7777/mypage/rollrequestaccept', requestData)
+            this.$router.push({ name: 'MemberTypeRequestListView' });
+        } catch (error) {
+            console.log("에러 발생 : " , error);
+        }
       },
       async rejectRequest() {
         // Handle request rejection logic here
+        try {
+            axios.post('http://localhost:7777/mypage/rollrequestreject', this.memberTypeRequest.memberTypeRequestId)
+            this.$router.push({ name: 'MemberTypeRequestListView' });
+        } catch (error) {
+            console.log("에러 발생 : " , error);
+        } 
       },
     },
   };
