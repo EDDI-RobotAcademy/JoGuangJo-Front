@@ -36,6 +36,8 @@ import ProductListView from "@/views/boards/product/ProductListView.vue"
 import ProductRegisterView from "@/views/boards/product/ProductRegisterView.vue"
 import ProductReadView from "@/views/boards/product/ProductReadView.vue"
 import ProductModifyView from "@/views/boards/product/ProductModifyView.vue"
+import ProductOrderView from '@/views/boards/product/ProductOrderView.vue';
+
 
 // 채율씨 상품 게시판 - 썸네일 테스트중
 import ProductListPage from "@/views/product/ProductListPage.vue"
@@ -227,6 +229,12 @@ const routes = [
     props: {
       default: true
     }
+  },
+  {
+    path: '/product/order/:productId',
+    name: 'ProductOrderView',
+    component: ProductOrderView,
+    props: true,
   },
 
 
