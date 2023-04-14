@@ -23,7 +23,7 @@
 
               <div class="d-flex">
                 <v-text-field v-model="password" label="비밀번호" type="password"
-                              :rules="password_rule" :disabled="false" required/>
+                              :rules="password_rule" :disabled="false" required @input="updatePasswordLength"/>
               </div>
 
               <div class="d-flex">
@@ -65,6 +65,7 @@ export default {
     return {
       email: "",
       password: "",
+      password_length: 0,
       password_confirm: "",
       nickName: "",
 
@@ -81,9 +82,10 @@ export default {
         }
       ],
       password_rule: [
-        v => this.state === 'ins' ? !!v || '패스워드는 필수 입력사항입니다.' : true,
-        v => !(v && v.length >= 30) || '패스워드는 30자 이상 입력할 수 없습니다.',
-      ],
+          (v) => !!v || "패스워드는 필수 입력사항입니다.",
+          (v) => !(v && v.length >= 30) || "패스워드는 30자 이상 입력할 수 없습니다.",
+          (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다. 현재 길이 : " + v.length,
+        ],
       password_confirm_rule: [
         v => this.state === 'ins' ? !!v || '패스워드는 필수 입력사항입니다.' : true,
         v => !(v && v.length >= 30) || '패스워드는 30자 이상 입력할 수 없습니다.',
@@ -92,14 +94,13 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      //if (this.$refs.form.validate()) {
-      if (this.emailPass && this.nickNamePass) {
-        const { email, password, city, street, addressDetail, zipcode, nickName } = this
-        this.$emit("submit", { email, password, city, street, addressDetail, zipcode, nickName })
-      } else {
-        alert('올바른 정보를 입력하세요!')
-      }
+    onSubmit() {
+        if (this.password.length < 8) {
+          alert("패스워드는 8자 이상 입력해야합니다.");
+        } else {
+          const { email, password } = this;
+          this.$emit("submit", { email, password });
+        }
     },
     
     emailValidation () {
@@ -147,6 +148,10 @@ export default {
           });
       
     },
+
+    updatePasswordLength() {
+        this.password_length = this.password.length;
+      },
   }
 }
 </script>
