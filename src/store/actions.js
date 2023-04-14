@@ -47,7 +47,6 @@ export default {
         return axios.get(`http://localhost:7777/qnaBoard/${qnaBoardId}`)
         .then((res) => {
             commit(REQUEST_QNA_BOARD_TO_SPRING, res.data)
-            console.log(res.data.imageResourcePath)
         })
     },
 
@@ -177,8 +176,17 @@ export default {
     },
 
 
+
     // 태현씨 장바구니
 
+    requestRegisterCartToSpring({}, payload) {
+        const {memberId, productId, count} = payload
+        console.log("actions.js \n memberId = " + memberId + "\nproductId = " + productId + "\ncount = " + count)
+        return axios.post(`http://localhost:7777/cart/register`,
+            {memberId, productId, count})
+            .then(() => {
+            })
+        },
 
         requestCartListFromSpring({commit}, memberId) {
             console.log("list 요청 테스트 완료.");

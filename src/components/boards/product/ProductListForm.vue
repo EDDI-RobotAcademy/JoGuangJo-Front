@@ -60,9 +60,9 @@
                   <v-btn @click="onLikeClick(item)" class="btn1">♥</v-btn>
                   </div>
                 </v-card-text>
-             <!--   <v-card-actions class="justify-center">
-                  <v-btn color="primary" text @click="addToCart(item)">장바구니에 담기</v-btn>
-                </v-card-actions>  일단 버튼 만들었으니까 주석 -->
+                <v-card-actions class="justify-center">
+                  <v-btn color="primary" text @click="addToCart(item.productId)">장바구니에 담기</v-btn>
+                </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
@@ -88,7 +88,7 @@ export default {
   props: {
     products: {
       type: Array
-    }
+    },
   },
   data() {
   return {
@@ -164,20 +164,12 @@ export default {
         }
       }
       this.currentPage = 1;
-    }
-  },
-  onSee(item) {
-        this.$emit('see', item);
-      },
-      onCartClick(item) {
-        this.$emit('add-to-cart', item);
-      },
-      onBuyClick(item) {
-        this.$emit('buy', item);
-      },
-     // onLikeClick(item) {
-     //   this.$emit('like', item);
-     //  },       (찜하기버튼 한칸아래로 밀림)
+    },
+    
+    addToCart(productId) {
+      this.$emit('addToCart', { productId })
+    },
+}
 };
 </script>
 
