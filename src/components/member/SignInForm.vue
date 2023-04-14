@@ -3,14 +3,16 @@
       <v-container class="white" style="width: 1240px">
         <v-row justify="center">
           <v-col cols="auto" style="padding-bottom: 90px">
-            <router-link to="/">
+            <div class="logo">
+              <router-link to="/">
               <v-img
-                  :src="require('@/assets/logo.png')"
-                  width="120"
-                  class="mx-auto mb-6"
-              ></v-img>
-            </router-link>
-            <v-card width="460">
+                :src="require('@/assets/logo/logo.png')"
+                width="400"
+                class="mx-auto mb-6"
+             ></v-img>
+             </router-link>
+             </div>
+            <v-card width="460" class="card">
               <v-card-text class="text-center px-12 py-16">
   
                 <v-form @submit.prevent="onSubmit">
@@ -37,14 +39,14 @@
                         prepend-icon="mdi-lock-outline"
                         color="orange"
                     />
-                  </div>
+                  </div><br>
   
                   <v-btn
                       type="submit"
                       block
                       x-large
                       rounded
-                      color="orange lighten-1"
+                      color="#fee789"
                       class="mt-6"
                       :disabled="false"
                   >로그인</v-btn><br/>
@@ -112,6 +114,24 @@
   </script>
   
   <style scoped>
+  
+  .logo {
+    margin-left: 0px;
+  }
+  
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    margin-left: -7px;
+  }
+  
+  .mt-6 {
+    margin-left: 9px;
+  }
+  
+  .mt-5 {
+    margin-left: 15px;   
+  }
   
   @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap");
   

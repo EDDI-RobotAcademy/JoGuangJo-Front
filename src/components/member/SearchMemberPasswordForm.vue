@@ -1,16 +1,16 @@
 <template>
-    <div class="grey lighten-5" style="font-family: 'Noto Sans KR', sans-serif">
+    <div class="white" style="font-family: 'Noto Sans KR', sans-serif">
       <v-container class="white" style="width: 1240px">
         <v-row justify="center">
-          <v-col cols="auto" style="padding-bottom: 90px">
+          <v-col cols="auto" style="padding-bottom: 90px, margin-top: 30px">
             <router-link to="/">
               <v-img
-                  :src="require('@/assets/logo.png')"
-                  width="120"
+                  :src="require('@/assets/logo/logo.png')"
+                  width="400"
                   class="mx-auto mb-6"
               ></v-img>
             </router-link>
-            <v-card width="460" v-if="!isPass">
+            <v-card width="460" v-if="!isPass" class="card">
               <v-card-text class="text-center px-12 py-16">
   
                 <v-form>
@@ -23,7 +23,7 @@
                         :rules="email_rule"
                         clearable
                         prepend-icon="mdi-email"
-                        color="orange"
+                        color="#C7F98B"
                     />
                   </div>
   
@@ -31,7 +31,7 @@
                       block
                       x-large
                       rounded
-                      color="orange lighten-1"
+                      color="#fee789"
                       class="mt-6"
                       @click="findAccountEmail"
                       :disabled="false"
@@ -156,6 +156,12 @@
   </script>
   
   <style scoped>
+    
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    margin-left: -7px;
+  }
   
   @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap");
   
