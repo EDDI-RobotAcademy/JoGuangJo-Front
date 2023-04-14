@@ -119,8 +119,8 @@ export default {
         if (this.password.length < 8) {
           alert("패스워드는 8자 이상 입력해야합니다.");
         } else {
-          const { email, password } = this;
-          this.$emit("submit", { email, password });
+          const { email, password, nickName } = this;
+          this.$emit("submit", { email, password, nickName });
         }
     },
     
