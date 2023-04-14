@@ -10,23 +10,19 @@
   <div class="product-list-form1">
     <v-container>
       <v-row>
-   <!-- <v-col cols="12" sm="3" class="category-container">
-          <h2 class="title">카테고리</h2>
-          <v-list dense>
-            <v-list-item-group color="primary">
-              <v-list-item v-for="(category, i) in categories" :key="i" @click="selectedCategory = category">
-                <v-list-item-content>
-                  <v-list-item-title>{{ category }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-col> -->
         <v-col>
           <v-row style="width:100%">
             <v-col class="product-list1">
               <h2 class="title1">상품 목록</h2>
             </v-col>
+            <div class="search">
+              <select v-model="searchBy">
+                <option value="productName">상품명</option>
+                <option value="seller">판매자</option>
+              </select>
+              <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
+              <button @click="searchProducts">검색</button>
+            </div>
             <v-col cols="12" sm="6" class="text-sm-right filter-container">
               <v-select
                v-model="sortBy"
@@ -93,8 +89,6 @@ export default {
   data() {
   return {
     sortBy: "",
-   // selectedCategory: "전체",
-   // categories: ["전체", "카테고리1", "카테고리2", "카테고리3"], //내꺼
     currentPage: 1,
     pageSize: 12, // 수정 가능
     searchQuery: '',
@@ -165,6 +159,9 @@ export default {
       }
       this.currentPage = 1;
     },
+    onBuyClick(product) {
+        this.$router.push({ name: 'ProductOrderView', params: { id: product.productId } });
+      },
     
     addToCart(productId) {
       this.$emit('addToCart', { productId })
@@ -261,42 +258,6 @@ export default {
   margin-bottom: auto; /* 추가 */
 }
 
-
-
-/*table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-  color: #333;
-}
-
-td {
-  vertical-align: middle;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-h3 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.router-link-active {
-  font-weight: bold;
-}
-
 .search input[type="text"] {
   padding: 10px;
   border-radius: 5px;
@@ -337,5 +298,5 @@ h3 {
 .search select:focus {
   outline: none;
   border-color: #4CAF50;
-}*/
+}
 </style>
