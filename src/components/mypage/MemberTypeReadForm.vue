@@ -43,7 +43,8 @@
         // Handle request acceptance logic here
         const requestData = {
             requestId: this.memberTypeRequest.memberTypeRequestId,
-            memberId: this.memberTypeRequest.memberId
+            memberId: this.memberTypeRequest.memberId,
+            memberType: this.memberTypeRequest.memberType
         };
         try {
             axios.post('http://localhost:7777/mypage/rollrequestaccept', requestData)
@@ -54,8 +55,11 @@
       },
       async rejectRequest() {
         // Handle request rejection logic here
+        const rejectrequestData = {
+            requestId: this.memberTypeRequest.memberTypeRequestId
+        }
         try {
-            axios.post('http://localhost:7777/mypage/rollrequestreject', this.memberTypeRequest.memberTypeRequestId)
+            axios.post('http://localhost:7777/mypage/rollrequestreject', rejectrequestData)
             this.$router.push({ name: 'MemberTypeRequestListView' });
         } catch (error) {
             console.log("에러 발생 : " , error);
