@@ -44,11 +44,16 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 import MyPage from "@/views/mypage/MyPageView.vue"
 import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
 import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
+import MemberTypeRequestListView from "@/views/mypage/MemberTypeRequestListView.vue"
+import MemberTypeRead from "@/components/mypage/MemberTypeReadForm.vue"
 
 // 지영씨 마이페이지-나의기부내역
 import MyDonateVisitListView from "@/views/mypage/myDonate/MyDonateVisitListView.vue"
 import MyDonateVisitReadView from "@/views/mypage/myDonate/MyDonateVisitReadView.vue"
 
+
+// 태현씨 장바구니
+import CartListView from "@/views/cart/CartListView.vue"
 
 Vue.use(VueRouter)
 
@@ -150,11 +155,7 @@ const routes = [
     name: 'SearchMemberPasswordPage',
     component: SearchMemberPasswordPage
   },
-  {
-    path: '/membertyperequest',
-    name: 'MemberTypeRequest',
-    component: MemberTypeRequest
-  },
+
   
 
   //지영씨 기부 페이지
@@ -251,6 +252,28 @@ const routes = [
       default: PassWordChange
     }
   },
+  {
+    path: '/membertyperequest',
+    name: 'MemberTypeRequest',
+    component: MemberTypeRequest
+  },
+  {
+    path: '/memberTypeRequestListView',
+    name: 'MemberTypeRequestListView',
+    components: {
+      default: MemberTypeRequestListView
+    }
+  },
+  {
+    path: "/memberTypeRead/:id",
+    name: "MemberTypeReadForm",
+    components: {
+      default: MemberTypeRead
+    },
+    props: {
+      default: true
+    }
+  },
 
   // 지영씨 마이페이지-나의기부내역
   {
@@ -270,6 +293,15 @@ const routes = [
   },
 
 
+
+
+  // 태현씨 장바구니
+
+  {
+    path: '/cart-list-view',
+    name: 'CartListView',
+    component: CartListView,
+  },
 
   // SNS 이동
   {

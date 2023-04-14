@@ -64,7 +64,7 @@
                rounded
                class="mt-6"
                color="#fee789"
-               :disabled="!termsAccepted || (emailPass && streetPass && nickNamePass) == false"
+               :disabled="!termsAccepted || (emailPass && nickNamePass) == false"
               >
               가입하기
               </v-btn>
@@ -87,11 +87,6 @@ export default {
       password: "",
       password_confirm: "",
       nickName: "",
-
-      city: '',
-      street: '',
-      addressDetail: '',
-      zipcode: '',
 
       emailPass: false,
 

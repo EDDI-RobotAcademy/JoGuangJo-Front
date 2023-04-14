@@ -82,7 +82,7 @@
       <tr>
         <td>상품명</td>
         <td>
-          <input type="text" :value="product.productName" readonly />
+          <input type="text" :value="product.productTitle" readonly />
         </td>
       </tr>
       <tr>
