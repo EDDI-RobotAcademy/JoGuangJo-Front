@@ -1,7 +1,9 @@
 <template>
   <div class="full-container">
   <div class="full-left1">
+    <router-link to="/">
     <img src='@/assets/logo/logo.gif' alt="logo" width="250" height="100%" class="logo-img1">
+    </router-link>
     <product-category-form/>
   </div>
   <div class="full-right1">
@@ -34,7 +36,7 @@
                dense
                style="max-width: 150px;"
                class="filter-item"
-               color="#F6F87C"
+               color="#fee789"
                rounded
                ></v-select>
             </v-col>
