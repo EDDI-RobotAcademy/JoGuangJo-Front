@@ -49,7 +49,7 @@
                   <p class="product-seller">판매자: {{ item.writer }}</p>
                 </v-card-text>
                 <v-card-actions class="justify-center">
-                  <v-btn color="primary" text @click="addToCart(item)">장바구니에 담기</v-btn>
+                  <v-btn color="primary" text @click="addToCart(item.productId)">장바구니에 담기</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -74,7 +74,7 @@ export default {
   props: {
     products: {
       type: Array
-    }
+    },
   },
   data() {
   return {
@@ -150,7 +150,11 @@ export default {
         }
       }
       this.currentPage = 1;
-    }
+    },
+
+addToCart(productId) {
+  this.$emit('addToCart', { productId })
+},
   }
 };
 </script>
