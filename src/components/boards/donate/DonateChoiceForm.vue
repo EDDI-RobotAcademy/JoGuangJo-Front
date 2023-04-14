@@ -1,8 +1,9 @@
+@ -1,62 +1,62 @@
 <template>
-    <b-container class="py-5">
+    <b-container class="py-5"><br><br>
       <b-row class="justify-content-center text-center mb-5">
         <b-col md="8">
-          <h2>원하는 기부 방식을 선택하세요</h2>
+          <h2>원하는 기부 방식을 선택하세요</h2><br><br>
         </b-col>
       </b-row>
       <b-row>

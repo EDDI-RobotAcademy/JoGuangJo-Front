@@ -6,21 +6,31 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn
+         <!--   <v-btn
             v-if="isAuthenticated == true"
             v-on:click="resign"
             class="btn"
             >
-            회원 탈퇴
+            회원 탈퇴 
             <v-icon right>mdi-login</v-icon>
-            </v-btn>
+            </v-btn> -->  <!-- 바로 보이는 회원 탈퇴 버튼 삭제 -->
 
             <v-btn
-            onclick="location.href='http://localhost:8080/sign-up'"
-            class="btn"
+             v-if="!isAuthenticated"
+             onclick="location.href='http://localhost:8080/sign-up'"
+             class="btn"
             >
             회원 가입
             <v-icon right>mdi-account-plus-outline</v-icon>
+            </v-btn>
+
+            <v-btn
+             v-else
+             onclick="location.href='http://localhost:8080/mypage'"
+             class="btn"
+            >
+            마이페이지
+            <v-icon right>mdi-account-circle-outline</v-icon>
             </v-btn>
 
             <v-btn
@@ -41,14 +51,6 @@
             <v-icon right>mdi-exit-to-app</v-icon>
             </v-btn>
 
-            <v-btn
-            v-if="isAuthenticated == true"
-            onclick="location.href='http://localhost:8080/cart-list-view'"
-            class="btn"
-            >
-            장바구니
-            <v-icon right></v-icon>
-            </v-btn>
         </v-app-bar>
         
         <!-- 사이드바 -->
@@ -69,27 +71,35 @@
                 </div>
                 
                 <v-toolbar-title class="nav-drawer-logo">
+                  <router-link to="/">
                     <img src="@/assets/logo/logo.gif" alt="로고" width="100%" height="100%">
+                  </router-link>
                 </v-toolbar-title>
 
                 <v-list-item>
+                  <div class="search-bar">
                     <v-text-field
                         v-model="search"
                         class="nav-search"
-                        placeholder="검색어를 입력하세요."
+                        placeholder="  검색어를 입력하세요."
                         prepend-icon="mdi-magnify"
                         color="#FFDE59"
                         clearable
+                        style="width:160px;"
                         @keydown.enter="searchPage()"
                     >
                     </v-text-field>
+                  </div>
+                       <div class="search-btn">
                         <v-btn
-                        color="#FFDE59"
+                        small
+                        color="#fee789"
                         rounded
                         @click="searchPage()"
                         >
                         검색
                         </v-btn>
+                       </div>
                     </v-list-item>
 
                     <v-list-item
@@ -342,5 +352,15 @@ export default {
 .deleteBlueUnderLine {
   text-decoration: none;
   color: black;
+}
+
+.search-btn {
+  margin-left: 7px;
+  margin-bottom: -7px;
+  width: 100px;
+  height: 40px; 
+}
+.search-bar {
+  margin-left: 0px;
 }
 </style>
