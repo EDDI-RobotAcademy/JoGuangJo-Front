@@ -51,14 +51,6 @@
             <v-icon right>mdi-exit-to-app</v-icon>
             </v-btn>
 
-            <v-btn
-            v-if="isAuthenticated == true"
-            onclick="location.href='http://localhost:8080/cart-list-view'"
-            class="btn"
-            >
-            장바구니
-            <v-icon right></v-icon>
-            </v-btn>
         </v-app-bar>
         
         <!-- 사이드바 -->
@@ -79,7 +71,9 @@
                 </div>
                 
                 <v-toolbar-title class="nav-drawer-logo">
+                  <router-link to="/">
                     <img src="@/assets/logo/logo.gif" alt="로고" width="100%" height="100%">
+                  </router-link>
                 </v-toolbar-title>
 
                 <v-list-item>
