@@ -16,7 +16,7 @@
                               :rules="email_rule" :disabled="false" required/>
                 <v-btn text large outlined style="font-size: 13px"
                        class="mt-3 ml-5" color="teal lighten-1"
-                       @click="checkDuplicateEmail">
+                       @click="checkEmail">
                   이메일 <br/>중복 확인
                 </v-btn>
               </div>
@@ -36,7 +36,7 @@
 
                 <v-btn text large outlined style="font-size: 13px; height: 55px"
                                 class="mt-0 ml-5 mr-0"
-                                @click="checkDuplicateNickName"
+                                @click="checkNickName"
                                 :disabled="nickNamePass"
               >닉네임 중복 확인
                   </v-btn>
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "SignUpForm",
@@ -85,6 +85,10 @@ export default {
     return {
       email: "",
       password: "",
+      city: "",
+      street: "",
+      addressDetail: "",
+      zipcode: "",
       password_length: 0,
       password_confirm: "",
       nickName: "",
@@ -115,12 +119,20 @@ export default {
     }
   },
   methods: {
+    ...mapActions("account", ["checkDuplicateEmail", "checkDuplicateNickName"]),
+    created() {
+      console.log(this.$store)
+    },
+    mounted() {
+      console.log(this.$store)
+    },
     onSubmit() {
         if (this.password.length < 8) {
           alert("패스워드는 8자 이상 입력해야합니다.");
         } else {
-          const { email, password, nickName } = this;
-          this.$emit("submit", { email, password, nickName });
+          const { email, password, nickName, city, street, addressDetail, zipcode } = this;
+          console.log("Emitting submit event:", { email, password, nickName, city, street, addressDetail, zipcode });
+          this.$emit("submit", { email, password, nickName, city, street, addressDetail, zipcode });
         }
     },
     
@@ -132,42 +144,26 @@ export default {
       this.emailPass = false;
     },
     
-    checkDuplicateEmail () {
-      const emailValid = this.email.match(
-          /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-
-      this.emailPass = false
-
-      if (emailValid) {
-        const {email} = this
-        axios.post(`http://localhost:7777/member/check-email/${email}`)
-            .then((res) => {
-              if (res.data) {
-                alert("사용 가능한 이메일입니다!")
-                this.emailPass = true
-              } else {
-                alert("중복된 이메일입니다!")
-                this.emailPass = false
-              }
-            })
+    async checkEmail() {
+      const isEmailAvailable = await this.checkDuplicateEmail(this.email);
+      if (isEmailAvailable) {
+        alert("사용 가능한 이메일입니다!");
+        this.emailPass = true;
+      } else {
+        alert("중복된 이메일입니다!");
+        this.emailPass = false;
       }
     },
-    
-    checkDuplicateNickName() {
-        const { nickName } = this;
-        axios
-          .post(`http://localhost:7777/member/check-nickName/${nickName}`)
-          .then((res) => {
-            if (res.data) {
-              alert("사용 가능한 닉네임 입니다!");
-              this.nickNamePass = true;
-            } else {
-              alert("중복된 닉네임 입니다!");
-              this.nickNamePass = false;
-            }
-          });
-      
+
+    async checkNickName() {
+      const isNickNameAvailable = await this.checkDuplicateNickName(this.nickName);
+      if (isNickNameAvailable) {
+        alert("사용 가능한 닉네임 입니다!");
+        this.nickNamePass = true;
+      } else {
+        alert("중복된 닉네임 입니다!");
+        this.nickNamePass = false;
+      }
     },
 
     updatePasswordLength() {

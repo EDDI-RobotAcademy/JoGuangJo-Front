@@ -1,38 +1,40 @@
 <template>
-    <v-container>
-      <sign-up-form @submit="onSubmit"/>
-    </v-container>
-  </template>
+  <v-container>
+    <sign-up-form @submit="onSubmit"/>
+  </v-container>
+</template>
   
-  <script>
-  
-  import axios from "axios";
-  import SignUpForm from "@/components/member/SignUpForm";
-  
-  export default {
-    name: "SignUpPage",
-    components: {
-      SignUpForm
-    },
-    methods: {
-      onSubmit (payload) {
-        const { email, password, nickName, city, street, addressDetail, zipcode } = payload;
-  
-        axios.post("http://localhost:7777/member/sign-up", {
-          email, password, city, nickName, street, addressDetail, zipcode
-        })
-            .then((res) => {
-              alert("회원 가입 완료!" + res)
-              this.$router.push("/sign-in")
-            })
-            .catch((res) => {
-              alert(res.response.data.message)
-            })
+<script>
+import SignUpForm from "@/components/member/SignUpForm";
+import { mapActions } from "vuex";
+
+export default {
+  name: "SignUpPage",
+  components: {
+    SignUpForm
+  },
+  methods: {
+    ...mapActions("account", ["signup"]),
+    async onSubmit(payload) {
+      const { email, password, nickName, city, street, addressDetail, zipcode } = payload;
+      console.log(email);
+      try {
+        const res = await this.signup({ email, password, nickName, city, street, addressDetail, zipcode });
+        alert("회원 가입 완료!" + res);
+        this.$router.push("/sign-in");
+      } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+          alert(error.response.data.message);
+        } else {
+          alert("An error occurred while signing up.");
+          console.log(error);
+        }
       }
-    }
+    },
   }
-  </script>
-  
-  <style scoped>
-  
-  </style>
+}
+</script>
+
+<style scoped>
+
+</style>

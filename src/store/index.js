@@ -5,6 +5,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+
+import accountModule from '@/store/account/accountModule.js';
+
 import state from "@/store/states"
 import actions from "@/store/actions"
 import mutations from "@/store/mutations"
@@ -26,10 +29,11 @@ import donateModule from "@/store/boards/donate/donateModule.js"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   modules:{
 
     // 성희
-    accountModule: accountModule,
+    account: accountModule,
 
     // 태현
     qnaModule: qnaModule,
@@ -39,7 +43,6 @@ export default new Vuex.Store({
 
     // 지영
     donateModule: donateModule,
-
 
   },
   state,
