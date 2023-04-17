@@ -51,14 +51,14 @@
             <v-icon right>mdi-exit-to-app</v-icon>
             
             </v-btn>
-                        <v-btn
+                   <!--     <v-btn
             v-if="isAuthenticated == true"
             onclick="location.href='http://localhost:8080/cart-list-view'"
             class="btn"
             >
             장바구니
             <v-icon right></v-icon>
-            </v-btn>
+            </v-btn> 일단 삭제 -->
 
         </v-app-bar>
         
