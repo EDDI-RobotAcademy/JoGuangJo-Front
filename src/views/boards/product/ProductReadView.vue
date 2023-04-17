@@ -1,19 +1,23 @@
 <template>
   <v-container>
+    <div class="header-form">
+        <!-- 헤더 로고,메뉴-->
+         <header-form/>
+    </div>
     <div align="center">
-      <h2>게시물 보기</h2>
+      <h2 class="h2" style="margin-top:20px;">게시물 보기</h2>
       <product-read-form v-if="product" :product="product" :productImages="productImages" />
       <p v-else>로딩중 .......... </p>
-      <v-btn color="primary" :to="{ name: 'ProductModifyView', params: { productId } }" v-if="isCurrentUserAuthor">
+      <v-btn class="btn" color="primary" :to="{ name: 'ProductModifyView', params: { productId } }" v-if="isCurrentUserAuthor">
         수정
       </v-btn>
-      <v-btn color="error" dark @click="onDelete" v-if="isCurrentUserAuthor">
+      <v-btn class="btn" color="error" dark @click="onDelete" v-if="isCurrentUserAuthor">
         삭제
       </v-btn>
-      <v-btn color="success" :to="{ name: 'ProductOrderView', params: { productId } }" v-if="isLoggedIn && !isCurrentUserAuthor">
+      <v-btn class="btn" color="success" :to="{ name: 'ProductOrderView', params: { productId } }" v-if="isLoggedIn && !isCurrentUserAuthor">
         구매하기
       </v-btn>
-      <v-btn :to="{ name: 'ProductListView' }">
+      <v-btn class="btn" :to="{ name: 'ProductListView' }">
         돌아가기
       </v-btn>
     </div>
@@ -25,11 +29,12 @@
 
 import ProductReadForm from '@/components/boards/product/ProductReadForm.vue'
 import { mapActions, mapState } from 'vuex'
+import HeaderForm from "@/components/layout/HeaderForm.vue";
 
 // const productModule = 'productModule'
 
 export default {
-  components: { ProductReadForm },
+  components: { ProductReadForm, HeaderForm },
   name: "ProductReadView",
   props: {
     productId: {
@@ -70,4 +75,9 @@ export default {
 
 </script>
   
-<style></style>
+<style scoped>
+.h2 {
+  margin-bottom : -530px;
+}
+
+</style>
