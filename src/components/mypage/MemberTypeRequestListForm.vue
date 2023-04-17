@@ -2,7 +2,7 @@
   <div>
     <v-container max-width="1200">
       <v-data-table :headers="headers" :items="memberTypeRequests" @click:row="goToDetail">
-        <template v-slot:item.createdAt="{ item }">
+        <template v-slot:item#createdAt="{ item }">
           {{ formatDate(item.createdAt) }}
         </template>
       </v-data-table>
