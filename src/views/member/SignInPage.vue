@@ -9,7 +9,6 @@
 import { mapActions } from "vuex";
 import Vue from "vue";
 import cookies from "vue-cookies";
-import Router from 'vue-router';
 import LoginForm from "@/components/member/SignInForm.vue";
 
 Vue.use(cookies);
