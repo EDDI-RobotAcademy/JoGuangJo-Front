@@ -39,7 +39,6 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import { quillEditor } from 'vue-quill-editor';
 
-
 export default {
   name: "ProductRegisterForm",
   data() {
@@ -55,8 +54,13 @@ export default {
     onSubmit() {
       let formData = new FormData()
 
-      for (let idx = 0; idx < this.files.length; idx++) {
-        formData.append('imageFileList', this.files[idx])
+      const imgTags = this.$refs.editor.quill.root.querySelectorAll("img");
+
+      for (const img of imgTags) {
+        const dataUrl = img.src;
+        const blob = dataUrl;
+        const file = new File([blob], 'image.png', { type: 'image/png' });
+        formData.append("imageFileList", file);
       }
 
       const { productName, writer, content, price } = this
@@ -89,8 +93,8 @@ export default {
     'quill-editor': quillEditor
   },
 }
-
 </script>
+
 <style>
 .product-form {
   width: 100%;
