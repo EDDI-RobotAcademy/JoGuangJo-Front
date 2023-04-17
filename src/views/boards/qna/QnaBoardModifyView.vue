@@ -1,7 +1,11 @@
 <template>
     <v-container>
+        <div class="header-form">
+        <!-- 헤더 로고,메뉴-->
+         <header-form/>
+        </div><br>
         <div align="center">
-            <h2>게시물 수정</h2>
+            <h2>게시물 수정</h2><br>
             <qna-board-modify-form v-if="qnaBoard" :qnaBoard="qnaBoard" 
             :qnaBoardId="qnaBoardId"
                     @submit="onSubmit"/>
@@ -13,9 +17,11 @@
 <script>
 import QnaBoardModifyForm from '@/components/boards/qna/QnaBoardModifyForm.vue'
 import { mapActions, mapState } from 'vuex'
+import HeaderForm from "@/components/layout/HeaderForm.vue";
+
 
 export default {
-    components: { QnaBoardModifyForm },
+    components: { QnaBoardModifyForm, HeaderForm },
     name: "QnaBoardModifyView",
     props: {
         qnaBoardId: {

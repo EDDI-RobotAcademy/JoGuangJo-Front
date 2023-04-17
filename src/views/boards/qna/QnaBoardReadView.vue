@@ -1,30 +1,54 @@
 <template>
     <v-container>
-        <div align="center">
-            <h2>질문 게시판 상세 글 읽기</h2>
+        <div class="header-form">
+         <header-form/>
+        </div>
+        <div align="center"><br>
+            <h2 class="h2">질문 게시판 상세 글 읽기</h2>
         <qna-board-read-form v-if="qnaBoard" :qnaBoard="qnaBoard"/>
             <p v-else>로딩중 .......... </p>
+            <div class="btn">
             <div v-if="isCurrentUser()">
-                <router-link :to="{ name: 'QnaBoardModifyView', params: { qnaBoardId } }">
-                    게시물 수정
-                </router-link>
-                <button @click="onDelete">삭제</button>
-            </div>
-            <router-link :to="{ name: 'QnaBoardListView' }">
-            돌아가기
-            </router-link>
-        <table>
-            <tr>
-                <div>
-                    <h1>댓글</h1>
-                </div>
+              <v-btn
+                 class="back-btn"
+                 color="#fee789"
+                 rounded
+                 :to="{ name: 'QnaBoardListView' }"
+              >
+                돌아가기
+              </v-btn>
+
+              <v-btn
+                class="modify-btn"
+                color="#fee789"
+                rounded 
+                :to="{ name: 'QnaBoardModifyView', params: { qnaBoardId } }"
+              >
+                게시물 수정
+              </v-btn>
+
+              <v-btn
+                class="delete-btn"
+                color="#fe6133"
+                rounded
+                @click="onDelete"
+              >
+             삭제
+              </v-btn>
+          </div>
+        </div>
+    </div><br>         
+    <table class="comment-form">
+      <tr>
+        <div>
+          <h1>댓글</h1>
+        </div>
                 <div>
                     <qna-comment-list-form :qnaComments="qnaComments"/>
                 </div>
                     <qna-comment-register-form @submit="onSubmitRegister"/>
             </tr>
         </table>
-        </div>
     </v-container>
 </template>
 <script>
@@ -32,9 +56,10 @@ import QnaBoardReadForm from '@/components/boards/qna/QnaBoardReadForm.vue'
 import { mapActions, mapState } from 'vuex'
 import QnaCommentListForm from '@/components/boards/qna/comment/QnaCommentListForm.vue'
 import QnaCommentRegisterForm from '@/components/boards/qna/comment/QnaCommentRegisterForm.vue'
+import HeaderForm from "@/components/layout/HeaderForm.vue";
 
 export default {
-    components: { QnaBoardReadForm, QnaCommentListForm, QnaCommentRegisterForm },
+    components: { QnaBoardReadForm, QnaCommentListForm, QnaCommentRegisterForm, HeaderForm },
     name: "QnaBoardReadView",
     date() {
         return {
@@ -92,7 +117,31 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.header-form {
+  width: 100%;
+}
+
+.btn {
+  margin-left: 100px;
+}
+
+.back-btn {
+  margin-right: 700px;
+  margin-left: -100px;
+}
+
+.modify-btn {
+  margin-right: 5px;
+}
+
+.delete-btn {
+  margin-right: 0px;
+}
+
+.comment-form {
+  margin-left: 220px;
+}
 </style>
 
 
