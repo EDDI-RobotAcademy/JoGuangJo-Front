@@ -196,6 +196,16 @@ export default {
                 commit(REQUEST_CART_LIST_FROM_SPRING, res.data)
             })
         },
+        requestDeleteCartItemToSpring({ }, cartItemIds) {
+            console.log("actions.js \n delete request = " + cartItemIds);
+            return axios.delete(`http://localhost:7777/cart/delete?cartItemIds=${cartItemIds}`)
+            .then(() => {
+                alert("삭제 성공");
+            })
+            .catch(() => {
+                alert("삭제 실패");
+            })
+            },
 
 
     // 지영씨 기부 페이지, 마이페이지-기부내역

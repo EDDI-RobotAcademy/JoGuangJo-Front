@@ -12,9 +12,9 @@
       <v-divider class="my-3"></v-divider>
       <v-row v-for="(item, index) in cartItems" :key="index" class="cart-item">
         <v-col cols="1">
-          <v-checkbox class="checkbox"></v-checkbox>
+          <v-checkbox class="checkbox" :checked="item.isSelected" @click="selectForCartItems(item)"></v-checkbox>
         </v-col>
-        <v-col cols="2" >{{ item.cartItemId }}</v-col>
+        <v-col cols="2">{{ item.cartItemId }}</v-col>
         <v-col cols="5">{{ item.product.productName }}</v-col>
         <v-col cols="2">{{ item.count }}</v-col>
         <v-col cols="2">{{ item.product.price * item.count }}</v-col>
@@ -30,10 +30,15 @@ export default {
     }
   },
   methods: {
-
-  }
+    // isSelected로 CHK, UN_CHK 속성 결정
+    selectForCartItems(item) {
+      item.isSelected = !item.isSelected;
+      // this.$emit('selectForCartItems', item); 장바구니 체크 목록 구매시 사용할지 말지 보류
+    },
+}
 }
 </script>
+
 <style scoped>
 .cart-item:hover {
   background-color: #f5f5f5;
