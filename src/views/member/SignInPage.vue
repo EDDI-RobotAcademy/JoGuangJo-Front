@@ -6,7 +6,7 @@
   
 <script>
 
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import Vue from "vue";
 import cookies from "vue-cookies";
 import LoginForm from "@/components/member/SignInForm.vue";
@@ -23,8 +23,11 @@ export default {
       isLogin: false,
     };
   },
+  computed: {
+    ...mapState("account", ["isAuthenticated"]),
+  },
   mounted() {
-  if (this.$store.state.isAuthenticated != false) {
+  if (this.isAuthenticated != false) {
     this.isLogin = true;
   } else {
     this.isLogin = false;
