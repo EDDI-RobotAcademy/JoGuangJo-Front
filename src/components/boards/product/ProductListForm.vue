@@ -1,9 +1,9 @@
 <template>
   <div class="full-container">
   <div class="full-left1">
-    <router-link to="/">
+  <!--  <router-link to="/">
     <img src='@/assets/logo/logo.gif' alt="logo" width="250" height="100%" class="logo-img1">
-    </router-link>
+    </router-link> 헤더로 변경 -->
     <product-category-form/>
   </div>
   <div class="full-right1">
@@ -182,7 +182,7 @@ export default {
 .full-left1 {
   width: 20%;
   height: 100%;
-  margin-top: 100px;
+  margin-top: 25px;
   margin-left: -70px;
 }
 .full-right1 {
@@ -298,5 +298,10 @@ export default {
 .search select:focus {
   outline: none;
   border-color: #4CAF50;
+}
+
+
+.filter-item {
+  margin-right: -530px;
 }
 </style>
