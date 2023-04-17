@@ -29,7 +29,7 @@ export default {
 
     requestDonateListToSpring({ commit }) {
         const memberId = JSON.parse(localStorage.getItem('userInfo')).id;
-        return axiosInst.get(`/donate/list`, { params: { memberId } })
+        return axiosInst.get(`/donate/list/`, { params: { memberId } })
         .then((res) => {
             commit(REQUEST_DONATE_LIST_TO_SPRING, res.data)
             console.log("백에서 보낸 데이터 : ", res.data)

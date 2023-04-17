@@ -18,6 +18,11 @@ export default {
     mounted () {
     this.requestDonateListToSpring()
     },
+    // watch: {
+    // $route() {
+    //     this.requestDonateListToSpring();
+    // }
+    // },
     methods: {
         ...mapActions( donateModule, ['requestDonateListToSpring'] ),
     },
