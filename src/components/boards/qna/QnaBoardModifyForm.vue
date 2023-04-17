@@ -61,20 +61,22 @@ export default {
         onSubmit () {
             let qnaData = new FormData()
 
-            for (let idx = 0; idx < this.files.length; idx++) {
-                qnaData.append('imageFileList', this.files[idx])
-            }
+            const imgTags = this.$refs.editor.quill.root.querySelectorAll("img");
 
-            const { title, writer, content } = this
-            let qnaInfo = {
-                title: title,
-                writer: writer,
-                content: content,
+            for (const img of imgTags) {
+                const dataUrl = img.src;
+                const blob = dataUrl;
+                const file = new File([blob], 'image.png', { type: 'image/png' });
+                qnaData.append("imageFileList", file);
             }
 
             qnaData.append(
-                'qnaInfo',
-                new Blob([JSON.stringify(qnaInfo)], { type: 'application/json' })
+                "qnaInfo",
+                new Blob([JSON.stringify({
+                title: this.title,
+                writer: this.writer,
+                content: this.content,
+            })], { type: "application/json" })
             );
 
             this.$emit('submit', qnaData)
