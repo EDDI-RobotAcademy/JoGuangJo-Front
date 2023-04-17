@@ -1,20 +1,5 @@
-
-// 각 도메인별로 store 분리 완전히 끝나면 위 주석을 풀고 아래 부분을 삭제해야 합니다
-// (store 폴더 들어갔을 때 각 도메인폴더 주루룩 + 이 index.js 파일 이렇게 보여야 함)
-
-// import Vue from 'vue'
-// import Vuex from 'vuex'
-// import state from "@/store/originalStore/states"
-// import actions from "@/store/actions"
-// import mutations from "@/store/originalStore/mutations"
-
-// Vue.use(Vuex)
-
-// export default new Vuex.Store({
-//   state,
-//   actions,
-//   mutations,
-// })
+// 각 도메인별로 store 분리가 완전히 끝나면,
+// store 폴더 들어갔을 때 각 도메인폴더 주루룩 + 이 index.js 파일 이렇게 보여야 합니다
 
 
 import Vue from 'vue'
