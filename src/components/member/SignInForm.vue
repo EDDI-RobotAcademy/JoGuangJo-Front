@@ -75,65 +75,65 @@
         </v-row>
       </v-container>
     </div>
-  </template>
+</template>
   
-  <script>
-  
-  export default {
-    name: "SignInForm",
-    data() {
-      return {
-        email: "",
-        password: "",
-        email_rule:[
-          v => !!v || '이메일을 입력해주세요.',
-          v => {
-            const replaceV = v.replace(/(\s*)/g, '')
-            const pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/
-            return pattern.test(replaceV) || '이메일 형식으로 입력해주세요'
-          }
-        ],
-        password_rule: [
-          (v) => !!v || "패스워드는 필수 입력사항입니다.",
-          (v) => !(v && v.length >= 30) || "패스워드는 30자 이상 입력할 수 없습니다.",
-          (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다. 현재 길이 : " + v.length,
-        ],
-      };
-    },
-    methods: {
-      onSubmit() {
-        if (this.password.length <= 8) {
-          alert('more')
-        } else {
-          const { email, password } = this;
-          this.$emit("submit", { email, password });
+<script>
+
+export default {
+  name: "SignInForm",
+  data() {
+    return {
+      email: "",
+      password: "",
+      email_rule:[
+        v => !!v || '이메일을 입력해주세요.',
+        v => {
+          const replaceV = v.replace(/(\s*)/g, '')
+          const pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/
+          return pattern.test(replaceV) || '이메일 형식으로 입력해주세요'
         }
-      },
+      ],
+      password_rule: [
+        (v) => !!v || "패스워드는 필수 입력사항입니다.",
+        (v) => !(v && v.length >= 30) || "패스워드는 30자 이상 입력할 수 없습니다.",
+        (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다. 현재 길이 : " + v.length,
+      ],
+    };
+  },
+  methods: {
+    onSubmit() {
+      if (this.password.length <= 8) {
+        alert('more')
+      } else {
+        const { email, password } = this;
+        this.$emit("submit", { email, password });
+      }
     },
-  };
-  
-  </script>
-  
-  <style scoped>
-  
-  .logo {
-    margin-left: 0px;
-  }
-  
-  .card {
-    border: none !important;
-    box-shadow: none !important;
-    margin-left: -7px;
-  }
-  
-  .mt-6 {
-    margin-left: 9px;
-  }
-  
-  .mt-5 {
-    margin-left: 15px;   
-  }
-  
-  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap");
-  
-  </style>
+  },
+};
+
+</script>
+
+<style scoped>
+
+.logo {
+  margin-left: 0px;
+}
+
+.card {
+  border: none !important;
+  box-shadow: none !important;
+  margin-left: -7px;
+}
+
+.mt-6 {
+  margin-left: 9px;
+}
+
+.mt-5 {
+  margin-left: 15px;   
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap");
+
+</style>

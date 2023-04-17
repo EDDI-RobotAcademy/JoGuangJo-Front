@@ -18,6 +18,9 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+import accountModule from '@/store/account/accountModule.js';
+
 import state from "@/store/states"
 import actions from "@/store/actions"
 import mutations from "@/store/mutations"
@@ -26,6 +29,11 @@ import mutations from "@/store/mutations"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    account: accountModule, // Changed from accountModule to account
+    // qna: qnaModule, // Changed from qnaModule to qna
+    // product: productModule, // Changed from productModule to product
+  },
   state,
   actions,
   mutations,
