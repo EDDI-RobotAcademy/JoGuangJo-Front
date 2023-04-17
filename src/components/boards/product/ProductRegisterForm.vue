@@ -12,6 +12,10 @@
       <label for="price">가격</label>
       <input type="number" v-model="price" id="price" class="form-control" />
     </div>
+    <div class="form-group"> <!-- Add this new div for the quantity input -->
+      <label for="quantity">수량</label>
+      <input type="number" v-model="quantity" id="quantity" class="form-control" />
+    </div>
     <div class="form-group">
       <label for="content">상품 설명</label>
       <quill-editor v-model="content" ref="editor" class="product-description-editor"></quill-editor>
@@ -47,6 +51,7 @@ export default {
       writer: JSON.parse(localStorage.getItem('userInfo')).nickName,
       content: '내용을 입력하세요.',
       price: 0,
+      quantity: 0,
       files: '',
     }
   },
@@ -63,12 +68,13 @@ export default {
         formData.append("imageFileList", file);
       }
 
-      const { productName, writer, content, price } = this
+      const { productName, writer, content, price, quantity } = this
       let productInfo = {
         productName: productName,
         writer: writer,
         content: content,
         price: price,
+        quantity: quantity,
       }
 
       console.log('productInfo: ' + JSON.stringify(productInfo))
