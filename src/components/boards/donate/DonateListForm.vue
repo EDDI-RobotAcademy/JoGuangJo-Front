@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h3>나의 기부 내역</h3>
-        <h4>{{ nickName }} 회원님, 환영합니다.</h4>
+    <div class="mydonate">
+        <h3 class="h3">나의 기부 내역</h3><br>
+        <h4>{{ nickName }} 회원님, 환영합니다.</h4><br>
         <v-spacer></v-spacer>
         <table>
             <tr>
@@ -58,5 +58,27 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.mydonate { 
+    margin-left: 80px;
+}
+.h3 {
+    margin-top: 25px;
+}
+table th,
+table td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+table th {
+  background-color: #fee789;
+  font-weight: 600;
+}
+
+table td {
+  background-color: #ffffff;
+  border-radius: 150px;
+}
+
 </style>
