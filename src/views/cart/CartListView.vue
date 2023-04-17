@@ -30,6 +30,7 @@ export default {
           const cartItemIds = selectedItems.map(item => item.cartItemId);
           this.requestDeleteCartItemToSpring(cartItemIds);
           console.log(`선택된 카트 아이템 ${cartItemIds}을 삭제합니다.`);
+          window.location.reload(true);
           } 
         },
           async mounted () {
