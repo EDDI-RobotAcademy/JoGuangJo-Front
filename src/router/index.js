@@ -49,6 +49,9 @@ import MemberTypeRead from "@/components/mypage/MemberTypeReadForm.vue"
 // 태현씨 장바구니
 import CartListView from "@/views/cart/CartListView.vue"
 
+// 채율씨 소개페이지
+import IntroductionView from "@/views/IntroductionView.vue"
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -303,6 +306,13 @@ const routes = [
     beforeEnter: (to, from, next) => {
       window.location = 'https://www.facebook.com/profile.php?id=100090712311488&mibextid=ZbWKwL';
     },
+  },
+
+  // 채율씨 소개페이지
+  {
+    path: '/introduction-view',
+    name: 'IntroductionView',
+    component: IntroductionView,
   },
   
 ]

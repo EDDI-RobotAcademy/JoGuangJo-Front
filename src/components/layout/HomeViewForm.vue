@@ -1,7 +1,9 @@
 <template>
     <div>
+      <div class="header-form">
       <!-- 헤더 로고,메뉴-->
       <header-form/>
+      </div>
 
       <!-- 회사 소개 캐러셀 -->
       <banner-carousel-form/>
@@ -32,6 +34,9 @@
 
 </script>
 
-<style>
-
+<style scoped>
+ .header-form {
+  margin-left: 20px;
+  margin-bottom: 10px;
+ }
 </style>

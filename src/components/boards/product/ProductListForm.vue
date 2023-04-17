@@ -1,14 +1,42 @@
 <template>
   <div class="full-container">
-    <div class="full-left1">
-      <router-link to="/">
-        <img src='@/assets/logo/logo.gif' alt="logo" width="250" height="100%" class="logo-img1">
-      </router-link>
-      <product-category-form />
-    </div>
-    <div class="full-right1">
-      <div class="product-list-form1">
-        <v-container>
+  <div class="full-left1">
+  <!--  <router-link to="/">
+    <img src='@/assets/logo/logo.gif' alt="logo" width="250" height="100%" class="logo-img1">
+    </router-link> 헤더로 변경 -->
+    <product-category-form/>
+  </div>
+  <div class="full-right1">
+  <div class="product-list-form1">
+    <v-container>
+      <v-row>
+        <v-col>
+          <v-row style="width:100%">
+            <v-col class="product-list1">
+              <h2 class="title1">상품 목록</h2>
+            </v-col>
+            <div class="search">
+              <select v-model="searchBy">
+                <option value="productName">상품명</option>
+                <option value="seller">판매자</option>
+              </select>
+              <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
+              <button @click="searchProducts">검색</button>
+            </div>
+            <v-col cols="12" sm="6" class="text-sm-right filter-container">
+              <v-select
+               v-model="sortBy"
+               :items="['이름순', '낮은 가격순', '높은 가격순', '최신순']"
+               label="정렬"
+               outlined
+               dense
+               style="max-width: 150px;"
+               class="filter-item"
+               color="#fee789"
+               rounded
+               ></v-select>
+            </v-col>
+          </v-row>
           <v-row>
             <v-col>
               <v-row style="width:100%">
@@ -162,24 +190,24 @@ export default {
 </script>
 
 <style scoped>
-  .logo-img1 {
-    margin-top: -90px;
-    margin-left: 55px;
-  }
-  .full-container {
-    display: flex;
-    margin-right: 90px;
-  }
-  .full-left1 {
-    width: 20%;
-    height: 100%;
-    margin-top: 100px;
-    margin-left: -70px;
-  }
-  .full-right1 {
-    width: 80%;
-    height: 100%;
-  }
+.logo-img1 {
+  margin-top: -90px;
+  margin-left: 55px;
+}
+.full-container {
+  display: flex;
+  margin-right: 90px;
+}
+.full-left1 {
+  width: 20%;
+  height: 100%;
+  margin-top: 25px;
+  margin-left: -70px;
+}
+.full-right1 {
+  width: 80%;
+  height: 100%;
+}
   .product-list-form1 {
     margin: auto;
     margin-bottom: 100px;
@@ -310,8 +338,14 @@ export default {
     cursor: pointer;
   }
 
-  .search select:focus {
-    outline: none;
-    border-color: #4CAF50;
-  }
+.search select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+
+.filter-item {
+  margin-right: -530px;
+}
+
 </style>

@@ -24,6 +24,9 @@
                       <v-list-item
                         v-for="(item, index) in items1"
                         :key="index"
+                        @mouseover="setHoverColor(index)"
+                        @mouseout="resetHoverColor(index)"
+                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
                       >
                       <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
                       </v-list-item>
@@ -89,24 +92,25 @@ export default {
     name: "HeaderForm",
     data: () => ({
       items1: [
-      { title: '북유럽 소개', to: 'Home' },
-      { title: '공지', to: 'Home' },
+      { title: '북유럽 소개', to: 'IntroductionView', hovered: false },
+      { title: '공지', to: 'JpaBoardListPage', hovered: false  },
       { title: 'Q&A', to: 'QnaBoardListView' },
       ],
       items2: [
-      { title: '하위메뉴1', to: 'Home' },
-      { title: '하위메뉴2', to: 'Home' },
-      { title: '하위메뉴3', to: 'Home' },
+      { title: '기부 방식 선택', to: 'DonateChoiceView' },
+      { title: '방문 수거', to: 'DonateVisitRegisterView' },
+      { title: '택배 기부', to: 'DonateMailView' },
+      { title: '기부 가능 기관 찾기', to: 'DonateSearchView' },
       ],
       items3: [
       { title: '책 구매', to: 'ProductListView' },
       { title: '굿즈 구매', to: 'ProductListView' },
-      { title: '하위메뉴3', to: 'Home' },
       ],
       items4: [
-      { title: '나의 정보 수정', to: 'MyPage' },
-      { title: '나의 기부 내역', to: 'DonateListView' },
-      { title: '나의 게시글 및 댓글 내역', to: 'Home' },
+      { title: '정보 수정', to: 'MyPage' },
+      { title: '기부 내역', to: 'MyDonateVisitListView' },
+      { title: '게시글 및 댓글 내역', to: 'Home' },
+      { title: '장바구니', to: 'CartListView' },
       { title: '나의 결제 및 주문 내역', to: 'Home' },
       ]
     }),
@@ -116,7 +120,19 @@ export default {
       },
       goTo(routeName) {
       router.push({ name: routeName });
-      }
+      },
+      setHoverColor(index) {
+      this.items1[index].hovered = true;
+      },
+      resetHoverColor(index) {
+      this.items1[index].hovered = false;
+      },
+      setHoverColor(index) {
+  this.items1[index].hovered = true;
+},
+resetHoverColor(index) {
+  this.items1[index].hovered = false;
+},
     },
 }
 </script>

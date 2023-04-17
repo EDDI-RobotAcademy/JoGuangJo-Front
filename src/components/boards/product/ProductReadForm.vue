@@ -2,7 +2,7 @@
   <div class="full-container">
   <div class="header">
   <div class="full-left">
-   <img src='@/assets/logo/logo.png' alt="logo" width="250" height="100%" class="logo-img"> 
+ <!--   <img src='@/assets/logo/logo.png' alt="logo" width="250" height="100%" class="logo-img"> 헤더있으니까 -->
    <product-category-form/>
  </div>
  
@@ -63,13 +63,15 @@
                                                 <span class="_1F0dbkDlNA"><span class="blind">찜하기  </span>
                                                 <a href="#" class="_2-uvQuRWK5"><span class="blind">장바구니</span></a> <!-- 얘네 왜 링크 붙어있? -->
                                                 </span></a></div></div> 
-                                                </div>
-                                                </div> 
-   <div class="text-container"><br><br><br>
-    <p style="center;">본문</p>
-    <div class="product-description-view" v-html="product.content"></div>
-   </div>
-  </div>
+                                                </div></div>
+      
+     <div class="content">                                           
+       <div class="text-container"><br><br><br>
+        <p style="center;">본문</p>
+        <div style="center;" class="product-description-view" v-html="product.content"></div>
+       </div>
+     </div>     
+     </div>
 
 <!--  <div class="full-right">
     <table style="display: inline-block;">
@@ -148,6 +150,9 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
+.full-left {
+  margin-top: -130px;
+}
 .logo-img {
   margin-top: -50px;
   margin-left: 19px;
@@ -198,7 +203,7 @@ export default {
 }
 
 .text-container {
-  margin-left: -400px;
+  margin-top: 1050px;
+  margin-left: -900px;
 }
-
 </style>

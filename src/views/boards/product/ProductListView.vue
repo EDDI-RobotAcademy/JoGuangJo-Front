@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <div class="header-form">
+         <header-form/>
+    </div>
   <!--  <h2>굿즈 상품 등록</h2> -->
     <product-list-form :products="products"
                                     @addToCart="addToCart"/>
@@ -15,9 +18,10 @@
 <script>
 import ProductListForm from "@/components/boards/product/ProductListForm.vue";
 import { mapActions, mapState } from "vuex";
+import HeaderForm from "@/components/layout/HeaderForm.vue";
 
 export default {
-  components: { ProductListForm },
+  components: { ProductListForm, HeaderForm },
   name: "ProductListView",
   computed: {
     ...mapState(["products", "isAuthenticated"]),
@@ -55,8 +59,11 @@ addToCart(payload) {
 };
 </script>
 
-<style>
-  h2 {
+<style scoped>
+.header-form {
+ margin-left: -20px;
+}
+.h2 {
     text-align: center;
   }
-</style>
+</style>>
