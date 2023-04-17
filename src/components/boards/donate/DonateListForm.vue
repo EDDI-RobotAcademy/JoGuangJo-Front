@@ -11,30 +11,30 @@
                 <th align="center" width="200">수정일자</th>
                 <th align="center" width="200">상태</th>
             </tr>
-            <tr v-if="!donateVisits || (Array.isArray(donateVisits) && donateVisits.length === 0)">
+            <tr v-if="!donates || (Array.isArray(donates) && donates.length === 0)">
                 <td colspan="6">
                 현재 회원님의 기부 내역이 존재하지 않습니다.
                 </td>
             </tr>
-            <tr v-else v-for="donateVisit in donateVisits" :key="donateVisit.donateVisitId">
+            <tr v-else v-for="donate in donates" :key="donate.donateId">
                 <td align="center">
-                    {{ donateVisit.donateVisitId }}
+                    {{ donate.donateId }}
                 </td>
                 <td align="center">
-                    <router-link :to=" { name: 'MyDonateVisitReadView', 
-                        params: { donateVisitId: donateVisit.donateVisitId.toString() }}">
-                        {{ donateVisit.regDate }} 에 회원님이 신청하신 기부글입니다
+                    <router-link :to=" { name: 'DonateReadView', 
+                        params: { donateId: donate.donateId.toString() }}">
+                        {{ donate.regDate }} 에 회원님이 신청하신 기부글입니다
                         </router-link>
                 </td>
                 <td align="center">
-                    {{ donateVisit.regDate }}
+                    {{ donate.regDate }}
                 </td>
                 <td align="center">
-                    {{ donateVisit.updDate }}
+                    {{ donate.updDate }}
                 </td>
                 <td align="center">
-                    <!-- 원래는 여기 status 를 넣어야 하는데, 아직 어떻게 구현해야 할지 모르겠어서 일단 가라로 아무거나 넣었습니다 -->
-                    {{ donateVisit.donateVisitId }}
+                    <!-- 원래는 여기 status 를 넣어야 하는데, 아직 어떻게 구현해야 할지 모르겠어서 일단 donateId를 넣었습니다 -->
+                    {{ donate.donateId }}
                 </td>
             </tr>
         </table>
@@ -44,14 +44,14 @@
 <script>
 
 export default {
-    name: "MyDonateListForm",
+    name: "DonateListForm",
     data() {
         return {
             nickName: JSON.parse(localStorage.getItem('userInfo')).nickName
         }
     },
     props: {
-        donateVisits: {
+        donates: {
             type: Array
         }
     }

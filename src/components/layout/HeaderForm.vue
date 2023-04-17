@@ -94,7 +94,7 @@ export default {
       { title: 'Q&A', to: 'QnaBoardListView' },
       ],
       items2: [
-      { title: '기부 방식 선택', to: 'DonateChoiceView' },
+      { title: '하위메뉴1', to: 'Home' },
       { title: '하위메뉴2', to: 'Home' },
       { title: '하위메뉴3', to: 'Home' },
       ],
@@ -105,7 +105,7 @@ export default {
       ],
       items4: [
       { title: '나의 정보 수정', to: 'MyPage' },
-      { title: '나의 기부 내역', to: 'MyDonateVisitListView' },
+      { title: '나의 기부 내역', to: 'DonateListView' },
       { title: '나의 게시글 및 댓글 내역', to: 'Home' },
       { title: '나의 결제 및 주문 내역', to: 'Home' },
       ]

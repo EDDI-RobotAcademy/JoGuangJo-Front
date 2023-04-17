@@ -120,7 +120,7 @@
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='http://localhost:8080/donate-choice'">
+                    onclick="location.href='http://localhost:8080/donate-register'">
                         <v-list-item-icon>
                             <v-icon>mdi-hand-heart-outline</v-icon>
                         </v-list-item-icon>
@@ -209,6 +209,7 @@
 
 <script>
 import {mapState} from "vuex";
+// const accountModule = 'accountModule';
 import axios from "axios";
 
 export default {
@@ -242,10 +243,15 @@ export default {
         }
     }, 
     computed: {
+        // ...mapState(accountModule, ["isAuthenticated"]),
         ...mapState(["isAuthenticated"]),
     },
     mounted() {
         if (localStorage.getItem("userInfo")) {
+        // this.$store.state.accountModule.isAuthenticated = true;
+        // } else {
+        // this.$store.state.accountModule.isAuthenticated = false;
+        // }
         this.$store.state.isAuthenticated = true;
         } else {
         this.$store.state.isAuthenticated = false;
