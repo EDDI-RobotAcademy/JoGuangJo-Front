@@ -18,7 +18,12 @@ import {
 
     // 지영씨 마이페이지-기부내역
     REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING,
-    REQUEST_MY_DONATE_VISIT_READ_TO_SPRING
+    REQUEST_MY_DONATE_VISIT_READ_TO_SPRING,
+
+
+    // 태현씨 공지게시판 -> 지영씨
+    REQUEST_NOTICE_BOARD_LIST_TO_SPRING,
+    REQUEST_NOTICE_BOARD_TO_SPRING
 
     
 } from './mutation-types'
@@ -66,6 +71,13 @@ export default {
     },
     [REQUEST_MY_DONATE_VISIT_READ_TO_SPRING] (state, passingData) {
         state.donateVisit = passingData
-    }
+    },
 
+    // 태현씨 공지게시판
+    [REQUEST_NOTICE_BOARD_LIST_TO_SPRING] (state, passingData) {
+        state.noticeBoards = passingData
+    },
+    [REQUEST_NOTICE_BOARD_TO_SPRING] (state, passingData) {
+        state.noticeBoard = passingData
+    },
 }

@@ -192,7 +192,7 @@
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='http://localhost:8080/'">
+                    onclick="location.href='http://localhost:8080/notice-board-list-view'">
                         <v-list-item-icon>
                             <v-icon>mdi-information-outline</v-icon>
                         </v-list-item-icon>
