@@ -14,7 +14,7 @@
       <v-btn class="btn" color="error" dark @click="onDelete" v-if="isCurrentUserAuthor">
         삭제
       </v-btn>
-      <v-btn class="btn" color="success" :to="{ name: 'ProductOrderView', params: { productId } }" v-if="isLoggedIn && !isCurrentUserAuthor">
+      <v-btn class="btn" color="success" :to="{ name: 'ProductOrderView', params: { productId } }" v-if="isAuthenticated && !isCurrentUserAuthor">
         구매하기
       </v-btn>
       <v-btn class="btn" :to="{ name: 'ProductListView' }">
@@ -31,7 +31,7 @@ import ProductReadForm from '@/components/boards/product/ProductReadForm.vue'
 import { mapActions, mapState } from 'vuex'
 import HeaderForm from "@/components/layout/HeaderForm.vue";
 
-// const productModule = 'productModule'
+const productModule = 'productModule'
 
 export default {
   components: { ProductReadForm, HeaderForm },
@@ -43,12 +43,13 @@ export default {
     }
   },
   computed: {
-  ...mapState(['product', 'productImages']),
-  isLoggedIn() {
+  ...mapState(productModule, ['product', 'productImages']),
+  ...mapState("account", ["isAuthenticated"]),
+  isAuthenticated() {
     return !!localStorage.getItem('userInfo');
   },
   isCurrentUserAuthor() {
-    if (!this.isLoggedIn) {
+    if (!this.isAuthenticated) {
       return false;
     }
     const currentUser = JSON.parse(localStorage.getItem('userInfo')).nickName;
@@ -56,7 +57,7 @@ export default {
   },
 },
   methods: {
-    ...mapActions([
+    ...mapActions(productModule, [
       'requestProductToSpring',
       'requestDeleteProductToSpring',
       'requestProductImageToSpring',

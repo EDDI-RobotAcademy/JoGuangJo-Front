@@ -4,20 +4,20 @@
     <form @submit.prevent="KakaoPay">
       <div class="form-group">
         <label for="name">이름:</label>
-        <input type="text" id="name" v-model="name" required class="input-field" />
+        <input type="text" id="name" v-model="name" class="input-field" />
       </div>
       <div class="form-group">
         <label for="address">주소:</label>
-        <input type="text" id="address" v-model="address" readonly @click="openDaumPostcode" required
+        <input type="text" id="address" v-model="address" readonly @click="openDaumPostcode"
           class="input-field" />
       </div>
       <div class="form-group">
         <label for="address-detail">상세 주소 및 기타 메모사항(공동현관 비밀번호 등):</label>
-        <input type="text" id="address-detail" v-model="addressDetail" required class="input-field" />
+        <input type="text" id="address-detail" v-model="addressDetail" class="input-field" />
       </div>
       <div class="form-group">
         <label for="phone">핸드폰번호:</label>
-        <input type="tel" id="phone" v-model="phone" required class="input-field" />
+        <input type="tel" id="phone" v-model="phone" class="input-field" />
       </div>
       <div class="form-group">
         <label for="product-title">상품명:</label>
@@ -52,8 +52,10 @@ export default {
 
   async mounted() {
     const productId = this.$route.params.id;
+    console.log('productId:', productId);
     try {
-      const response = await axios.get(`http://localhost:7777/products/${productId}`);
+      const response = await axios.get(`http://localhost:7777/product/${productId}`);
+      console.log('response:', response);
       this.product = response.data;
     } catch (error) {
       console.error('Error loading product:', error);
