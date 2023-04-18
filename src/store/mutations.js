@@ -14,7 +14,7 @@ import {
 
 
     // 태현씨 장바구니
-    REQUEST_CART_LIST_FROM_SPRING,
+    // REQUEST_CART_LIST_FROM_SPRING,
 
     // 지영씨 마이페이지-기부내역
     REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING,
@@ -59,9 +59,9 @@ export default {
 
 
     // 태현씨 장바구니
-    [REQUEST_CART_LIST_FROM_SPRING](state, passingData) {
-        state.cartItems = passingData
-    },
+    // [REQUEST_CART_LIST_FROM_SPRING](state, passingData) {
+    //     state.cartItems = passingData
+    // },
     
     // 지영씨 마이페이지-기부내역
     [REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING] (state, passingData) {
