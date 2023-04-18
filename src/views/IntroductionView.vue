@@ -1,16 +1,15 @@
 <template>
  <v-container>
-    <header-form/>
+  <introduction-form/>
  </v-container>
 </template>
   
 <script>
-import HeaderForm from "@/components/layout/HeaderForm.vue";
+import IntroductionForm from "@/components/layout/IntroductionForm.vue";
   
   export default {
     name: "IntroductionView",
-    components: {
-      HeaderForm
+    components: { IntroductionForm,
     }
   }
 </script>

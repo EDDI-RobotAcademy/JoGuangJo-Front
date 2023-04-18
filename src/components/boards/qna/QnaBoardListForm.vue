@@ -1,9 +1,5 @@
 <template>
     <div class="qna-board-list">
-      <div class="header-form">
-        <!-- 헤더 로고,메뉴-->
-        <header-form/>
-      </div>
     <!--  <div class="-form">
         <img src="@/assets/carousel/test_1.jpg" alt="logo" width="1500" height="250" class="logo-img1">
       </div> -->
@@ -70,7 +66,6 @@
 
   <script>
 import PaginationForm from "@/components/layout/PaginationForm.vue";
-import HeaderForm from "@/components/layout/HeaderForm.vue";
 import BannerCarouselForm from "@/components/layout/BannerCarouselForm.vue";
 
 export default {
@@ -86,7 +81,6 @@ export default {
     },
     components: {
         PaginationForm,
-        HeaderForm,
         BannerCarouselForm,
     },
     props: {
@@ -159,20 +153,11 @@ export default {
 
 <style scoped>
 
-.board-list {
-    margin-top : 0px;
-}
 .qna-board-list {
   display: flex;
   flex-direction: column;
   align-items: center;
 }   
-.header-form {
-  width: 100%;
-  margin-top: -18px;
-  margin-bottom: 30px;
-  margin-left: -620px;
-}
 
 .qna-board-list {
   width: 100%;
@@ -244,9 +229,5 @@ table tr:nth-child(odd) {
   background-color: #ffffff; /* 홀수 행 배경색 변경 */
 }
 
-  .v-pagination__item--active {
-    background-color: #FFDE59 !important;
-    color: #ffffff !important;
-  }
 
 </style>

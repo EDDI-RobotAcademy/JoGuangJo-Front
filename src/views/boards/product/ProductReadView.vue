@@ -1,9 +1,5 @@
 <template>
   <v-container>
-    <div class="header-form">
-        <!-- 헤더 로고,메뉴-->
-         <header-form/>
-    </div>
     <div align="center">
       <h2 class="h2" style="margin-top:20px;">게시물 보기</h2>
       <product-read-form v-if="product" :product="product" :productImages="productImages" />
@@ -29,12 +25,11 @@
 
 import ProductReadForm from '@/components/boards/product/ProductReadForm.vue'
 import { mapActions, mapState } from 'vuex'
-import HeaderForm from "@/components/layout/HeaderForm.vue";
 
 const productModule = 'productModule'
 
 export default {
-  components: { ProductReadForm, HeaderForm },
+  components: { ProductReadForm },
   name: "ProductReadView",
   props: {
     productId: {

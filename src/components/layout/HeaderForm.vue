@@ -36,12 +36,15 @@
             <v-col class="menu-item">
               <v-menu offset-y open-on-hover>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">공지 / Q&A</v-list-item>
+                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">기부</v-list-item>
                   </template>
                     <v-list>
                       <v-list-item
                         v-for="(item, index) in items2"
                         :key="index"
+                        @mouseover="setHoverColor2(index)"
+                        @mouseout="resetHoverColor2(index)"
+                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
                       >
                       <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
                       </v-list-item>
@@ -57,6 +60,9 @@
                       <v-list-item
                         v-for="(item, index) in items3"
                         :key="index"
+                        @mouseover="setHoverColor3(index)"
+                        @mouseout="resetHoverColor3(index)"
+                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
                       >
                       <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
                       </v-list-item>
@@ -72,6 +78,9 @@
                       <v-list-item
                         v-for="(item, index) in items4"
                         :key="index"
+                        @mouseover="setHoverColor4(index)"
+                        @mouseout="resetHoverColor4(index)"
+                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
                       >
                       <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
                       </v-list-item>
@@ -93,23 +102,22 @@ export default {
     data: () => ({
       items1: [
       { title: '북유럽 소개', to: 'IntroductionView', hovered: false },
-      { title: '오시는 길', to: 'JpaBoardListPage', hovered: false  },
-
+      { title: '공지사항', to: 'JpaBoardListPage', hovered: false },
+      { title: 'Q&A', to: 'QnaBoardListView', hovered: false },
       ],
       items2: [
-      { title: '공지사항', to: 'JpaBoardListPage' },
-      { title: 'Q&A', to: 'QnaBoardListView' },
+      { title: '기부하기', to: 'DonateRegisterView', hovered: false },
       ],
       items3: [
-      { title: '책 구매', to: 'ProductListView' },
-      { title: '굿즈 구매', to: 'ProductListView' },
+      { title: '책 구매', to: 'ProductListView', hovered: false },
+      { title: '굿즈 구매', to: 'ProductListView', hovered: false },
       ],
       items4: [
-      { title: '정보 수정', to: 'MyPage' },
-      { title: '기부 내역', to: 'DonateListView' },
-      { title: '게시글 및 댓글 내역', to: 'Home' },
-      { title: '장바구니', to: 'CartListView' },
-      { title: '나의 결제 및 주문 내역', to: 'Home' },
+      { title: '정보 수정', to: 'MyPage', hovered: false },
+      { title: '기부 내역', to: 'DonateListView', hovered: false },
+      { title: '게시글 및 댓글 내역', to: 'Home', hovered: false },
+      { title: '장바구니', to: 'CartListView', hovered: false },
+      { title: '나의 결제 및 주문 내역', to: 'Home', hovered: false },
       ]
     }),
     methods: {
@@ -125,12 +133,24 @@ export default {
       resetHoverColor(index) {
       this.items1[index].hovered = false;
       },
-      setHoverColor(index) {
-  this.items1[index].hovered = true;
-},
-resetHoverColor(index) {
-  this.items1[index].hovered = false;
-},
+      setHoverColor2(index) {
+        this.items2[index].hovered = true;
+      },
+      resetHoverColor2(index) {
+        this.items2[index].hovered = false;
+      },
+      setHoverColor3(index) {
+        this.items3[index].hovered = true;
+      },
+      resetHoverColor3(index) {
+        this.items3[index].hovered = false;
+      },
+      setHoverColor4(index) {
+        this.items4[index].hovered = true;
+      },
+      resetHoverColor4(index) {
+        this.items4[index].hovered = false;
+      },
     },
 }
 </script>
