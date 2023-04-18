@@ -1,15 +1,11 @@
 <template>
     <v-container>
-      <!--   <qna-board-list-form :qnaBoards="qnaBoards" />
-            <router-link :to="{ name: 'QnaBoardRegisterView' }">
-                게시물 작성
-            </router-link>  -->
-       <qna-board-list-form :qnaBoards="qnaBoards" />
-       <div class="register-button">
-         <v-btn class="btn" :to="{ name: 'QnaBoardRegisterView' }">
-           <span class="btn-text">게시물 작성</span>
-         </v-btn>
-       </div>
+        <qna-board-list-form :qnaBoards="qnaBoards" />
+        <div class="register-button">
+          <v-btn class="btn" :to="{ name: 'QnaBoardRegisterView' }">
+            <span class="btn-text">게시물 작성</span>
+          </v-btn>
+        </div>
     </v-container>
 </template>
 
@@ -21,17 +17,13 @@ export default {
     components: { QnaBoardListForm },
     name: "QnaBoardListView",
     computed: {
-    ...mapState([
-        'qnaBoards'
-    ]),
+    ...mapState("qnaModule", ['qnaBoards']),
     },
     mounted () {
     this.requestQnaBoardListToSpring()
     },
     methods: {
-    ...mapActions([
-        'requestQnaBoardListToSpring'
-    ])
+    ...mapActions("qnaModule", ['requestQnaBoardListToSpring'])
     }
 }
 </script>
