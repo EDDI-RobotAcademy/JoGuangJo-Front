@@ -58,30 +58,36 @@ export default {
         this.regDate = this.qnaBoard.regDate
     },
     methods: {
-        onSubmit () {
-            let qnaData = new FormData()
+    async onSubmit() {
+      if (!this.content || !this.title) {
+        alert('제목과 내용을 반드시 입력해주세요.');
+        return;
+      }
 
-            const imgTags = this.$refs.editor.quill.root.querySelectorAll("img");
+      const qnaData = new FormData();
+      
+      const imgTags = this.$refs.editor.quill.root.querySelectorAll("img");
 
-            for (const img of imgTags) {
-                const dataUrl = img.src;
-                const blob = dataUrl;
-                const file = new File([blob], 'image.png', { type: 'image/png' });
-                qnaData.append("imageFileList", file);
-            }
+      for (const img of imgTags) {
+        const imgUrl = img.src;
+        const response = await fetch(imgUrl);
+        const blob = await response.blob();
+        const file = new File([blob], 'image.png', { type: 'image/png' });
+        qnaData.append("imageFileList", file);
+      }
 
-            qnaData.append(
-                "qnaInfo",
-                new Blob([JSON.stringify({
-                title: this.title,
-                writer: this.writer,
-                content: this.content,
-            })], { type: "application/json" })
-            );
+      qnaData.append(
+        "qnaInfo",
+        new Blob([JSON.stringify({
+          title: this.title,
+          writer: this.writer,
+          content: this.content,
+        })], { type: "application/json" })
+      );
 
-            this.$emit('submit', qnaData)
-        },
+      this.$emit("submit", qnaData);
     },
+  },
     components: {
         'quill-editor': quillEditor
     },

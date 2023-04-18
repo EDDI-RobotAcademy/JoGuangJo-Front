@@ -42,7 +42,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions([
+        ...mapActions("qnaModule", [
             'requestQnaCommentDeleteToSpring'
         ]),
         startModify(index) {

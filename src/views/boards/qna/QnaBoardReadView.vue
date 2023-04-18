@@ -73,10 +73,10 @@ export default {
         },
     },
     computed: {
-        ...mapState(['qnaBoard', 'qnaComments'])
+        ...mapState("qnaModule", ['qnaBoard', 'qnaComments'])
     },
     methods: {
-        ...mapActions([
+        ...mapActions("qnaModule", [
             'requestQnaBoardToSpring',
             'requestDeleteQnaBoardToSpring',
             'requestQnaCommentRegisterToSpring',

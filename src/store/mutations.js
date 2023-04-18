@@ -1,10 +1,10 @@
 import {
     // 태현씨 qna 게시판
-    REQUEST_QNA_BOARD_LIST_TO_SPRING,
-    REQUEST_QNA_BOARD_TO_SPRING,
+    // REQUEST_QNA_BOARD_LIST_TO_SPRING,
+    // REQUEST_QNA_BOARD_TO_SPRING,
     
     // 태현씨 qna 게시판 - 댓글 기능
-    REQUEST_QNA_COMMENT_LIST_FROM_SPRING,
+    // REQUEST_QNA_COMMENT_LIST_FROM_SPRING,
 
     // 진우씨 상품 게시판
     REQUEST_PRODUCT_LIST_TO_SPRING,
@@ -14,7 +14,7 @@ import {
 
 
     // 태현씨 장바구니
-    REQUEST_CART_LIST_FROM_SPRING,
+    // REQUEST_CART_LIST_FROM_SPRING,
 
     // // 지영씨 마이페이지-기부내역
     // REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING,
@@ -30,17 +30,17 @@ import {
 export default {
 
     // 태현씨 qna 게시판
-    [REQUEST_QNA_BOARD_LIST_TO_SPRING] (state, passingData) {
-        state.qnaBoards = passingData
-    },
-    [REQUEST_QNA_BOARD_TO_SPRING] (state, passingData) {
-        state.qnaBoard = passingData
-    },
+    // [REQUEST_QNA_BOARD_LIST_TO_SPRING] (state, passingData) {
+    //     state.qnaBoards = passingData
+    // },
+    // [REQUEST_QNA_BOARD_TO_SPRING] (state, passingData) {
+    //     state.qnaBoard = passingData
+    // },
 
     // 태현씨 qna 게시판 - 댓글 기능
-    [REQUEST_QNA_COMMENT_LIST_FROM_SPRING] (state, passingData) {
-        state.qnaComments = passingData
-    },
+    // [REQUEST_QNA_COMMENT_LIST_FROM_SPRING] (state, passingData) {
+    //     state.qnaComments = passingData
+    // },
 
     // 진우씨 상품 게시판
     [REQUEST_PRODUCT_LIST_TO_SPRING] (state, passingData) {
@@ -58,9 +58,9 @@ export default {
 
 
     // 태현씨 장바구니
-    [REQUEST_CART_LIST_FROM_SPRING](state, passingData) {
-        state.cartItems = passingData
-    },
+    // [REQUEST_CART_LIST_FROM_SPRING](state, passingData) {
+    //     state.cartItems = passingData
+    // },
     
     // // 지영씨 마이페이지-기부내역
     // [REQUEST_MY_DONATE_VISIT_LIST_TO_SPRING] (state, passingData) {

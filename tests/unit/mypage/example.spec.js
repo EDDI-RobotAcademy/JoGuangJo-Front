@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import MyPageForm from "@/components/mypage/MyPageForm.vue";
+import MyPageForm from "@/components/mypage/ChangeAddressForm.vue";
 
 describe("MyPageForm.vue", () => {
   it("renders props.myinfo when passed", () => {
