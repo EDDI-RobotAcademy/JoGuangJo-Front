@@ -1,0 +1,2 @@
+export const SET_MY_PAGE_DATA = 'SET_MY_PAGE_DATA';
+export const UPDATE_MY_PAGE_DATA = 'UPDATE_MY_PAGE_DATA';

@@ -35,7 +35,7 @@
                 <v-btn color="primary" @click="callDaumAddressApi(item)">Edit Address</v-btn>
               </v-col>
               <v-col cols="6">
-                <v-btn color="primary" @click="saveAddress(item)">Save Address</v-btn>
+                <v-btn color="primary" @click="saveAddressHandler(item)">Save Address</v-btn>
               </v-col>
             </v-row>
 
@@ -54,70 +54,70 @@
 
 
 <script>
-import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
   name: "ChangeAddressForm",
+  
   props: {
     myinfo: {
       type: Array,
       default: () => [],
     },
   },
-    data() {
-      return {
-        city: "",
-        zipcode: "",
-        street: "",
-      };
+
+  data() {
+    return {
+      city: "",
+      zipcode: "",
+      street: "",
+    };
   },
+
   methods: {
-    callDaumAddressApi (item) {
-      new window.daum.Postcode({
-        oncomplete: (data) => {
-          let fullRoadAddr = data.roadAddress;
-          let extraRoadAddr = '';
+  ...mapActions('mypage', ['saveAddress']),
 
-          if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-            extraRoadAddr += data.bname;
-          }
-          if (data.buildingName !== '' && data.apartment === 'Y') {
-            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-          }
-          if (extraRoadAddr !== '') {
-            extraRoadAddr = ' (' + extraRoadAddr + ')';
-          }
-          if (fullRoadAddr !== '') {
-            fullRoadAddr += extraRoadAddr;
-          }
+  callDaumAddressApi (item) {
+    new window.daum.Postcode({
+      oncomplete: (data) => {
+        let fullRoadAddr = data.roadAddress;
+        let extraRoadAddr = '';
 
-          item.city = data.sido;
-          item.zipcode = data.zonecode;
-          item.street = data.sigungu + ' ' + fullRoadAddr;
-          
-          console.log('Updated item:', item);
+        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+          extraRoadAddr += data.bname;
         }
-      }).open()
-    },
-    saveAddress (item) {
-      const addressData = {
-      memberId : JSON.parse(localStorage.getItem("userInfo")).id,
+        if (data.buildingName !== '' && data.apartment === 'Y') {
+          extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+        }
+        if (extraRoadAddr !== '') {
+          extraRoadAddr = ' (' + extraRoadAddr + ')';
+        }
+        if (fullRoadAddr !== '') {
+          fullRoadAddr += extraRoadAddr;
+        }
+
+        item.city = data.sido;
+        item.zipcode = data.zonecode;
+        item.street = data.sigungu + ' ' + fullRoadAddr;
+        
+        console.log('Updated item:', item);
+      }
+    }).open()
+  },
+
+  saveAddressHandler(item) {
+    const addressData = {
+      memberId: JSON.parse(localStorage.getItem("userInfo")).id,
       city: item.city,
       street: item.street,
       zipcode: item.zipcode,
-      addressDetail: item.addressDetail
-      }
-      console.log(addressData)
-      axios.post("http://localhost:7777/mypage/saveAddress", addressData)
-              .then((res) => {
-                  
-                  console.log('Response data:', res.data);
-                  
-                  this.myPageData = res.data;
-              })
-      }
-    }
+      addressDetail: item.addressDetail,
+    };
+    console.log(addressData);
+    this.saveAddress(addressData);
+  },
   }
+}
 </script>
 
 <style>
