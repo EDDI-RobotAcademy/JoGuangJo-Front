@@ -37,6 +37,7 @@
                         :rules="password_rule"
                         clearable
                         prepend-icon="mdi-lock-outline"
+                        :counter="30"
                         color="orange"
                     />
                   </div><br>
@@ -48,7 +49,7 @@
                       rounded
                       color="#fee789"
                       class="mt-6"
-                      :disabled="false"
+                      :disabled="!isFormValid"
                   >로그인</v-btn><br/>
   
                   <div class="mt-5">
@@ -96,18 +97,22 @@ export default {
       password_rule: [
         (v) => !!v || "패스워드는 필수 입력사항입니다.",
         (v) => !(v && v.length >= 30) || "패스워드는 30자 이상 입력할 수 없습니다.",
-        (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다. 현재 길이 : " + v.length,
+        (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다.",
       ],
     };
   },
+  computed: {
+    isFormValid() {
+      const emailValid = this.email_rule.every((rule) => rule(this.email) === true);
+      const passwordValid = this.password_rule.every((rule) => rule(this.password) === true);
+      return emailValid && passwordValid;
+    },
+  },
+
   methods: {
     onSubmit() {
-      if (this.password.length <= 8) {
-        alert('more')
-      } else {
         const { email, password } = this;
         this.$emit("submit", { email, password });
-      }
     },
   },
 };

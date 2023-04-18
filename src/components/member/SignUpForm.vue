@@ -23,12 +23,12 @@
 
               <div class="d-flex">
                 <v-text-field v-model="password" label="비밀번호" type="password"
-                              :rules="password_rule" :disabled="false" required @input="updatePasswordLength"/>
+                              :rules="password_rule" :disabled="false" :counter="30" required @input="updatePasswordLength"/>
               </div>
 
               <div class="d-flex">
                 <v-text-field v-model="password_confirm" label="비밀번호 확인" type="password"
-                              :rules="password_confirm_rule" :disabled="false" required/>
+                              :rules="password_confirm_rule" :disabled="false" :counter="30" required/>
               </div>
 
               <div class="d-flex">
@@ -43,8 +43,33 @@
               </div><br><br>
 
               <v-textarea
+               ref="termsTextarea"
+               @scroll="onTermsScroll"
                label="이용약관"
-               value="이용약관 내용을 여기에 삽입하세요."
+               value="북유럽 기부 웹사이트의 개인정보 처리방침
+소개
+이 개인정보 처리방침은 북유럽 웹사이트가 사용자의 개인정보를 수집, 이용, 보호하는 방식을 설명합니다. 본 웹사이트를 이용함으로써 사용자는 이 처리방침의 약관에 동의하는 것으로 간주됩니다.
+
+개인정보 수집
+이 웹사이트에서 기부를 하실 때 사용자의 이름, 이메일 주소, 결제 방법, 기부액 등의 개인정보를 수집합니다.
+
+개인정보 공유
+결제 처리를 위해서 이 웹사이트는 제3자 결제 처리 업체를 사용합니다. 단, 이외에는 사용자의 개인정보를 외부 업체와 공유하지 않습니다.
+
+위치
+북유럽 웹사이트는 한국에 위치하고 있으며, 사용자의 개인정보는 한국 또는 다른 국가의 서버에서 저장 및 처리될 수 있습니다.
+
+어린이
+이 웹사이트는 어린이가 접속할 수 있지만, 만 13세 미만 어린이로부터 개인정보를 직접 수집하지 않습니다. 만 13세 미만 어린이의 경우, 개인정보를 제공하지 않도록 해 주세요.
+
+보안
+사용자의 개인정보를 무단으로 접근, 사용, 또는 공개되지 않도록 보호하기 위한 합리적인 조치를 취합니다. 사용자의 정보 보호를 위해 산업 표준 보안 프로토콜과 절차를 사용합니다.
+
+사용자 권리
+사용자는 자신의 개인정보에 대한 열람, 정정, 삭제, 또는 처리에 대한 이의제기 권리를 가지고 있습니다. 이러한 권리를 행사하고자 하는 경우, 아래에 제공된 연락처를 사용하여 저희와 연락해 주세요.
+
+연락처
+이 개인정보 처리방침에 대한 질문이나 문의사항이 있으시면, 웹사이트에서 제공되는 이메일 주소로 연락해 주세요"
                readonly
                outlined
                height="100"
@@ -55,6 +80,7 @@
                label="이용약관에 동의합니다."
                color="black"
                class="mt-4"
+               :disabled="!enableCheckbox"
               ></v-checkbox>
 
               <v-btn
@@ -92,6 +118,7 @@ export default {
       password_length: 0,
       password_confirm: "",
       nickName: "",
+      enableCheckbox: false,
 
       emailPass: false,
 
@@ -109,17 +136,30 @@ export default {
       password_rule: [
           (v) => !!v || "패스워드는 필수 입력사항입니다.",
           (v) => !(v && v.length >= 30) || "패스워드는 30자 이상 입력할 수 없습니다.",
-          (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다. 현재 길이 : " + v.length,
+          (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다.",
         ],
       password_confirm_rule: [
         v => this.state === 'ins' ? !!v || '패스워드는 필수 입력사항입니다.' : true,
         v => !(v && v.length >= 30) || '패스워드는 30자 이상 입력할 수 없습니다.',
+        v => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다.",
         v => v === this.password || '패스워드가 일치하지 않습니다.'
       ],
     }
   },
   methods: {
     ...mapActions("account", ["checkDuplicateEmail", "checkDuplicateNickName"]),
+    onTermsScroll() {
+      const textarea = this.$refs.termsTextarea.$el;
+      const scrollHeight = textarea.scrollHeight;
+      const scrollTop = textarea.scrollTop;
+      const clientHeight = textarea.clientHeight;
+
+      if (scrollHeight - scrollTop <= clientHeight + 1) {
+        this.enableCheckbox = true;
+      } else {
+        this.enableCheckbox = false;
+      }
+    },
     created() {
       console.log(this.$store)
     },
