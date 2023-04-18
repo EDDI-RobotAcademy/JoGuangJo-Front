@@ -29,7 +29,7 @@ export default {
 
     requestDonateListToSpring({ commit }) {
         const memberId = JSON.parse(localStorage.getItem('userInfo')).id;
-        return axiosInst.get(`/donate/list`, { params: { memberId } })
+        return axiosInst.get(`/donate/list/`, { params: { memberId } })
         .then((res) => {
             commit(REQUEST_DONATE_LIST_TO_SPRING, res.data)
             console.log("백에서 보낸 데이터 : ", res.data)
@@ -66,13 +66,15 @@ export default {
         })
     },
 
+
     requestDonateDeleteToSpring ({}, donateId) {
-        axiosInst.delete(`/donate/delete/${donateId}`)
-            .then(() => {
-                alert("해당 기부글을 삭제했습니다!")
+        return axiosInst.delete(`/donate/delete/${donateId}`)
+            .then((res) => {
+                alert("해당 기부글을 삭제했습니다!", res.data)
             })
-            .catch(() => {
-                alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!")
+            .catch((res) => {
+                alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!", res.data)
             })
     },
+
 }
