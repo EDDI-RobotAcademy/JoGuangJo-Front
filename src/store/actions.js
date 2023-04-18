@@ -211,7 +211,8 @@ export default {
             .catch(() => {
                 alert("삭제 실패");
             })
-        }
+        },
+        
     // 지영씨 기부 페이지, 마이페이지-기부내역
     requestDonateVisitRegisterToSpring ({}, payload) {
         const { formData } = payload
