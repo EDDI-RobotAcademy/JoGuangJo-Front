@@ -14,10 +14,11 @@ export default {
     name: "CartListView",
     components: { CartListForm },
     computed: {
-        ...mapState(['isAuthenticated', 'cartItems']),
+        ...mapState("accountModule", ['isAuthenticated'],
+                          "cartModule", ['cartItems']),
     },
     methods:{
-        ...mapActions([
+        ...mapActions("cartModule", [
           'requestCartListFromSpring',
           'requestDeleteCartItemToSpring'
           ]),

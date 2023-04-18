@@ -13,7 +13,7 @@ import {
     REQUEST_ALL_PRODUCT_TO_SPRING,
 
     // 태현씨 장바구니
-    REQUEST_CART_LIST_FROM_SPRING,
+    // REQUEST_CART_LIST_FROM_SPRING,
 
 
     //지영씨 마이페이지-기부내역
@@ -185,34 +185,34 @@ export default {
 
     // 태현씨 장바구니
 
-    requestRegisterCartToSpring({}, payload) {
-        const {memberId, productId, count} = payload
-        console.log("actions.js \n memberId = " + memberId + "\nproductId = " + productId + "\ncount = " + count)
-        return axios.post(`http://localhost:7777/cart/register`,
-            {memberId, productId, count})
-            .then(() => {
-            })
-        },
+    // requestRegisterCartToSpring({}, payload) {
+    //     const {memberId, productId, count} = payload
+    //     console.log("actions.js \n memberId = " + memberId + "\nproductId = " + productId + "\ncount = " + count)
+    //     return axios.post(`http://localhost:7777/cart/register`,
+    //         {memberId, productId, count})
+    //         .then(() => {
+    //         })
+    //     },
 
-        requestCartListFromSpring({commit}, memberId) {
-            console.log("list 요청 테스트 완료.");
-            console.log("actions.js\n cart memberId " + memberId);
-            return axios.get(`http://localhost:7777/cart/list/${memberId}`)
-            .then((res) => {
-                commit(REQUEST_CART_LIST_FROM_SPRING, res.data)
-            })
-        },
-        requestDeleteCartItemToSpring({ }, cartItemIds) {
-            console.log("actions.js \n delete request = " + cartItemIds);
-            return axios.delete(`http://localhost:7777/cart/delete?cartItemIds=${cartItemIds}`)
-            .then(() => {
-                alert("삭제 성공");
-            })
-            .catch(() => {
-                alert("삭제 실패");
-            })
-        },
-        
+    //     requestCartListFromSpring({commit}, memberId) {
+    //         console.log("list 요청 테스트 완료.");
+    //         console.log("actions.js\n cart memberId " + memberId);
+    //         return axios.get(`http://localhost:7777/cart/list/${memberId}`)
+    //         .then((res) => {
+    //             commit(REQUEST_CART_LIST_FROM_SPRING, res.data)
+    //         })
+    //     },
+    //     requestDeleteCartItemToSpring({ }, cartItemIds) {
+    //         console.log("actions.js \n delete request = " + cartItemIds);
+    //         return axios.delete(`http://localhost:7777/cart/delete?cartItemIds=${cartItemIds}`)
+    //         .then(() => {
+    //             alert("삭제 성공");
+    //         })
+    //         .catch(() => {
+    //             alert("삭제 실패");
+    //         })
+    //     },
+
     // 지영씨 기부 페이지, 마이페이지-기부내역
     requestDonateVisitRegisterToSpring ({}, payload) {
         const { formData } = payload

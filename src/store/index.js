@@ -17,6 +17,7 @@ import accountModule from '@/store/account/accountModule.js'
 
 // 태현
 import qnaModule from "@/store/boards/qna/qnaModule.js"
+import cartModule from "@/store/cart/cartModule.js"
 
 // 진우
 import productModule from "@/store/boards/product/productModule.js"
@@ -36,6 +37,7 @@ export default new Vuex.Store({
 
     // 태현
     qnaModule: qnaModule,
+    cartModule: cartModule,
 
     // 진우
     productModule: productModule,

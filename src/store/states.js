@@ -5,8 +5,8 @@ export default {
     // qnaBoard: {},
 
     // 태현씨 장바구니
-    cartItems: [],
-    cartitem: {},
+    // cartItems: [],
+    // cartitem: {},
 
     // 태현씨 qna 게시판 - 댓글 기능
     // qnaComments: [],
