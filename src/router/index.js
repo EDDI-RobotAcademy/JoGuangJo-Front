@@ -10,10 +10,10 @@ import QnaBoardReadView from "@/views/boards/qna/QnaBoardReadView.vue"
 import QnaBoardModifyView from "@/views/boards/qna/QnaBoardModifyView.vue"
 
 // 채율씨 공지 게시판으로 바뀔 예정
-import JpaBoardListPage from "@/views/board/JpaBoardListPage.vue"
-import JpaBoardRegisterPage from "@/views/board/JpaBoardRegisterPage.vue"
-import JpaBoardReadPage from "@/views/board/JpaBoardReadPage.vue"
-import JpaBoardModifyPage from "@/views/board/JpaBoardModifyPage.vue"
+import NoticeBoardListView from "@/views/boards/notice/NoticeBoardListView.vue"
+import NoticeBoardRegisterView from "@/views/boards/notice/NoticeBoardRegisterView.vue"
+import NoticeBoardReadView from "@/views/boards/notice/NoticeBoardReadView.vue"
+import NoticeBoardModifyView from "@/views/boards/notice/NoticeBoardModifyView.vue"
 
 // 성희씨 회원가입, 로그인 페이지
 import SignUpPage from "@/views/member/SignUpPage.vue"
@@ -105,30 +105,30 @@ const routes = [
 
   //채율씨 이름없는 게시판 -> 태현씨가 공지(notice) 게시판으로 바꿀 예정
   {
-    path: '/board-list',
-    name: 'JpaBoardListPage',
-    component: JpaBoardListPage
+    path: '/notice-board-list-view',
+    name: 'NoticeBoardListView',
+    component: NoticeBoardListView
   },
   {
-    path: '/board-register',
-    name: 'JpaBoardRegisterPage',
-    component: JpaBoardRegisterPage
+    path: '/noticeBoard-register',
+    name: 'NoticeBoardRegisterView',
+    component: NoticeBoardRegisterView
   },
   {
-    path: '/board-read/:boardId',
-    name: 'JpaBoardReadPage',
+    path: '/noticeBoard-read/:noticeBoardId',
+    name: 'NoticeBoardReadView',
     components: {
-      default: JpaBoardReadPage
+      default: NoticeBoardReadView
     },
     props: {
       default: true
     }
   },
   {
-    path: '/board-modify/:boardId',
-    name: 'JpaBoardModifyPage',
+    path: '/noticeBoard-modify/:noticeBoardId',
+    name: 'NoticeBoardModifyView',
     components: {
-      default: JpaBoardModifyPage
+      default: NoticeBoardModifyView
     },
     props: {
       default: true

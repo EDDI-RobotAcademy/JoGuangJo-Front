@@ -21,4 +21,11 @@ export default {
     // 성희씨 회원가입 기능
     isAuthenticated: false,
 
+    // 지영씨 기부
+    donateVisits: [],
+    donateVisit: {},
+
+    // 태현씨 공지게시판 -> 지영씨
+    noticeBoard: {},
+    noticeBoards: [],
 }

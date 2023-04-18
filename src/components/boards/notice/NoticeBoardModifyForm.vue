@@ -5,7 +5,7 @@
         <tr>
             <td>게시물 번호</td>
             <td>
-                <input type="text" :value="board.boardId" disabled/>
+                <input type="text" :value="noticeBoard.noticeBoardId" disabled/>
             </td>
         </tr>
         <tr>
@@ -17,13 +17,13 @@
         <tr>
             <td>작성자</td>
             <td>
-                <input type="text" :value="board.writer" disabled/>
+                <input type="text" :value="noticeBoard.writer" disabled/>
             </td>
         </tr>
         <tr>
             <td>등록일자</td>
             <td>
-                <input type="text" :value="board.regDate" disabled/>
+                <input type="text" :value="noticeBoard.regDate" disabled/>
             </td>
         </tr>
         <tr>
@@ -36,8 +36,8 @@
 
       <div>
         <button type="submit">수정 완료</button>
-        <router-link :to="{ name: 'JpaBoardReadPage',
-                            params: { boardId: board.boardId.toString() }}">
+        <router-link :to="{ name: 'NoticeBoardReadView',
+                            params: { noticeBoardId: noticeBoard.noticeBoardId.toString() }}">
           취소
         </router-link>
       </div>
@@ -48,9 +48,9 @@
 <script>
 
 export default {
-    name: "JpaBoardModifyForm",
+    name: "NoticeBoardModifyForm",
     props: {
-        board: {
+        noticeBoard: {
             type: Object,
             required: true,
         }
@@ -64,10 +64,10 @@ export default {
         }
     },
     created () {
-        this.title = this.board.title
-        this.writer = this.board.writer
-        this.content = this.board.content
-        this.regDate = this.board.regDate
+        this.title = this.noticeBoard.title
+        this.writer = this.noticeBoard.writer
+        this.content = this.noticeBoard.content
+        this.regDate = this.noticeBoard.regDate
     },
     methods: {
         onSubmit () {
