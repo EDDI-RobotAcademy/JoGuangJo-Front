@@ -8,6 +8,19 @@ import {
 import axiosInst from '@/utility/axiosObject'
 
 export default {
+    requestCreateProductToSpring ({}, payload) {
+        console.log('payload: ' + payload)
+        const { productName, content, writer, price } = payload
+        return axiosInst.post('http://localhost:7777/product/register',
+            payload)
+            //{ productName, content, writer, price })
+            .then(() => {
+                alert('상품 등록 성공!')
+            })
+            .catch(() => {
+                alert('문제 발생!')
+            })
+    },
     requestProductListToSpring ({ commit }) {
         return axiosInst.get('http://localhost:7777/product/list')
             .then((res) => {
