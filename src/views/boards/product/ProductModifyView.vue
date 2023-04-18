@@ -18,6 +18,8 @@
   import { mapActions, mapState } from 'vuex'
   import HeaderForm from "@/components/layout/HeaderForm.vue";
 
+  const productModule = 'productModule'
+
   
   export default {
       components: { ProductModifyForm, HeaderForm },
@@ -29,10 +31,10 @@
           }
       },
       computed: {
-          ...mapState(['product'])
+          ...mapState(productModule, ['product'])
       },
       methods: {
-          ...mapActions([
+          ...mapActions(productModule, [
               'requestProductToSpring',
               'requestProductModifyToSpring',
           ]),

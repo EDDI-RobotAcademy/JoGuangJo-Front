@@ -20,17 +20,20 @@ import ProductListForm from "@/components/boards/product/ProductListForm.vue";
 import { mapActions, mapState } from "vuex";
 import HeaderForm from "@/components/layout/HeaderForm.vue";
 
+const productModule = 'productModule'
+
 export default {
   components: { ProductListForm, HeaderForm },
   name: "ProductListView",
   computed: {
-    ...mapState(["products", "isAuthenticated"]),
+    ...mapState(productModule, ["products"]),
+    ...mapState("account", ["isAuthenticated"])
   },
   mounted() {
     this.requestProductListToSpring();
   },
   methods: {
-    ...mapActions([
+    ...mapActions(productModule, [
       "requestProductListToSpring",
       "requestRegisterCartToSpring"
       ]),

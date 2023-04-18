@@ -65,4 +65,34 @@ export default {
       return false;
     }
   },
+  async findAccountEmail({ commit }, email) {
+    try {
+      const res = await axios.post("http://localhost:7777/member/emailMatch", { email });
+      if (res.data) {
+        alert("인증이 완료되었습니다.");
+        return true;
+      } else {
+        alert("입력하신 정보로 가입된 정보가 없습니다.");
+        return false;
+      }
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  },
+  async resetPw({ commit }, payload) {
+    const { email, password } = payload;
+    try {
+      await axios.post("http://localhost:7777/member/applyNewPassword/", {
+        email,
+        password,
+      });
+      alert("비밀번호가 변경되었습니다.");
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  },
+  
 };
