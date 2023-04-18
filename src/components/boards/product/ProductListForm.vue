@@ -84,6 +84,8 @@
               <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
             </v-col>
           </v-row>
+          </v-col>
+        </v-row>
         </v-container>
       </div>
     </div>

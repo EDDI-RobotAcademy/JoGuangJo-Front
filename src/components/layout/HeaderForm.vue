@@ -36,7 +36,7 @@
             <v-col class="menu-item">
               <v-menu offset-y open-on-hover>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">책 기부</v-list-item>
+                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">공지 / Q&A</v-list-item>
                   </template>
                     <v-list>
                       <v-list-item
@@ -93,14 +93,12 @@ export default {
     data: () => ({
       items1: [
       { title: '북유럽 소개', to: 'IntroductionView', hovered: false },
-      { title: '공지', to: 'JpaBoardListPage', hovered: false  },
-      { title: 'Q&A', to: 'QnaBoardListView' },
+      { title: '오시는 길', to: 'JpaBoardListPage', hovered: false  },
+
       ],
       items2: [
-      { title: '기부 방식 선택', to: 'DonateChoiceView' },
-      { title: '방문 수거', to: 'DonateVisitRegisterView' },
-      { title: '택배 기부', to: 'DonateMailView' },
-      { title: '기부 가능 기관 찾기', to: 'DonateSearchView' },
+      { title: '공지사항', to: 'JpaBoardListPage' },
+      { title: 'Q&A', to: 'QnaBoardListView' },
       ],
       items3: [
       { title: '책 구매', to: 'ProductListView' },
@@ -108,7 +106,7 @@ export default {
       ],
       items4: [
       { title: '정보 수정', to: 'MyPage' },
-      { title: '기부 내역', to: 'MyDonateVisitListView' },
+      { title: '기부 내역', to: 'DonateListView' },
       { title: '게시글 및 댓글 내역', to: 'Home' },
       { title: '장바구니', to: 'CartListView' },
       { title: '나의 결제 및 주문 내역', to: 'Home' },
