@@ -30,13 +30,11 @@ export default {
         }
     },
     computed: {
-        ...mapState(['qnaBoard'])
+        ...mapState("qnaModule", ['qnaBoard'])
     },
     methods: {
-        ...mapActions([
-            'requestQnaBoardToSpring',
-            'requestQnaBoardModifyToSpring',
-        ]),
+        ...mapActions("qnaModule", ['requestQnaBoardToSpring', 'requestQnaBoardModifyToSpring']),
+
         async onSubmit (payload) {
             const qnaBoardId = this.qnaBoardId
             
