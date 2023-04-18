@@ -16,12 +16,19 @@ export default {
     });
   },
   resign({ commit }) {
-    let token = localStorage.getItem("userInfo");
-    let userToken = token.split(",")[0].split(":")[1];
-    axios.post("http://localhost:7777/member/resign", userToken).then(() => {
-    commit("setAuthenticated", false);
-    localStorage.removeItem("userInfo");
-    alert("회원탈퇴 완료");
+    return new Promise((resolve) =>  {
+      let token = localStorage.getItem("userInfo");
+      let userToken = token.split(",")[0].split(":")[1];
+      axios.post("http://localhost:7777/member/resign", userToken)
+      .then(() => {
+        commit("setAuthenticated", false);
+        localStorage.removeItem("userInfo");
+        resolve(true);
+      })
+      .catch((error) => {
+        console.error("Error during membership withdrawal:" , error);
+        resolve(false);
+      });
     });
   },
   login({ commit }, payload) {

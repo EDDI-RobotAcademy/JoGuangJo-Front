@@ -244,14 +244,14 @@ export default {
         ...mapState("account", ["isAuthenticated"]),
     },
     mounted() {
-    if (localStorage.getItem("userInfo")) {
-      this.$store.commit("account/setAuthenticated", true);
-    } else {
-      this.$store.commit("account/setAuthenticated", false);
-    }
+        if (localStorage.getItem("userInfo")) {
+            this.$store.commit("account/setAuthenticated", true);
+        } else {
+            this.$store.commit("account/setAuthenticated", false);
+        }
   },
     methods: {
-        ...mapActions("account", ["logout", "resign"]),
+        ...mapActions("account", ["logout"]),
         searchPage() {
             if(this.search.trim() !== '') {
              // 검색어가 있는 경우, 검색 결과 페이지로 이동합니다.

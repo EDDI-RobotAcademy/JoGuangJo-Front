@@ -40,6 +40,7 @@ import ProductListPage from "@/views/product/ProductListPage.vue"
 
 // 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
+import ChangeAddress from "@/views/mypage/ChangeAddressView.vue"
 import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
 import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
 import MemberTypeRequestListView from "@/views/mypage/MemberTypeRequestListView.vue"
@@ -240,6 +241,13 @@ const routes = [
     name: 'MyPage',
     components: {
       default: MyPage
+    }
+  },
+  {
+    path: '/change-address',
+    name: 'ChangeAddress',
+    components: {
+      default: ChangeAddress
     }
   },
   {
