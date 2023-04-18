@@ -23,6 +23,9 @@ import productModule from "@/store/boards/product/productModule.js"
 // 지영
 import donateModule from "@/store/boards/donate/donateModule.js"
 
+// 태현 -> 지영
+import noticeModule from "@/store/boards/notice/noticeModule.js"
+
 
 Vue.use(Vuex)
 
@@ -41,6 +44,9 @@ export default new Vuex.Store({
 
     // 지영
     donateModule: donateModule,
+
+    // 태현 -> 지영
+    noticeModule: noticeModule,
 
   },
   state,
