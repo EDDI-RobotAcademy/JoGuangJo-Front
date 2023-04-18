@@ -1,8 +1,5 @@
 <template>
     <v-container>
-        <div class="header-form">
-         <header-form/>
-        </div>
         <div align="center"><br>
             <h2 class="h2">질문 게시판 상세 글 읽기</h2>
         <qna-board-read-form v-if="qnaBoard" :qnaBoard="qnaBoard"/>
@@ -56,10 +53,10 @@ import QnaBoardReadForm from '@/components/boards/qna/QnaBoardReadForm.vue'
 import { mapActions, mapState } from 'vuex'
 import QnaCommentListForm from '@/components/boards/qna/comment/QnaCommentListForm.vue'
 import QnaCommentRegisterForm from '@/components/boards/qna/comment/QnaCommentRegisterForm.vue'
-import HeaderForm from "@/components/layout/HeaderForm.vue";
+
 
 export default {
-    components: { QnaBoardReadForm, QnaCommentListForm, QnaCommentRegisterForm, HeaderForm },
+    components: { QnaBoardReadForm, QnaCommentListForm, QnaCommentRegisterForm },
     name: "QnaBoardReadView",
     date() {
         return {
@@ -118,9 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.header-form {
-  width: 100%;
-}
 
 .btn {
   margin-left: 100px;

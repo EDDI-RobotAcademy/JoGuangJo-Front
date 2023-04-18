@@ -1,64 +1,46 @@
 <template>
   <div class="full-container">
   <div class="full-left1">
-  <!--  <router-link to="/">
-    <img src='@/assets/logo/logo.gif' alt="logo" width="250" height="100%" class="logo-img1">
-    </router-link> 헤더로 변경 -->
     <product-category-form/>
   </div>
   <div class="full-right1">
   <div class="product-list-form1">
     <v-container>
       <v-row>
-        <v-col>
-          <v-row style="width:100%">
-            <v-col class="product-list1">
-              <h2 class="title1">상품 목록</h2>
-            </v-col>
-            <div class="search">
-              <select v-model="searchBy">
-                <option value="productName">상품명</option>
+                  <v-col cols="12">
+                   <h2 class="title1">상품 목록</h2>
+                 </v-col>
+               </v-row>
+               <div class="search-sortBy">
+               <v-row>
+                 <v-col cols="12" sm="6">
+             <div class="search">
+                <select v-model="searchBy">
+                  <option value="productName">상품명</option>
                 <option value="seller">판매자</option>
               </select>
               <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
               <button @click="searchProducts">검색</button>
-            </div>
-            <v-col cols="12" sm="6" class="text-sm-right filter-container">
-              <v-select
-               v-model="sortBy"
-               :items="['이름순', '낮은 가격순', '높은 가격순', '최신순']"
-               label="정렬"
-               outlined
-               dense
-               style="max-width: 150px;"
-               class="filter-item"
-               color="#fee789"
-               rounded
-               ></v-select>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-row style="width:100%">
-                <v-col class="product-list1">
-                  <h2 class="title1">상품 목록</h2>
-                </v-col>
-                <div class="search">
-                  <select v-model="searchBy">
-                    <option value="productName">상품명</option>
-                    <option value="seller">판매자</option>
-                  </select>
-                  <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
-                  <button @click="searchProducts">검색</button>
-                </div>
-                <v-col cols="12" sm="6" class="text-sm-right filter-container">
-                  <v-select v-model="sortBy" :items="['이름순', '낮은 가격순', '높은 가격순', '최신순']" label="정렬" outlined dense
-                    style="max-width: 150px;" class="filter-item" color="#fee789" rounded></v-select>
-                </v-col>
-              </v-row>
+             </div>
+              </v-col>
+               <v-col cols="12" sm="6">
+                 <v-select
+                   v-model="sortBy"
+                   :items="['이름순', '낮은 가격순', '높은 가격순', '최신순']"
+                   label="정렬"
+                   outlined
+                   dense
+                   style="max-width: 150px;"
+                   class="filter-item"
+                   color="#fee789"
+                   rounded
+                 ></v-select>
+               </v-col>
+             </v-row>
+             </div>
               <v-row>
                 <v-col v-for="(item, i) in paginatedProducts" :key="i" cols="12" sm="4" md="3" class="product-col">
-                  <v-card class="elevation-6 product-card">
+                  <v-card class="elevation-6-product-card">
                     <v-img :src="`/product/fangoods_15.jpg`" :alt="`상품 이미지 ${i + 1}`" aspect-ratio="1" class="rounded"></v-img>
                     <v-card-text class="text-center">
                       <p class="product-name">
@@ -82,10 +64,7 @@
                 </v-col>
               </v-row>
               <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
-            </v-col>
-          </v-row>
-          </v-col>
-        </v-row>
+
         </v-container>
       </div>
     </div>
@@ -192,9 +171,14 @@ export default {
 </script>
 
 <style scoped>
-.logo-img1 {
-  margin-top: -90px;
-  margin-left: 55px;
+
+.search-sortBy {
+  margin-top:-30px;
+}
+
+.search {
+  margin-top: -9px;
+  margin-left: 00px;
 }
 .full-container {
   display: flex;
@@ -203,7 +187,7 @@ export default {
 .full-left1 {
   width: 20%;
   height: 100%;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: -70px;
 }
 .full-right1 {
@@ -235,53 +219,15 @@ export default {
   .rounded {
     border-radius: 6px;
   }
-  .product-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: box-shadow 0.3s;
-  }
-  .product-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 1px 30px rgba(0, 0, 0, 0.15), 0 3px 10px rgba(0, 0, 0, 0.25);
-  }
-  .elevation-6 {
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.14), 0 1px 18px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.2);
-  }
-  .product-col {
-    margin-bottom: 20px;
-  }
 
-  .filter-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
   .filter-item {
-    margin-left: 10px;
+    margin-left: 360px;
+    margin-top: -5px;
   }
   .filter-item .v-input__control {
     min-width: 80px;
   }
-  .v-img {
-    height: 0;
-    padding-top: 100%;
-    position: relative;
-    overflow: hidden;
-  }
-  .v-img img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-  }
-  .v-img:hover img {
-    transform: scale(1.1);
-  }
+
   .btn1 {
     background-color: #fee789 !important;
     color: black;

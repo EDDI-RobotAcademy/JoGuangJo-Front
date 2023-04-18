@@ -1,12 +1,9 @@
 <template>
     <div>
-      <div class="header-form">
-      <!-- 헤더 로고,메뉴-->
-      <header-form/>
-      </div>
-
+      <div class="banner">
       <!-- 회사 소개 캐러셀 -->
       <banner-carousel-form/>
+      </div>
 
       <!-- 이달의 추천 책 캐러셀 -->
       <book-carousel-form/>
@@ -17,7 +14,6 @@
   </template>
   
   <script>
-    import HeaderForm from "@/components/layout/HeaderForm.vue";
     import BannerCarouselForm from "@/components/layout/BannerCarouselForm.vue";
     import BookCarouselForm from '@/components/layout/BookCarouselForm.vue';
     import GoodsCarouselForm from '@/components/layout/GoodsCarouselForm.vue';
@@ -25,7 +21,6 @@
   export default {
     name: "HomeViewForm",
     components: {
-        HeaderForm,
         BannerCarouselForm,
         BookCarouselForm,
         GoodsCarouselForm
@@ -35,8 +30,5 @@
 </script>
 
 <style scoped>
- .header-form {
-  margin-left: 20px;
-  margin-bottom: 10px;
- }
+
 </style>
