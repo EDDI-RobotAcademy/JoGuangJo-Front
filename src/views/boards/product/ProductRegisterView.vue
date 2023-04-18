@@ -13,12 +13,14 @@
   import ProductRegisterForm from '@/components/boards/product/ProductRegisterForm.vue'
   import { mapActions } from 'vuex'
   import HeaderForm from "@/components/layout/HeaderForm.vue";
-  
+  const productModule = 'productModule'
+
+
   export default {
       components: { ProductRegisterForm,HeaderForm  },
       name: "ProductRegisterView",
       methods: {
-          ...mapActions ([
+          ...mapActions (productModule, [
               'requestCreateProductToSpring'
           ]),
           async onSubmit (payload) {
