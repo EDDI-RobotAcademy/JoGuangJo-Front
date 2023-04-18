@@ -29,10 +29,8 @@ export default {
     this.requestProductListToSpring();
   },
   methods: {
-    ...mapActions(productModule, [
-      "requestProductListToSpring",
-      "requestRegisterCartToSpring"
-      ]),
+    ...mapActions(productModule, ["requestProductListToSpring"]),
+    ...mapActions("cartModule", ["requestRegisterCartToSpring"]),
 addToCart(payload) {
   if (this.isAuthenticated === true) {
     const { productId }  = payload
