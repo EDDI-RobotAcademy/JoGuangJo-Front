@@ -1,11 +1,7 @@
 // 각 도메인별로 store 분리가 완전히 끝나면,
 // store 폴더 들어갔을 때 각 도메인폴더 주루룩 + 이 index.js 파일 이렇게 보여야 합니다
-
-
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-
 
 import state from "@/store/states"
 import actions from "@/store/actions"
@@ -14,6 +10,7 @@ import mutations from "@/store/mutations"
 
 //성희
 import accountModule from '@/store/account/accountModule.js'
+import mypageModule from '@/store/mypage/mypageModule.js'
 
 // 태현
 import qnaModule from "@/store/boards/qna/qnaModule.js"
@@ -37,7 +34,8 @@ export default new Vuex.Store({
 
     // 성희
     account: accountModule,
-
+    mypage: mypageModule,
+    
     // 태현
     qnaModule: qnaModule,
     cartModule: cartModule,
