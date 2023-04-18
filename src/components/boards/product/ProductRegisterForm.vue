@@ -51,19 +51,20 @@ export default {
       writer: JSON.parse(localStorage.getItem('userInfo')).nickName,
       content: '내용을 입력하세요.',
       price: 0,
-      quantity: 0,
+      quantity: 1,
       files: '',
     }
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       let formData = new FormData()
 
       const imgTags = this.$refs.editor.quill.root.querySelectorAll("img");
 
       for (const img of imgTags) {
-        const dataUrl = img.src;
-        const blob = dataUrl;
+        const imgUrl = img.src;
+        const response = await fetch(imgUrl);
+        const blob = await response.blob();
         const file = new File([blob], 'image.png', { type: 'image/png' });
         formData.append("imageFileList", file);
       }
