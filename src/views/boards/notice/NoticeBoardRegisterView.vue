@@ -8,16 +8,15 @@
 <script>
 import NoticeBoardRegisterForm from '@/components/boards/notice/NoticeBoardRegisterForm.vue'
 import { mapActions } from 'vuex'
+const noticeModule = 'noticeModule'
 
 export default {
     components: { NoticeBoardRegisterForm },
     name: "NoticeBoardRegisterView",
     methods: {
-        ...mapActions ([
-            'requestCreateNoticeBoardToSpring'
-        ]),
+        ...mapActions ( noticeModule, [ 'requestNoticeBoardRegisterToSpring' ]),
         async onSubmit (payload) {
-            await this.requestCreateNoticeBoardToSpring(payload)
+            await this.requestNoticeBoardRegisterToSpring(payload)
             await this.$router.push({
             name: 'NoticeBoardListView'
         })

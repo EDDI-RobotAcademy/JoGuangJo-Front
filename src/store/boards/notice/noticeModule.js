@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import mutations from "@/store/boards/product/mutations";
+import mutations from "@/store/boards/notice/mutations";
 import state from "@/store/boards/notice/noticeStates"
 import actions from "@/store/boards/notice/actions";
 
