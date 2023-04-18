@@ -4,4 +4,3 @@ export default {
       state.isAuthenticated = isAuthenticated;
     },
   };
-  
