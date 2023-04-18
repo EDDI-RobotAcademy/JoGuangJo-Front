@@ -14,14 +14,11 @@ export default {
     name: "CartListView",
     components: { CartListForm },
     computed: {
-        ...mapState("accountModule", ['isAuthenticated'],
-                          "cartModule", ['cartItems']),
+        ...mapState("accountModule", ['isAuthenticated']),
+        ...mapState("cartModule", ["cartItems"])
     },
     methods:{
-        ...mapActions("cartModule", [
-          'requestCartListFromSpring',
-          'requestDeleteCartItemToSpring'
-          ]),
+        ...mapActions("cartModule", ['requestCartListFromSpring', 'requestDeleteCartItemToSpring']),
         selectForCartItems() {
           },
         // CartListView.vue에서 isSelecte = true 값을 가진 item 목록을 가져온다.

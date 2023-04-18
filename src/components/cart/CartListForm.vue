@@ -16,19 +16,22 @@
         </v-col>
         <v-col cols="2">{{ item.cartItemId }}</v-col>
         <v-col cols="5">{{ item.product.productName }}</v-col>
-        <v-col cols="2">{{ item.count }}</v-col>
-        <v-col cols="2">{{ item.product.price * item.count }}</v-col>
+        <v-col cols="2">{{ item.product.quantity }}</v-col>
+        <v-col cols="2">{{ item.product.price * item.product.quantity }}</v-col>
       </v-row>
     </v-card-text>
   </v-card>
 </template>
 <script>
+import cartStates from '@/store/cart/cartStates';
+import { mapState } from 'vuex';
+
 export default {
-  computed: {
-    cartItems() {
-      return this.$store.state.cartItems;
-    }
-  },
+computed: {
+  ...mapState({
+    cartItems: () => cartStates.cartItems
+  })
+},
   methods: {
     // isSelected로 CHK, UN_CHK 속성 결정
     selectForCartItems(item) {
