@@ -1,3 +1,4 @@
+// mypageGetters.js
 const getters = {
 myPageData: (state) => {
     return state.myPageData;

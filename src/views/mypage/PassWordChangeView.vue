@@ -12,8 +12,5 @@ name: 'PassWordChangeView',
 components: {
     PassWordChangeForm
 },
-mounted() {
-    console.log("비밀번호 변경")
-}
 }
 </script>

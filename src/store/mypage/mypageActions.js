@@ -23,6 +23,27 @@ const actions = {
         commit(mypageMutationTypes.UPDATE_MY_PAGE_DATA, res.data);
       })
   },
+
+  async checkCurrentPassword({ commit }, payload) {
+    console.log("mapActions 함수 실행")
+    console.log("payload" + payload)
+    try {
+      const response = await axios.post("http://localhost:7777/mypage/passwordCheck", payload);
+      console.log("response.data : " + response.data)
+      commit('SET_IS_CURRENT_PASSWORD_CORRECT', response.data);
+    } catch (error) {
+      console.error('Error while checking the current password:', error);
+    }
+  },
+
+  async registerModifiedPassword({ commit }, payload) {
+    try {
+      const response = await axios.post("http://localhost:7777/mypage/registerModifiedPassword", payload);
+      commit('SET_PASSWORD_UPDATE_STATUS', response.data);
+    } catch (error) {
+      console.error('Error while updating the password:', error);
+    }
+  },
 };
 
 export default actions;
