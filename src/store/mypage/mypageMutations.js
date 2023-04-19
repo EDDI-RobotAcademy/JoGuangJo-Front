@@ -8,6 +8,12 @@ const mutations = {
   [mypageMutationTypes.UPDATE_MY_PAGE_DATA]: (state, data) => {
     state.myPageData = data;
   },
+  [mypageMutationTypes.SET_IS_CURRENT_PASSWORD_CORRECT](state, isCorrect) {
+    state.isCurrentPasswordCorrect = isCorrect;
+  },
+  [mypageMutationTypes.SET_PASSWORD_UPDATE_STATUS](state, isUpdated) {
+    state.isPasswordUpdated = isUpdated;
+  },
 };
 
 export default mutations;
