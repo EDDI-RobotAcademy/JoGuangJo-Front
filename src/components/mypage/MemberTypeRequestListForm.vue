@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapState, mapActions, mapGetters  } from "vuex";
 
 export default {
   name: "MemberTypeRequestListForm",
@@ -23,20 +23,17 @@ export default {
         { text: "Member Type", value: "memberType" },
         { text: "Registration Date", value: "regDate" },
       ],
-
-      memberTypeRequests: [],
     };
   },
-  async created() {
-    try {
-      const response = await axios.get("http://localhost:7777/mypage/memberTypeRequestList");
-      this.memberTypeRequests = response.data;
-      console.log("this.memberTypeRequests : " + this.memberTypeRequests);
-    } catch (error) {
-      console.error("Error fetching member type requests:", error);
-    }
+  computed: {
+    ...mapGetters('mypage', ['memberTypeRequests']),
+    ...mapState("mypage", ["memberTypeRequests"]),
+  },
+  created() {
+    this.fetchMemberTypeRequests();
   },
   methods: {
+    ...mapActions("mypage", ["fetchMemberTypeRequests"]),
     formatDate(date) {
       const d = new Date(date);
       return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;

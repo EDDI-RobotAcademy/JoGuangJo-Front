@@ -4,11 +4,14 @@ myPageData: (state) => {
     return state.myPageData;
 },
 selectedMemberType: (state) => {
-    return state.selectedMemberType
+    return state.selectedMemberType;
 },
 requestMessage: (state) => {
-    return state.requestMessage
+    return state.requestMessage;
 },
+memberTypeRequests: (state) => {
+    return state.memberTypeRequests;
+}
 };
 
 export default getters;
