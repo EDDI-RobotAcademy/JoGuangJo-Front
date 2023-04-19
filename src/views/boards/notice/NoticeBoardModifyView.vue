@@ -12,6 +12,7 @@
 
 import NoticeBoardModifyForm from '@/components/boards/notice/NoticeBoardModifyForm.vue'
 import { mapActions, mapState } from 'vuex'
+const noticeModule = 'noticeModule'
 
 export default {
     components: { NoticeBoardModifyForm },
@@ -23,11 +24,11 @@ export default {
         }
     },
     computed: {
-        ...mapState(['noticeBoard'])
+        ...mapState(noticeModule, ['noticeBoard'])
     },
     methods: {
-        ...mapActions([
-            'requestNoticeBoardToSpring',
+        ...mapActions(noticeModule, [
+            'requestNoticeBoardReadToSpring',
             'requestNoticeBoardModifyToSpring',
         ]),
         async onSubmit (payload) {
@@ -41,7 +42,7 @@ export default {
         }
     },
     created () {
-        this.requestNoticeBoardToSpring(this.noticeBoardId)
+        this.requestNoticeBoardReadToSpring(this.noticeBoardId)
     }
 }
 

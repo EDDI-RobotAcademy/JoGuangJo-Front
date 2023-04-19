@@ -72,8 +72,9 @@ export default {
             .then((res) => {
                 alert("해당 기부글을 삭제했습니다!", res.data)
             })
-            .catch((res) => {
-                alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!", res.data)
+            .catch((error) => {
+                console.error(error)
+                alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!")
             })
     },
 
