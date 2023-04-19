@@ -14,6 +14,12 @@ const mutations = {
   [mypageMutationTypes.SET_PASSWORD_UPDATE_STATUS](state, isUpdated) {
     state.isPasswordUpdated = isUpdated;
   },
+  [mypageMutationTypes.SET_SELECTED_MEMBER_TYPE](state, selectedMemberType) {
+    state.selectedMemberType = selectedMemberType;
+  },
+  [mypageMutationTypes.SET_SELECTED_REQUEST_MESSAGE](state, requestMessage) {
+    state.requestMessage = requestMessage;
+  },
 };
 
 export default mutations;

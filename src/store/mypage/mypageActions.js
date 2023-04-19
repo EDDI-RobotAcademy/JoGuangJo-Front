@@ -44,6 +44,37 @@ const actions = {
       console.error('Error while updating the password:', error);
     }
   },
+
+  async submitRequest({ commit },{ selectedMemberType, requestMessage }) {
+    if (!selectedMemberType || !requestMessage) {
+      console.log("getters.selectedMemberType : " + selectedMemberType )
+      console.log("getters.requestMessage : " + requestMessage )
+      alert("정보들을 입력하세요.");
+      return;
+    } 
+
+    const memberTypeRequestData = {
+      memberId: JSON.parse(localStorage.getItem("userInfo")).id,
+      memberType: selectedMemberType,
+      message: requestMessage,
+    };
+
+    console.log(memberTypeRequestData.memberId)
+    console.log(memberTypeRequestData.memberType)
+    console.log(memberTypeRequestData.message)
+    try {
+      const response = await axios.post("http://localhost:7777/mypage/memberTypeRequest", 
+      memberTypeRequestData
+      );
+      if (response.data) {
+        alert("잘 됨.");
+      } else {
+        alert("잘 안됨.");
+      }
+    } catch (error) {
+      console.error("에러:", error);
+    }
+  },
 };
 
 export default actions;

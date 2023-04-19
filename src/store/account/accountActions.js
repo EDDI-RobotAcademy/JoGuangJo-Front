@@ -101,5 +101,4 @@ export default {
       return false;
     }
   },
-  
 };
