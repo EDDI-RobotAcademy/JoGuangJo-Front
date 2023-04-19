@@ -18,6 +18,7 @@
 
 import NoticeBoardReadForm from '@/components/boards/notice/NoticeBoardReadForm.vue'
 import { mapActions, mapState } from 'vuex'
+const noticeModule = 'noticeModule'
 
 export default {
   components: { NoticeBoardReadForm },
@@ -29,21 +30,21 @@ export default {
         }
     },
     computed: {
-        ...mapState(['noticeBoard'])
+        ...mapState(noticeModule, ['noticeBoard'])
     },
     methods: {
-        ...mapActions([
-            'requestNoticeBoardToSpring',
-            'requestDeleteNoticeBoardToSpring'
+        ...mapActions(noticeModule, [
+            'requestNoticeBoardReadToSpring',
+            'requestNoticeBoardDeleteToSpring'
         ]),
         async onDelete () {
-            await this.requestDeleteNoticeBoardToSpring(this.noticeBoardId)
+            await this.requestNoticeBoardDeleteToSpring(this.noticeBoardId)
             await this.$router.push({ name: 'NoticeBoardListView' })
         }
     },
     created () {
         console.log('noticeBoardId: ' + this.noticeBoardId)
-        this.requestNoticeBoardToSpring(this.noticeBoardId)
+        this.requestNoticeBoardReadToSpring(this.noticeBoardId)
     }
 }
 
