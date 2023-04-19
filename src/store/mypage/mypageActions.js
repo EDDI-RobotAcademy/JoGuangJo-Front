@@ -85,6 +85,36 @@ const actions = {
       console.error("Error fetching member type requests:", error);
     }
   },
+
+  async fetchMemberTypeRequest({ commit }, id) {
+    console.log("나 찾고올게")
+    try {
+      const response = await axios.get(`http://localhost:7777/mypage/memberTypeRequest/${id}`);
+      console.log("fetchMemberTypeRequest");
+      console.log(response.data);
+      commit(mypageMutationTypes.SET_MEMBER_TYPE_REQUEST, response.data);
+      console.log("찾았어")
+    } catch (error) {
+      console.error("Error fetching member type request details:", error);
+    }
+  },
+  
+  async acceptRequest(_, requestData) {
+    try {
+      await axios.post('http://localhost:7777/mypage/rollrequestaccept', requestData);
+    } catch (error) {
+      console.log("에러 발생 : ", error);
+    }
+  },
+  
+  async rejectRequest(_, requestData) {
+    try {
+      await axios.post('http://localhost:7777/mypage/rollrequestreject', requestData);
+    } catch (error) {
+      console.log("에러 발생 : ", error);
+    }
+  },
+  
 };
 
 export default actions;
