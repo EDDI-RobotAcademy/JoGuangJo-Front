@@ -12,7 +12,12 @@
           </v-card-subtitle>
           <v-divider class="divider"></v-divider>
           <v-card-text class="content-area">
-            <div v-html="qnaBoard.content"></div>
+          <v-carousel hide-delimiters>
+            <v-carousel-item v-for="(imagePath, idx) in qnaBoard.imageResourcePaths" :key="idx" cover>
+              <img :src="require(`@/assets/qnaUploadImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
+            </v-carousel-item>
+          </v-carousel>
+          <div class="qna-comment">{{ qnaBoard.content }}</div>
           </v-card-text>
         </v-card>
         <p v-else>로딩중 .......... </p>
@@ -53,7 +58,7 @@
   
   <style>
   .headline, .subtitle-background {
-    background-color: #fee789; /* 원하는 색상의 코드로 변경하세요. 예: #f5f5f5 */
+    background-color: #fee789;
   }
   .content-area {
   min-height: 300px;
@@ -66,4 +71,9 @@
   .qnaBoardId-text {
     margin-left: 380px;
   }
+
+  .qna-comment {
+  font-size: 24px;
+  line-height: 1.5; 
+}
   </style>
