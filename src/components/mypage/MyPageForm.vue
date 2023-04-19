@@ -10,6 +10,9 @@
         <router-link to="/membertyperequest" class="button-link">
             등급 변경 요청
         </router-link>
+        <router-link to="/memberTypeRequestListView" class="button-link">
+            등급 변경 요청 리스트
+        </router-link>
         <router-link to="/mypage/donate-list" class="button-link">
             기부 내역
         </router-link>

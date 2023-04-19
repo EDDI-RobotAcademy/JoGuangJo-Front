@@ -20,6 +20,9 @@ const mutations = {
   [mypageMutationTypes.SET_SELECTED_REQUEST_MESSAGE](state, requestMessage) {
     state.requestMessage = requestMessage;
   },
+  [mypageMutationTypes.SET_MEMBER_TYPE_REQUESTS](state, memberTypeRequests) {
+    state.memberTypeRequests = memberTypeRequests;
+  },
 };
 
 export default mutations;

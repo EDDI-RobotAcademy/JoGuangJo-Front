@@ -75,6 +75,16 @@ const actions = {
       console.error("에러:", error);
     }
   },
+
+  async fetchMemberTypeRequests({ commit }) {
+    try {
+      const response = await axios.get("http://localhost:7777/mypage/memberTypeRequestList");
+      commit(mypageMutationTypes.SET_MEMBER_TYPE_REQUESTS, response.data);
+      // 위의 기능과 동일 this.memberTypeRequests = response.data;
+    } catch (error) {
+      console.error("Error fetching member type requests:", error);
+    }
+  },
 };
 
 export default actions;
