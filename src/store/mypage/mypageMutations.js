@@ -8,7 +8,7 @@ const mutations = {
   [mypageMutationTypes.UPDATE_MY_PAGE_DATA]: (state, data) => {
     state.myPageData = data;
   },
-  [mypageMutationTypes.SET_IS_CURRENT_PASSWORD_CORRECT](state, isCorrect) {
+  [mypageMutationTypes.SET_IS_CURRENT_PASSWORD_CORRECT](state, isCorrect)   {
     state.isCurrentPasswordCorrect = isCorrect;
   },
   [mypageMutationTypes.SET_PASSWORD_UPDATE_STATUS](state, isUpdated) {
@@ -20,8 +20,11 @@ const mutations = {
   [mypageMutationTypes.SET_SELECTED_REQUEST_MESSAGE](state, requestMessage) {
     state.requestMessage = requestMessage;
   },
-  [mypageMutationTypes.SET_MEMBER_TYPE_REQUESTS](state, memberTypeRequests) {
+  [mypageMutationTypes.SET_MEMBER_TYPE_REQUESTS]: (state, memberTypeRequests) => {
     state.memberTypeRequests = memberTypeRequests;
+  },
+  [mypageMutationTypes.SET_MEMBER_TYPE_REQUEST]: (state, memberTypeRequest) => {
+    state.memberTypeRequest = memberTypeRequest;
   },
 };
 

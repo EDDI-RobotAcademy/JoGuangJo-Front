@@ -6,6 +6,7 @@ const state = {
     requestMessage: "",
     memberTypes: ["일반 회원", "사업자", "관리자"],
     memberTypeRequests: [],
+    memberTypeRequest: {},
 };
 
 export default state;
