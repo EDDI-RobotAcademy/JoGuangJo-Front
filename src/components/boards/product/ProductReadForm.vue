@@ -4,15 +4,8 @@
       <v-card v-if="product" max-width="1100" class="product-card">
         <v-row>
           <v-col cols="6">
-            <v-card class="image-card">
-              <v-img
-                v-for="(image, index) in productImages"
-                :key="index"
-                :src="image"
-                aspect-ratio="1.5"
-                class="mb-3"
-              >
-                이미지가 보일 부분
+            <v-card v-for="(imagePath, idx) in product.imageResourcePaths" :key="idx" cover>
+              <v-img :src="require(`@/assets/productImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
               </v-img>
             </v-card>            
           </v-col>
@@ -25,14 +18,17 @@
                 <input type="number" id="quantity" name="quantity" min="1" max="99" value="1">
               </div>
               <div>
-                <v-btn class="modify-btn" rounded :to="{ name: 'ProductOrderView', params: { productId } }"
+                <v-btn class="modify-btn" rounded
+                  :to="{ name: 'ProductOrderView', params: { productId: product.productId } }"
                   v-if="isAuthenticated && !isCurrentUserAuthor">
                   장바구니 담기
                 </v-btn>
-                <v-btn class="buy-btn" rounded :to="{ name: 'ProductOrderView', params: { productId } }"
+                <v-btn class="buy-btn" rounded
+                  :to="{ name: 'ProductOrderView', params: { productId: product.productId } }"
                   v-if="isAuthenticated && !isCurrentUserAuthor">
                   바로구매
                 </v-btn>
+
               </div>
             </div>
 
@@ -63,13 +59,11 @@ export default {
     },
     productImages: {
       type: Array,
-    },
+    }
   },
+
   computed: {
     ...mapState("account", ["isAuthenticated"]),
-    isAuthenticated() {
-      return !!localStorage.getItem('userInfo');
-    },
     isCurrentUserAuthor() {
       if (!this.isAuthenticated) {
         return false;
@@ -77,6 +71,7 @@ export default {
       const currentUser = JSON.parse(localStorage.getItem('userInfo')).nickName;
       return this.product.writer === currentUser;
     },
+
   },
   created() {
     console.log('productImages: ' + this.productImages);
