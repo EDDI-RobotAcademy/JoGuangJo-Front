@@ -10,7 +10,7 @@
         <p><strong>Message:</strong> {{ memberTypeRequest.message }}</p>
         <p><strong>Registration Date:</strong> {{ formatDate(memberTypeRequest.regDate) }}</p>
       </div>
-      <v-btn color="primary" @click="acceptRequestHandler">Accept Request</v-btn>
+      <v-btn class="sunghee v-btn" @click="acceptRequestHandler">Accept Request</v-btn>
       <v-btn color="error" @click="rejectRequestHandler">Reject Request</v-btn>
     </v-container>
   </div>

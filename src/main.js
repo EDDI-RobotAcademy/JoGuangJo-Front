@@ -17,6 +17,9 @@ import 'normalize.css'
 // font.css 추가
 import '@/css/Font.css';
 
+// sunghee.css 추가
+import '@/css/sunghee.css'
+
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false

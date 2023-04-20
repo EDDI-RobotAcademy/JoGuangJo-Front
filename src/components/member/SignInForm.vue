@@ -1,5 +1,5 @@
 <template>
-    <div class="white" style="font-family: 'Noto Sans KR', sans-serif">
+    <div class="white center-container" style="font-family: 'Noto Sans KR', sans-serif">
       <v-container class="white" style="width: 1240px">
         <v-row justify="center">
           <v-col cols="auto" style="padding-bottom: 90px">
@@ -48,21 +48,21 @@
                       x-large
                       rounded
                       color="#fee789"
-                      class="mt-6"
+                      class="mt-6 sunghee v-btn"
                       :disabled="!isFormValid"
                   >로그인</v-btn><br/>
   
-                  <div class="mt-5">
-                    <v-row>
+                  <div class="mt-6">
+                    <v-row class="center-buttons">
                       <v-col>
                         <router-link
-                            class="text-decoration-none purple--text mr-5"
+                            class="text-decoration-none sunghee button-link mr-5"
                             to="/sign-up"
                         >회원가입</router-link>
                       </v-col>
                       <v-col>
                         <router-link
-                            class="text-decoration-none purple--text ml-5 mr-5"
+                            class="text-decoration-none sunghee button-link ml-5 mr-5"
                             to="/search-password"
                         >PW 찾기</router-link>
                       </v-col>
@@ -137,6 +137,19 @@ export default {
 
 .mt-5 {
   margin-left: 15px;   
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center-buttons {
+  display: flex;
+  justify-content: center;
+  margin-left: -33px; /* Adjust this value to shift the area to the left */
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap");

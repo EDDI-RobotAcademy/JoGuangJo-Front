@@ -1,12 +1,14 @@
 <template>
   <div>
     <v-container max-width="1200">
-      <v-data-table :headers="headers" :items="memberTypeRequests" @click:row="goToDetail">
-        <template v-slot:item#createdAt="{ item }">
-          {{ formatDate(item.createdAt) }}
-        </template>
-      </v-data-table>
-    </v-container>
+      <v-row class="sunghee v-row padding">
+        <v-data-table :headers="headers" :items="memberTypeRequests" @click:row="goToDetail">
+          <template v-slot:item#createdAt="{ item }">
+            {{ formatDate(item.createdAt) }}
+          </template>
+        </v-data-table>
+      </v-row>
+      </v-container>
   </div>
 </template>
 

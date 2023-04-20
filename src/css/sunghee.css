@@ -1,0 +1,49 @@
+/* sunghee.css */
+.sunghee.button-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    background-color: #fee789;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+.sunghee.button-link.btn:hover {
+    background-color: #FFC107;
+    color: white;
+}
+
+.sunghee.v-btn {
+    color: black !important;
+    background-color: #fee789 !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.sunghee.v-btn:hover {
+    background-color: #FFC107 !important;
+    color: white !important;
+}
+
+.sunghee.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.sunghee.v-row.padding {
+    padding-left: 100px; /* Adjust this value to increase/decrease the padding on the left */
+    padding-right: 100px; /* Adjust this value to increase/decrease the padding on the right */
+}
