@@ -9,7 +9,7 @@ import SignUpForm from "@/components/member/SignUpForm";
 import { mapActions } from "vuex";
 
 export default {
-  name: "SignUpPage",
+  name: "SignUpView",
   components: {
     SignUpForm
   },

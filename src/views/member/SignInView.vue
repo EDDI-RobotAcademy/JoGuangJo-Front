@@ -14,7 +14,7 @@ import LoginForm from "@/components/member/SignInForm.vue";
 Vue.use(cookies);
 
 export default {
-  name: "SignInPage",
+  name: "SignInView",
   components: {
     LoginForm,
   },
