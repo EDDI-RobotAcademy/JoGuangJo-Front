@@ -16,9 +16,9 @@ import NoticeBoardReadView from "@/views/boards/notice/NoticeBoardReadView.vue"
 import NoticeBoardModifyView from "@/views/boards/notice/NoticeBoardModifyView.vue"
 
 // 성희씨 회원가입, 로그인 페이지
-import SignUpPage from "@/views/member/SignUpPage.vue"
-import SignInPage from "@/views/member/SignInPage.vue"
-import SearchMemberPasswordPage from "@/views/member/SearchMemberPasswordPage.vue"
+import SignUpView from "@/views/member/SignUpView.vue"
+import SignInView from "@/views/member/SignInView.vue"
+import SearchMemberPasswordView from "@/views/member/SearchMemberPasswordView.vue"
 
 // 지영씨 기부 페이지, 마이페이지-나의기부내역
 import DonateRegisterView from "@/views/boards/donate/DonateRegisterView.vue"
@@ -140,18 +140,18 @@ const routes = [
   //성희씨 회원가입, 로그인 페이지
   {
     path: '/sign-up',
-    name: 'SignUpPage',
-    component: SignUpPage
+    name: 'SignUpView',
+    component: SignUpView
   },
   {
     path: '/sign-in',
-    name: 'SignInPage',
-    component: SignInPage
+    name: 'SignInView',
+    component: SignInView
   },
   {
     path: '/search-password',
-    name: 'SearchMemberPasswordPage',
-    component: SearchMemberPasswordPage
+    name: 'SearchMemberPasswordView',
+    component: SearchMemberPasswordView
   },
 
   
@@ -258,19 +258,19 @@ const routes = [
     }
   },
   {
-    path: '/membertyperequest',
+    path: '/memberType-request',
     name: 'MemberTypeRequest',
     component: MemberTypeRequest
   },
   {
-    path: '/memberTypeRequestListView',
+    path: '/memberType-request-list',
     name: 'MemberTypeRequestListView',
     components: {
       default: MemberTypeRequestListView
     }
   },
   {
-    path: "/memberTypeRead/:id",
+    path: "/memberType-read/:id",
     name: "MemberTypeReadForm",
     components: {
       default: MemberTypeRead

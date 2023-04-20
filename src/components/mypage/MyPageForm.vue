@@ -1,22 +1,22 @@
 <template>
     <div class="buttons-container">
         <h1>hi user</h1>
-        <router-link to="/change-address" class="button-link">
+        <router-link :to="{ name: 'ChangeAddress' }" class="button-link">
             주소 변경
         </router-link>
-        <router-link to="/passwordChange" class="button-link">
+        <router-link :to="{ name: 'PasswordChange' }" class="button-link">
             비밀번호 변경
         </router-link>
-        <router-link to="/membertyperequest" class="button-link">
+        <router-link :to="{ name: 'MemberTypeRequest' }" class="button-link">
             등급 변경 요청
         </router-link>
-        <router-link to="/memberTypeRequestListView" class="button-link">
+        <router-link :to="{name: 'MemberTypeRequestListView'}" class="button-link">
             등급 변경 요청 리스트
         </router-link>
-        <router-link to="/mypage/donate-list" class="button-link">
+        <router-link :to="{ name: 'DonateListView' }" class="button-link">
             기부 내역
         </router-link>
-        <v-btn v-on:click="resignhandler" class="button-link">
+        <v-btn click="resignhandler" class="button-link">
             회원 탈퇴
         </v-btn>
     </div>
