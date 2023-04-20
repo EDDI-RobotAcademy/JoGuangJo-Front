@@ -102,11 +102,11 @@ export default {
     data: () => ({
       items1: [
       { title: '북유럽 소개', to: 'IntroductionView', hovered: false },
-      { title: '공지사항', to: 'JpaBoardListPage', hovered: false },
+      { title: '공지사항', to: 'NoticeBoardListView', hovered: false },
       { title: 'Q&A', to: 'QnaBoardListView', hovered: false },
       ],
       items2: [
-      { title: '기부하기', to: 'DonateRegisterView', hovered: false },
+      { title: '기부 신청하기', to: 'DonateRegisterView', hovered: false },
       ],
       items3: [
       { title: '책 구매', to: 'ProductListView', hovered: false },

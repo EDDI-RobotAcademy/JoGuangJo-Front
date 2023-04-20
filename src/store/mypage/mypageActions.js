@@ -113,6 +113,18 @@ const actions = {
       console.log("An error occurred: ", error);
     }
   },
+  
+  async findmypost() {
+    let memberId = JSON.parse(localStorage.getItem('userInfo')).id;
+    console.log("작동됨됨 : " + memberId)
+    try {
+      await axios.post('http://localhost:7777/mypage/findmypost', memberId);
+      console.log("작동됨");
+    } catch (error) {
+      console.log("findmypost에서 에러 발생 : ", error);
+    }
+  },
+
 };
 
 export default actions;
