@@ -1,69 +1,61 @@
 <template>
   <div class="full-container">
-  <div class="full-left1">
-    <product-category-form/>
-  </div>
-  <div class="full-right1">
-  <div class="product-list-form1">
-    <v-container>
-      <v-row>
-                  <v-col cols="12">
-                   <h2 class="title1">상품 목록</h2>
-                 </v-col>
-               </v-row>
-               <div class="search-sortBy">
-               <v-row>
-                 <v-col cols="12" sm="6">
-             <div class="search">
-                <select v-model="searchBy">
-                  <option value="productName">상품명</option>
-                <option value="seller">판매자</option>
-              </select>
-              <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
-              <button @click="searchProducts">검색</button>
-             </div>
+    <div class="full-left1">
+      <product-category-form />
+    </div>
+    <div class="full-right1">
+      <div class="product-list-form1">
+        <v-container>
+          <v-row>
+            <v-col cols="12">
+              <h2 class="title1">상품 목록</h2>
+            </v-col>
+          </v-row>
+          <div class="search-sortBy">
+            <v-row>
+              <v-col cols="12" sm="6">
+                <div class="search">
+                  <select v-model="searchBy">
+                    <option value="productName">상품명</option>
+                    <option value="seller">판매자</option>
+                  </select>
+                  <input type="text" v-model="searchQuery" placeholder="상품 검색" @keyup.enter="searchProducts">
+                  <button @click="searchProducts">검색</button>
+                </div>
               </v-col>
-               <v-col cols="12" sm="6">
-                 <v-select
-                   v-model="sortBy"
-                   :items="['이름순', '낮은 가격순', '높은 가격순', '최신순']"
-                   label="정렬"
-                   outlined
-                   dense
-                   style="max-width: 150px;"
-                   class="filter-item"
-                   color="#fee789"
-                   rounded
-                 ></v-select>
-               </v-col>
-             </v-row>
-             </div>
-              <v-row>
-                <v-col v-for="(item, i) in paginatedProducts" :key="i" cols="12" sm="4" md="3" class="product-col">
-                  <v-card class="elevation-6-product-card">
-                    <v-img :src="`/product/fangoods_15.jpg`" :alt="`상품 이미지 ${i + 1}`" aspect-ratio="1" class="rounded"></v-img>
-                    <v-card-text class="text-center">
-                      <p class="product-name">
-                        <router-link :to="{ name: 'ProductReadView', params: { productId: item.productId.toString() } }">
-                          {{ item.productName }}
-                        </router-link>
-                      </p>
-                      <p class="product-price">{{ item.price }}원</p>
-                      <p class="product-date">{{ item.regDate }}</p>
-                      <p class="product-seller">판매자: {{ item.writer }}</p>
-                      <div class="button-container">
-                        <v-btn @click="onCartClick(item)" class="btn1">장바구니</v-btn>
-                        <v-btn @click="onBuyClick(item)" class="btn1">바로구매</v-btn>
-                        <v-btn @click="onLikeClick(item)" class="btn1">♥</v-btn>
-                      </div>
-                    </v-card-text>
-                    <v-card-actions class="justify-center">
-                      <v-btn color="primary" text @click="addToCart(item.productId)">장바구니에 담기</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-col>
-              </v-row>
-              <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
+              <v-col cols="12" sm="6">
+                <v-select v-model="sortBy" :items="['이름순', '낮은 가격순', '높은 가격순', '최신순']" label="정렬" outlined dense
+                  style="max-width: 150px;" class="filter-item" color="#fee789" rounded></v-select>
+              </v-col>
+            </v-row>
+          </div>
+          <v-row>
+            <v-col v-for="(item, i) in paginatedProducts" :key="i" cols="12" sm="4" md="3" class="product-col">
+              <v-card class="elevation-6-product-card">
+                <img v-for="(imagePath, idx) in item.realThumbnail" :key="idx"
+                  :src="require(`@/assets/productImgs/${imagePath}`)" :alt="`상품 이미지 ${i + 1}`" class="rounded"
+                  style="width: 100%; height: auto;">
+                <v-card-text class="text-center">
+                  <p class="product-name">
+                    <router-link :to="{ name: 'ProductReadView', params: { productId: item.productId.toString() } }">
+                      {{ item.productName }}
+                    </router-link>
+                  </p>
+                  <p class="product-price">{{ item.price }}원</p>
+                  <p class="product-seller">판매자: {{ item.writer }}</p>
+                  <div class="button-container">
+                    <v-btn @click="onCartClick(item)" class="btn1">장바구니</v-btn>
+                    <v-btn @click="onBuyClick(item)" class="btn1">바로구매</v-btn>
+                    <v-btn @click="onLikeClick(item)" class="btn1">♥</v-btn>
+                  </div>
+                </v-card-text>
+                <v-card-actions class="justify-center">
+                  <v-btn color="primary" text @click="addToCart(item.productId)">장바구니에 담기</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
 
         </v-container>
       </div>
@@ -87,17 +79,16 @@ export default {
     },
   },
   data() {
-  return {
-    sortBy: "",
-    currentPage: 1,
-    pageSize: 12, // 수정 가능
-    searchQuery: '',
-    displayedProducts: [],
-    noticeItems: [],
-    searchBy: 'productName',
-    imageURL: '/Users/majin-u/Desktop/JoGuangJo/frontend/JoGuangJo-Front/public/product/'
-  };
-},
+    return {
+      sortBy: "",
+      currentPage: 1,
+      pageSize: 12, // 수정 가능
+      searchQuery: '',
+      displayedProducts: [],
+      noticeItems: [],
+      searchBy: 'productName',
+    };
+  },
 
   computed: {
     sortedProducts() {
@@ -171,120 +162,131 @@ export default {
 </script>
 
 <style scoped>
-
 .search-sortBy {
-  margin-top:-30px;
+  margin-top: -30px;
 }
 
 .search {
   margin-top: -9px;
   margin-left: 00px;
 }
+
 .full-container {
   display: flex;
   margin-right: 90px;
 }
+
 .full-left1 {
   width: 20%;
   height: 100%;
   margin-top: 15px;
   margin-left: -70px;
 }
+
 .full-right1 {
   width: 80%;
   height: 100%;
 }
-  .product-list-form1 {
-    margin: auto;
-    margin-bottom: 100px;
-    height: 100%;
-    margin-left: 80px; /* 수정 */
-    width: 1100px;
-  }
-  .title1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    padding-left: 20px;
-  }
-  .product-name {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-  .product-price {
-    font-size: 1rem;
-    color: #f44336;
-    margin: 0;
-  }
-  .rounded {
-    border-radius: 6px;
-  }
 
-  .filter-item {
-    margin-left: 360px;
-    margin-top: -5px;
-  }
-  .filter-item .v-input__control {
-    min-width: 80px;
-  }
+.product-list-form1 {
+  margin: auto;
+  margin-bottom: 100px;
+  height: 100%;
+  margin-left: 80px;
+  /* 수정 */
+  width: 1100px;
+}
 
-  .btn1 {
-    background-color: #fee789 !important;
-    color: black;
-    margin-left: -19px;
-    transition: background-color 0.3s;
-  }
+.title1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
 
-  .btn1:hover {
-    background-color: #FFC107 !important;
-    color: white;
-  }  
+.product-name {
+  font-size: 1.2rem;
+  margin: 0;
+}
 
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* 추가 */
-    margin-right: -20px;
-    margin-top: auto; /* 추가 */
-    margin-bottom: auto;
-  }
+.product-price {
+  font-size: 1rem;
+  color: #f44336;
+  margin: 0;
+}
 
-  .search input[type="text"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 200px;
-    margin-right: 10px;
-    font-size: 16px;
-    background-repeat: no-repeat;
-    background-position: 5px center;
-    padding-left: 35px;
-  }
+.rounded {
+  border-radius: 6px;
+}
 
-  .search button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .search select {
-    appearance: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
+.filter-item {
+  margin-left: 360px;
+  margin-top: -5px;
+}
+
+.filter-item .v-input__control {
+  min-width: 80px;
+}
+
+.btn1 {
+  background-color: #fee789 !important;
+  color: black;
+  margin-left: -19px;
+  transition: background-color 0.3s;
+}
+
+.btn1:hover {
+  background-color: #FFC107 !important;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 추가 */
+  margin-right: -20px;
+  margin-top: auto;
+  /* 추가 */
+  margin-bottom: auto;
+}
+
+.search input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 200px;
+  margin-right: 10px;
+  font-size: 16px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  padding-left: 35px;
+}
+
+.search button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.search select {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 
 .search select:focus {
   outline: none;
@@ -295,5 +297,4 @@ export default {
 .filter-item {
   margin-right: -530px;
 }
-
 </style>
