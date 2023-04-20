@@ -19,13 +19,15 @@
         <label for="phone">핸드폰번호:</label>
         <input type="tel" id="phone" v-model="phone" class="input-field" />
       </div>
+      <div v-for="(p, index) in product" :key="index">
       <div class="form-group">
         <label for="product-title">상품명:</label>
-        <input type="text" id="product-title" v-model="product.productName" readonly class="input-field" />
+        <input type="text" id="product-title" :value="p.productName" readonly class="input-field" />
       </div>
       <div class="form-group">
         <label for="product-price">가격:</label>
-        <input type="number" id="product-price" v-model="product.price" readonly class="input-field" />
+        <input type="number" id="product-price" :value="p.price" readonly class="input-field" />
+      </div>
       </div>
       <v-btn icon type="submit">
         <v-img :src="require('/public/kakaopay/payment_icon_yellow_small.png')" />
@@ -46,26 +48,40 @@ export default {
       address: '',
       addressDetail: '',
       phone: '',
-      product: {},
+      product: [],
+      cartItemId: '',
     };
   },
 
-  async mounted() {
-    const productId = this.$route.params.id;
-    console.log('productId:', productId);
-    try {
-      const response = await axios.get(`http://localhost:7777/product/${productId}`);
-      console.log('response:', response);
-      this.product = response.data;
-    } catch (error) {
-      console.error('Error loading product:', error);
+async mounted() {
+  const productId = this.$route.params.id;
+  const productIds = this.$route.params.productIds;
+  console.log('productId:', productId);
+  console.log('productIds:', productIds);
+  
+  let selectedProductIds = [];
+  if (Array.isArray(productIds)) {
+    // productIds로 값이 들어오는 경우(배열), 선택된 상품들의 id를 가져옵니다.
+    selectedProductIds = productIds;
+  } else {
+    // productIds가 없는 경우, 단일 상품을 구매하는 것이므로 productId를 사용합니다.
+    selectedProductIds.push(productId);
+  }
+
+  try {
+    // 선택된 모든 상품 정보를 가져오기 위해 반복문을 사용합니다. productController의 read 메소드와 통신합니다.
+    for (let i = 0; i < selectedProductIds.length; i++) {
+      const response = await axios.get(`http://localhost:7777/product/${selectedProductIds[i]}`);
+      this.product.push(response.data);
     }
-  },
+  } catch (error) {
+    console.error('에러 발생');
+  }
+},
 
   methods: {
     async KakaoPay() {
       try {
-        
         const response = await axios.post("http://localhost:7777/order/kakaoPay");
         console.log(response.data);
         const box = response.data.next_redirect_pc_url;
