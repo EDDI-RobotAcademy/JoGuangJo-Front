@@ -16,7 +16,10 @@
         <router-link :to="{ name: 'DonateListView' }" class="button-link">
             기부 내역
         </router-link>
-        <v-btn click="resignhandler" class="button-link">
+        <router-link to="/FindMyPost" class="button-link">
+            내 게시글 찾기
+        </router-link>
+        <v-btn v-on:click="resignhandler" class="button-link">
             회원 탈퇴
         </v-btn>
     </div>
