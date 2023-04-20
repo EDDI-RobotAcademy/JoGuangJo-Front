@@ -35,9 +35,6 @@ import ProductModifyView from "@/views/boards/product/ProductModifyView.vue"
 import ProductOrderView from '@/views/boards/product/ProductOrderView.vue';
 
 
-// 채율씨 상품 게시판 - 썸네일 테스트중
-import ProductListPage from "@/views/product/ProductListPage.vue"
-
 // 성희씨 마이 페이지
 import MyPage from "@/views/mypage/MyPageView.vue"
 import ChangeAddress from "@/views/mypage/ChangeAddressView.vue"
@@ -52,6 +49,9 @@ import CartListView from "@/views/cart/CartListView.vue"
 
 // 채율씨 소개페이지
 import IntroductionView from "@/views/IntroductionView.vue"
+
+// 채율씨 나의글찾기페이지
+import FindMyPostView from "@/views/mypage/FindMyPostView.vue"
 
 Vue.use(VueRouter)
 
@@ -227,13 +227,6 @@ const routes = [
     props: true,
   },
 
-
-  //채율씨 상품게시판
-  {
-    path: '/product-list-page',
-    name: 'ProductListPage',
-    component: ProductListPage
-  },
   
   // 성희씨 마이페이지
   {
@@ -318,9 +311,16 @@ const routes = [
 
   // 채율씨 소개페이지
   {
-    path: '/introduction-view',
+    path: '/introduction',
     name: 'IntroductionView',
     component: IntroductionView,
+  },
+
+  // 채율씨 나의 게시글찾기
+  {
+    path: '/FindMyPost',
+    name: 'FindMyPostView',
+    component: FindMyPostView,
   },
   
 ]
