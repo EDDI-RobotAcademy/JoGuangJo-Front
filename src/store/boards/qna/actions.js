@@ -34,17 +34,6 @@ export default {
             })
     },
 
-    requestCreateProductToSpring ({}, payload) {
-        console.log('payload: ' + payload)
-            return axiosInst.post('/product/register', payload)
-                .then(() => {
-                    alert('상품 등록 성공!')
-                })
-                .catch(() => {
-                    alert('문제 발생!')
-                })
-    },
-
     requestQnaBoardModifyToSpring ({}, {qnaBoardId, payload}) {
         console.log("수정 요청 테스트 완료")
         return axiosInst.put(`/qnaBoard/${qnaBoardId}`, payload)
