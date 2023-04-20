@@ -1,11 +1,11 @@
 // accountActions.js
-import axios from "axios";
+import axiosInst from "@/utility/axiosObject";
 
 export default {
   async signup({ commit }, payload) {
     console.log("Received payload in action:", payload);
     const { email, password, nickName, city, street, addressDetail, zipcode } = payload;
-    return axios.post("http://localhost:7777/member/sign-up", {
+    return axiosInst.post("/member/sign-up", {
       email,
       password,
       city,
@@ -19,7 +19,7 @@ export default {
     return new Promise((resolve) =>  {
       let token = localStorage.getItem("userInfo");
       let userToken = token.split(",")[0].split(":")[1];
-      axios.post("http://localhost:7777/member/resign", userToken)
+      axiosInst.post("/member/resign", userToken)
       .then(() => {
         commit("setAuthenticated", false);
         localStorage.removeItem("userInfo");
@@ -33,8 +33,8 @@ export default {
   },
   login({ commit }, payload) {
     const { email, password } = payload;
-    return axios
-      .post("http://localhost:7777/member/sign-in", { email, password })
+    return axiosInst
+      .post("/member/sign-in", { email, password })
       .then((res) => {
         if (res.data) {
           commit("setAuthenticated", true);
@@ -47,25 +47,24 @@ export default {
   },
   logout({ commit }) {
       let token = localStorage.getItem("userInfo");
-      axios.post("http://localhost:7777/member/logout", token).then(() => {
+      axiosInst.post("/member/logout", token).then(() => {
       commit("setAuthenticated", false);
       localStorage.removeItem("userInfo");
       alert("로그아웃 완료");
       });
   },
   async checkDuplicateEmail({ commit }, email) {
-    console.l
-      try {
-        const res = await axios.post(`http://localhost:7777/member/check-email/${email}`);
-        return res.data;
-      } catch (error) {
-        console.log(error);
-        return false;
-      }
+    try {
+      const res = await axiosInst.post(`/member/check-email/${email}`);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   },
   async checkDuplicateNickName({ commit }, nickName) {
     try {
-      const res = await axios.post(`http://localhost:7777/member/check-nickName/${nickName}`);
+      const res = await axiosInst.post(`/member/check-nickName/${nickName}`);
       return res.data;
     } catch (error) {
       console.log(error);
@@ -74,7 +73,7 @@ export default {
   },
   async findAccountEmail({ commit }, email) {
     try {
-      const res = await axios.post("http://localhost:7777/member/emailMatch", { email });
+      const res = await axiosInst.post("/member/emailMatch", { email });
       if (res.data) {
         alert("인증이 완료되었습니다.");
         return true;
@@ -90,7 +89,7 @@ export default {
   async resetPw({ commit }, payload) {
     const { email, password } = payload;
     try {
-      await axios.post("http://localhost:7777/member/applyNewPassword/", {
+      await axiosInst.post("/member/applyNewPassword/", {
         email,
         password,
       });

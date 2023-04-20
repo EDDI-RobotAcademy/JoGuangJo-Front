@@ -9,7 +9,7 @@
   import SearchMemberPasswordForm from "@/components/member/SearchMemberPasswordForm";
   
   export default {
-    name: "SearchMemberPasswordPage",
+    name: "SearchMemberPasswordView",
     components: {
       SearchMemberPasswordForm,
     },

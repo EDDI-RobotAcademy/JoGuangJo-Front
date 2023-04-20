@@ -10,10 +10,7 @@ import axiosInst from '@/utility/axiosObject'
 export default {
     requestCreateProductToSpring ({}, payload) {
         console.log('payload: ' + payload)
-        const { productName, content, writer, price } = payload
-        return axiosInst.post('http://localhost:7777/product/register',
-            payload)
-            //{ productName, content, writer, price })
+        return axiosInst.post('/product/register', payload)
             .then(() => {
                 alert('상품 등록 성공!')
             })
@@ -22,19 +19,19 @@ export default {
             })
     },
     requestProductListToSpring ({ commit }) {
-        return axiosInst.get('http://localhost:7777/product/list')
+        return axiosInst.get('/product/list')
             .then((res) => {
                 commit(REQUEST_PRODUCT_LIST_TO_SPRING, res.data)
             })
     },
     requestProductToSpring ({ commit }, productId) {
-        return axiosInst.get(`http://localhost:7777/product/${productId}`)
+        return axiosInst.get(`/product/${productId}`)
             .then((res) => {
                 commit(REQUEST_PRODUCT_TO_SPRING, res.data)
             })
     },
     requestDeleteProductToSpring ({}, productId) {
-        return axiosInst.delete(`http://localhost:7777/product/${productId}`)
+        return axiosInst.delete(`/product/${productId}`)
             .then(() => {
                 alert("삭제 성공")
             })
@@ -45,7 +42,7 @@ export default {
     requestProductModifyToSpring ({}, payload) {
         const { productName, content, productId, writer, price } = payload
 
-        return axiosInst.put(`http://localhost:7777/product/${productId}`,
+        return axiosInst.put(`/product/${productId}`,
             { productName, content, writer, price })
             .then(() => {
                 alert("수정 성공")
@@ -55,13 +52,13 @@ export default {
             })
     },
     requestProductImageToSpring ({ commit }, productId) {
-        return axiosInst.get(`http://localhost:7777/product/imageList/${productId}`)
+        return axiosInst.get(`/product/imageList/${productId}`)
             .then((res) => {
                 commit(REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING, res.data)
             })
     },
     requestAllOfProductToSpring ({ commit }) {
-        return axiosInst.get('http://localhost:7777/product/all')
+        return axiosInst.get('/product/all')
             .then((res) => {
                 commit(REQUEST_ALL_PRODUCT_TO_SPRING, res.data)
                 console.log("allProduct: " + res.data)
