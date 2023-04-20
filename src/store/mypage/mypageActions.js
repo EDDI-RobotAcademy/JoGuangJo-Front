@@ -1,15 +1,15 @@
 // mypageActions.js
-import axios from 'axios';
+import axiosInst from '@/utility/axiosObject';
 import * as mypageMutationTypes from './mypageMutation-Types';
 
 const actions = {
+
   async fetchMyPageData({ commit }) {
     let userInfo = localStorage.getItem('userInfo');
     let token = userInfo.split(',')[0].split(':')[1];
     let realtoken = token.substr(1, token.length - 2);
-
     try {
-      const response = await axios.post('http://localhost:7777/mypage/list', realtoken);
+      const response = await axiosInst.post('/mypage/list', realtoken);
       commit(mypageMutationTypes.SET_MY_PAGE_DATA, response.data);
     } catch (error) {
       console.error('Error fetching myPageData:', error);
@@ -17,7 +17,7 @@ const actions = {
   },
 
   saveAddress({ commit }, addressData) {
-    axios.post("http://localhost:7777/mypage/saveAddress", addressData)
+    axiosInst.post("/mypage/saveAddress", addressData)
       .then((res) => {
         console.log('Response data:', res.data);
         commit(mypageMutationTypes.UPDATE_MY_PAGE_DATA, res.data);
@@ -28,7 +28,7 @@ const actions = {
     console.log("mapActions 함수 실행")
     console.log("payload" + payload)
     try {
-      const response = await axios.post("http://localhost:7777/mypage/passwordCheck", payload);
+      const response = await axiosInst.post("/mypage/passwordCheck", payload);
       console.log("response.data : " + response.data)
       commit('SET_IS_CURRENT_PASSWORD_CORRECT', response.data);
     } catch (error) {
@@ -38,7 +38,7 @@ const actions = {
 
   async registerModifiedPassword({ commit }, payload) {
     try {
-      const response = await axios.post("http://localhost:7777/mypage/registerModifiedPassword", payload);
+      const response = await axiosInst.post("/mypage/registerModifiedPassword", payload);
       commit('SET_PASSWORD_UPDATE_STATUS', response.data);
     } catch (error) {
       console.error('Error while updating the password:', error);
@@ -63,7 +63,7 @@ const actions = {
     console.log(memberTypeRequestData.memberType)
     console.log(memberTypeRequestData.message)
     try {
-      const response = await axios.post("http://localhost:7777/mypage/memberTypeRequest", 
+      const response = await axiosInst.post("/mypage/memberTypeRequest", 
       memberTypeRequestData
       );
       if (response.data) {
@@ -78,22 +78,21 @@ const actions = {
 
   async fetchMemberTypeRequests({ commit }) {
     try {
-      const response = await axios.get("http://localhost:7777/mypage/memberTypeRequestList");
+      const response = await axiosInst.get("/mypage/memberTypeRequestList");
       commit(mypageMutationTypes.SET_MEMBER_TYPE_REQUESTS, response.data);
-      // 위의 기능과 동일 this.memberTypeRequests = response.data;
     } catch (error) {
       console.error("Error fetching member type requests:", error);
     }
   },
 
   async fetchMemberTypeRequest({ commit }, id) {
-    console.log("나 찾고올게")
+    console.log("I'll find you")
     try {
-      const response = await axios.get(`http://localhost:7777/mypage/memberTypeRequest/${id}`);
+      const response = await axiosInst.get(`/mypage/memberTypeRequest/${id}`);
       console.log("fetchMemberTypeRequest");
       console.log(response.data);
       commit(mypageMutationTypes.SET_MEMBER_TYPE_REQUEST, response.data);
-      console.log("찾았어")
+      console.log("Found it")
     } catch (error) {
       console.error("Error fetching member type request details:", error);
     }
@@ -101,20 +100,19 @@ const actions = {
   
   async acceptRequest(_, requestData) {
     try {
-      await axios.post('http://localhost:7777/mypage/rollrequestaccept', requestData);
+      await axiosInst.post('/mypage/rollrequestaccept', requestData);
     } catch (error) {
-      console.log("에러 발생 : ", error);
+      console.log("An error occurred: ", error);
     }
   },
   
   async rejectRequest(_, requestData) {
     try {
-      await axios.post('http://localhost:7777/mypage/rollrequestreject', requestData);
+      await axiosInst.post('/mypage/rollrequestreject', requestData);
     } catch (error) {
-      console.log("에러 발생 : ", error);
+      console.log("An error occurred: ", error);
     }
   },
-  
 };
 
 export default actions;
