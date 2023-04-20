@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-container>
-      <v-row>
+      <v-row class="sunghee v-row padding">
         <v-col cols="12">
           <v-select
             v-model="selectedMemberTypeLocal"
@@ -12,7 +12,7 @@
           ></v-select>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row class="sunghee v-row padding">
         <v-col cols="12">
           <v-text-field
             v-model="requestMessageLocal"
@@ -26,7 +26,7 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-btn color="primary" @click="submitRequest({ selectedMemberType: selectedMemberTypeLocal, requestMessage: requestMessageLocal })">제출</v-btn>
+          <v-btn class="sunghee v-btn" @click="submitRequest({ selectedMemberType: selectedMemberTypeLocal, requestMessage: requestMessageLocal })">제출</v-btn>
         </v-col>
       </v-row>
     </v-container>

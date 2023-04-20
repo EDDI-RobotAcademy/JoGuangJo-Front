@@ -78,8 +78,7 @@
                       block
                       x-large
                       rounded
-                      color="orange lighten-1"
-                      class="mt-6"
+                      class="mt-6 sunghee v-btn"
                       @click="resetPwHandler"
                       :disabled="false"
                   >비밀번호 변경</v-btn>

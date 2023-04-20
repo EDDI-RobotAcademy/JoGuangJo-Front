@@ -1,25 +1,25 @@
 <template>
     <div class="buttons-container">
         <h1>hi user</h1>
-        <router-link :to="{ name: 'ChangeAddress' }" class="button-link">
+        <router-link :to="{ name: 'ChangeAddress' }" class="sunghee button-link btn">
             주소 변경
         </router-link>
-        <router-link :to="{ name: 'PasswordChange' }" class="button-link">
+        <router-link :to="{ name: 'PasswordChange' }" class="sunghee button-link btn">
             비밀번호 변경
         </router-link>
-        <router-link :to="{ name: 'MemberTypeRequest' }" class="button-link">
+        <router-link :to="{ name: 'MemberTypeRequest' }" class="sunghee button-link btn">
             등급 변경 요청
         </router-link>
-        <router-link :to="{name: 'MemberTypeRequestListView'}" class="button-link">
+        <router-link :to="{name: 'MemberTypeRequestListView'}" class="sunghee button-link btn">
             등급 변경 요청 리스트
         </router-link>
-        <router-link :to="{ name: 'DonateListView' }" class="button-link">
+        <router-link :to="{ name: 'DonateListView' }" class="sunghee button-link btn">
             기부 내역
         </router-link>
-        <router-link to="/FindMyPost" class="button-link">
+        <router-link to="/FindMyPost" class="sunghee button-link btn">
             내 게시글 찾기
         </router-link>
-        <v-btn v-on:click="resignhandler" class="button-link">
+        <v-btn v-on:click="resignhandler" class="sunghee button-link btn">
             회원 탈퇴
         </v-btn>
     </div>
@@ -53,28 +53,5 @@ export default {
   align-items: center;
   justify-content: center;
   width: 100%;
-}
-
-.button-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 300px;
-  padding: 15px;
-  margin: 10px;
-  text-align: center;
-  text-decoration: none;
-  color: #333;
-  background-color: #f0f0f0;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.button-link:hover {
-  background-color: #e0e0e0;
 }
 </style>

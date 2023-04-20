@@ -8,7 +8,7 @@
               <v-col cols="12">
                 <v-text-field :value="item.email" label="Email" outlined>
                   <template v-slot:append>
-                    <v-btn color="primary" @click="editEmail(item)">Edit</v-btn>
+                    <v-btn class="sunghee v-btn" @click="editEmail(item)">Edit</v-btn>
                   </template>
                 </v-text-field>
               </v-col>
@@ -32,16 +32,16 @@
             </v-row>
             <v-row v-if="item.city">
               <v-col cols="6">
-                <v-btn color="primary" @click="callDaumAddressApi(item)">Edit Address</v-btn>
+                <v-btn class="sunghee v-btn" @click="callDaumAddressApi(item)">Edit Address</v-btn>
               </v-col>
               <v-col cols="6">
-                <v-btn color="primary" @click="saveAddressHandler(item)">Save Address</v-btn>
+                <v-btn class="sunghee v-btn" @click="saveAddressHandler(item)">Save Address</v-btn>
               </v-col>
             </v-row>
 
             <v-row v-else>
               <v-col cols="12">
-                <v-btn color="primary" @click="callDaumAddressApi(item)">Edit Address</v-btn>
+                <v-btn class="sunghee v-btn" @click="callDaumAddressApi(item)">Edit Address</v-btn>
               </v-col>
             </v-row>
           </v-container>

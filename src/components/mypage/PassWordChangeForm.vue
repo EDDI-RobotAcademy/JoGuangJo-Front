@@ -1,13 +1,13 @@
 <template>
     <v-card>
       <v-container>
-        <v-row>
+        <v-row class="sunghee v-row padding">
           <v-col cols="12">
             <v-text-field v-model="currentPassword" label="현재 비밀번호" outlined type="password"></v-text-field>
           </v-col>
 
           <v-col cols="12">
-            <v-btn color="primary" @click="checkCurrentPasswordHandler">Check Current Password</v-btn>
+            <v-btn class="sunghee v-btn" @click="checkCurrentPasswordHandler">Check Current Password</v-btn>
           </v-col>
 
           <v-col cols="12">
@@ -18,14 +18,15 @@
             <v-text-field v-model="confirmNewPassword" label="비밀번호 확인" outlined type="password"></v-text-field>
           </v-col>
 
+          <v-col cols="12">
+            <v-btn class="sunghee v-btn" @click="registerModifiedPasswordHandler">Save</v-btn>
+            <v-btn color="secondary">Cancel</v-btn>
+          </v-col>
         </v-row>
 
         <v-row>
 
-          <v-col cols="12">
-            <v-btn color="primary"  @click="registerModifiedPasswordHandler">Save</v-btn>
-            <v-btn color="secondary">Cancel</v-btn>
-          </v-col>
+         
 
         </v-row>
       </v-container>
@@ -84,3 +85,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.text-field-row {
+  padding-left: 100px; /* Adjust this value to increase/decrease the padding on the left */
+  padding-right: 100px; /* Adjust this value to increase/decrease the padding on the right */
+}
+</style>

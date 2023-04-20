@@ -13,9 +13,9 @@
 
               <div class="d-flex">
                 <v-text-field v-model="email" label="이메일" @change="emailValidation"
-                              :rules="email_rule" :disabled="false" required/>
+                              :rules="email_rule" :disabled="emailPass" required/>
                 <v-btn text large outlined style="font-size: 13px"
-                       class="mt-3 ml-5" color="teal lighten-1"
+                       class="mt-3 ml-5 sunghee v-btn"  :disabled="emailPass"
                        @click="checkEmail">
                   이메일 <br/>중복 확인
                 </v-btn>
@@ -35,7 +35,7 @@
                 <v-text-field v-model="nickName" label="닉네임" :disabled="nickNamePass" required  color="black"/>
 
                 <v-btn text large outlined style="font-size: 13px; height: 55px"
-                                class="mt-0 ml-5 mr-0"
+                                class="mt-0 ml-5 mr-0 sunghee v-btn"
                                 @click="checkNickName"
                                 :disabled="nickNamePass"
               >닉네임 중복 확인
@@ -88,7 +88,7 @@
                block
                x-large
                rounded
-               class="mt-6"
+               class="mt-6 sunghee v-btn"
                color="#fee789"
                :disabled="!termsAccepted || (emailPass && nickNamePass) == false"
               >
