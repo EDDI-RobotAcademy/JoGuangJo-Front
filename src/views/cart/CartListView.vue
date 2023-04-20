@@ -2,7 +2,9 @@
 <template>
   <div>
     <cart-list-form @selectForCartItems="selectForCartItems"/>
-  <button @click="deleteSelectedCartItems()">선택한 항목 삭제</button>
+      <button @click="deleteSelectedCartItems()">선택한 항목 삭제</button>
+      <button @click="toBuySelectedCartItems()">선택한 항목 구매</button>
+
   </div>
 </template>
 
@@ -15,11 +17,12 @@ export default {
     components: { CartListForm },
     computed: {
         ...mapState("accountModule", ['isAuthenticated']),
-        ...mapState("cartModule", ["cartItems"])
+        ...mapState("cartModule", ["cartItems"]),
     },
     methods:{
         ...mapActions("cartModule", ['requestCartListFromSpring', 'requestDeleteCartItemToSpring']),
         selectForCartItems() {
+
           },
         // CartListView.vue에서 isSelecte = true 값을 가진 item 목록을 가져온다.
         deleteSelectedCartItems() {
@@ -29,7 +32,21 @@ export default {
           this.requestDeleteCartItemToSpring(cartItemIds);
           console.log(`선택된 카트 아이템 ${cartItemIds}을 삭제합니다.`);
           window.location.reload(true);
-          } 
+          },
+        toBuySelectedCartItems() {
+          let toBuyCartMsg = confirm("선택한 상품을 구매 하시겠습니까?");
+          const selectedItems = this.cartItems.filter(item => item.isSelected);
+          const cartItemIds = selectedItems.map(item => item.cartItemId);
+
+          const productIds = [];
+          for (const itemId of cartItemIds) {
+            const item = this.cartItems.find(item => item.cartItemId === itemId);
+            const productId = item.product.productId;
+            productIds.push(productId);
+          }
+          console.log(productIds + "구매하기 위한 선택한 상품 테스트");
+          this.$router.push({ name: 'ProductOrderView', params: { productIds: productIds } });
+          },
         },
           async mounted () {
             let memberId = JSON.parse(localStorage.getItem("userInfo")).id
