@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <div align="center">
-      <h2 class="h2">게시물 보기</h2>
       <product-read-form v-if="product" :product="product" :productImages="productImages" />
       <p v-else>로딩중 .......... </p>
       <div class="btn-container">
@@ -74,26 +73,27 @@ export default {
 </script>
 
 <style scoped>
-.h2 {
-  margin-bottom: 20px;
-  background-color: #fee789;
-}
+  .h2 {
+    margin-bottom: 20px;
+    background-color: #fee789;
+  }
 
-.btn-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
+  .btn-container {
+    display: flex;
+    justify-content: center; /* Updated to center the buttons */
+    margin-top: 20px;
+  }
 
-.back-btn {
-  margin-right: auto;
-}
+  .back-btn {
+    margin-right: 10px; /* Updated margin-right */
+  }
 
-.modify-btn {
-  margin-right: 5px;
-}
+  .modify-btn {
+    margin-right: 5px;
+  }
 
-.delete-btn {
-  margin-left: 5px;
-}
+  .delete-btn {
+    margin-left: 5px;
+  }
 </style>
+

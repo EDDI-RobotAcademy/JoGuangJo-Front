@@ -5,33 +5,38 @@
         <v-row>
           <v-col cols="6">
             <v-card v-for="(imagePath, idx) in product.imageResourcePaths" :key="idx" cover>
-              <v-img :src="require(`@/assets/productImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
+              <v-img :src="require(`@/assets/productImgs/${imagePath}`)"
+                style="object-fit: contain; width: 100%; height: 100%;">
               </v-img>
-            </v-card>            
+            </v-card>
           </v-col>
-          <v-col cols="6">
+          <v-col cols="6" class="left-aligned">
             <v-card-title class="headline">{{ product.productName }}</v-card-title>
-            <p class="price">가격: {{ product.price }}</p>
+            <p class="price">가격: {{ product.price }} (원)</p>
             <p class="free-shipping">무료배송 (30,000원 이상 구매 시)</p>
-            <div class="action-container">
-              <div class="quantity-selection">
-                <input type="number" id="quantity" name="quantity" min="1" max="99" value="1">
-              </div>
-              <div>
-                <v-btn class="modify-btn" rounded
-                  :to="{ name: 'ProductOrderView', params: { productId: product.productId } }"
-                  v-if="isAuthenticated && !isCurrentUserAuthor">
-                  장바구니 담기
-                </v-btn>
-                <v-btn class="buy-btn" rounded
-                  :to="{ name: 'ProductOrderView', params: { productId: product.productId } }"
-                  v-if="isAuthenticated && !isCurrentUserAuthor">
-                  바로구매
-                </v-btn>
-
-              </div>
+            <div class="rewards-box">
+              <p>30,000원 이상 결제 시 1% 적립</p>
+              <p>카카오페이 결제 시 2% 적립</p>
+              <p>[카카오페이 + 북유럽 머니] 결제 시 4% 추가적립</p>
             </div>
-
+            <div class="rewards-box">
+              <v-select label="수량" :items="['1', '2', '3']"></v-select>
+            </div>
+            <div class="rewards-box">
+              <v-select label="옵션" :items="['옵션1', '옵션2', '옵션3']"></v-select>
+            </div>
+            <div class="btn-2" style="text-align: right;">
+              <v-btn class="modify-btn" rounded
+                :to="{ name: 'ProductOrderView', params: { productId: product.productId } }"
+                v-if="isAuthenticated && !isCurrentUserAuthor">
+                장바구니 담기
+              </v-btn>
+              <v-btn class="buy-btn" rounded :to="{ name: 'ProductOrderView', params: { productId: product.productId } }"
+                v-if="isAuthenticated && !isCurrentUserAuthor">
+                바로구매
+              </v-btn>
+            </div>
+            
           </v-col>
         </v-row>
         <v-divider class="divider"></v-divider>
@@ -95,6 +100,7 @@ export default {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  margin-right: 5px;
 }
 
 .content-area {
@@ -109,18 +115,6 @@ export default {
   font-size: 1rem;
   color: #4caf50;
 }
-
-.quantity-selection {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.quantity-selection input {
-  margin-left: 0.5rem;
-  width: 60px;
-}
-
 .product-description-view {
   width: 100%;
   min-height: 200px;
@@ -131,7 +125,6 @@ export default {
   line-height: 1.5;
   color: #212529;
 }
-
 .product-description-view img {
   max-width: 100%;
   height: auto;
@@ -145,24 +138,6 @@ export default {
 
 .mb-3 {
   margin-bottom: 1rem;
-}
-
-.quantity-selection {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  background-color: #f8f8f8;
-}
-
-.quantity-selection input {
-  margin-left: 0.5rem;
-  width: 60px;
-  border: none;
-  text-align: center;
-  background-color: #f8f8f8;
 }
 
 .modify-btn,
@@ -198,9 +173,22 @@ export default {
   margin-right: 5px;
 }
 
-.action-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.left-aligned {
+  text-align: left;
+}
+
+.rewards-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 5px;
+}
+
+.rewards-box p {
+  margin: 5px 0;
+}
+.btn-2 {
+  margin-top: 20px;
 }
 </style>
