@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="forList">
         <v-container>
-            <v-card-text v-if="!qnaComments || (Array.isArray(qnaComments) && qnaComments.length === 0)">
-                <p>현재 등록된 댓글이 없습니다.</p>
+            <v-card-text class="for-now" v-if="!qnaComments || (Array.isArray(qnaComments) && qnaComments.length === 0)">
+                <h3 class="h3">첫번째 댓글을 등록 해주세요.</h3>
             </v-card-text >
             <v-card-text v-else v-for="(qnaComment, index) in qnaComments" :key="qnaComment.qnaCommentId">
                 <div class="qna-comment">
@@ -79,5 +79,45 @@ export default {
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
+    background-color: #f8f8f8;
+}
+
+.qna-comment p:first-child {
+    margin-top: 0;
+}
+
+.qna-comment button {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #a2a2a2;
+}
+
+.qna-comment button:hover {
+    text-decoration: underline;
+    color: #555;
+}
+
+.qna-comment button:active {
+    color: #333;
+}
+
+
+.qna-comment button:not(:last-child) {
+    margin-right: 5px;
+}
+
+.forList {
+    width: 1275px;
+}
+
+.h3 {
+    padding-top: 45px;
+    text-align: center;
+}
+
+.for-now {
+    margin-top: -30px;
 }
 </style>

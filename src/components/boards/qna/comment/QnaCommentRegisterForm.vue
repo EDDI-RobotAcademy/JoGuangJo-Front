@@ -1,31 +1,30 @@
 <template>
-    <v-container>
-        <form @submit="onSubmitRegister()">
-            <table>
-            <tbody>
-            <br>
-            <tr>
-            &nbsp;&nbsp;&nbsp;
-            <td>
-            <input style="font-weight:bold;" label="작성자" type="text" v-model="writer" disabled />
-            <textarea v-model="comment"
-                    cols="60" rows="1"
-                    placeholder="내용을 입력해 주세요."
-                    onfocus="this.placeholder=''"
-                    onblur="this.placeholder='내용을 입력해 주세요.'">
-            </textarea>
-            </td>
-            <td>
-            <v-btn type="submit">
-                등록하기
-            </v-btn>
-            </td>
-        </tr>
-        </tbody>
-        </table>
+  <v-container class="container">
+    <form @submit="onSubmitRegister()">
+      <div class="input-group">
+        <div class="input-field ms-5">
+            <input class="for-writer" style="font-weight:bold;" label="author" type="text" v-model="writer" disabled />
+        </div>
+        <div class="input-field">
+          <textarea v-model="comment"
+            cols="100" rows="1"
+            placeholder="댓글을 작성 해주세요."
+            onfocus="this.placeholder=''"
+            onblur="this.placeholder='댓글을 작성 해주세요.'"
+            class="mt-1"
+            style="height: 40px; resize: none; padding-top: 10px;">
+          </textarea>
+        </div>
+        <div class="input-field ms-5 for-button">
+          <v-btn type="submit">
+            댓글 등록
+          </v-btn>
+        </div>
+      </div>
     </form>
-    </v-container>
+  </v-container>
 </template>
+
 
 <script>
 
@@ -52,5 +51,17 @@ export default {
 </script>
 
 <style scoped>
+.for-button {
+    padding-left: 0;
+    padding-top: 5px;
+}
+
+.for-writer {
+    padding-top: 15px;
+}
+
+.container {
+    border-top: 1px solid rgba(191, 188, 188, 0.579);
+}
 
 </style>
