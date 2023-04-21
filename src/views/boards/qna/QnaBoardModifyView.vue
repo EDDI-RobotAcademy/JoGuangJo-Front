@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <div align="center">
-            <h2>게시물 수정</h2><br>
+            <h2 class="for-qna-modify">게시물 수정 중...</h2><br>
             <qna-board-modify-form v-if="qnaBoard" :qnaBoard="qnaBoard" 
             :qnaBoardId="qnaBoardId"
                     @submit="onSubmit"/>
@@ -47,4 +47,9 @@ export default {
 </script>
 
 <style>
+.for-qna-modify{
+        margin-top: 50px;
+        margin-bottom: -15px;
+        text-align: center;
+}
 </style>
