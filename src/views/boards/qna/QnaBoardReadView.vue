@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <div align="center"><br>
-            <h2 class="h2">질문 게시판 상세 글 읽기</h2>
+            <h2 class="h2">떠오르지 않는다. '상세 글 읽기'?</h2>
         <qna-board-read-form v-if="qnaBoard" :qnaBoard="qnaBoard"/>
             <p v-else>로딩중 .......... </p>
             <div class="btn">
@@ -12,7 +12,7 @@
                  rounded
                  :to="{ name: 'QnaBoardListView' }"
               >
-                돌아가기
+                목록으로
               </v-btn>
 
               <v-btn
@@ -21,12 +21,12 @@
                 rounded 
                 :to="{ name: 'QnaBoardModifyView', params: { qnaBoardId } }"
               >
-                게시물 수정
+                수정
               </v-btn>
 
               <v-btn
-                class="delete-btn"
-                color="#fe6133"
+                class="delete-btn ms-1"
+                color="rgb(208, 197, 197);"
                 rounded
                 @click="onDelete"
               >
@@ -34,15 +34,14 @@
               </v-btn>
           </div>
         </div>
-    </div><br>         
+    </div>
+    <v-divider></v-divider>
     <table class="comment-form">
-      <tr>
-        <div>
-          <h1>댓글</h1>
+      <tr class="forComment">
+        <div  class="comment-headline">
+          <h1 class="ms-3">댓글</h1>
         </div>
-                <div>
                     <qna-comment-list-form :qnaComments="qnaComments"/>
-                </div>
                     <qna-comment-register-form @submit="onSubmitRegister"/>
             </tr>
         </table>
@@ -109,19 +108,24 @@ export default {
         this.currentUser = JSON.parse(userInfo).nickName
         console.log(this.currentUser, " : 로그인 한 유저의 닉네임")
     }
-},
+    }
 }
+
 
 </script>
 
 <style scoped>
+
+.h2 {
+  padding-top: 30px;
+}
 
 .btn {
   margin-left: 100px;
 }
 
 .back-btn {
-  margin-right: 700px;
+  margin-right: 1040px;
   margin-left: -100px;
 }
 
@@ -133,9 +137,26 @@ export default {
   margin-right: 0px;
 }
 
-.comment-form {
-  margin-left: 220px;
+.forComment {
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
+
+.comment-form {
+  margin-left: 10px;
+  
+}
+
+.comment-headline {
+  background-color: #fee789;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px 5px 0px 0px;
+  width: 100%;
+  height: 80%;
+}
+
+
 </style>
 
 

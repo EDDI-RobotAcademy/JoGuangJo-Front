@@ -1,29 +1,34 @@
 <template>
-    <v-container>
-      <div align="center">
-        <v-card v-if="qnaBoard" max-width="1100">
-          <v-card-title class="headline">{{ qnaBoard.title }}</v-card-title>
-          <v-card-subtitle class="subtitle-background">
-            <div class="d-flex justify-content-between">
-              <span>작성자: {{ qnaBoard.writer }}</span>
-              <span class="qnaBoardId-text">게시물 번호: {{ qnaBoard.qnaBoardId }}</span>
-              <span>등록일: {{ formattedDate(qnaBoard.regDate) }}</span>
-            </div>
-          </v-card-subtitle>
-          <v-divider class="divider"></v-divider>
-          <v-card-text class="content-area">
-          <v-carousel hide-delimiters>
-            <v-carousel-item v-for="(imagePath, idx) in qnaBoard.imageResourcePaths" :key="idx" cover>
-              <img :src="require(`@/assets/qnaUploadImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
-            </v-carousel-item>
-          </v-carousel>
-          <div class="qna-comment">{{ qnaBoard.content }}</div>
-          </v-card-text>
-        </v-card>
-        <p v-else>로딩중 .......... </p>
-      </div>
-    </v-container>
-  </template>
+  <v-container>
+    <div align="center">
+      <v-card v-if="qnaBoard" max-width="1500">
+        <v-card-title class="headline qna-title">{{ qnaBoard.title }}</v-card-title>
+        <v-card-subtitle class="subtitle-background">
+          <div class="d-flex justify-content-between sutbtitleForSpan">
+            <span>작성자: {{ qnaBoard.writer }}</span>
+            <span>등록일: {{ formattedDate(qnaBoard.regDate) }}</span>
+          </div>
+        </v-card-subtitle>
+        <v-divider class="divider"></v-divider>
+        <v-card-text class="content-area">
+        <!-- 이미지가 있는 경우 이미지와 내용(content)를 같이 보여준다. -->
+        <!-- length 수정해야됨. 콘솔 에러는 발생하는데 이상하게 됨 -->
+        <div v-if="qnaBoard.imageResourcePaths.length > 0">
+        <v-carousel hide-delimiters class="carousel">
+          <v-carousel-item v-for="(imagePath, idx) in qnaBoard.imageResourcePaths" :key="idx" cover>
+            <img :src="require(`@/assets/qnaUploadImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
+          </v-carousel-item>
+        </v-carousel>
+        <div class="qna-content" v-html="qnaBoard.content"></div>
+        </div>
+        <!-- 이미지가 없을 경우 내용만 보여준다. -->
+        <div v-html="qnaBoard.content" class="qna-content"></div>
+        </v-card-text>
+      </v-card>
+      <p v-else>로딩중 .......... </p>
+    </div>
+  </v-container>
+</template>
   
   <script>
   import { quillEditor } from 'vue-quill-editor';
@@ -56,24 +61,27 @@
   };
   </script>
   
-  <style>
+  <style scoped>
+
   .headline, .subtitle-background {
     background-color: #fee789;
   }
   .content-area {
-  min-height: 300px;
+  min-height: 350px;
   }
 
-  .divider {
+.divider {
     margin-top: -5px;
   }
 
-  .qnaBoardId-text {
-    margin-left: 380px;
-  }
-
-  .qna-comment {
-  font-size: 24px;
-  line-height: 1.5; 
+.sutbtitleForSpan {
+  padding-top: 40px;
 }
+
+.carousel {
+  border: 1px solid  rgb(208, 197, 197);
+  border-radius: 10px;
+}
+
+
   </style>
