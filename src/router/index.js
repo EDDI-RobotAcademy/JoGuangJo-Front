@@ -245,7 +245,7 @@ const routes = [
   },
   {
     path: '/change-password',
-    name: 'PasswordChange',
+    name: 'PassWordChange',
     components: {
       default: PassWordChange
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MyPageForm></MyPageForm>
+        <my-page-form/>
     </div>
 </template>
 

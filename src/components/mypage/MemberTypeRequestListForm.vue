@@ -20,10 +20,10 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Request Id", value: "memberTypeRequestId" },
-        { text: "Nickname", value: "nickname" },
-        { text: "Member Type", value: "memberType" },
-        { text: "Registration Date", value: "regDate" },
+        { text: "번호", value: "memberTypeRequestId" },
+        { text: "닉네임", value: "nickname" },
+        { text: "회원 등급", value: "memberType" },
+        { text: "등록 일자", value: "regDate" },
       ],
     };
   },
