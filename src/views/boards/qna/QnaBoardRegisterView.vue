@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <h2>질문 게시글 등록</h2><br><br>
+        <h2 class="forQnaRegister">문의하기</h2><br><br>
         <qna-board-register-form @submit="onSubmit" />
     </v-container>
 </template>
@@ -24,3 +24,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .forQnaRegister {
+        margin-top: 50px;
+        margin-bottom: -40px;
+        text-align: center;
+    }
+</style>

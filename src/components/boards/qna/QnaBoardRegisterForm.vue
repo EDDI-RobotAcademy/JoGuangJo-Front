@@ -1,24 +1,19 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <div>
-      <label for="title">제목</label>
-      <input type="text" v-model="title" />
-    </div>
-    <div>
-      <label for="writer">작성자</label>
-      <input type="text" v-model="writer" />
-    </div>
-    <div>
-      <label for="content">내용</label>
-      <quill-editor v-model="content" ref="editor"></quill-editor>
-    </div>
-    <div>
-      <button type="submit">등록</button>
-      <router-link :to="{ name:'QnaBoardListView' }">돌아가기</router-link>
-    </div>
-  </form>
+  <v-container>
+    <v-card>
+      <form @submit.prevent="onSubmit">
+        <v-card-title class="forColor"></v-card-title>
+          <v-text-field v-model="title" class="forColor input-group title" label="이 곳에 제목을 입력해주세요." hide-details></v-text-field>
+          <v-text-field :value="writer" class="forColor input-group title" label="작성자" readonly hide-details></v-text-field>
+        <quill-editor v-model="content" style="height: 350px;" :options="{placeholder: '이 곳에 질문하실 내용을 입력해주세요.'}" ref="editor"></quill-editor>
+      <div class="d-flex justify-end">
+        <v-btn class="btnForSubmit common-btn" type="submit">등록</v-btn>
+        <v-btn class="btnForBack common-btn" :to="{ name: 'QnaBoardListView' }">돌아가기</v-btn>
+      </div>
+      </form>
+    </v-card>
+  </v-container>
 </template>
-
 <script>
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
@@ -28,17 +23,22 @@ export default {
   name: "QnaBoardRegisterForm",
   data() {
     return {
-      title: '제목을 입력 해주세요.',
+      title: '',
       writer: JSON.parse(localStorage.getItem('userInfo')).nickName,
-      content: '질문 내용을 입력 해주세요.',
+      content: '',
       files: '',
     }
   },
+  
   methods: {
     async onSubmit() {
       if (!this.content || !this.title) {
         alert('제목과 내용을 반드시 입력해주세요.');
         return;
+      }
+     if (this.title.length > 30) {
+        alert("제목은 30자 이하만 입력해주세요.");
+        return; 
       }
 
       const qnaData = new FormData();
@@ -70,3 +70,36 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  .btnForSubmit {
+    background-color: #fee789 !important;
+    color: black;
+    border-radius: 25px;
+    margin-top: 55px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+
+  .btnForBack {
+    background-color: rgb(208, 197, 197);
+    color: black;
+    border-radius: 25px;
+    margin-top: 55px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+
+  .forColor{
+    background-color: #fee789 !important;
+    margin: 0;
+    padding-top: 20px;
+  }
+
+  .input-group{
+    padding: 20px;
+  }
+</style>
+
+
+
