@@ -6,8 +6,9 @@
           <v-col cols="6">
             <v-card v-for="(imagePath, idx) in product.imageResourcePaths" :key="idx" cover>
               <v-img :src="require(`@/assets/productImgs/${imagePath}`)"
-                style="object-fit: contain; width: 100%; height: 100%;">
+                style="object-fit: contain; width: 350px; height: 500px;">
               </v-img>
+
             </v-card>
           </v-col>
           <v-col cols="6" class="left-aligned">
@@ -36,7 +37,7 @@
                 바로구매
               </v-btn>
             </div>
-            
+
           </v-col>
         </v-row>
         <v-divider class="divider"></v-divider>
@@ -115,6 +116,7 @@ export default {
   font-size: 1rem;
   color: #4caf50;
 }
+
 .product-description-view {
   width: 100%;
   min-height: 200px;
@@ -125,6 +127,7 @@ export default {
   line-height: 1.5;
   color: #212529;
 }
+
 .product-description-view img {
   max-width: 100%;
   height: auto;
@@ -188,7 +191,7 @@ export default {
 .rewards-box p {
   margin: 5px 0;
 }
+
 .btn-2 {
   margin-top: 20px;
-}
-</style>
+}</style>

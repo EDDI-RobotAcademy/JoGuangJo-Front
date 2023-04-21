@@ -12,7 +12,7 @@
             v-if="isCurrentUserAuthor">
             수정
           </v-btn>
-          <v-btn class="delete-btn" color="#fe6133" rounded dark @click="onDelete" v-if="isCurrentUserAuthor">
+          <v-btn class="delete-btn" rounded @click="onDelete" v-if="isCurrentUserAuthor">
             삭제
           </v-btn>
         </div>
@@ -94,6 +94,7 @@ export default {
 
   .delete-btn {
     margin-left: 5px;
+    background-color: rgb(208, 197, 197)
   }
 </style>
 

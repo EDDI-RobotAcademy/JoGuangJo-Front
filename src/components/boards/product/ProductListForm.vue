@@ -47,14 +47,11 @@
                   <p class="product-price">{{ item.price }}원</p>
                   <p class="product-seller">판매자: {{ item.writer }}</p>
                   <div class="button-container">
-                    <v-btn @click="onCartClick(item)" class="btn1">장바구니</v-btn>
+                    <v-btn text @click="addToCart(item.productId)" class="btn1">장바구니</v-btn>
                     <v-btn @click="onBuyClick(item)" class="btn1">바로구매</v-btn>
                     <v-btn @click="onLikeClick(item)" class="btn1">♥</v-btn>
                   </div>
                 </v-card-text>
-                <v-card-actions class="justify-center">
-                  <v-btn color="primary" text @click="addToCart(item.productId)">장바구니에 담기</v-btn>
-                </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
