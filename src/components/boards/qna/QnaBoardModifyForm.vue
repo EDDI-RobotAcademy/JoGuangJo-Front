@@ -1,29 +1,18 @@
 <template>
-    <form @submit.prevent="onSubmit">
-        <div>
-            <label>게시글번호</label>
-            <input type="text" :value="qnaBoard.qnaBoardId" disabled/>
+  <v-container>
+    <v-card>
+      <form @submit.prevent="onSubmit">
+        <v-card-title class="forColor"></v-card-title>
+          <v-text-field v-model="title" class="forColor input-group title" label="제목" hide-details></v-text-field>
+          <v-text-field :value="writer" class="forColor input-group title" label="작성자" readonly hide-details></v-text-field>
+          <quill-editor v-model="content" style="height:350px" ref="editor"></quill-editor>
+        <div class="d-flex justify-end">
+          <v-btn class="btnForSubmit common-btn" type="submit">수정 완료</v-btn>
+          <v-btn class="btnForBack common-btn" :to="{ name: 'QnaBoardReadView', params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">취소</v-btn>
         </div>
-        <div>
-            <label for="title">제목</label>
-            <input type="text" v-model="title" />
-        </div>
-        <div>
-            <label for="writer">작성자</label>
-            <input type="text" v-model="writer" disabled />
-        </div>
-        <div>
-            <label for="content">내용</label>
-            <quill-editor v-model="content" ref="editor"></quill-editor>
-        </div>
-        <div>
-        <button type="submit">수정 완료</button>
-        <router-link :to="{ name: 'QnaBoardReadView',
-                            params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
-            취소
-        </router-link>
-        </div>
-    </form>
+      </form>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -95,4 +84,30 @@ export default {
 </script>
 
 <style>
+  .btnForSubmit {
+    background-color: #fee789 !important;
+    color: black;
+    border-radius: 25px;
+    margin-top: 55px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+
+    .btnForBack {
+    background-color: rgb(208, 197, 197);
+    color: black;
+    border-radius: 25px;
+    margin-top: 55px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+    .forColor{
+    background-color: #fee789 !important;
+    margin: 0;
+    padding-top: 20px;
+  }
+    .input-group{
+    padding: 20px;
+  }
+
 </style>
