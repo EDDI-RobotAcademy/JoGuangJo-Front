@@ -6,11 +6,6 @@
     <div class="full-right1">
       <div class="product-list-form1">
         <v-container>
-          <v-row>
-            <v-col cols="12">
-              <h2 class="title1">상품 목록</h2>
-            </v-col>
-          </v-row>
           <div class="search-sortBy">
             <v-row>
               <v-col cols="12" sm="6">
@@ -23,9 +18,17 @@
                   <button @click="searchProducts">검색</button>
                 </div>
               </v-col>
-              <v-col cols="12" sm="6">
-                <v-select v-model="sortBy" :items="['이름순', '낮은 가격순', '높은 가격순', '최신순']" label="정렬" outlined dense
-                  style="max-width: 150px;" class="filter-item" color="#fee789" rounded></v-select>
+              <v-col cols="12" sm="6" class="register-sortby-col">
+                <button @click="goToProductRegister" class="register-button">상품 등록</button>
+                <div class="sortby">
+                  <select v-model="sortBy" @change="sortProducts" class="custom-select">
+                    <option value="">정렬하기</option>
+                    <option value="이름순">이름순</option>
+                    <option value="낮은 가격순">낮은 가격순</option>
+                    <option value="높은 가격순">높은 가격순</option>
+                    <option value="최신순">최신순</option>
+                  </select>
+                </div>
               </v-col>
             </v-row>
           </div>
@@ -33,8 +36,8 @@
             <v-col v-for="(item, i) in paginatedProducts" :key="i" cols="12" sm="4" md="3" class="product-col">
               <v-card class="elevation-6-product-card">
                 <img v-for="(imagePath, idx) in item.realThumbnail" :key="idx"
-                  :src="require(`@/assets/productImgs/${imagePath}`)" :alt="`상품 이미지 ${i + 1}`" class="rounded"
-                  style="width: 100%; height: auto;">
+                  :src="require(`@/assets/productImgs/${imagePath}`)" :alt="`상품 이미지 ${i + 1}`"
+                  class="rounded product-image">
                 <v-card-text class="text-center">
                   <p class="product-name">
                     <router-link :to="{ name: 'ProductReadView', params: { productId: item.productId.toString() } }">
@@ -137,6 +140,9 @@ export default {
     }
   },
   methods: {
+    goToProductRegister() {
+      this.$router.push({ name: 'ProductRegisterView' });
+    },
     searchProducts() {
       const query = this.searchQuery.toLowerCase();
       if (query === '') {
@@ -162,6 +168,13 @@ export default {
 </script>
 
 <style scoped>
+.product-image {
+  width: 100%;
+  height: 200px;
+  /* 원하는 높이 설정 */
+  object-fit: cover;
+}
+
 .search-sortBy {
   margin-top: -30px;
 }
@@ -207,6 +220,7 @@ export default {
 .product-name {
   font-size: 1.2rem;
   margin: 0;
+  text-decoration: none;
 }
 
 .product-price {
@@ -231,8 +245,12 @@ export default {
 .btn1 {
   background-color: #fee789 !important;
   color: black;
-  margin-left: -19px;
+  margin: 0 6px;
   transition: background-color 0.3s;
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 70px;
+  text-align: center;
 }
 
 .btn1:hover {
@@ -240,14 +258,12 @@ export default {
   color: white;
 }
 
+
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* space-between을 space-around로 변경 */
   align-items: center;
-  /* 추가 */
-  margin-right: -20px;
   margin-top: auto;
-  /* 추가 */
   margin-bottom: auto;
 }
 
@@ -264,9 +280,9 @@ export default {
 }
 
 .search button {
-  background-color: #4CAF50;
+  background-color: #FEE789;
   border: none;
-  color: white;
+  color: black;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -293,8 +309,71 @@ export default {
   border-color: #4CAF50;
 }
 
-
 .filter-item {
   margin-right: -530px;
 }
+
+.register-col {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.sortby-col {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.register-button {
+  margin-right: 10px;
+}
+
+.register-sortby-col {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center
+}
+
+.register-button {
+  background-color: #FEE789;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.register-button:hover {
+  background-color: #FFC107;
+  color: white;
+}
+
+.sortby-col select {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sortby-col select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.sortby-col select::before {
+  content: "정렬";
+  color: #000;
+  background-color: #fff;
+  padding-right: 10px;
+}
 </style>
+
