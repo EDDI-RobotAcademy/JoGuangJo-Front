@@ -20,14 +20,8 @@
 
           <v-col cols="12">
             <v-btn class="sunghee v-btn" @click="registerModifiedPasswordHandler">Save</v-btn>
-            <v-btn color="secondary">Cancel</v-btn>
+            <v-btn class="sunghee v-btn negative">Cancel</v-btn>
           </v-col>
-        </v-row>
-
-        <v-row>
-
-         
-
         </v-row>
       </v-container>
     </v-card>
@@ -87,8 +81,4 @@ export default {
 </script>
 
 <style>
-.text-field-row {
-  padding-left: 100px; /* Adjust this value to increase/decrease the padding on the left */
-  padding-right: 100px; /* Adjust this value to increase/decrease the padding on the right */
-}
 </style>
