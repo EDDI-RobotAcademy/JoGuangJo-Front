@@ -28,8 +28,7 @@ export default {
   data() {
     return {
       selectedCategory: "전체",
-      categories: ["전체", "카테고리1", "카테고리2", "카테고리3"],
-      additionalCategories: ["카테고리4", "카테고리5", "카테고리6"],
+      categories: ["전체", "문구류", "도서", "굿즈"],
     };
   },
 };
@@ -52,5 +51,9 @@ export default {
 
 .category123, .category456 {
   align-items: center;
+}
+
+.v-list-item:hover {
+  background-color: #FEE789;
 }
 </style>
