@@ -1,24 +1,26 @@
 <template>
     <div class="qna-board-list">
-    <!--  <div class="-form">
-        <img src="@/assets/carousel/test_1.jpg" alt="logo" width="1500" height="250" class="logo-img1">
-      </div> -->
       <div class="Board-list">
         <div class="h2">
-         <h2>Q&A 문의하기</h2>
+         <h2 class="ms-1">Q&A 문의하기</h2>
         </div> 
         <div class="search">
-           <select v-model="searchBy" class="search-select">
-           <option value="title">제목</option>
-           <option value="writer">작성자</option>
-         </select>
+          <v-btn class="btn" :to="{ name: 'QnaBoardRegisterView' }">
+            <span class="btn-text">게시물 작성</span>
+          </v-btn>
+  <v-select
+    v-model="searchBy"
+    :items="searchOptions"
+    label="검색 기준"
+    class="search-select"
+    prepend-icon="mdi-magnify"
+  ></v-select>
             <v-list-item>
                   <div class="search-bar">
                     <v-text-field
                         v-model="searchQuery"
                         class="nav-search"
                         placeholder="  검색어를 입력하세요."
-                        prepend-icon="mdi-magnify"
                         color="#FFDE59"
                         clearable
                         style="width:200px;"
@@ -26,9 +28,9 @@
                     >
                     </v-text-field>
                   </div>
-                       <div class="search-btn">
+                       <div class="search-btn mb-1">
                         <v-btn
-                        small
+                        intermediate
                         color="#fee789"
                         rounded
                         @click="searchQnaBoards()"
@@ -40,23 +42,23 @@
       </div>
       <table>
         <tr>
-          <th class="no-column">No</th>
-          <th :style="{ 'padding-left': '50px' }" class="title-column">제목</th>
-          <th :style="{ 'padding-left': '300px' }" class="writer-column">작성자</th>
-          <th :style="{ 'padding-left': '350px' }" class="date-column">등록일자</th>
+          <th :style="{ 'padding-left': '10px' }" class="title-column">번호</th>
+          <th :style="{ 'padding-left': '300px' }" class="title-column">제목</th>
+          <th style="padding-left: auto; text-align: right;" class="writer-column">작성자</th>
+          <th style="padding-left: auto; text-align: right;"  class="date-column">등록일자</th>
         </tr>
         <tr v-if="!displayedQnaBoards || (Array.isArray(displayedQnaBoards) && displayedQnaBoards.length === 0)">
           <td colspan="4">현재 등록된 게시물이 없습니다!</td>
         </tr>
         <tr v-else v-for="qnaBoard in paginatedQnaBoards" :key="qnaBoard.qnaBoardId">
-          <td>{{ qnaBoard.qnaBoardId }}</td>
-          <td :style="{ 'padding-left': '50px' }">
+          <td :style="{ 'padding-left': '15px' }">{{ qnaBoard.qnaBoardId }} </td>
+          <td :style="{ 'padding-left': '250px' }">
             <router-link :to="{ name: 'QnaBoardReadView', params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
               {{ qnaBoard.title }}
             </router-link>
           </td>
-          <td :style="{ 'padding-left': '300px' }">{{ qnaBoard.writer }}</td>
-          <td :style="{ 'padding-left': '350px' }">{{ formattedDate(qnaBoard.regDate) }}</td>
+          <td style="padding-left: auto; text-align: right;">{{ qnaBoard.writer }}</td>
+          <td style="padding-left: auto; text-align: right;">{{ formattedDate(qnaBoard.regDate) }}</td>
         </tr>
       </table><br>
       <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
@@ -76,7 +78,11 @@ export default {
         pageSize: 5, // 수정 가능
         searchQuery: '', // 검색어를 입력하는 input 요소의 v-model
         displayedQnaBoards: [],
-        searchBy: 'title'
+        searchBy: 'title',
+        searchOptions: [
+        { text: '제목', value: 'title' },
+        { text: '작성자', value: 'writer' },
+      ],
     };
     },
     components: {
@@ -126,10 +132,8 @@ export default {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
     
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
+    return `${year}-${month}-${day}`;
     },
     // 검색 버튼을 누르면 searchQnaBoards() 호출
     searchQnaBoards() {
@@ -175,10 +179,9 @@ h3 {
 
 .search {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
   margin-bottom: 1rem;
-  margin-left: 850px;
+  padding-top: 30px;
+  margin-bottom: -5px;
 }
 
 .search select {
@@ -193,7 +196,7 @@ h3 {
   margin-left: 10px;
   margin-bottom: -7px;
   width: 100px;
-  height: 40px; 
+  height: 40px;
 }
 .search-bar {
   margin-left: 0px;
@@ -229,5 +232,21 @@ table tr:nth-child(odd) {
   background-color: #ffffff; /* 홀수 행 배경색 변경 */
 }
 
+.search-select {
+  min-width: 115px;
+  margin-left: -45px;
+}
 
+.btn {
+    background-color: #fee789 !important;
+    color: black;
+    border-radius: 25px;
+    margin-right: 710px;
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+  .btn-text {
+    padding: 5px;
+    margin-top: 2.5px;
+}
 </style>
