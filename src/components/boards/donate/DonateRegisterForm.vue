@@ -1,73 +1,83 @@
 <template>
-    <div>
-    <h3>책 기부 신청하기</h3>
-    <h5>재단 직원이 회원님의 댁으로 방문해 책을 수거할 것입니다</h5>
+    <div class="donate-section">
+        <div class="title-seciton">
+        <h3>책 기부 신청하기</h3>
+        <h5>재단 직원이 회원님의 댁으로 방문해 직접 책을 수거합니다</h5>
+        </div>
         <v-form @submit.prevent="onSubmit">
             <v-stepper v-model="e1">
-            <v-stepper-header>
-                <v-stepper-step :complete="e1 > 1" step="1">1단계 : 기부자 정보 입력</v-stepper-step>
-                <v-divider/>
-                <v-stepper-step :complete="e1 > 2" step="2">2단계 : 기부 도서 정보 입력</v-stepper-step>
-                <v-divider/>
-                <v-stepper-step step="3">3단계 : 방문 날짜, 시간, 주소 입력</v-stepper-step>
+            <v-stepper-header class="v-stepper-header">
+                <v-stepper-step :complete="e1 > 1" step="1" color="#FFC107">기부자 정보 입력</v-stepper-step>
+                <v-stepper-step :complete="e1 > 2" step="2" color="#FFC107">기부 도서 정보 입력</v-stepper-step>
+                <v-stepper-step step="3" color="#FFC107">방문 날짜, 시간, 주소 입력</v-stepper-step>
             </v-stepper-header>
 
             <v-stepper-items>
                 <v-stepper-content step="1">
-                <v-card width="auto" height="auto">
+                <v-card width="auto" height="auto" class="outer-card" elevation="0">
+                    <v-card class="inner-card" elevation="0">
                     <v-text-field
+                    color="#FFDE59"
                     v-model="formData.name" label="이름" :rules="rules.name"
                     hint="기부자의 이름을 알려주세요 (한글 이름, 2~5자 이내)"
                     persistent-hint prepend-icon="mdi-account"
                     />
                     <v-text-field
+                    color="#FFDE59"
                     v-model="formData.email" label="이메일" :rules="rules.email"
                     hint="기부자의 이메일을 알려주세요"
                     persistent-hint prepend-icon="mdi-email"
                     />
                     <v-text-field
+                    color="#FFDE59"
                     v-model="formattedPhone" label="휴대전화번호" :rules="rules.phone"
                     hint="기부자의 휴대전화번호를 알려주세요 (하이픈- 생략, 11자리 숫자)"
                     persistent-hint prepend-icon="mdi-cellphone"
                     />
+                    </v-card>
                 </v-card>
-                <v-spacer/>
-                <v-btn @click="goBack">
+                <div class="btn-section">
+                    <v-btn @click="goBack" class="yellow-btn">
                     이전으로
                 </v-btn>
-                <v-btn @click="goNext" :disabled="!isStep1Valid" color="yellow">
+                <v-btn @click="goNext" :disabled="!isStep1Valid" class="yellow-btn">
                     다음으로
                 </v-btn>
-                <v-spacer/>
+                </div>
                 </v-stepper-content>
   
                 <v-stepper-content step="2">
-                <v-card width="auto" height="auto">
+                    <v-card width="auto" height="auto" class="outer-card" elevation="0">
+                    <v-card class="inner-card" elevation="0">
                     <v-combobox
+                    color="#FFDE59"
                     v-model="formData.quantity" :items="quantityItems" label="기부 도서 수량(권)" :rules="rules.quantity"
                     hint="기부할 도서의 전체 수량을 알려주세요. (최소 5권 ~ 최대 100권)" persistent-hint prepend-icon="mdi-book"
                     />
                     <v-radio-group
+                    color="#FFDE59"
                     v-model="formData.quality" :rules="rules.quality" label="기부 도서 상태(상/중/하)"
                     hint="기부할 도서의 전체 상태를 알려주세요" persistent-hint prepend-icon="mdi-book" row
                     >
-                    <v-radio label="상" value="상"></v-radio>
-                    <v-radio label="중" value="중"></v-radio>
-                    <v-radio label="하" value="하"></v-radio>
+                    <v-radio label="상" value="상" color="#FFDE59"></v-radio>
+                    <v-radio label="중" value="중" color="#FFDE59"></v-radio>
+                    <v-radio label="하" value="하" color="#FFDE59"></v-radio>
                     </v-radio-group>
+                    </v-card>
                 </v-card>
-                <v-spacer/>
-                <v-btn @click="goBack">
-                    이전으로
-                </v-btn>
-                <v-btn @click="goNext" :disabled="!isStep2Valid" color="yellow">
-                    다음으로
-                </v-btn>
-                <v-spacer/>
+              <div class="btn-section">
+                  <v-btn @click="goBack" class="yellow-btn">
+                      이전으로
+                  </v-btn>
+                  <v-btn @click="goNext" :disabled="!isStep2Valid" class="yellow-btn">
+                      다음으로
+                  </v-btn>
+              </div>
                 </v-stepper-content>
     
                 <v-stepper-content step="3">
-                <v-card width="auto" height="auto">
+                    <v-card width="auto" height="auto" class="outer-card" elevation="0">
+                    <v-card class="inner-card" elevation="0">
                     <v-col>
                     <v-menu
                     ref="menu1" v-model="menu1" :close-on-content-click="false" :return-value.sync="formData.visitDate"
@@ -75,20 +85,22 @@
                     >
                         <template v-slot:activator="{ on, attrs }">
                         <v-text-field
+                        color="#FFDE59"
                             v-model="formData.visitDate" label="방문 날짜"
                             hint="직원이 방문할 날짜를 알려주세요 (당일 기준 3일 이후 날짜부터 선택 가능. 주말은 선택 불가)"
                             persistent-hint prepend-icon="mdi-calendar" required v-bind="attrs" v-on="on"
                         />
                         </template>
                         <v-date-picker
+                        color="#FFDE59"
                             v-model="formData.visitDate" scrollable :rules="rules.visitDate" :allowed-dates="allowedDates"
                         >
                         <v-spacer/>
-                        <v-btn text color="primary" @click="menu1 = false">
+                        <v-btn text background-color="gray" @click="menu1 = false">
                             Cancel
                         </v-btn>
                         <v-spacer/>
-                        <v-btn text color="primary" @click="$refs.menu1.save(formData.visitDate)">
+                        <v-btn text background-color="#FFDE59" @click="$refs.menu1.save(formData.visitDate)">
                             OK
                         </v-btn>
                         <v-spacer/>
@@ -104,6 +116,7 @@
                     >
                         <template v-slot:activator="{ on, attrs }">
                         <v-text-field
+                        color="#FFDE59"
                             v-model="formData.visitTime" label="방문 시간"
                             hint="직원이 방문할 시간을 알려주세요 (오전 9시~오후8시 사이, 30분 단위로 선택 가능)"
                             persistent-hint prepend-icon="mdi-clock-time-four-outline"
@@ -112,6 +125,7 @@
                         </template>
                         <v-time-picker
                         v-if="menu2"
+                        color="#FFDE59"
                         v-model="formData.visitTime" full-width :rules="rules.visitTime"
                         :allowed-hours="allowedHours" :allowed-minutes="allowedMinutes"
                         @click:minute="$refs.menu2.save(formData.visitTime)"
@@ -120,8 +134,8 @@
                     </v-col>
         
                     <v-row>
-                        <v-col>
-                            <v-btn @click="callDaumAddressApi">
+                        <v-col align-self="center">
+                            <v-btn @click="callDaumAddressApi" class="yellow-btn">
                             <v-icon left>mdi-map-marker</v-icon>
                             방문 주소 (필수)
                             </v-btn>
@@ -149,19 +163,20 @@
                     <v-row>
                         <v-col>
                             <v-text-field
-                            v-model="formData.addressDetail" label="상세 주소 및 기타 메모사항(공동현관 비밀번호 등)" required
+                            v-model="formData.addressDetail" label="상세 주소 및 기타 메모사항(공동현관 비밀번호 등)" required color="#FFDE59"
                             />
                         </v-col>
                     </v-row>
                 </v-card>
-                <v-spacer></v-spacer>
-                <v-btn @click="goBack">
+                </v-card>
+                <div class="btn-section">
+                <v-btn @click="goBack" class="yellow-btn">
                     이전으로
                 </v-btn>
-                <v-btn @click="onSubmit" :disabled="!isStep3Valid" color="yellow">
+                <v-btn @click="onSubmit" :disabled="!isStep3Valid" class="yellow-btn">
                     제출하기
                 </v-btn>
-                <v-spacer></v-spacer>
+                </div>
                 </v-stepper-content>
             </v-stepper-items>
         </v-stepper>
@@ -329,6 +344,20 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+@import '@/css/donateStyle.css';
+
+/* 이상하게 css가 안 먹혀서 따로 직접 넣어준 부분 */
+.outer-card {
+    margin: 30px 40px 30px 40px;
+    padding: 12px 12px 12px 12px;
+    background-color: #fee789;
+}
+
+.inner-card {
+    padding: 40px 50px 40px 50px;
+    align-items: center;
+    justify-items: center;
+}
 
 </style>

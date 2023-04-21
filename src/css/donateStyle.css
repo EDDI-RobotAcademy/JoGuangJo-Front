@@ -1,0 +1,83 @@
+/*(지영) donate 도메인용 CSS 파일 */
+
+.donate-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-section {
+    display: block;
+    margin: 0 0 50px 0;
+}
+
+h3 {
+    text-align: center;
+    margin: 0 0 15px 0;
+}
+
+h5 {
+    text-align: center;
+    margin: 0 0 50px 0;
+}
+
+.v-text-field {
+    margin: 20px 0 20px 0;
+}
+
+
+.v-stepper__step {
+    background-color: #fee789;
+    line-height: 10px;
+    padding: 30px
+}
+
+.v-stepper__content {
+    background-color: white;
+    /* background-image: url('@/assets/carousel/test_10.jpg'); */
+    /* opacity: 0.9; */
+}
+
+.outer-card {
+    margin: 30px 40px 30px 40px;
+    padding: 12px 12px 12px 12px;
+    background-color: #fee789;
+}
+
+.inner-card {
+    padding: 40px 50px 40px 50px;
+    align-items: center;
+    justify-items: center;
+}
+
+.btn-section {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0 15px 0;
+}
+
+.gray-btn {
+    background-color: lightgray !important;
+    color: black;
+    border-radius: 25px;
+}
+
+.gray-btn:hover {
+    background-color: #FFC107  !important;
+    color: white;
+    border-radius: 25px;
+}
+
+.yellow-btn {
+    background-color: #fee789 !important;
+    color: black;
+    border-radius: 25px;
+
+  }
+
+.yellow-btn:hover {
+    background-color: #FFC107  !important;
+    color: white;
+    border-radius: 25px;
+}

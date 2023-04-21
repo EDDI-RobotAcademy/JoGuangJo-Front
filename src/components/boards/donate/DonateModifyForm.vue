@@ -1,22 +1,26 @@
 <template>
-  <div>
-    <h3>나의 기부 내역 수정하기</h3>
-    <h5> nickName 회원님이 regDate 에 신청하신 기부글을 수정합니다</h5>
-    <h6>주의! : 기부 상태가 예약확정으로 넘어간 이후로는 기부를 수정하실 수 없습니다 (취소만 가능)</h6>
+  <div class="donate-section">
+    <div class="title-section">
+      <h3>나의 기부 내역 수정하기</h3>
+      <h5> nickName 회원님이 regDate 에 신청하신 기부글을 수정합니다</h5>
+      <h6>주의! : 기부 상태가 예약확정으로 넘어간 이후로는 기부를 수정하실 수 없습니다 (취소만 가능)</h6>
+    </div>
 
     <v-stepper v-model="e1">
-      <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1">1단계 : 기부자 정보 입력</v-stepper-step>
+      <v-stepper-header class="v-stepper-header">
+        <v-stepper-step :complete="e1 > 1" step="1" color="#FFC107">기부자 정보 입력</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step :complete="e1 > 2" step="2">2단계 : 기부 도서 정보 입력</v-stepper-step>
+        <v-stepper-step :complete="e1 > 2" step="2" color="#FFC107">기부 도서 정보 입력</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="3">3단계 : 방문 날짜, 시간, 주소 입력</v-stepper-step>
+        <v-stepper-step step="3" color="#FFC107">방문 날짜, 시간, 주소 입력</v-stepper-step>
       </v-stepper-header>
 
       <v-stepper-items>
         <v-stepper-content step="1">
-          <v-card width="auto" height="auto">
+          <v-card width="auto" height="auto" class="outer-card" elevation="0">
+            <v-card class="inner-card" elevation="0">
             <v-text-field
+            color="#FFDE59"
               v-model="name"
               label="이름"
               :rules="nameRules"
@@ -25,6 +29,7 @@
               prepend-icon="mdi-account"
             />
             <v-text-field
+            color="#FFDE59"
               v-model="email"
               label="이메일"
               :rules="emailRules"
@@ -33,6 +38,7 @@
               prepend-icon="mdi-email"
             />
             <v-text-field
+            color="#FFDE59"
               v-model="formattedPhone"
               label="휴대전화번호"
               :rules="phoneRules"
@@ -41,19 +47,22 @@
               prepend-icon="mdi-cellphone"
             />
           </v-card>
+          </v-card>
           <v-spacer></v-spacer>
-          <v-btn @click="goBack">
+          <v-btn @click="goBack" class="yellow-btn">
             이전으로
           </v-btn>
-          <v-btn @click="goNext" color="yellow">
+          <v-btn @click="goNext" class="yellow-btn">
             다음으로
           </v-btn>
           <v-spacer></v-spacer>
         </v-stepper-content>
 
         <v-stepper-content step="2">
-          <v-card width="auto" height="auto">
+          <v-card width="auto" height="auto" class="outer-card" elevation="0">
+            <v-card class="inner-card" elevation="0">
             <v-combobox
+              color="#FFDE59"
               v-model="quantity"
               :items="quantityItems"
               label="기부 도서 수량(권)"
@@ -71,23 +80,25 @@
               prepend-icon="mdi-book"
               row
             >
-              <v-radio label="상" value="상"></v-radio>
-              <v-radio label="중" value="중"></v-radio>
-              <v-radio label="하" value="하"></v-radio>
+              <v-radio label="상" value="상" color="#FFDE59"></v-radio>
+              <v-radio label="중" value="중" color="#FFDE59"></v-radio>
+              <v-radio label="하" value="하" color="#FFDE59"></v-radio>
             </v-radio-group>
           </v-card>
+          </v-card>
           <v-spacer></v-spacer>
-          <v-btn @click="goBack">
+          <v-btn @click="goBack" class="yellow-btn">
             이전으로
           </v-btn>
-          <v-btn @click="goNext" color="yellow">
+          <v-btn @click="goNext" class="yellow-btn">
             다음으로
           </v-btn>
           <v-spacer></v-spacer>
         </v-stepper-content>
 
         <v-stepper-content step="3">
-          <v-card width="auto" height="auto">
+          <v-card width="auto" height="auto" class="outer-card" elevation="0">
+            <v-card class="inner-card" elevation="0">
             <v-col>
               <v-menu
                 ref="menu1"
@@ -100,6 +111,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                  color="#FFDE59"
                     v-model="visitDate"
                     label="방문 날짜"
                     hint="직원이 방문할 날짜를 알려주세요 (당일 기준 3일 이후 날짜부터 선택 가능. 주말은 선택 불가)"
@@ -111,6 +123,7 @@
                   ></v-text-field>
                 </template>
                   <v-date-picker
+                  color="#FFDE59"
                     v-model="visitDate"
                     scrollable
                     :rules="visitDateRules"
@@ -119,7 +132,7 @@
                   <v-spacer></v-spacer>
                   <v-btn
                     text
-                    color="primary"
+                    class="gray-btn"
                     @click="menu1 = false"
                   >
                     Cancel
@@ -127,7 +140,7 @@
                   <v-spacer></v-spacer>
                   <v-btn
                     text
-                    color="primary"
+                    class="yellow-btn"
                     @click="$refs.menu1.save(visitDate)"
                   >
                     OK
@@ -151,6 +164,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
+                  color="#FFDE59"
                     v-model="visitTime"
                     label="방문 시간"
                     hint="직원이 방문할 시간을 알려주세요 (오전 9시~오후8시 사이, 30분 단위로 선택 가능)"
@@ -163,6 +177,7 @@
                 </template>
                 <v-time-picker
                   v-if="menu2"
+                  color="#FFDE59"
                   v-model="visitTime"
                   full-width
                   :rules="visitTimeRules"
@@ -213,18 +228,20 @@
             <v-row>
               <v-col>
                 <v-text-field
+                color="#FFDE59"
                   v-model="addressDetail"
                   label="상세 주소 및 기타 메모사항(공동현관 비밀번호 등)"
                   required
                 />
               </v-col>
             </v-row>
+            </v-card>
           </v-card>
           <v-spacer></v-spacer>
-          <v-btn @click="goBack">
+          <v-btn @click="goBack" class="yellow-btn">
             이전으로
           </v-btn>
-          <v-btn @click="goNext" color="yellow">
+          <v-btn @click="goNext" class="yellow-btn">
             다음으로
           </v-btn>
           <v-spacer></v-spacer>
@@ -232,13 +249,13 @@
       </v-stepper-items>
     </v-stepper>
     <div>
-          <v-btn @click="onSubmit" :disabled="!isAllValid">수정 완료</v-btn>
-          <v-btn>
-            <router-link
-            :to="{ name: 'DonateReadView', params: { donateId: donate.donateId.toString() }}">
+          <v-btn @click="onSubmit" :disabled="!isAllValid" class="yellow-btn">수정 완료</v-btn>
+          <router-link
+          :to="{ name: 'DonateReadView', params: { donateId: donate.donateId.toString() }}">
+          <v-btn class="gray-btn">
             취소
-          </router-link>
           </v-btn>
+        </router-link>
     </div>
   </div>
 </template>
@@ -405,3 +422,23 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@import '@/css/donateStyle.css';
+
+/* 이상하게 css가 안 먹혀서 따로 직접 넣어준 부분 */
+
+.outer-card {
+    margin: 30px 40px 30px 40px;
+    padding: 12px 12px 12px 12px;
+    background-color: #fee789;
+}
+
+.inner-card {
+    padding: 40px 50px 40px 50px;
+    align-items: center;
+    justify-items: center;
+}
+
+
+</style>
