@@ -73,17 +73,17 @@ const routes = [
 
   //태현씨 qna 게시판
   {
-    path: '/qna-board-list-view',
+    path: '/qna-list',
     name: 'QnaBoardListView',
     component: QnaBoardListView
   },
   {
-    path: '/qna-board-register-view',
+    path: '/qna-register',
     name: 'QnaBoardRegisterView',
     component: QnaBoardRegisterView
   },
   {
-  path: '/qna-board-read-view/:qnaBoardId',
+  path: '/qna-read/:qnaBoardId',
   name: 'QnaBoardReadView',
   components: {
     default: QnaBoardReadView
@@ -106,17 +106,17 @@ const routes = [
 
   //채율씨 이름없는 게시판 -> 태현씨가 공지(notice) 게시판으로 바꿀 예정
   {
-    path: '/notice-board-list-view',
+    path: '/notice-list',
     name: 'NoticeBoardListView',
     component: NoticeBoardListView
   },
   {
-    path: '/noticeBoard-register',
+    path: '/notice-register',
     name: 'NoticeBoardRegisterView',
     component: NoticeBoardRegisterView
   },
   {
-    path: '/noticeBoard-read/:noticeBoardId',
+    path: '/notice-read/:noticeBoardId',
     name: 'NoticeBoardReadView',
     components: {
       default: NoticeBoardReadView
@@ -126,7 +126,7 @@ const routes = [
     }
   },
   {
-    path: '/noticeBoard-modify/:noticeBoardId',
+    path: '/notice-modify/:noticeBoardId',
     name: 'NoticeBoardModifyView',
     components: {
       default: NoticeBoardModifyView
@@ -244,7 +244,7 @@ const routes = [
     }
   },
   {
-    path: '/passwordChange',
+    path: '/change-password',
     name: 'PasswordChange',
     components: {
       default: PassWordChange
@@ -318,7 +318,7 @@ const routes = [
 
   // 채율씨 나의 게시글찾기
   {
-    path: '/FindMyPost',
+    path: '/mypage/FindMyPost',
     name: 'FindMyPostView',
     component: FindMyPostView,
   },
