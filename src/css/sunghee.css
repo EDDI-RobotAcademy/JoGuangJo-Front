@@ -31,9 +31,25 @@
     cursor: pointer;
 }
 
+.sunghee.v-btn.negative {
+    color: black !important;
+    background-color: rgb(208, 197, 197) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
 .sunghee.v-btn:hover {
     background-color: #FFC107 !important;
     color: white !important;
+}
+
+.sunghee.v-btn.negative:hover {
+    color: black !important;
+    background-color: rgb(208, 197, 197) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .sunghee.center-container {

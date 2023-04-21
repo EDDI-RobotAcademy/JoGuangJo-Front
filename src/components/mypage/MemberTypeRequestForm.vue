@@ -24,7 +24,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row class="sunghee v-row padding">
         <v-col cols="12">
           <v-btn class="sunghee v-btn" @click="submitRequest({ selectedMemberType: selectedMemberTypeLocal, requestMessage: requestMessageLocal })">제출</v-btn>
         </v-col>
