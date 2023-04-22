@@ -32,16 +32,16 @@ import ProductListView from "@/views/boards/product/ProductListView.vue"
 import ProductRegisterView from "@/views/boards/product/ProductRegisterView.vue"
 import ProductReadView from "@/views/boards/product/ProductReadView.vue"
 import ProductModifyView from "@/views/boards/product/ProductModifyView.vue"
-import ProductOrderView from '@/views/boards/product/ProductOrderView.vue';
+import ProductOrderView from '@/views/boards/product/ProductOrderView.vue'
 
 
 // 성희씨 마이 페이지
-import MyPage from "@/views/mypage/MyPageView.vue"
-import ChangeAddress from "@/views/mypage/ChangeAddressView.vue"
-import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
-import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
+import MyPageView from "@/views/mypage/MyPageView.vue"
+import ChangeAddressView from "@/views/mypage/ChangeAddressView.vue"
+import ChangePasswordView from "@/views/mypage/ChangePasswordView.vue"
+import MemberTypeRequestView from "@/views/mypage/MemberTypeRequestView.vue"
 import MemberTypeRequestListView from "@/views/mypage/MemberTypeRequestListView.vue"
-import MemberTypeRead from "@/components/mypage/MemberTypeReadForm.vue"
+import MemberTypeReadView from "@/views/mypage/MemberTypeReadView.vue"
 
 
 // 태현씨 장바구니
@@ -231,29 +231,29 @@ const routes = [
   // 성희씨 마이페이지
   {
     path: '/mypage',
-    name: 'MyPage',
+    name: 'MyPageView',
     components: {
-      default: MyPage
+      default: MyPageView
     }
   },
   {
     path: '/change-address',
-    name: 'ChangeAddress',
+    name: 'ChangeAddressView',
     components: {
-      default: ChangeAddress
+      default: ChangeAddressView
     }
   },
   {
     path: '/change-password',
-    name: 'PassWordChange',
+    name: 'ChangePasswordView',
     components: {
-      default: PassWordChange
+      default: ChangePasswordView
     }
   },
   {
     path: '/memberType-request',
-    name: 'MemberTypeRequest',
-    component: MemberTypeRequest
+    name: 'MemberTypeRequestView',
+    component: MemberTypeRequestView
   },
   {
     path: '/memberType-request-list',
@@ -264,9 +264,9 @@ const routes = [
   },
   {
     path: "/memberType-read/:id",
-    name: "MemberTypeReadForm",
+    name: "MemberTypeReadView",
     components: {
-      default: MemberTypeRead
+      default: MemberTypeReadView
     },
     props: {
       default: true
@@ -277,7 +277,7 @@ const routes = [
   // 태현씨 장바구니
 
   {
-    path: '/cart-list-view',
+    path: '/cart-list',
     name: 'CartListView',
     component: CartListView,
   },

@@ -39,7 +39,7 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  name: 'PassWordChangeForm',
+  name: 'ChangePasswordForm',
 
   data() {
     return {

@@ -26,7 +26,7 @@
 
             <v-btn
              v-else
-             @click="$router.push({ name: 'MyPage' })"
+             @click="$router.push({ name: 'MyPageView' })"
              class="btn"
             >
             마이페이지
@@ -53,7 +53,7 @@
             </v-btn>
                    <!--     <v-btn
             v-if="isAuthenticated == true"
-            onclick="location.href='http://localhost:8080/cart-list-view'"
+            onclick="location.href='http://localhost:8080/cart-list'"
             class="btn"
             >
             장바구니
@@ -155,7 +155,7 @@
 
                         
                         <v-list-item
-                        @click="$router.push({ name: 'MyPage' })"
+                        @click="$router.push({ name: 'MyPageView' })"
                         style="margin-left: -58px;">
                             <v-list-item-icon>
                             <v-icon>mdi-lead-pencil</v-icon>
