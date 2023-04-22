@@ -83,7 +83,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .btnForSubmit {
     background-color: #fee789 !important;
     color: black;
