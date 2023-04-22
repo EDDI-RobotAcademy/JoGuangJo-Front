@@ -150,4 +150,57 @@ export default {
 
 <style scoped>
 
+.notice-list { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.title {
+    align-content: center;
+}
+
+.search {
+  display: flex;
+  padding-left: 910px;
+  margin-bottom: 1rem;
+  padding-top: 30px;
+  margin-bottom: -5px;
+}
+
+.search select {
+  margin-right: 0.5rem;
+}
+
+.search input {
+  margin-right: 0.5rem;
+}
+
+.search-btn {
+  margin-left: 10px;
+  margin-bottom: -7px;
+  width: 100px;
+  height: 40px;
+}
+.search-bar {
+  margin-left: 0px;
+}
+
+table th,
+table td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+table th {
+  background-color: #fee789;
+  font-weight: 600;
+}
+
+table td {
+  background-color: #ffffff;
+  border-radius: 150px;
+}
+
+
 </style>

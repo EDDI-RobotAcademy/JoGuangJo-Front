@@ -1,12 +1,15 @@
 <template>
   <v-container>
-    <!-- <h2>공지 게시판</h2> -->
-    <v-btn
-      v-if="canRegister"
-      router-link :to="{ name: 'NoticeBoardRegisterView' }"
-    >
-      게시물 등록하기
-    </v-btn>
+    <h2 style="margin: 0 0 -30px 0;">공지 게시판</h2>
+    <div align="left" style="margin: 100px 0 -100px 0;">
+      <v-btn
+        v-if="isManager"
+        router-link :to="{ name: 'NoticeBoardRegisterView' }"
+        class="yellow-btn"
+      >
+        게시물 등록하기
+      </v-btn>
+    </div>
     
     <notice-board-list-form :noticeBoards="noticeBoards"/>
   </v-container>
@@ -23,10 +26,10 @@ export default {
   name: "NoticeBoardListView",
   computed: {
     ...mapState( noticeModule, [ 'noticeBoards' ]),
-
+    
     // (지영) 공지게시판에서 사용자의 memberType에 따라 등록,수정,삭제 버튼이 보이거나 안 보이게 제한하는 메서드입니다.
     // 공지게시판에서는 관리자만 등록 권한을 가집니다 (관리자만 등록버튼이 보임)
-    canRegister() {
+    isManager() {
     const memberType = JSON.parse(localStorage.getItem('userInfo')).memberType;
     return memberType === "Manager";
     }
@@ -41,6 +44,6 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 </style>
