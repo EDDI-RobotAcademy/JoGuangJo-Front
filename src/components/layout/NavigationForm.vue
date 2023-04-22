@@ -17,7 +17,7 @@
 
             <v-btn
              v-if="!isAuthenticated"
-             onclick="location.href='http://localhost:8080/sign-up'"
+             @click="$router.push({ name: 'SignUpView' })"
              class="btn"
             >
             회원 가입
@@ -26,7 +26,7 @@
 
             <v-btn
              v-else
-             onclick="location.href='http://localhost:8080/mypage'"
+             @click="$router.push({ name: 'MyPage' })"
              class="btn"
             >
             마이페이지
@@ -35,7 +35,7 @@
 
             <v-btn
             v-if="isAuthenticated == false"
-            onclick="location.href='http://localhost:8080/sign-in'"
+            @click="$router.push({ name: 'SignInView' })"
             class="btn"
             >
             로그인
@@ -112,7 +112,7 @@
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='/'">
+                    @click="$router.push('/')">
                         <v-list-item-icon>
                             <v-icon>mdi-home</v-icon>
                         </v-list-item-icon>
@@ -120,71 +120,15 @@
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='http://localhost:8080/donate-register'">
+                    @click="$router.push({ name: 'NoticeBoardListView' })">
                         <v-list-item-icon>
-                            <v-icon>mdi-hand-heart-outline</v-icon>
+                            <v-icon>mdi-information-outline</v-icon>
                         </v-list-item-icon>
-                    <v-list-item-title>책 기부하기</v-list-item-title>
+                    <v-list-item-title>공지 보러가기</v-list-item-title>
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='http://localhost:8080/'">
-                        <v-list-item-icon>
-                            <v-icon>mdi-card-account-details-star-outline</v-icon>
-                        </v-list-item-icon>
-                    <v-list-item-title>후원하기</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item
-                    onclick="location.href='http://localhost:8080/'">
-                        <v-list-item-icon>
-                            <v-icon>mdi-hand-back-right-outline</v-icon>
-                        </v-list-item-icon>
-                    <v-list-item-title>자원봉사 신청하기</v-list-item-title>
-                    </v-list-item>
-        
-                    <v-list-item
-                    onclick="location.href='http://localhost:8080/product-list'">
-                        <v-list-item-icon>
-                            <v-icon>mdi-cart</v-icon>
-                        </v-list-item-icon>
-                    <v-list-item-title>쇼핑하기</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item
-                    onclick="location.href='http://localhost:8080/product-list'">
-                        <v-list-item-icon>
-                            <v-icon>mdi-teddy-bear</v-icon>
-                        </v-list-item-icon>
-                    <v-list-item-title>굿즈 구매하기</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item
-                    onclick="location.href='http://localhost:8080/product-list'">
-                        <v-list-item-icon>
-                            <v-icon>mdi-book</v-icon>
-                        </v-list-item-icon>
-                    <v-list-item-title>책 구매하기</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item
-                    onclick="location.href='http://localhost:8080/'">
-                        <v-list-item-icon>
-                            <v-icon>mdi-lead-pencil</v-icon>
-                        </v-list-item-icon>
-                    <v-list-item-title>책 리뷰 쓰기</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item
-                    onclick="location.href='http://localhost:8080/'">
-                        <v-list-item-icon>
-                            <v-icon>mdi-dots-circle</v-icon>
-                        </v-list-item-icon>
-                    <v-list-item-title>온오프 모임 참여하기</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item
-                    onclick="location.href='http://localhost:8080/qna-board-list-view'">
+                    @click="$router.push({ name: 'QnaBoardListView' })">
                         <v-list-item-icon>
                             <v-icon>mdi-help-circle-outline</v-icon>
                         </v-list-item-icon>
@@ -192,12 +136,83 @@
                     </v-list-item>
 
                     <v-list-item
-                    onclick="location.href='http://localhost:8080/notice-board-list-view'">
+                    @click="$router.push({ name: 'DonateRegisterView' })">
                         <v-list-item-icon>
-                            <v-icon>mdi-information-outline</v-icon>
+                            <v-icon>mdi-hand-heart-outline</v-icon>
                         </v-list-item-icon>
-                    <v-list-item-title>공지 보러가기</v-list-item-title>
+                    <v-list-item-title>책 기부하기</v-list-item-title>
                     </v-list-item>
+
+                    <v-list-group no-action>
+                        <template v-slot:activator>
+                            <v-list-item>
+                                <v-list-item-icon>
+                                <v-icon style="margin-left: -8px;">mdi-card-account-details-star-outline</v-icon>
+                                </v-list-item-icon>
+                            <v-list-item-title>마이페이지</v-list-item-title>
+                            </v-list-item>
+                        </template>
+
+                        
+                        <v-list-item
+                        @click="$router.push({ name: 'MyPage' })"
+                        style="margin-left: -58px;">
+                            <v-list-item-icon>
+                            <v-icon>mdi-lead-pencil</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>내 정보 수정</v-list-item-title>
+                        </v-list-item>
+
+                        <v-list-item
+                        @click="$router.push({ name: 'DonateListView' })"
+                        style="margin-left: -58px;">
+                            <v-list-item-icon>
+                                <v-icon>mdi-hand-heart-outline</v-icon>
+                            </v-list-item-icon>
+                        <v-list-item-title>내 기부 내역</v-list-item-title>
+                        </v-list-item>
+
+                        <v-list-item
+                        @click="$router.push({ name: 'FindMyPostView' })"
+                        style="margin-left: -58px;">
+                            <v-list-item-icon>
+                            <v-icon>mdi-hand-back-right-outline</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>내 게시글</v-list-item-title>
+                        </v-list-item>
+
+                    </v-list-group>
+
+
+                    <v-list-group no-action>
+                        <template v-slot:activator>
+                            <v-list-item>
+                                <v-list-item-icon>
+                                    <v-icon style="margin-left: -8px;">mdi-cart</v-icon>
+                                </v-list-item-icon>
+                            <v-list-item-title>쇼핑하기</v-list-item-title>
+                            </v-list-item>
+                        </template>
+
+                        <v-list-item
+                        @click="$router.push({ name: 'ProductListView' })"
+                        style="margin-left: -58px;">
+                            <v-list-item-icon>
+                                <v-icon>mdi-teddy-bear</v-icon>
+                            </v-list-item-icon>
+                        <v-list-item-title>굿즈 구매하기</v-list-item-title>
+                        </v-list-item>
+
+                        <v-list-item
+                        @click="$router.push({ name: 'ProductListView' })"
+                        style="margin-left: -58px;">
+                            <v-list-item-icon>
+                                <v-icon>mdi-book</v-icon>
+                            </v-list-item-icon>
+                        <v-list-item-title>책 구매하기</v-list-item-title>
+                        </v-list-item>
+                    </v-list-group>
+
 
 
                 </v-list-item-group>
@@ -237,7 +252,7 @@ export default {
                     { text: '상품명', value: 'productName' },
                     { text: '작성자', value: 'author' },
                     { text: '내용', value: 'content' }
-        ]
+                ]
         }
     }, 
     computed: {
@@ -272,7 +287,6 @@ export default {
     }
 }
 </script>
-
 
 
 <style scoped>
@@ -311,7 +325,7 @@ export default {
 .btn {
     background-color: #fee789 !important;
     color: black;
-    border-radius: 25px;
+    border-radius: 25px !important;
     margin-right: 10px;
   }
 
@@ -334,4 +348,5 @@ export default {
 .search-bar {
   margin-left: 0px;
 }
+
 </style>

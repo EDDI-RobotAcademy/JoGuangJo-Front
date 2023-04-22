@@ -1,7 +1,9 @@
 <template>
-    <div class="mydonate">
-        <h3 class="h3">나의 기부 내역</h3><br>
+    <div class="donate-list">
+        <div class="title">
+        <h3>나의 기부 내역</h3><br>
         <h4>{{ nickName }} 회원님, 환영합니다.</h4><br>
+        </div>
         <v-spacer></v-spacer>
         <table>
             <tr>
@@ -23,18 +25,18 @@
                 <td align="center">
                     <router-link :to=" { name: 'DonateReadView', 
                         params: { donateId: donate.donateId.toString() }}">
-                        {{ donate.regDate }} 에 회원님이 신청하신 기부글입니다
+                        {{ formattedDate(donate.regDate) }} 에 회원님이 신청하신 기부글입니다
                         </router-link>
                 </td>
                 <td align="center">
-                    {{ donate.regDate }}
+                    {{ formattedDate(donate.regDate) }}
                 </td>
                 <td align="center">
-                    {{ donate.updDate }}
+                    {{ formattedDate(donate.updDate) }}
                 </td>
                 <td align="center">
-                    <!-- 원래는 여기 status 를 넣어야 하는데, 아직 어떻게 구현해야 할지 모르겠어서 일단 donateId를 넣었습니다 -->
-                    {{ donate.donateId }}
+                    <!-- 원래는 여기 status 를 넣어야 하는데, 아직 구현하지 못해서 일단 donateId를 넣었습니다 -->
+                    {{ donateId }}
                 </td>
             </tr>
         </table>
@@ -54,17 +56,30 @@ export default {
         donates: {
             type: Array
         }
+    },
+    methods: {
+        formattedDate(dateString) {
+            const date = new Date(dateString);
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            return `${year}.${month}.${day}`;
+        }
     }
 }
 </script>
 
 <style scoped>
-.mydonate { 
-    margin-left: 80px;
+.donate-list { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
-.h3 {
-    margin-top: 25px;
+.title {
+    align-content: center;
 }
+
 table th,
 table td {
   padding: 0.75rem;

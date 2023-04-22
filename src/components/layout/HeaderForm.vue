@@ -5,89 +5,6 @@
       <router-link to="/">
       <img src='@/assets/logo/logo.png' alt="logo" width="250" height="100%" class="logo-img1">
       </router-link>
- <!--       <ul class="menu">
-            <li class="menu-item" a href="#">메뉴</li>
-            <li class="menu-item" a href="#">메뉴2</li>
-            <li class="menu-item" a href="#">메뉴3</li>
-            <li class="menu-item" a href="#">메뉴4</li>
-        </ul> -->
-        </div>
-    <div>
-      <div class="menu-container">
-      <v-row>
-           <v-col class="menu-item">
-              <v-menu offset-y open-on-hover>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">북유럽</v-list-item>
-                  </template>
-                    <v-list>
-                      <v-list-item
-                        v-for="(item, index) in items1"
-                        :key="index"
-                        @mouseover="setHoverColor(index)"
-                        @mouseout="resetHoverColor(index)"
-                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
-                      >
-                      <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                </v-menu>
-            </v-col>
-            <v-col class="menu-item">
-              <v-menu offset-y open-on-hover>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">기부</v-list-item>
-                  </template>
-                    <v-list>
-                      <v-list-item
-                        v-for="(item, index) in items2"
-                        :key="index"
-                        @mouseover="setHoverColor2(index)"
-                        @mouseout="resetHoverColor2(index)"
-                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
-                      >
-                      <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                </v-menu>
-              </v-col>
-              <v-col class="menu-item"> 
-                <v-menu offset-y open-on-hover>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">쇼핑</v-list-item>
-                  </template>
-                    <v-list>
-                      <v-list-item
-                        v-for="(item, index) in items3"
-                        :key="index"
-                        @mouseover="setHoverColor3(index)"
-                        @mouseout="resetHoverColor3(index)"
-                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
-                      >
-                      <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                </v-menu>
-              </v-col>
-              <v-col class="menu-item">
-                <v-menu offset-y open-on-hover>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-list-item class="menu-text" v-bind="attrs" v-on="on">마이페이지</v-list-item>
-                  </template>
-                    <v-list>
-                      <v-list-item
-                        v-for="(item, index) in items4"
-                        :key="index"
-                        @mouseover="setHoverColor4(index)"
-                        @mouseout="resetHoverColor4(index)"
-                        :style="item.hovered ? { backgroundColor: '#fee789' } : {}"
-                      >
-                      <v-list-item-title @click="goTo(item.to)">{{ item.title }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                </v-menu>
-              </v-col>
-        </v-row>
     </div>
     </div>
     </div>
@@ -95,63 +12,10 @@
 </template>
 
 <script>
-import router from '@/router'
-
 export default {
     name: "HeaderForm",
     data: () => ({
-      items1: [
-      { title: '북유럽 소개', to: 'IntroductionView', hovered: false },
-      { title: '공지사항', to: 'NoticeBoardListView', hovered: false },
-      { title: 'Q&A', to: 'QnaBoardListView', hovered: false },
-      ],
-      items2: [
-      { title: '기부 신청하기', to: 'DonateRegisterView', hovered: false },
-      ],
-      items3: [
-      { title: '책 구매', to: 'ProductListView', hovered: false },
-      { title: '굿즈 구매', to: 'ProductListView', hovered: false },
-      ],
-      items4: [
-      { title: '정보 수정', to: 'MyPage', hovered: false },
-      { title: '기부 내역', to: 'DonateListView', hovered: false },
-      { title: '게시글 및 댓글 내역', to: 'Home', hovered: false },
-      { title: '장바구니', to: 'CartListView', hovered: false },
-      { title: '나의 결제 및 주문 내역', to: 'Home', hovered: false },
-      ]
     }),
-    methods: {
-      sendMemberId() {
-        this.$emit("click", { memberId: this.memberId });
-      },
-      goTo(routeName) {
-      router.push({ name: routeName });
-      },
-      setHoverColor(index) {
-      this.items1[index].hovered = true;
-      },
-      resetHoverColor(index) {
-      this.items1[index].hovered = false;
-      },
-      setHoverColor2(index) {
-        this.items2[index].hovered = true;
-      },
-      resetHoverColor2(index) {
-        this.items2[index].hovered = false;
-      },
-      setHoverColor3(index) {
-        this.items3[index].hovered = true;
-      },
-      resetHoverColor3(index) {
-        this.items3[index].hovered = false;
-      },
-      setHoverColor4(index) {
-        this.items4[index].hovered = true;
-      },
-      resetHoverColor4(index) {
-        this.items4[index].hovered = false;
-      },
-    },
 }
 </script>
 
@@ -172,41 +36,6 @@ export default {
 .logo-header {
   margin-right: 1200px;
   margin-top: -10px;
-}
-
-.menu-container {
-  display: flex;
-  justify-content: flex-end;
-  width: 70%;
-  margin-top: -70px;
-  margin-left: 350px;
-}
-
-.menu {
-  display: flex;
-  list-style: none;
-  margin-left: 80px;
-  margin-top: -100px;
-}
-
-.menu-item {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-
-.menu-text {
-  color: #fee789;
-}
-
-.menu-item {
-  margin-left: 10px;
-}
-
-.menu-item a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
 }
 
 </style>
