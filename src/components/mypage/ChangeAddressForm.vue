@@ -2,22 +2,13 @@
   <div class="d-flex justify-content-center align-items-center flex-column vh-100">
     <ul class="list-group" v-if="myinfo && myinfo.length > 0">
       <li class="list-group-item" v-for="(item, index) in myinfo" :key="index">
-        <div class="title-section">
-          <div align="center" class="justify-center" padding="30px">
-                    <v-img
-                        :src="require('@/assets/logo/logo.png')"
-                        width="250px"/>
-                </div>
-          <h3 class="mt-4">이메일 / 주소 변경하기</h3>
-        </div>
-        <v-card class="outer-card">
-        <v-card class="inner-card">
+        <v-card>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field :value="item.email" label="Email" outlined color="#FFDE59">
+                <v-text-field :value="item.email" label="Email" outlined>
                   <template v-slot:append>
-                    <v-btn class="sunghee v-btn" align="center" @click="editEmail(item)">이메일 수정</v-btn>
+                    <v-btn class="sunghee v-btn" @click="editEmail(item)">Edit</v-btn>
                   </template>
                 </v-text-field>
               </v-col>
@@ -25,37 +16,36 @@
             
             <v-row v-if="item.city">
               <v-col cols="6">
-                <v-text-field :value="item.city" label="City" outlined readonly color="#FFDE59"></v-text-field>
+                <v-text-field :value="item.city" label="City" outlined readonly></v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field :value="item.street" label="Street" outlined readonly color="#FFDE59"></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row v-if="item.city">
-              <v-col cols="6">
-                <v-text-field :value="item.zipcode" label="Zipcode" outlined readonly color="#FFDE59"></v-text-field>
-              </v-col>
-              <v-col cols="6">
-                <v-text-field v-model="item.addressDetail" label="Default Address" outlined color="#FFDE59"></v-text-field>
+                <v-text-field :value="item.street" label="Street" outlined readonly></v-text-field>
               </v-col>
             </v-row>
             <v-row v-if="item.city">
               <v-col cols="6">
-                <v-btn class="sunghee v-btn" @click="callDaumAddressApi(item)">주소 찾기</v-btn>
+                <v-text-field :value="item.zipcode" label="Zipcode" outlined readonly></v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-btn class="sunghee v-btn" @click="saveAddressHandler(item)">주소 저장</v-btn>
+                <v-text-field v-model="item.addressDetail" label="Default Address" outlined></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row v-if="item.city">
+              <v-col cols="6">
+                <v-btn class="sunghee v-btn" @click="callDaumAddressApi(item)">Edit Address</v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn class="sunghee v-btn" @click="saveAddressHandler(item)">Save Address</v-btn>
               </v-col>
             </v-row>
 
             <v-row v-else>
               <v-col cols="12">
-                <v-btn class="sunghee v-btn" @click="callDaumAddressApi(item)">주소 변경</v-btn>
+                <v-btn class="sunghee v-btn" @click="callDaumAddressApi(item)">Edit Address</v-btn>
               </v-col>
             </v-row>
           </v-container>
         </v-card>
-      </v-card>
       </li>
     </ul>
     <div v-else class="text-center">Loading...</div>
@@ -130,20 +120,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.title-section {
-  margin: 50px 0 50px 0;
-}
-
-.outer-card {
-    background-image: linear-gradient(to bottom, #FEE789, #FFDE59);
-    margin: 15px 15px 30px 15px;
-    padding: 15px;
-}
-
-.inner-card{
-  padding: 30px;
-}
-
+<style>
 </style>
