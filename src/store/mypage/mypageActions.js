@@ -1,5 +1,6 @@
 // mypageActions.js
 import axiosInst from '@/utility/axiosObject';
+import router from '@/router'
 import * as mypageMutationTypes from './mypageMutation-Types';
 
 const actions = {
@@ -20,6 +21,8 @@ const actions = {
     axiosInst.post("/mypage/saveAddress", addressData)
       .then((res) => {
         console.log('Response data:', res.data);
+        alert("주소저장을 완료하였습니다.");
+        router.push({ name: 'MyPage' });
         commit(mypageMutationTypes.UPDATE_MY_PAGE_DATA, res.data);
       })
   },
