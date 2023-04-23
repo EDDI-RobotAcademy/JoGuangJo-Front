@@ -33,6 +33,7 @@ import ProductRegisterView from "@/views/boards/product/ProductRegisterView.vue"
 import ProductReadView from "@/views/boards/product/ProductReadView.vue"
 import ProductModifyView from "@/views/boards/product/ProductModifyView.vue"
 import ProductOrderView from '@/views/boards/product/ProductOrderView.vue'
+import PurchaseCompleteView from '@/views/boards/product/PurchaseCompleteView.vue'
 
 
 // 성희씨 마이 페이지
@@ -225,6 +226,11 @@ const routes = [
     name: 'ProductOrderView',
     component: ProductOrderView,
     props: true,
+  },
+  {
+    path: '/purchase-complete',
+    name: 'PurchaseComplete',
+    component: PurchaseCompleteView,
   },
 
   
