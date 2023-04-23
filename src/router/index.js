@@ -70,7 +70,7 @@ function requireAuth(to, from, next) {
     next();
   } else {
     console.log("Access denied, redirecting to /sign-in");
-    alert("You must log in");
+    alert("로그인이 필요합니다");
     next('/sign-in');
   }
 }
@@ -182,6 +182,7 @@ const routes = [
     path: '/donate-register',
     name: 'DonateRegisterView',
     component: DonateRegisterView,
+    beforeEnter: requireAuth
   },
   {
     path: '/mypage/donate-list',
