@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import accountState from "@/store/account/accountStates.js"
 
 
 // 태현씨 qna 게시판
@@ -32,16 +33,17 @@ import ProductListView from "@/views/boards/product/ProductListView.vue"
 import ProductRegisterView from "@/views/boards/product/ProductRegisterView.vue"
 import ProductReadView from "@/views/boards/product/ProductReadView.vue"
 import ProductModifyView from "@/views/boards/product/ProductModifyView.vue"
-import ProductOrderView from '@/views/boards/product/ProductOrderView.vue';
+import ProductOrderView from '@/views/boards/product/ProductOrderView.vue'
+import PurchaseCompleteView from '@/views/boards/product/PurchaseCompleteView.vue'
 
 
 // 성희씨 마이 페이지
-import MyPage from "@/views/mypage/MyPageView.vue"
-import ChangeAddress from "@/views/mypage/ChangeAddressView.vue"
-import PassWordChange from "@/views/mypage/PassWordChangeView.vue"
-import MemberTypeRequest from "@/views/mypage/MemberTypeRequestView.vue"
+import MyPageView from "@/views/mypage/MyPageView.vue"
+import ChangeAddressView from "@/views/mypage/ChangeAddressView.vue"
+import ChangePasswordView from "@/views/mypage/ChangePasswordView.vue"
+import MemberTypeRequestView from "@/views/mypage/MemberTypeRequestView.vue"
 import MemberTypeRequestListView from "@/views/mypage/MemberTypeRequestListView.vue"
-import MemberTypeRead from "@/components/mypage/MemberTypeReadForm.vue"
+import MemberTypeReadView from "@/views/mypage/MemberTypeReadView.vue"
 
 
 // 태현씨 장바구니
@@ -54,6 +56,25 @@ import IntroductionView from "@/views/IntroductionView.vue"
 import FindMyPostView from "@/views/mypage/FindMyPostView.vue"
 
 Vue.use(VueRouter)
+
+function requireAuth(to, from, next) {
+  const isAuthenticated = accountState.isAuthenticated;
+
+  console.log("run requireAuth");
+  console.log("isAuthenticated:", isAuthenticated);
+  console.log("to (destination route):", to);
+  console.log("from (origin route):", from);
+
+  if (isAuthenticated) {
+    console.log("Access granted, navigating to:", to.path);
+    next();
+  } else {
+    console.log("Access denied, redirecting to /sign-in");
+    alert("You must log in");
+    next('/sign-in');
+  }
+}
+
 
 const routes = [
   {
@@ -226,58 +247,69 @@ const routes = [
     component: ProductOrderView,
     props: true,
   },
+  {
+    path: '/purchase-complete',
+    name: 'PurchaseComplete',
+    component: PurchaseCompleteView,
+  },
 
   
   // 성희씨 마이페이지
   {
     path: '/mypage',
-    name: 'MyPage',
+    name: 'MyPageView',
     components: {
-      default: MyPage
-    }
+      default: MyPageView
+    },
+    beforeEnter: requireAuth
   },
   {
     path: '/change-address',
-    name: 'ChangeAddress',
+    name: 'ChangeAddressView',
     components: {
-      default: ChangeAddress
-    }
+      default: ChangeAddressView
+    },
+    beforeEnter: requireAuth
   },
   {
     path: '/change-password',
-    name: 'PassWordChange',
+    name: 'ChangePasswordView',
     components: {
-      default: PassWordChange
-    }
+      default: ChangePasswordView
+    },
+    beforeEnter: requireAuth
   },
   {
     path: '/memberType-request',
-    name: 'MemberTypeRequest',
-    component: MemberTypeRequest
+    name: 'MemberTypeRequestView',
+    component: MemberTypeRequestView,
+    beforeEnter: requireAuth
   },
   {
     path: '/memberType-request-list',
     name: 'MemberTypeRequestListView',
     components: {
       default: MemberTypeRequestListView
-    }
+    },
+    beforeEnter: requireAuth
   },
   {
     path: "/memberType-read/:id",
-    name: "MemberTypeReadForm",
+    name: "MemberTypeReadView",
     components: {
-      default: MemberTypeRead
+      default: MemberTypeReadView
     },
     props: {
       default: true
-    }
+    },
+    beforeEnter: requireAuth
   },
 
 
   // 태현씨 장바구니
 
   {
-    path: '/cart-list-view',
+    path: '/cart-list',
     name: 'CartListView',
     component: CartListView,
   },

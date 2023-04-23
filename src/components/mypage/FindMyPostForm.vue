@@ -37,7 +37,7 @@ import PaginationForm from "@/components/layout/PaginationForm.vue";
 import BannerCarouselForm from "@/components/layout/BannerCarouselForm.vue";
 
 export default {
-  name: "QnaBoardListForm",
+  name: "FindMyPostForm",
   data() {
       return {
       currentPage: 1, 

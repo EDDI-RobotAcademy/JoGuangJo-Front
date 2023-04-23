@@ -1,8 +1,10 @@
 <template>
-    <v-container>
-        <h2>게시물 작성</h2>
+    <div class="notice-section">
+        <div class="title-section">
+            <h2>공지글 작성하기</h2>
+        </div>
         <notice-board-register-form @submit="onSubmit"/>
-    </v-container>
+    </div>
 </template>
 
 <script>
@@ -27,6 +29,19 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.notice-section {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.title-section {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 
 </style>

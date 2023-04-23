@@ -16,7 +16,7 @@
         <div v-if="qnaBoard.imageResourcePaths.length > 0">
         <v-carousel hide-delimiters class="carousel">
           <v-carousel-item v-for="(imagePath, idx) in qnaBoard.imageResourcePaths" :key="idx" cover>
-            <img :src="require(`@/assets/qnaUploadImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
+            <img :src="require(`@/assets/qnaImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
           </v-carousel-item>
         </v-carousel>
         <div class="qna-content" v-html="qnaBoard.content"></div>

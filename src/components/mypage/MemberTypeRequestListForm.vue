@@ -41,7 +41,7 @@ export default {
       return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
     },
     goToDetail(item) {
-      this.$router.push({ name: "MemberTypeReadForm", params: { id: item.memberTypeRequestId } });
+      this.$router.push({ name: "MemberTypeReadView", params: { id: item.memberTypeRequestId } });
     },
   },
 };

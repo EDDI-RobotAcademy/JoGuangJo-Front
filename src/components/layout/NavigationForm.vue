@@ -6,17 +6,8 @@
 
             <v-spacer></v-spacer>
 
-         <!--   <v-btn
-            v-if="isAuthenticated == true"
-            v-on:click="resign"
-            class="btn"
-            >
-            회원 탈퇴 
-            <v-icon right>mdi-login</v-icon>
-            </v-btn> -->  <!-- 바로 보이는 회원 탈퇴 버튼 삭제 -->
-
             <v-btn
-             v-if="!isAuthenticated"
+             v-if="isAuthenticated == false"
              @click="$router.push({ name: 'SignUpView' })"
              class="btn"
             >
@@ -25,8 +16,17 @@
             </v-btn>
 
             <v-btn
-             v-else
-             @click="$router.push({ name: 'MyPage' })"
+            v-if="isAuthenticated == true"
+            @click="$router.push({ name: 'CartListView' })"
+            class="btn"
+            >
+            장바구니
+            <v-icon right>mdi-cart-variant</v-icon>
+            </v-btn>
+
+            <v-btn
+            v-if="isAuthenticated == true"
+             @click="$router.push({ name: 'MyPageView' })"
              class="btn"
             >
             마이페이지
@@ -51,14 +51,7 @@
             <v-icon right>mdi-exit-to-app</v-icon>
             
             </v-btn>
-                   <!--     <v-btn
-            v-if="isAuthenticated == true"
-            onclick="location.href='http://localhost:8080/cart-list-view'"
-            class="btn"
-            >
-            장바구니
-            <v-icon right></v-icon>
-            </v-btn> 일단 삭제 -->
+
 
         </v-app-bar>
         
@@ -143,7 +136,7 @@
                     <v-list-item-title>책 기부하기</v-list-item-title>
                     </v-list-item>
 
-                    <v-list-group no-action>
+                    <v-list-group no-action v-if="isAuthenticated == true">
                         <template v-slot:activator>
                             <v-list-item>
                                 <v-list-item-icon>
@@ -155,7 +148,7 @@
 
                         
                         <v-list-item
-                        @click="$router.push({ name: 'MyPage' })"
+                        @click="$router.push({ name: 'MyPageView' })"
                         style="margin-left: -58px;">
                             <v-list-item-icon>
                             <v-icon>mdi-lead-pencil</v-icon>
@@ -180,7 +173,6 @@
                             </v-list-item-icon>
                             <v-list-item-title>내 게시글</v-list-item-title>
                         </v-list-item>
-
                     </v-list-group>
 
 
@@ -193,6 +185,16 @@
                             <v-list-item-title>쇼핑하기</v-list-item-title>
                             </v-list-item>
                         </template>
+
+                        <v-list-item
+                        v-if="isAuthenticated == true"
+                        @click="$router.push({ name: 'CartListView' })"
+                        style="margin-left: -58px;">
+                            <v-list-item-icon>
+                            <v-icon>mdi-cart-variant</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>내 장바구니</v-list-item-title>
+                        </v-list-item>
 
                         <v-list-item
                         @click="$router.push({ name: 'ProductListView' })"

@@ -1,10 +1,12 @@
 <template>
   <div class="memberType-read-section">
+
     <div class="title-section">
       <h3>회원등급 변경 요청 처리하기</h3>
     </div>
-        <v-card class="outer-card">
-        <v-card class="inner-card">
+
+    <v-card class="outer-card">
+      <v-card class="inner-card">
         <div style="padding-left: 450px">
           <h4 style="padding-left: 100px">회원등급 변경 요청 상세정보</h4>
           <p><strong>요청글 번호:</strong> {{ memberTypeRequest.memberTypeRequestId }}</p>
@@ -19,8 +21,8 @@
           <v-btn class="sunghee v-btn negative" @click="rejectRequestHandler">요청 거절</v-btn>
         </div>
       </v-card>
-      </v-card>
-    </div>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -30,18 +32,16 @@ export default {
   name: "MemberTypeReadForm",
   computed: {
     ...mapGetters("mypage", ["memberTypeRequest"]),
+    // 회원등급변경 요청은 관리자만 승인/거절 권한을 가집니다 (관리자만 이 버튼이 보임)
+    isManager() {
+    const memberType = JSON.parse(localStorage.getItem('userInfo')).memberType;
+    return memberType === "Manager";
+    },
   },
   created() {
     this.$store.dispatch("mypage/fetchMemberTypeRequest", this.$route.params.id);
     console.log("memberTypeRequest:", this.memberTypeRequest);
     console.log("memberTypeRequest:", JSON.parse(JSON.stringify(this.memberTypeRequest)));
-  },
-  computed: {
-    // 회원등급변경 요청은 관리자만 승인/거절 권한을 가집니다 (관리자만 이 버튼이 보임)
-    isManager() {
-    const memberType = JSON.parse(localStorage.getItem('userInfo')).memberType;
-    return memberType === "Manager";
-    }
   },
   methods: {
     formattedDate(dateString) {

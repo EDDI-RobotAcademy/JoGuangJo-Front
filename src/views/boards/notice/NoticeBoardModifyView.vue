@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div align="center">
-      <h2>게시물 수정</h2>
+    <div align="center" class="title-section">
+      <h2 style="margin-bottom: 50px;">공지글 수정하기</h2>
       <notice-board-modify-form v-if="noticeBoard" :noticeBoard="noticeBoard" @submit="onSubmit"/>
       <p v-else>로딩중 ........</p>
     </div>
@@ -48,6 +48,10 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+
+.title-section {
+    margin: 0 0 50px 0;
+}
 
 </style>

@@ -58,7 +58,7 @@ h5 {
 }
 
 .gray-btn {
-    background-color: lightgray !important;
+    background-color: rgb(208, 197, 197) !important;
     color: black;
     border-radius: 25px;
 }

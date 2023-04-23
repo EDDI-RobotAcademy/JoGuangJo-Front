@@ -13,12 +13,12 @@
                 <th align="center" width="200">수정일자</th>
                 <th align="center" width="200">상태</th>
             </tr>
-            <tr v-if="!donates || (Array.isArray(donates) && donates.length === 0)">
+            <tr v-if="!paginatedDonates || (Array.isArray(paginatedDonates) && paginatedDonates.length === 0)">
                 <td colspan="6">
                 현재 회원님의 기부 내역이 존재하지 않습니다.
                 </td>
             </tr>
-            <tr v-else v-for="donate in donates" :key="donate.donateId">
+            <tr v-else v-for="donate in paginatedDonates" :key="donate.donateId">
                 <td align="center">
                     {{ donate.donateId }}
                 </td>
@@ -36,25 +36,48 @@
                 </td>
                 <td align="center">
                     <!-- 원래는 여기 status 를 넣어야 하는데, 아직 구현하지 못해서 일단 donateId를 넣었습니다 -->
-                    {{ donateId }}
+                    {{ status }}
                 </td>
             </tr>
         </table>
+        <div class="paging">
+        <PaginationForm
+            :current-page.sync="currentPage"
+            :page-count="pageCount"
+        />
+        </div>
     </div>
 </template>
 
 <script>
+import PaginationForm from "@/components/layout/PaginationForm.vue";
 
 export default {
     name: "DonateListForm",
+    components: {
+        PaginationForm
+    },
     data() {
         return {
-            nickName: JSON.parse(localStorage.getItem('userInfo')).nickName
+            nickName: JSON.parse(localStorage.getItem('userInfo')).nickName,
+            status: "진행중",
+            currentPage: 1,
+            pageSize: 5
         }
     },
     props: {
         donates: {
             type: Array
+        }
+    },
+    computed: {
+    paginatedDonates() {
+        const start = (this.currentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        return this.donates.slice(start, end);
+        },
+    pageCount() {
+        return Math.ceil(this.donates.length / this.pageSize);
         }
     },
     methods: {
@@ -94,6 +117,10 @@ table th {
 table td {
   background-color: #ffffff;
   border-radius: 150px;
+}
+
+.paging {
+    margin: 30px
 }
 
 </style>
