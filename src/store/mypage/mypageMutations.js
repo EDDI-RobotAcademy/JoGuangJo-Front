@@ -26,6 +26,9 @@ const mutations = {
   [mypageMutationTypes.SET_MEMBER_TYPE_REQUEST]: (state, memberTypeRequest) => {
     state.memberTypeRequest = memberTypeRequest;
   },
+  [mypageMutationTypes.REQUEST_QNA_BOARD_LIST_TO_SPRING]: (state, memberTypeRequest) => {
+    state.qnaBoards = memberTypeRequest;
+  }, 
 };
 
 export default mutations;
