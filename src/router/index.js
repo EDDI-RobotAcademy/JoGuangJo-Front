@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import accountState from "@/store/account/accountStates.js"
+import accountActions from "@/store/account/accountActions.js";
 
 
 // 태현씨 qna 게시판
@@ -56,24 +56,6 @@ import IntroductionView from "@/views/IntroductionView.vue"
 import FindMyPostView from "@/views/mypage/FindMyPostView.vue"
 
 Vue.use(VueRouter)
-
-function requireAuth(to, from, next) {
-  const isAuthenticated = accountState.isAuthenticated;
-
-  console.log("run requireAuth");
-  console.log("isAuthenticated:", isAuthenticated);
-  console.log("to (destination route):", to);
-  console.log("from (origin route):", from);
-
-  if (isAuthenticated) {
-    console.log("Access granted, navigating to:", to.path);
-    next();
-  } else {
-    console.log("Access denied, redirecting to /sign-in");
-    alert("로그인이 필요합니다");
-    next('/sign-in');
-  }
-}
 
 
 const routes = [
@@ -182,7 +164,7 @@ const routes = [
     path: '/donate-register',
     name: 'DonateRegisterView',
     component: DonateRegisterView,
-    beforeEnter: requireAuth
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/mypage/donate-list',
@@ -262,7 +244,7 @@ const routes = [
     components: {
       default: MyPageView
     },
-    beforeEnter: requireAuth
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/change-address',
@@ -270,7 +252,7 @@ const routes = [
     components: {
       default: ChangeAddressView
     },
-    beforeEnter: requireAuth
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/change-password',
@@ -278,13 +260,13 @@ const routes = [
     components: {
       default: ChangePasswordView
     },
-    beforeEnter: requireAuth
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/memberType-request',
     name: 'MemberTypeRequestView',
     component: MemberTypeRequestView,
-    beforeEnter: requireAuth
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/memberType-request-list',
@@ -292,7 +274,7 @@ const routes = [
     components: {
       default: MemberTypeRequestListView
     },
-    beforeEnter: requireAuth
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: "/memberType-read/:id",
@@ -303,7 +285,7 @@ const routes = [
     props: {
       default: true
     },
-    beforeEnter: requireAuth
+    beforeEnter: accountActions.signInFirst
   },
 
 

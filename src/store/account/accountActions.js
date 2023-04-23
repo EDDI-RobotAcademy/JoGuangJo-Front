@@ -100,4 +100,14 @@ export default {
       return false;
     }
   },
+  // (지영) 로그인 여부에 따라 페이지 접근 제한하는 메서드
+  signInFirst(to, from, next) {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      next();
+    } else {
+      alert("로그인이 필요합니다");
+      next({ name: 'SignInView' });
+    }
+  }
 };
