@@ -29,7 +29,14 @@ export default {
     
     // (지영) 공지게시판에서 사용자의 memberType에 따라 등록,수정,삭제 버튼이 보이거나 안 보이게 제한하는 메서드입니다.
     // 공지게시판에서는 관리자만 등록 권한을 가집니다 (관리자만 등록버튼이 보임)
+
     isManager() {
+    const userInfo = localStorage.getItem('userInfo');
+    
+    if (!userInfo) {
+      return false;
+    }
+    
     const memberType = JSON.parse(localStorage.getItem('userInfo')).memberType;
     return memberType === "Manager";
     }
