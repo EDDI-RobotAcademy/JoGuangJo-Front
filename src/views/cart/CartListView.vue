@@ -2,8 +2,8 @@
 <template>
   <div>
     <cart-list-form @selectForCartItems="selectForCartItems"/>
-      <button @click="deleteSelectedCartItems()">선택한 항목 삭제</button>
-      <button @click="toBuySelectedCartItems()">선택한 항목 구매</button>
+      <v-btn class="for-buy-btn" @click="toBuySelectedCartItems()">구매하기</v-btn>
+      <v-btn class="for-delete-btn" @click="deleteSelectedCartItems()">삭제하기</v-btn>
 
   </div>
 </template>
@@ -59,9 +59,23 @@ export default {
 </script>
 
 <style scoped>
-button {
-  float: right;
-  color: white;
-  background-color: red;
-}
+  .for-buy-btn {
+    background-color: #fee789 !important;
+    width: 100px;
+    height: 35px;
+    color: black;
+    border-radius: 25px;
+    margin-left: 840px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+
+  .for-delete-btn {
+    background-color: rgb(208, 197, 197);
+    width: 100px;
+    height: 35px;
+    color: black;
+    border-radius: 25px;
+    margin-bottom: 15px;
+  }
 </style>
