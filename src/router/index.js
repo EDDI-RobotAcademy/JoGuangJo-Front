@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import accountState from "@/store/account/accountStates.js"
 
 
 // 태현씨 qna 게시판
@@ -55,6 +56,25 @@ import IntroductionView from "@/views/IntroductionView.vue"
 import FindMyPostView from "@/views/mypage/FindMyPostView.vue"
 
 Vue.use(VueRouter)
+
+function requireAuth(to, from, next) {
+  const isAuthenticated = accountState.isAuthenticated;
+
+  console.log("run requireAuth");
+  console.log("isAuthenticated:", isAuthenticated);
+  console.log("to (destination route):", to);
+  console.log("from (origin route):", from);
+
+  if (isAuthenticated) {
+    console.log("Access granted, navigating to:", to.path);
+    next();
+  } else {
+    console.log("Access denied, redirecting to /sign-in");
+    alert("You must log in");
+    next('/sign-in');
+  }
+}
+
 
 const routes = [
   {
@@ -240,33 +260,38 @@ const routes = [
     name: 'MyPageView',
     components: {
       default: MyPageView
-    }
+    },
+    beforeEnter: requireAuth
   },
   {
     path: '/change-address',
     name: 'ChangeAddressView',
     components: {
       default: ChangeAddressView
-    }
+    },
+    beforeEnter: requireAuth
   },
   {
     path: '/change-password',
     name: 'ChangePasswordView',
     components: {
       default: ChangePasswordView
-    }
+    },
+    beforeEnter: requireAuth
   },
   {
     path: '/memberType-request',
     name: 'MemberTypeRequestView',
-    component: MemberTypeRequestView
+    component: MemberTypeRequestView,
+    beforeEnter: requireAuth
   },
   {
     path: '/memberType-request-list',
     name: 'MemberTypeRequestListView',
     components: {
       default: MemberTypeRequestListView
-    }
+    },
+    beforeEnter: requireAuth
   },
   {
     path: "/memberType-read/:id",
@@ -276,7 +301,8 @@ const routes = [
     },
     props: {
       default: true
-    }
+    },
+    beforeEnter: requireAuth
   },
 
 
