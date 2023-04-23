@@ -10,19 +10,19 @@
       <v-container>
         <v-row class="sunghee v-row padding">
           <v-col cols="12">
-            <v-text-field v-model="currentPassword" label="현재 비밀번호" outlined type="password" color="#FFDE59"></v-text-field>
+            <v-text-field v-model="currentPassword" label="현재 비밀번호" :rules="password_rule" :counter="30" outlined type="password" color="#FFDE59"></v-text-field>
           </v-col>
 
           <v-col cols="12">
-            <v-btn class="sunghee v-btn" style="margin: -40px 0 30px 0" @click="checkCurrentPasswordHandler">현재 비밀번호 확인</v-btn>
+            <v-btn class="sunghee v-btn" style="margin: -30px 0 30px 0" @click="checkCurrentPasswordHandler">현재 비밀번호 확인</v-btn>
           </v-col>
 
           <v-col cols="12">
-            <v-text-field v-model="newPassword" label="비밀번호" outlined type="password" color="#FFDE59"></v-text-field>
+            <v-text-field v-model="newPassword" label="비밀번호" :rules="password_rule" :counter="30" outlined type="password" color="#FFDE59"></v-text-field>
           </v-col>
 
           <v-col cols="12">
-            <v-text-field v-model="confirmNewPassword" label="비밀번호 확인" outlined type="password" color="#FFDE59"></v-text-field>
+            <v-text-field v-model="confirmNewPassword" label="비밀번호 확인" :rules="password_rule" :counter="30" outlined type="password" color="#FFDE59"></v-text-field>
           </v-col>
 
           <v-col cols="12">
@@ -46,7 +46,11 @@ export default {
       currentPassword: '',
       newPassword: '',
       confirmNewPassword: '',
-
+      password_rule: [
+        (v) => !!v || "패스워드는 필수 입력사항입니다.",
+        (v) => !(v && v.length >= 30) || "패스워드는 30자 이상 입력할 수 없습니다.",
+        (v) => !(v && v.length < 8) || "패스워드는 8자 이상 입력해야합니다.",
+      ],
     };
   },
 
