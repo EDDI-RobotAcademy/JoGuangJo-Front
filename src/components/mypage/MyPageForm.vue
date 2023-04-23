@@ -7,34 +7,31 @@
                         :src="require('@/assets/logo/logo.png')"
                         width="300px"/>
                 </div>
+                <br>
                 <h3>안녕하세요, {{ nickName }}님</h3>
-
+                <br>
                 <v-btn @click="$router.push({ name: 'ChangeAddressView' })" class="sunghee button-link btn">
                     이메일 / 주소 변경하기
                 </v-btn>
-
+                <br>
                 <v-btn @click="$router.push({ name: 'ChangePasswordView' })" class="sunghee button-link btn">
                     비밀번호 변경하기
                 </v-btn>
-                
+                <br>
                 <v-btn @click="$router.push({ name: 'MemberTypeRequestView' })" class="sunghee button-link btn">
                     등급 변경 요청하기
                 </v-btn>
-
+                <br>
                 <v-btn @click="$router.push({ name: 'MemberTypeRequestListView' })" class="sunghee button-link btn">
                     등급 변경 요청 확인하기
                 </v-btn>
-                
+                <br>
                 <v-btn @click="$router.push({ name: 'DonateListView' })" class="sunghee button-link btn">
                     내 기부 내역 확인하기
                 </v-btn>
-
+                <br>
                 <v-btn @click="$router.push({ name: 'FindMyPostView' })" class="sunghee button-link btn">
                     내 게시글 찾기
-                </v-btn>
-
-                <v-btn v-on:click="resignhandler" class="sunghee button-link btn">
-                    회원 탈퇴
                 </v-btn>
             </v-card>
         </v-card>
