@@ -1,7 +1,7 @@
 <template>
     <v-container>
       <div align="center">
-        <h2>게시물 수정</h2><br>
+        <h2>내 게시글 수정하기</h2><br>
         <product-modify-form v-if="product" :product="product" @submit="onSubmit"/>
         <p v-else>로딩중 ........</p>
       </div>
