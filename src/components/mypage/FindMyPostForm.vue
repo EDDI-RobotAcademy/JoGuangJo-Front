@@ -2,7 +2,6 @@
   <div class="qna-board-list">
     <div class="Board-list">
       <div class="h2">
-        <h3>안녕하세요, {{ nickName }}님</h3><br>
        <h2 class="ms-1">내가 쓴 Q&A 게시글 찾기</h2><br>
       </div> 
     </div>
