@@ -85,10 +85,11 @@ const actions = {
       memberTypeRequestData
       );
       if (response.data) {
-        alert("잘 됨.");
+        alert("등급요청이 등록되었습니다.");
       } else {
-        alert("잘 안됨.");
+        alert("등급요청에 오류가 있습니다.\n멤버아이디가 없거나 이미 요청을 등록하셨습니다.");
       }
+      router.push({name:'MyPageView'});
     } catch (error) {
       console.error("에러:", error);
     }
@@ -132,9 +133,6 @@ const actions = {
     }
   },
   
-  async findmypost() {
-    let memberId = JSON.parse(localStorage.getItem('userInfo')).id;
-    console.log("작동됨됨 : " + memberId)
     try {
       console.log("작동됨");
     } catch (error) {

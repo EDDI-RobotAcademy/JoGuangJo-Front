@@ -39,7 +39,7 @@
         >
         제출하기
       </v-btn>
-      <router-link :to="{ name: 'MyPage' }">
+      <router-link :to="{ name: 'MyPageView' }">
             <v-btn rounded width="300px" height="50px" class="gray-btn">
               돌아가기
             </v-btn>
