@@ -1,25 +1,27 @@
 <template>
-    <v-container class="justify-center" align="center">
-      <donate-read-form v-if="donate" :donate="donate"/>
+    <v-container class="donate-section">
+      <div>
+          <donate-read-form v-if="donate" :donate="donate"/>
           <div v-else>로딩중 .......... </div>
-              <div v-if="isCurrentUser()">
-                  <v-row>
-                      <v-col>
-                          <v-btn router-link :to="{ name: 'DonateModifyView', params: { donateId } }">
-                              수정
-                          </v-btn>
-                      </v-col>
-                      <v-col>
-                          <v-btn @click="onDelete">삭제</v-btn>
-                      </v-col>
-                      <v-col>
-                          <v-btn router-link :to="{ name: 'DonateListView' }">
-                              목록
-                          </v-btn>
-                      </v-col>
-                  </v-row>
-              </div>
-          </v-container>
+          <div v-if="isCurrentUser()">
+            <div class="outer-btn-section">
+                <div>
+                    <v-btn router-link :to="{ name: 'DonateModifyView', params: { donateId } }"
+                    class="yellow-btn mr-2">
+                    수정
+                    </v-btn>
+                    <v-btn @click="onDelete" class="gray-btn">삭제</v-btn>
+                </div>
+                <div>
+                    <v-btn router-link :to="{ name: 'DonateListView' }"
+                    class="yellow-btn">
+                    목록
+                    </v-btn>
+                </div>
+            </div>
+        </div>
+    </div>
+</v-container>
   </template>
   
   <script>
@@ -73,5 +75,13 @@
   
   </script>
   
-  <style>
-  </style>
+<style scope>
+@import '@/css/donateStyle.css';
+
+.outer-btn-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 15px 0;
+}
+
+</style>

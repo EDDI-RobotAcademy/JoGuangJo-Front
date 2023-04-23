@@ -98,7 +98,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .product-form {
   width: 100%;
   max-width: 800px;

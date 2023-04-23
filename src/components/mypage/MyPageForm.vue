@@ -9,15 +9,15 @@
                 </div>
                 <h3>안녕하세요, {{ nickName }}님</h3>
 
-                <v-btn @click="$router.push({ name: 'ChangeAddress' })" class="sunghee button-link btn">
-                    주소 변경하기
+                <v-btn @click="$router.push({ name: 'ChangeAddressView' })" class="sunghee button-link btn">
+                    이메일 / 주소 변경하기
                 </v-btn>
 
-                <v-btn @click="$router.push({ name: 'PassWordChange' })" class="sunghee button-link btn">
+                <v-btn @click="$router.push({ name: 'ChangePasswordView' })" class="sunghee button-link btn">
                     비밀번호 변경하기
                 </v-btn>
                 
-                <v-btn @click="$router.push({ name: 'MemberTypeRequest' })" class="sunghee button-link btn">
+                <v-btn @click="$router.push({ name: 'MemberTypeRequestView' })" class="sunghee button-link btn">
                     등급 변경 요청하기
                 </v-btn>
 

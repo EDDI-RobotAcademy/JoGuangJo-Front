@@ -22,7 +22,7 @@ const actions = {
       .then((res) => {
         console.log('Response data:', res.data);
         alert("주소저장을 완료하였습니다.");
-        router.push({ name: 'MyPage' });
+        router.push({ name: 'MyPageView' });
         commit(mypageMutationTypes.UPDATE_MY_PAGE_DATA, res.data);
       })
   },

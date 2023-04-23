@@ -1,9 +1,9 @@
 <template>
-    <v-footer inset padless class="justify-center pl-0">
+    <v-footer padless class="justify-center pl-0">
         <v-card flat class="text-center" width="100%">
             <v-divider></v-divider>
             <div align="center">
-                <v-btn v-for="icon in icons" :key="icon" class="mx-1 icon-btn" icon>
+                <v-btn v-for="icon in icons" :key="icon" :to="getLink(icon)" class="mx-1 icon-btn" icon>
                         <v-icon size="24px">
                             {{ icon }} 
                         </v-icon>
@@ -26,8 +26,18 @@ export default {
             "mdi-instagram",
             "mdi-youtube",
             "mdi-facebook"
-            ]
-    })
+            ],
+        links: {
+        "mdi-instagram": "/instagram",
+        "mdi-youtube": "/youtube",
+        "mdi-facebook": "/facebook"
+        }
+    }),
+    methods: {
+        getLink(icon) {
+            return this.links[icon];
+        }
+    }
 }
 </script>
 

@@ -39,14 +39,14 @@ export default {
           this.$router.push({ name: 'CartListView' });
         }
       } else {
-        this.$router.push({ name: 'SignInPage' })
+        this.$router.push({ name: 'SignInView' })
       }
     },
     navigateToRegister() {
       if (this.isAuthenticated) {
         this.$router.push({ name: "ProductRegisterView" });
       } else {
-        this.$router.push({ name: "SignInPage" });
+        this.$router.push({ name: "SignInView" });
       }
     },
   },

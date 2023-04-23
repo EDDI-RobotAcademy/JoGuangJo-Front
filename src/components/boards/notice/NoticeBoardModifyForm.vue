@@ -1,84 +1,105 @@
 <template>
-  <div>
-    <form @submit.prevent="onSubmit">
-      <table>
-        <tr>
-            <td>게시물 번호</td>
-            <td>
-                <input type="text" :value="noticeBoard.noticeBoardId" disabled/>
-            </td>
-        </tr>
-        <tr>
-            <td>제목</td>
-            <td>
-                <input type="text" v-model="title"/>
-            </td>
-        </tr>
-        <tr>
-            <td>작성자</td>
-            <td>
-                <input type="text" :value="noticeBoard.writer" disabled/>
-            </td>
-        </tr>
-        <tr>
-            <td>등록일자</td>
-            <td>
-                <input type="text" :value="noticeBoard.regDate" disabled/>
-            </td>
-        </tr>
-        <tr>
-            <td>본문</td>
-            <td>
-                <textarea cols="50" rows="20" v-model="content"/>
-            </td>
-        </tr>
-      </table>
+    <div class="notice-section">
+      <v-card>
+        <form @submit.prevent="onSubmit">
+          <v-card-title class="forColor"></v-card-title>
+            <v-text-field
+            v-model="title" class="forColor input-group title"
+            label="제목"
+            hide-details color="#FFC107"
+            />
+            <v-text-field :value="writer" class="forColor input-group title"
+            label="작성자" readonly hide-details color="#FFC107"
+            />
+            <div align="center" class="justify-center">
+              <textarea rows=10 v-model="content" class="notice-textarea"
+              label="내용"
+              style="width:100%;"
+              />
+            </div>
+            <div class="btn-section">
+                <v-btn type="submit" class="btnForSubmit">
+                    수정 완료
+                </v-btn>
+            <router-link :to="{ name: 'NoticeBoardReadView',
+                                params: { noticeBoardId: noticeBoard.noticeBoardId.toString() }}">
+                <v-btn class="btnForBack">
+                    취소
+                </v-btn>
+            </router-link>
+            </div>
+        </form>
+      </v-card>
+    </div>
+  </template>
+  
+  <script>
+  
+  export default {
+      name: "NoticeBoardModifyForm",
+      props: {
+          noticeBoard: {
+              type: Object,
+              required: true,
+          }
+      },
+      data () {
+          return {
+              title: '',
+              content: '',
+              writer: '',
+              regDate: '',
+          }
+      },
+      created () {
+          this.title = this.noticeBoard.title
+          this.writer = this.noticeBoard.writer
+          this.content = this.noticeBoard.content
+          this.regDate = this.noticeBoard.regDate
+      },
+      methods: {
+          onSubmit () {
+              const { title, content, writer } = this
+              this.$emit('submit', { title, content, writer })
+          }
+      }
+  }
+  
+</script>
+  
+<style scoped>
 
-      <div>
-        <button type="submit">수정 완료</button>
-        <router-link :to="{ name: 'NoticeBoardReadView',
-                            params: { noticeBoardId: noticeBoard.noticeBoardId.toString() }}">
-          취소
-        </router-link>
-      </div>
-    </form>
-  </div>
-</template>
-
-<script>
-
-export default {
-    name: "NoticeBoardModifyForm",
-    props: {
-        noticeBoard: {
-            type: Object,
-            required: true,
-        }
-    },
-    data () {
-        return {
-            title: '',
-            content: '',
-            writer: '',
-            regDate: '',
-        }
-    },
-    created () {
-        this.title = this.noticeBoard.title
-        this.writer = this.noticeBoard.writer
-        this.content = this.noticeBoard.content
-        this.regDate = this.noticeBoard.regDate
-    },
-    methods: {
-        onSubmit () {
-            const { title, content, writer } = this
-            this.$emit('submit', { title, content, writer })
-        }
-    }
+.btn-section {
+    display: flex;
+    align-items: center;
+    justify-items: right;
 }
 
-</script>
+.btnForSubmit {
+    background-color: #fee789 !important;
+    color: black;
+    border-radius: 25px;
+    margin: 30px 10px 30px 0;
+  }
+    .btnForBack {
+    background-color: rgb(208, 197, 197);
+    color: black;
+    border-radius: 25px;
+    margin: 30px 0 30px 0;
+  }
+    .forColor{
+    background-color: #fee789 !important;
+    margin: 0;
+    padding-top: 20px;
+  }
+    .input-group{
+    padding: 20px;
+  }
 
-<style>
+  .notice-textarea {
+  resize: none; /* 드래그로 크기 조절 막기 */
+  padding: 20px;
+}
 
-</style>
+  
+  </style>
