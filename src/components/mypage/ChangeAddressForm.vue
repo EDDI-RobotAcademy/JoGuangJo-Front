@@ -16,9 +16,9 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field :value="item.email" label="Email" outlined color="#FFDE59">
-                  <template v-slot:append>
+                  <!-- <template v-slot:append>
                     <v-btn class="sunghee v-btn" align="center" @click="editEmail(item)">이메일 수정</v-btn>
-                  </template>
+                  </template> -->
                 </v-text-field>
               </v-col>
             </v-row>

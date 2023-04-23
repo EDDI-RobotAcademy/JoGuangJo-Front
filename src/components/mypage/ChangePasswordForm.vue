@@ -65,7 +65,6 @@ export default {
         password: this.currentPassword,
       };
       await this.checkCurrentPassword(checkPassword);
-      alert("비밀번호 확인에 성공하였습니다.")
     },
 
     async registerModifiedPasswordHandler() {
@@ -74,19 +73,16 @@ export default {
           id: JSON.parse(localStorage.getItem("userInfo")).id,
           password: this.newPassword,
         };
-        await this.registerModifiedPassword(modifiedPassword);
-        if (this.$route.path !== "/") {
-                    this.$router.push("/");
-                }
+        await this.registerModifiedPassword(modifiedPassword);  
       } else {
-        alert("뭔가 잘 못 됨");
-        console.log("this.isCurrentPasswordCorrect : " + this.isCurrentPasswordCorrect)
-        console.log("this.newPassword : " + this.newPassword)
-        console.log("this.confirmNewPassword : " + this.confirmNewPassword)
-      }
+          alert("뭔가 잘 못 됨");
+          console.log("this.isCurrentPasswordCorrect : " + this.isCurrentPasswordCorrect)
+          console.log("this.newPassword : " + this.newPassword)
+          console.log("this.confirmNewPassword : " + this.confirmNewPassword)
+        }
+      },
     },
-  },
-};
+  };
 </script>
 
 <style scoped>
