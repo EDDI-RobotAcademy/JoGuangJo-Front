@@ -1,15 +1,18 @@
 <template>
-      <find-my-post-form/>
+      <find-my-post-form :qna-boards="qnaBoards"/>
 </template>
   
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import FindMyPostForm from '@/components/mypage/FindMyPostForm.vue';
   
   export default {
     name: "FindMyPostView",
     components: {
       FindMyPostForm
+    },
+    computed: {
+      ...mapState("mypage", ["qnaBoards"]),
     },
     mounted() {
       // let memberId = JSON.parse(localStorage.getItem('userInfo')).id;
@@ -19,7 +22,7 @@
       this.findmypost()
     },
     methods: {
-      // mypage모듈 안에 있는 actions 안에있는 findmypost함수를 가져온다.
+      // mypage모듈 안에 있는 actions 안에있는 findmypost함수를 가다.
       ...mapActions("mypage", ["findmypost"]),
     },
     }

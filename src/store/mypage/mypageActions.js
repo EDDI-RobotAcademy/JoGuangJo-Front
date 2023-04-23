@@ -133,13 +133,33 @@ const actions = {
     }
   },
   
+
+  async findmypost({commit}) { 
+    const findmypostrequest = {
+      memberId : JSON.parse(localStorage.getItem('userInfo')).id
+    }
+    // 이유모를 오류로 객체로 보내기
+    // let memberId = JSON.parse(localStorage.getItem('userInfo')).id;
+    // let은 함수안에만 선언될수있는 함수 memberId = 가지고 오는 값의 이름
+    // JSON.parse(매개변수) = 매개변수의 값을 JSON으로 바꿔준다, String같은거 
+    // (localStorage.getItem('userInfo')).id = 많은 값에서 id만 가져온다
+    console.log("작동됨됨 : " + findmypostrequest)
+    // findmypostrequest객체
+    console.log("작동됨됨 : " + findmypostrequest.memberId)
+    // findmypostrequest객체의 memberId라는 속성
+    // 확인 멤버아이디
+
     try {
+      const response = await axiosInst.post('/mypage/findmypost', findmypostrequest);
+      // 백엔드 컨트롤러랑 연결시켜주는거
       console.log("작동됨");
+      commit(mypageMutationTypes.REQUEST_QNA_BOARD_LIST_TO_SPRING, response.data);
     } catch (error) {
       console.log("findmypost에서 에러 발생 : ", error);
     }
-  },
-
-};
+  }, // 얘는 특정
+     // async > 받아오는동안 작업가능 > 비동기 > try,catch사용가능
+     // 동기 > 모든정보받아오는동안 작업불가능
+};   // commit > 변경사항을 적용시킨다 
 
 export default actions;
