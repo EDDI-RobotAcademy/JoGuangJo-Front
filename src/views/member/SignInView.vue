@@ -44,16 +44,15 @@ methods: {
             alert("로그인 성공!");
             cookies.set("user", userData, 3600);
             localStorage.setItem("userInfo", JSON.stringify(userData));
-            this.isLogin = true;
-            
-        if (this.$route.path !== "/") {
-          this.$router.push("/");
-        }
+            this.isLogin = true;    
+            if (this.$route.path !== "/") {
+              this.$router.push("/");
+            }
           }
         })
         .catch((error) => {
           if (error.response && error.response.data) {
-            alert(error.response.data.message);
+            alert("로그인 정보가 잘 못 되었습니다.");
           } else {
             alert("An unknown error occurred.");
           }

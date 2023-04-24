@@ -26,7 +26,7 @@
           </v-col>
 
           <v-col cols="12">
-            <v-btn class="sunghee v-btn" @click="registerModifiedPasswordHandler" style="margin-right: 10px">저장</v-btn>
+            <v-btn class="sunghee v-btn" @click="registerModifiedPasswordHandler" style="margin-right: 10px" :disabled="!verifyPassword">저장</v-btn>
             <v-btn class="sunghee v-btn negative" @click="goMyPage">취소 </v-btn>
           </v-col>
         </v-row>
