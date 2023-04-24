@@ -73,17 +73,17 @@ export default {
     },
     methods: {
         ...mapActions("qnaModule", [
-            'requestQnaBoardToSpring',
-            'requestDeleteQnaBoardToSpring',
+            'requestQnaBoardReadToSpring',
+            'requestQnaBoardDeleteToSpring',
             'requestQnaCommentRegisterToSpring',
-            'requestQnaCommentListFromSpring'
+            'requestQnaCommentListToSpring'
         ]),
         isCurrentUser() {
             return this.currentUser === this.qnaBoard.writer
         },
         async onDelete () {
             console.log('qnaBoardId: ' + this.qnaBoardId)
-            await this.requestDeleteQnaBoardToSpring(this.qnaBoardId)
+            await this.requestQnaBoardDeleteToSpring(this.qnaBoardId)
             await this.$router.push({ name: 'QnaBoardListView' })
         },
         async onSubmitRegister( payload ) {
@@ -99,8 +99,8 @@ export default {
     },
     created () {
         console.log('qnaBoardId: ' + this.qnaBoardId)
-        this.requestQnaBoardToSpring(this.qnaBoardId)
-        this.requestQnaCommentListFromSpring(this.qnaBoardId)
+        this.requestQnaBoardReadToSpring(this.qnaBoardId)
+        this.requestQnaCommentListToSpring(this.qnaBoardId)
     },
     mounted() {
     const userInfo = localStorage.getItem('userInfo')

@@ -14,9 +14,9 @@ export default {
     components: { QnaBoardRegisterForm },
     name: "QnaBoardRegisterView",
     methods: {
-        ...mapActions ("qnaModule", ['requestCreateQnaBoardToSpring']),
+        ...mapActions ("qnaModule", ['requestQnaBoardRegisterToSpring']),
         async onSubmit (payload) {
-            await this.requestCreateQnaBoardToSpring(payload)
+            await this.requestQnaBoardRegisterToSpring(payload)
             await this.$router.push({
                 name: 'QnaBoardListView'
             })
