@@ -83,7 +83,8 @@ const routes = [
   {
     path: '/qna-register',
     name: 'QnaBoardRegisterView',
-    component: QnaBoardRegisterView
+    component: QnaBoardRegisterView,
+    beforeEnter: accountActions.signInFirst
   },
   {
   path: '/qna-read/:qnaBoardId',
@@ -93,7 +94,8 @@ const routes = [
     },
     props: {
       default: true
-    }
+    },
+  beforeEnter: accountActions.signInFirst
   },
   {
     path: '/qna-modify/:qnaBoardId',
