@@ -10,10 +10,10 @@
         <input type="text" id="buyer-name" v-model="name" class="input-field" required />
 
         <label for="buyer-email">이메일:</label>
-        <input type="email" id="buyer-email" v-model="email" class="input-field" required/>
+        <input type="email" id="buyer-email" v-model="email" class="input-field" required />
 
         <label for="buyer-phone">핸드폰번호:</label>
-        <input type="tel" id="buyer-phone" v-model="phone" class="input-field" required/>
+        <input type="tel" id="buyer-phone" v-model="phone" class="input-field" required />
       </div>
 
       <!-- 받는 사람 정보 -->
@@ -21,14 +21,14 @@
         <h2>받는 사람 정보</h2>
         <hr>
         <label for="recipient-name">이름:</label>
-        <input type="text" id="recipient-name" v-model="recipientName" class="input-field" required/>
+        <input type="text" id="recipient-name" v-model="recipientName" class="input-field" required />
 
         <label for="recipient-address">주소:</label>
-        <input type="text" id="recipient-address" v-model="address" readonly @click="openDaumPostcode"
-          class="input-field" required/>
+        <input type="text" id="recipient-address" v-model="address" readonly @click="openDaumPostcode" class="input-field"
+          required />
 
         <label for="recipient-phone">핸드폰번호:</label>
-        <input type="tel" id="recipient-phone" v-model="recipientPhone" class="input-field" required/>
+        <input type="tel" id="recipient-phone" v-model="recipientPhone" class="input-field" required />
 
         <label for="address-detail">배송 요청사항 (예: 공동현관 비밀번호, 경비실에 맡겨주세요 등):</label>
         <input type="text" id="address-detail" v-model="addressDetail" class="input-field" />
@@ -86,24 +86,24 @@ export default {
     };
   },
 
-
   async mounted() {
-    const productId = this.$route.params.id;
+    const productId = this.$route.params.productId;
+    const productIds = this.$route.params.productIds;
     console.log('productId:', productId);
+    console.log('productIds:', productIds);
 
-    let selectedProductId = [];
-    if (Array.isArray(productId)) {
+    let selectedProductIds = [];
+    if (Array.isArray(productIds)) {
       // productIds로 값이 들어오는 경우(배열), 선택된 상품들의 id를 가져옵니다.
-      selectedProductId = productId;
+      selectedProductIds = productIds;
     } else {
       // productIds가 없는 경우, 단일 상품을 구매하는 것이므로 productId를 사용합니다.
-      selectedProductId.push(productId);
+      selectedProductIds.push(productId);
     }
-
     try {
       // 선택된 모든 상품 정보를 가져오기 위해 반복문을 사용합니다. productController의 read 메소드와 통신합니다.
-      for (let i = 0; i < selectedProductId.length; i++) {
-        const response = await axios.get(`http://localhost:7777/product/${selectedProductId[i]}`);
+      for (let i = 0; i < selectedProductIds.length; i++) {
+        const response = await axios.get(`http://localhost:7777/product/${selectedProductIds[i]}`);
         this.product.push(response.data);
       }
     } catch (error) {
@@ -111,13 +111,14 @@ export default {
     }
   },
 
+
   methods: {
     cancelOrder() {
-        this.$router.push({ name: 'ProductListView' }); // 라우터를 사용하여 홈 페이지로 돌아갑니다.
-      },
+      this.$router.push({ name: 'ProductListView' }); // 라우터를 사용하여 홈 페이지로 돌아갑니다.
+    },
     async KakaoPay() {
       try {
-        const response = await axios.post("http://localhost:7777/order/kakaoPay");
+        const response = await axios.post("http://localhost:7777/order/kakaoPay")
         console.log(response.data);
         const box = response.data.next_redirect_pc_url;
         const paymentWindow = window.open(box);
@@ -232,6 +233,7 @@ label {
     background-color: #F7E314;
   }
 }
+
 .cancel-btn {
   margin-top: 1rem;
   margin-left: 1rem;

@@ -157,7 +157,7 @@ export default {
       this.currentPage = 1;
     },
     onBuyClick(product) {
-      this.$router.push({ name: 'ProductOrderView', params: { id: product.productId } });
+      this.$router.push({ name: 'ProductOrderView', params: { productId: product.productId } });
     },
 
     addToCart(productId) {
