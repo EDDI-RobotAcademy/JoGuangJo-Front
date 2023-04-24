@@ -227,7 +227,7 @@ const routes = [
     }
   },
   {
-    path: '/product/order/:productId',
+    path: '/product-order/:productId',
     name: 'ProductOrderView',
     component: ProductOrderView,
     props: true,
