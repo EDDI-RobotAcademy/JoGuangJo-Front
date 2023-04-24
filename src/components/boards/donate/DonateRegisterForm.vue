@@ -205,6 +205,38 @@ export default {
             street: "",
             addressDetail: ""
         },
+        rules: {
+            name: [
+                v => !!v || "이름은 필수 입력 정보입니다",
+                v => /^[가-힣]{2,5}$/.test(v) || "2~5자 이내의 한글 이름만 입력할 수 있습니다"
+            ],
+            email: [
+                v => !!v || "이메일은 필수 입력 정보입니다",
+                v => {
+                    const replaceV = v.replace(/(\s*)/g, '');
+                    const pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+                    return pattern.test(replaceV) || '이메일을 형식에 맞게 입력하세요.';
+                }
+            ],
+            phone: [
+                v => !!v || "휴대전화번호는 필수 입력 정보입니다",
+                v => /^\d{3}-\d{4}-\d{4}$/.test(v) || "휴대전화번호 11자리를 모두 입력하세요"
+            ],
+            quantity: [
+                v => !!v || "기부 도서 수량은 필수 입력 정보입니다",
+                v => v >= 5 || "최소 기부 수량은 5권입니다",
+                v => v <= 100 || "최대 기부 수량은 100권입니다"
+            ],
+            quality: [
+                v => !!v || "기부 도서 상태는 필수 입력 정보입니다"
+            ],
+            visitDate: [
+                v => !!v || "방문 날짜는 필수 입력 정보입니다"
+            ],
+            visitTime: [
+                v => !!v || "방문 시간은 필수 입력 정보입니다"
+            ]
+        },
         quantityItems: Array.from({ length: 96 }, (_, i) => i + 5),
         date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
         time: null,
@@ -213,61 +245,33 @@ export default {
         }
     },
     computed: {
-        rules() {
-            return {
-                name: [
-                    v => !!v || "이름은 필수 입력 정보입니다",
-                    v => /^[가-힣]{2,5}$/.test(v) || "2~5자 이내의 한글 이름만 입력할 수 있습니다"
-                ],
-                email: [
-                    v => !!v || "이메일은 필수 입력 정보입니다",
-                    v => {
-                    const replaceV = v.replace(/(\s*)/g, '');
-                    const pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-                    return pattern.test(replaceV) || '이메일을 형식에 맞게 입력하세요.';
-                    }
-                ],
-                phone: [
-                    v => !!v || "휴대전화번호는 필수 입력 정보입니다",
-                    v => /^\d{3}-\d{4}-\d{4}$/.test(v) || "휴대전화번호 11자리를 모두 입력하세요"
-                ],
-                quantity: [
-                    v => !!v || "기부 도서 수량은 필수 입력 정보입니다",
-                    v => v >= 5 || "최소 기부 수량은 5권입니다"
-                ],
-                quality: [
-                    v => !!v || "기부 도서 상태는 필수 입력 정보입니다"
-                ],
-                visitDate: [
-                    v => !!v || "방문 날짜는 필수 입력 정보입니다"
-                ],
-                visitTime: [
-                    v => !!v || "방문 시간은 필수 입력 정보입니다"
-                ]
-                }
-            },
         isStep1Valid() {
             return (
-            this.formData.name &&
-            this.formData.email &&
-            this.formData.phone
-        );
+                this.rules.name[0](this.formData.name) === true &&
+                this.rules.name[1](this.formData.name) === true &&
+                this.rules.email[0](this.formData.email) === true &&
+                this.rules.email[1](this.formData.email) === true &&
+                this.rules.phone[0](this.formData.phone) === true &&
+                this.rules.phone[1](this.formData.phone) === true
+            );
         },
         isStep2Valid() {
         return (
-            this.formData.quantity &&
-            this.formData.quality
-        );
+            this.rules.quantity[0](this.formData.quantity) === true &&
+            this.rules.quantity[1](this.formData.quantity) === true &&
+            this.rules.quantity[2](this.formData.quantity) === true &&
+            this.rules.quality[0](this.formData.quality) === true
+            );
         },
         isStep3Valid() {
-        return (
-            this.formData.visitDate &&
-            this.formData.visitTime &&
-            this.formData.zipcode &&
-            this.formData.city &&
-            this.formData.street &&
-            this.formData.addressDetail
-        );
+            return (
+                this.rules.visitDate[0](this.formData.visitDate) === true &&
+                this.rules.visitTime[0](this.formData.visitTime) === true &&
+                this.formData.zipcode &&
+                this.formData.city &&
+                this.formData.street &&
+                this.formData.addressDetail
+            );
         },
         formattedPhone: {
         get() {
