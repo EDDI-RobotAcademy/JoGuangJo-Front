@@ -1,6 +1,6 @@
 import {
     REQUEST_QNA_BOARD_LIST_TO_SPRING,
-    REQUEST_QNA_BOARD_TO_SPRING,
+    REQUEST_QNA_BOARD_READ_TO_SPRING,
 
     REQUEST_QNA_COMMENT_LIST_FROM_SPRING,
 } from './mutation-types'
@@ -8,7 +8,7 @@ import {
 import axiosInst from '@/utility/axiosObject';
 
 export default {
-    requestCreateQnaBoardToSpring({}, payload) {
+    requestQnaBoardRegisterToSpring({}, payload) {
         axiosInst.post(`/qnaBoard/register`, payload)
             .then(() => {
                 alert('게시물 등록 성공!')
@@ -26,11 +26,11 @@ export default {
             })
     },
 
-    requestQnaBoardToSpring ({ commit }, qnaBoardId) {
+    requestQnaBoardReadToSpring ({ commit }, qnaBoardId) {
         console.log("read 요청 테스트 완료")
             return axiosInst.get(`/qnaBoard/${qnaBoardId}`)
             .then((res) => {
-                commit(REQUEST_QNA_BOARD_TO_SPRING, res.data)
+                commit(REQUEST_QNA_BOARD_READ_TO_SPRING, res.data)
             })
     },
 
@@ -45,7 +45,7 @@ export default {
                 })
     },
 
-    requestDeleteQnaBoardToSpring ({}, qnaBoardId) {
+    requestQnaBoardDeleteToSpring ({}, qnaBoardId) {
         console.log("삭제 요청 테스트 완료")
             return axiosInst.delete(`/qnaBoard/${qnaBoardId}`)
                 .then(() => {
@@ -56,7 +56,7 @@ export default {
                 })
     },
 
-    requestQnaCommentListFromSpring({commit}, qnaBoardId ){
+    requestQnaCommentListToSpring({commit}, qnaBoardId ){
         return axiosInst.get(`/qnaBoard/qnaComment/${qnaBoardId}`)
         .then((res) => {
             commit(REQUEST_QNA_COMMENT_LIST_FROM_SPRING, res.data)

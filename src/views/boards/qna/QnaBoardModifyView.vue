@@ -28,7 +28,7 @@ export default {
         ...mapState("qnaModule", ['qnaBoard'])
     },
     methods: {
-        ...mapActions("qnaModule", ['requestQnaBoardToSpring', 'requestQnaBoardModifyToSpring']),
+        ...mapActions("qnaModule", ['requestQnaBoardReadToSpring', 'requestQnaBoardModifyToSpring']),
 
         async onSubmit (payload) {
             const qnaBoardId = this.qnaBoardId
@@ -41,7 +41,7 @@ export default {
         }
     },
     beforeMount () {
-        this.requestQnaBoardToSpring(this.qnaBoardId)
+        this.requestQnaBoardReadToSpring(this.qnaBoardId)
     },
 }
 </script>
