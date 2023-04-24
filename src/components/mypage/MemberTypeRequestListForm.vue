@@ -32,10 +32,10 @@ export default {
     ...mapState("mypage", ["memberTypeRequests"]),
   },
   created() {
-    this.fetchMemberTypeRequests();
+    this.requestMemberRoleList();
   },
   methods: {
-    ...mapActions("mypage", ["fetchMemberTypeRequests"]),
+    ...mapActions("mypage", ["requestMemberRoleList"]),
     formatDate(date) {
       const d = new Date(date);
       return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;

@@ -44,7 +44,7 @@
                 <v-btn class="sunghee v-btn" @click="callDaumAddressApi(item)">주소 찾기</v-btn>
               </v-col>
               <v-col cols="6">
-                <v-btn class="sunghee v-btn" @click="saveAddressHandler(item)">주소 저장</v-btn>
+                <v-btn class="sunghee v-btn" @click="requestRegisterAddressHandler(item)">주소 저장</v-btn>
               </v-col>
             </v-row>
 
@@ -85,7 +85,7 @@ export default {
   },
 
   methods: {
-  ...mapActions('mypage', ['saveAddress']),
+  ...mapActions('mypage', ['requestRegisterAddress']),
 
   callDaumAddressApi (item) {
     new window.daum.Postcode({
@@ -115,7 +115,7 @@ export default {
     }).open()
   },
 
-  saveAddressHandler(item) {
+  requestRegisterAddressHandler(item) {
     const addressData = {
       memberId: JSON.parse(localStorage.getItem("userInfo")).id,
       city: item.city,
@@ -124,7 +124,7 @@ export default {
       addressDetail: item.addressDetail,
     };
     console.log(addressData);
-    this.saveAddress(addressData);
+    this.requestRegisterAddress(addressData);
   },
   }
 }

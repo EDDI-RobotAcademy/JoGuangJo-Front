@@ -39,7 +39,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("mypage/fetchMemberTypeRequest", this.$route.params.id);
+    this.$store.dispatch("mypage/requestReadMemberRoleRequest", this.$route.params.id);
     console.log("memberTypeRequest:", this.memberTypeRequest);
     console.log("memberTypeRequest:", JSON.parse(JSON.stringify(this.memberTypeRequest)));
   },
@@ -57,14 +57,14 @@ export default {
         memberId: this.memberTypeRequest.memberId,
         memberType: this.memberTypeRequest.memberType
       };
-      this.$store.dispatch("mypage/acceptRequest", requestData);
+      this.$store.dispatch("mypage/requestMemberRoleAccept", requestData);
       this.$router.push({ name: 'MemberTypeRequestListView' });
     },
     rejectRequestHandler() {
       const requestData = {
         requestId: this.memberTypeRequest.memberTypeRequestId
       };
-      this.$store.dispatch("mypage/rejectRequest", requestData);
+      this.$store.dispatch("mypage/requestMemberRoleReject", requestData);
       this.$router.push({ name: 'MemberTypeRequestListView' });
     }
   }

@@ -6,7 +6,7 @@ import * as mypageMutationTypes from './mypageMutation-Types';
 
 const actions = {
 
-  async fetchMyPageData({ commit }) {
+  async requestAccountInformation({ commit }) {
     let userInfo = localStorage.getItem('userInfo');
     let token = userInfo.split(',')[0].split(':')[1];
     let realtoken = token.substr(1, token.length - 2);
@@ -18,7 +18,7 @@ const actions = {
     }
   },
 
-  saveAddress({ commit }, addressData) {
+  requestRegisterAddress({ commit }, addressData) {
     axiosInst.post("/mypage/saveAddress", addressData)
       .then((res) => {
         console.log('Response data:', res.data);
@@ -37,12 +37,14 @@ const actions = {
       commit('SET_IS_CURRENT_PASSWORD_CORRECT', response.data);
       if(response.data) {
         alert("비밀번호가 일치합니다!!!");
+        return true;
       } else {
         alert("비밀번호가 불일치합니다!!!");
+        return false;
       }
     } catch (error) {
       console.error('Error while checking the current password:', error);
-      alert("알 수 없는 오류가 생성되었습니다." <br> "고객지원센터 02)123-4567");
+      alert("알 수 없는 오류가 생성되었습니다./n고객지원센터 02)123-4567");
     }
   },
 
@@ -63,7 +65,7 @@ const actions = {
     }
   },
 
-  async submitRequest({ commit },{ selectedMemberType, requestMessage }) {
+  async requestRegisterMemberRoleRequset({ commit },{ selectedMemberType, requestMessage }) {
     if (!selectedMemberType || !requestMessage) {
       console.log("getters.selectedMemberType : " + selectedMemberType )
       console.log("getters.requestMessage : " + requestMessage )
@@ -95,7 +97,7 @@ const actions = {
     }
   },
 
-  async fetchMemberTypeRequests({ commit }) { 
+  async requestMemberRoleList({ commit }) { 
     try {
       const response = await axiosInst.get("/mypage/memberTypeRequestList");
       commit(mypageMutationTypes.SET_MEMBER_TYPE_REQUESTS, response.data);
@@ -104,11 +106,11 @@ const actions = {
     }
   },
 
-  async fetchMemberTypeRequest({ commit }, id) {
+  async requestReadMemberRoleRequest({ commit }, id) {
     console.log("I'll find you")
     try {
       const response = await axiosInst.get(`/mypage/memberTypeRequest/${id}`);
-      console.log("fetchMemberTypeRequest");
+      console.log("requestReadMemberRoleRequest");
       console.log(response.data);
       commit(mypageMutationTypes.SET_MEMBER_TYPE_REQUEST, response.data);
       console.log("Found it")
@@ -117,7 +119,7 @@ const actions = {
     }
   },
   
-  async acceptRequest(_, requestData) {
+  async requestMemberRoleAccept(_, requestData) {
     try {
       await axiosInst.post('/mypage/rollrequestaccept', requestData);
     } catch (error) {
@@ -125,7 +127,7 @@ const actions = {
     }
   },
   
-  async rejectRequest(_, requestData) {
+  async requestMemberRoleReject(_, requestData) {
     try {
       await axiosInst.post('/mypage/rollrequestreject', requestData);
     } catch (error) {
@@ -133,8 +135,11 @@ const actions = {
     }
   },
   
+  goMypage() {
+    router.push({ name: 'MyPageView' });
+  },
 
-  async findmypost({commit}) { 
+  async findMyPost({commit}) { 
     const findmypostrequest = {
       memberId : JSON.parse(localStorage.getItem('userInfo')).id
     }

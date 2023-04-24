@@ -17,10 +17,10 @@ export default {
     ...mapGetters('mypage', ['myPageData'])
   },
   methods: {
-    ...mapActions('mypage', ['fetchMyPageData'])
+    ...mapActions('mypage', ['requestAccountInformation'])
   },
   mounted() {
-    this.fetchMyPageData();
+    this.requestAccountInformation();
   }
 };
 </script>

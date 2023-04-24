@@ -35,7 +35,7 @@
       </v-row>
       <div class="justify-center" align="center">
         <v-btn class="sunghee v-btn" rounded width="300px" height="50px"
-        @click="submitRequest({ selectedMemberType: selectedMemberTypeLocal, requestMessage: requestMessageLocal })"
+        @click="requestRegisterMemberRoleRequset({ selectedMemberType: selectedMemberTypeLocal, requestMessage: requestMessageLocal })"
         >
         제출하기
       </v-btn>
@@ -66,7 +66,7 @@ export default {
     ...mapState("mypage", ["selectedMemberType", "requestMessage", "memberTypes"]),
   },
   methods: {
-    ...mapActions("mypage", ["submitRequest"]),
+    ...mapActions("mypage", ["requestRegisterMemberRoleRequset"]),
     ...mapMutations("mypage", ["SET_SELECTED_MEMBER_TYPE", "SET_SELECTED_REQUEST_MESSAGE"]),
 },
 };
