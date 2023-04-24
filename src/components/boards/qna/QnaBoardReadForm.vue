@@ -13,7 +13,7 @@
         <v-card-text class="content-area">
         <!-- 이미지가 있는 경우 이미지와 내용(content)를 같이 보여준다. -->
         <!-- length 수정해야됨. 콘솔 에러는 발생하는데 이상하게 됨 -->
-        <div v-if="qnaBoard.imageResourcePaths.length > 0">
+        <div v-if="qnaBoard.imageResourcePaths">
         <v-carousel hide-delimiters class="carousel">
           <v-carousel-item v-for="(imagePath, idx) in qnaBoard.imageResourcePaths" :key="idx" cover>
             <img :src="require(`@/assets/qnaImgs/${imagePath}`)" style="object-fit: contain; width: 100%; height: 100%;">
