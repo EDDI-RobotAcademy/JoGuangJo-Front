@@ -19,11 +19,11 @@
       // console.log ("localStorage.getItem('userInfo') : " + localStorage.getItem('userInfo'));
       // console.log ("JSON.parse(localStorage.getItem('userInfo')).nickName : " + JSON.parse(localStorage.getItem('userInfo')).nickName);
       // console.log ("JSON.parse(localStorage.getItem('userInfo')).id : " + JSON.parse(localStorage.getItem('userInfo')).id);
-      this.findmypost()
+      this.findMyPost()
     },
     methods: {
       // mypage모듈 안에 있는 actions 안에있는 findmypost함수를 가다.
-      ...mapActions("mypage", ["findmypost"]),
+      ...mapActions("mypage", ["findMyPost"]),
     },
     }
 </script>

@@ -10,11 +10,11 @@
       <v-container>
         <v-row class="sunghee v-row padding">
           <v-col cols="12">
-            <v-text-field v-model="currentPassword" label="현재 비밀번호" :rules="password_rule" :counter="30" outlined type="password" color="#FFDE59"></v-text-field>
+            <v-text-field v-model="currentPassword" label="현재 비밀번호" :readonly="verifyPassword" :rules="password_rule" :counter="30" outlined type="password" color="#FFDE59"></v-text-field>
           </v-col>
 
           <v-col cols="12">
-            <v-btn class="sunghee v-btn" style="margin: -30px 0 30px 0" @click="checkCurrentPasswordHandler">현재 비밀번호 확인</v-btn>
+            <v-btn class="sunghee v-btn" style="margin: -30px 0 30px 0" @click="checkCurrentPasswordHandler" :disabled="verifyPassword">현재 비밀번호 확인</v-btn>
           </v-col>
 
           <v-col cols="12">
@@ -27,7 +27,7 @@
 
           <v-col cols="12">
             <v-btn class="sunghee v-btn" @click="registerModifiedPasswordHandler" style="margin-right: 10px">저장</v-btn>
-            <v-btn class="sunghee v-btn negative">취소 </v-btn>
+            <v-btn class="sunghee v-btn negative" @click="goMyPage">취소 </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -43,6 +43,7 @@ export default {
 
   data() {
     return {
+      verifyPassword: false,
       currentPassword: '',
       newPassword: '',
       confirmNewPassword: '',
@@ -68,7 +69,10 @@ export default {
         id: JSON.parse(localStorage.getItem("userInfo")).id,
         password: this.currentPassword,
       };
-      await this.checkCurrentPassword(checkPassword);
+      const result = await this.checkCurrentPassword(checkPassword);
+      this.verifyPassword = result;
+      console.log("결과 : " + result);
+      console.log("this.checkPassword 결과 : " + this.verifyPassword);
     },
 
     async registerModifiedPasswordHandler() {
@@ -85,6 +89,10 @@ export default {
           console.log("this.confirmNewPassword : " + this.confirmNewPassword)
         }
       },
+    
+    goMyPage() {
+      this.$store.dispatch("mypage/goMypage");
+    },
     },
   };
 </script>

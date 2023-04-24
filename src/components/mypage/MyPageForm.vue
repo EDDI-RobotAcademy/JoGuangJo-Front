@@ -33,6 +33,10 @@
                 <v-btn @click="$router.push({ name: 'FindMyPostView' })" class="sunghee button-link btn">
                     내 게시글 찾기
                 </v-btn>
+                <br>
+                <v-btn v-on:click="resignhandler" class="sunghee button-link btn">
+                    회원 탈퇴
+                </v-btn>
             </v-card>
         </v-card>
     </div>
