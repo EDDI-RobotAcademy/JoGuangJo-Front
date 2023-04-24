@@ -56,7 +56,6 @@ export default {
     ...mapActions(productModule, [
       'requestProductToSpring',
       'requestDeleteProductToSpring',
-      'requestProductImageToSpring',
     ]),
     async onDelete() {
       await this.requestDeleteProductToSpring(this.productId)
@@ -66,7 +65,6 @@ export default {
   async created() {
     console.log('productId: ' + this.productId)
     await this.requestProductToSpring(this.productId)
-    await this.requestProductImageToSpring(this.productId)
   }
 }
 

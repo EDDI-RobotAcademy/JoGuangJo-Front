@@ -137,6 +137,9 @@ export default {
     }
   },
   methods: {
+    sortProducts() {
+      this.currentPage = 1;
+    },
     goToProductRegister() {
       this.$router.push({ name: 'ProductRegisterView' });
     },

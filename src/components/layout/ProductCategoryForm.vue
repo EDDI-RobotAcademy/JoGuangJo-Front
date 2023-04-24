@@ -29,6 +29,7 @@ export default {
     return {
       selectedCategory: "전체",
       categories: ["전체", "문구류", "도서", "굿즈"],
+      additionalCategories: [],
     };
   },
 };

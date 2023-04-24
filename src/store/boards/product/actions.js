@@ -1,11 +1,10 @@
 import {
     REQUEST_PRODUCT_LIST_TO_SPRING,
     REQUEST_PRODUCT_TO_SPRING,
-    REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING,
     REQUEST_ALL_PRODUCT_TO_SPRING,
 } from './mutation-types'
 
-import axiosInst from '@/utility/axiosObject'
+import axiosInst from '@/utility/axiosObject';
 
 export default {
     requestCreateProductToSpring ({}, payload) {
@@ -49,12 +48,6 @@ export default {
             })
             .catch(() => {
                 alert("문제 발생!")
-            })
-    },
-    requestProductImageToSpring ({ commit }, productId) {
-        return axiosInst.get(`/product/imageList/${productId}`)
-            .then((res) => {
-                commit(REQUEST_PRODUCT_IMAGE_LIST_TO_SPRING, res.data)
             })
     },
     requestAllOfProductToSpring ({ commit }) {
