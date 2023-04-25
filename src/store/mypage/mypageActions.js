@@ -136,7 +136,15 @@ const actions = {
   },
   
   goMypage() {
+    console.log("쳤냐?2");
     router.push({ name: 'MyPageView' });
+  },
+
+  // 나의 게시글 찾기 같은 경우 특정 게시판 read 페이지에서 
+  // 목록으로 돌아가더라도 다시 마이페이지로 돌아가게 만들기
+  checkStartIsMyPage({commit}, payload) {
+    console.log("들어온 값 : " +payload)
+    commit(mypageMutationTypes.START_FROM_MYPAGE, payload);
   },
 
   async findMyPost({commit}) { 
