@@ -7,7 +7,7 @@ import {
 import axiosInst from '@/utility/axiosObject';
 
 export default {
-    requestCreateProductToSpring ({}, payload) {
+    requestCreateProductToSpring({ }, payload) {
         console.log('payload: ' + payload)
         return axiosInst.post('/product/register', payload)
             .then(() => {
@@ -17,28 +17,30 @@ export default {
                 alert('문제 발생!')
             })
     },
-    requestProductListToSpring ({ commit }) {
+    requestProductListToSpring({ commit }) {
         return axiosInst.get('/product/list')
             .then((res) => {
                 commit(REQUEST_PRODUCT_LIST_TO_SPRING, res.data)
             })
     },
-    requestProductToSpring ({ commit }, productId) {
+    requestProductToSpring({ commit }, productId) {
         return axiosInst.get(`/product/${productId}`)
             .then((res) => {
                 commit(REQUEST_PRODUCT_TO_SPRING, res.data)
             })
     },
-    requestDeleteProductToSpring ({}, productId) {
-        return axiosInst.delete(`/product/${productId}`)
-            .then(() => {
-                alert("삭제 성공")
-            })
-            .catch(() => {
-                alert("문제 발생!")
-            })
+    requestDeleteProductToSpring({ }, productId) {
+        if (confirm("삭제하시겠습니까?")) {
+            return axiosInst.delete(`/product/${productId}`)
+                .then(() => {
+                })
+                .catch(() => {
+                    alert("문제 발생!");
+                });
+        } else {
+        }
     },
-    requestProductModifyToSpring ({}, payload) {
+    requestProductModifyToSpring({ }, payload) {
         const { productName, content, productId, writer, price } = payload
 
         return axiosInst.put(`/product/${productId}`,
@@ -50,7 +52,7 @@ export default {
                 alert("문제 발생!")
             })
     },
-    requestAllOfProductToSpring ({ commit }) {
+    requestAllOfProductToSpring({ commit }) {
         return axiosInst.get('/product/all')
             .then((res) => {
                 commit(REQUEST_ALL_PRODUCT_TO_SPRING, res.data)
