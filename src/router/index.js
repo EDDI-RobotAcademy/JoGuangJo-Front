@@ -118,7 +118,8 @@ const routes = [
   {
     path: '/notice-register',
     name: 'NoticeBoardRegisterView',
-    component: NoticeBoardRegisterView
+    component: NoticeBoardRegisterView,
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/notice-read/:noticeBoardId',
@@ -138,7 +139,8 @@ const routes = [
     },
     props: {
       default: true
-    }
+    },
+    beforeEnter: accountActions.signInFirst
   },
 
 
