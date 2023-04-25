@@ -105,7 +105,8 @@ const routes = [
       },
       props: {
         default: true
-      }
+      },
+  beforeEnter: accountActions.signInFirst
   },
 
 
@@ -304,6 +305,7 @@ const routes = [
     path: '/cart-list',
     name: 'CartListView',
     component: CartListView,
+    beforeEnter: accountActions.signInFirst
   },
 
   // SNS 이동
