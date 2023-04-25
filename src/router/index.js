@@ -204,7 +204,8 @@ const routes = [
   {
     path: '/product-register',
     name: 'ProductRegisterView',
-    component: ProductRegisterView
+    component: ProductRegisterView,
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/product-read/:productId',
@@ -231,6 +232,7 @@ const routes = [
     name: 'ProductOrderView',
     component: ProductOrderView,
     props: true,
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/purchase-complete',
