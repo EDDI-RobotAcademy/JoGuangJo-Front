@@ -4,7 +4,7 @@
             <h2 class="h2">떠오르지 않는다. '상세 글 읽기'?</h2>
         <qna-board-read-form v-if="qnaBoard" :qnaBoard="qnaBoard"/>
             <p v-else>로딩중 .......... </p>
-            <div class="btn">
+            <div class="button-container">
               <div v-if="!fromMyPage">
                 <v-btn
                    class="back-btn"
@@ -142,13 +142,13 @@ export default {
   padding-top: 30px;
 }
 
-.btn {
-  margin-left: 100px;
+.button-container {
+  display: flex;
 }
 
 .back-btn {
-  margin-right: 1040px;
-  margin-left: -100px;
+  margin-right: 855px;
+  margin-left: 15px;
 }
 
 .modify-btn {

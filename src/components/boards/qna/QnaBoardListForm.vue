@@ -40,28 +40,47 @@
                        </div>
                     </v-list-item>
       </div>
+        <div>
+    <div v-if="!displayedQnaBoards || displayedQnaBoards.length === 0">
+      <table>
+      <tr>
+          <th style="padding-left: 15px">번호</th>
+          <th style="padding-left: 250px">제목</th>
+          <th style="text-align: right">작성자</th>
+          <th style="text-align: right">등록일자</th>
+        </tr>
+      <p class="no-list">현재 등록된 게시물이 없습니다!</p>
+      </table>
+    </div>
+    <div v-else>
       <table>
         <tr>
-          <th :style="{ 'padding-left': '10px' }" class="title-column">번호</th>
-          <th :style="{ 'padding-left': '300px' }" class="title-column">제목</th>
-          <th style="padding-left: auto; text-align: right;" class="writer-column">작성자</th>
-          <th style="padding-left: auto; text-align: right;"  class="date-column">등록일자</th>
+          <th style="padding-left: 15px">번호</th>
+          <th style="padding-left: 250px">제목</th>
+          <th style="text-align: right">작성자</th>
+          <th style="text-align: right">등록일자</th>
         </tr>
-        <tr v-if="!displayedQnaBoards || (Array.isArray(displayedQnaBoards) && displayedQnaBoards.length === 0)">
-          <td colspan="4">현재 등록된 게시물이 없습니다!</td>
-        </tr>
-        <tr v-else v-for="qnaBoard in paginatedQnaBoards" :key="qnaBoard.qnaBoardId">
-          <td :style="{ 'padding-left': '15px' }">{{ qnaBoard.qnaBoardId }} </td>
+        <tr v-for="qnaBoard in paginatedQnaBoards" :key="qnaBoard.qnaBoardId">
+          <td :style="{ 'padding-left': '15px' }">{{ qnaBoard.qnaBoardId }}</td>
           <td :style="{ 'padding-left': '250px' }">
-            <router-link :to="{ name: 'QnaBoardReadView', params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
+            <router-link
+              :to="{
+                name: 'QnaBoardReadView',
+                params: { qnaBoardId: qnaBoard.qnaBoardId.toString() },
+              }"
+              style="text-decoration: none"
+            >
               {{ qnaBoard.title }}
             </router-link>
           </td>
-          <td style="padding-left: auto; text-align: right;">{{ qnaBoard.writer }}</td>
-          <td style="padding-left: auto; text-align: right;">{{ formattedDate(qnaBoard.regDate) }}</td>
+          <td style="text-align: right">{{ qnaBoard.writer }}</td>
+          <td style="text-align: right">{{ formattedDate(qnaBoard.regDate) }}</td>
         </tr>
-      </table><br>
-      <v-pagination v-model="currentPage" :length="pageCount" color="#fee789" class="my-5"></v-pagination>
+      </table>
+      <br />
+      <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
+    </div>
+  </div>
     </div>
     </div>
   </template>
@@ -248,5 +267,9 @@ table tr:nth-child(odd) {
   .btn-text {
     padding: 5px;
     margin-top: 2.5px;
+}
+.no-list {
+  margin-left: 500px;
+  margin-top: 50px;
 }
 </style>

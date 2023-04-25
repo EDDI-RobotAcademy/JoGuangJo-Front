@@ -7,7 +7,7 @@
         </div>
         <div class="input-field">
           <textarea v-model="comment"
-            cols="100" rows="1"
+            cols="70" rows="1"
             placeholder="댓글을 작성 해주세요."
             onfocus="this.placeholder=''"
             onblur="this.placeholder='댓글을 작성 해주세요.'"
@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 .for-button {
-    padding-left: 0;
+    padding-left: 70px;
     padding-top: 5px;
 }
 
