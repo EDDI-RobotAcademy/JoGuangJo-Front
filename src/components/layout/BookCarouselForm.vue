@@ -71,9 +71,9 @@ export default {
 
 <style scoped>
 
-.carousel-container {
+/* .carousel-container {
   margin: 50px 0 50px 0;
-}
+} */
 
 .carousel-title {
   font-size: 30px;
