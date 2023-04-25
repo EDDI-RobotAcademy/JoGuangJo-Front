@@ -118,7 +118,8 @@ const routes = [
   {
     path: '/notice-register',
     name: 'NoticeBoardRegisterView',
-    component: NoticeBoardRegisterView
+    component: NoticeBoardRegisterView,
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/notice-read/:noticeBoardId',
@@ -138,7 +139,8 @@ const routes = [
     },
     props: {
       default: true
-    }
+    },
+    beforeEnter: accountActions.signInFirst
   },
 
 
@@ -171,7 +173,8 @@ const routes = [
   {
     path: '/mypage/donate-list',
     name: 'DonateListView',
-    component: DonateListView
+    component: DonateListView,
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/mypage/donate-read/:donateId',
@@ -181,7 +184,8 @@ const routes = [
       },
       props: {
         default: true
-      }
+      },
+      beforeEnter: accountActions.signInFirst
   },
   {
     path: '/mypage/donate-modify/:donateId',
@@ -191,7 +195,8 @@ const routes = [
     },
     props: {
       default: true
-    }
+    },
+    beforeEnter: accountActions.signInFirst
   },
 
 
@@ -340,6 +345,7 @@ const routes = [
     path: '/mypage/FindMyPost',
     name: 'FindMyPostView',
     component: FindMyPostView,
+    beforeEnter: accountActions.signInFirst
   },
   
 ]

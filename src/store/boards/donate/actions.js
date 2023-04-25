@@ -66,16 +66,17 @@ export default {
         })
     },
 
-
-    requestDonateDeleteToSpring ({}, donateId) {
-        return axiosInst.delete(`/donate/delete/${donateId}`)
-            .then((res) => {
-                alert("해당 기부글을 삭제했습니다!", res.data)
-            })
-            .catch((error) => {
-                console.error(error)
-                alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!")
-            })
-    },
+    requestDonateDeleteToSpring({}, donateId) {
+        if (confirm("이 기부글을 삭제하시겠습니까? 한번 삭제하면 되돌릴 수 없습니다.")) {
+            return axiosInst.delete(`/donate/delete/${donateId}`)
+                .then((res) => {
+                    alert("회원님의 기부글이 삭제되었습니다!", res.data)
+                })
+                .catch((error) => {
+                    console. error(error)
+                    alert("해당 기부글을 삭제하는 중에 문제가 발생했습니다!")
+                })
+        }
+    }
 
 }
