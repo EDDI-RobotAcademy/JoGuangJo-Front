@@ -341,6 +341,7 @@ const routes = [
     path: '/mypage/FindMyPost',
     name: 'FindMyPostView',
     component: FindMyPostView,
+    beforeEnter: accountActions.signInFirst
   },
   
 ]
