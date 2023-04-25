@@ -76,7 +76,7 @@ export default {
     background-color: #fee789 !important;
     color: black;
     border-radius: 25px;
-    margin-top: 55px;
+    margin-top: 80px;
     margin-right: 10px;
     margin-bottom: 15px;
   }
@@ -85,7 +85,7 @@ export default {
     background-color: rgb(208, 197, 197);
     color: black;
     border-radius: 25px;
-    margin-top: 55px;
+    margin-top: 80px;
     margin-right: 10px;
     margin-bottom: 15px;
   }

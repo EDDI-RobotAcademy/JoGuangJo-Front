@@ -109,7 +109,7 @@ export default {
 }
 
 .forList {
-    width: 1275px;
+    width: 1095px;
 }
 
 .h3 {
