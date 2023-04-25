@@ -44,7 +44,8 @@
                       {{ item.productName }}
                     </router-link>
                   </p>
-                  <p class="product-price">{{ item.price }}원</p>
+                  <p class="product-price">{{ formatPrice(item.price) }}원</p>
+
                   <p class="product-seller">판매자: {{ item.writer }}</p>
                   <div class="button-container">
                     <v-btn @click="addToCart(item.productId)" class="btn1">장바구니</v-btn>
@@ -163,6 +164,9 @@ export default {
     addToCart(productId) {
       this.$emit('addToCart', { productId })
     },
+    formatPrice(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   }
 };
 </script>
