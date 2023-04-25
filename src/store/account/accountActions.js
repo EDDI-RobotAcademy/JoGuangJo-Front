@@ -1,5 +1,6 @@
 // accountActions.js
 import axiosInst from "@/utility/axiosObject";
+import router from '@/router';
 
 export default {
   async signup({ commit }, payload) {
@@ -50,6 +51,11 @@ export default {
       axiosInst.post("/member/logout", token).then(() => {
       commit("setAuthenticated", false);
       localStorage.removeItem("userInfo");
+      if (router.currentRoute.path.includes("/mypage")) {
+        console.log("Are you leaving my page?");
+        router.push("/");
+      } else {
+      }
       alert("로그아웃 완료");
       });
   },

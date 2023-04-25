@@ -256,7 +256,7 @@ const routes = [
     beforeEnter: accountActions.signInFirst
   },
   {
-    path: '/change-address',
+    path: '/mypage/change-address',
     name: 'ChangeAddressView',
     components: {
       default: ChangeAddressView
@@ -264,7 +264,7 @@ const routes = [
     beforeEnter: accountActions.signInFirst
   },
   {
-    path: '/change-password',
+    path: '/mypage/change-password',
     name: 'ChangePasswordView',
     components: {
       default: ChangePasswordView
@@ -272,13 +272,13 @@ const routes = [
     beforeEnter: accountActions.signInFirst
   },
   {
-    path: '/memberType-request',
+    path: '/mypage/memberType-request',
     name: 'MemberTypeRequestView',
     component: MemberTypeRequestView,
     beforeEnter: accountActions.signInFirst
   },
   {
-    path: '/memberType-request-list',
+    path: '/mypage/memberType-request-list',
     name: 'MemberTypeRequestListView',
     components: {
       default: MemberTypeRequestListView
@@ -286,7 +286,7 @@ const routes = [
     beforeEnter: accountActions.signInFirst
   },
   {
-    path: "/memberType-read/:id",
+    path: "/mypage/memberType-read/:id",
     name: "MemberTypeReadView",
     components: {
       default: MemberTypeReadView
