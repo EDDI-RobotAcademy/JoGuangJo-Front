@@ -171,7 +171,8 @@ const routes = [
   {
     path: '/mypage/donate-list',
     name: 'DonateListView',
-    component: DonateListView
+    component: DonateListView,
+    beforeEnter: accountActions.signInFirst
   },
   {
     path: '/mypage/donate-read/:donateId',
@@ -181,7 +182,8 @@ const routes = [
       },
       props: {
         default: true
-      }
+      },
+      beforeEnter: accountActions.signInFirst
   },
   {
     path: '/mypage/donate-modify/:donateId',
@@ -191,7 +193,8 @@ const routes = [
     },
     props: {
       default: true
-    }
+    },
+    beforeEnter: accountActions.signInFirst
   },
 
 
