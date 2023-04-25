@@ -61,7 +61,7 @@
           <td style="padding-left: auto; text-align: right;">{{ formattedDate(qnaBoard.regDate) }}</td>
         </tr>
       </table><br>
-      <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
+      <v-pagination v-model="currentPage" :length="pageCount" color="#fee789" class="my-5"></v-pagination>
     </div>
     </div>
   </template>
