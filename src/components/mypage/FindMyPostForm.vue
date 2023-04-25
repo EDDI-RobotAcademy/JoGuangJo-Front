@@ -2,7 +2,7 @@
   <div class="qna-board-list">
     <div class="Board-list">
       <div class="h2">
-       <h2 class="ms-1">내가 쓴 Q&A 게시글 찾기</h2><br>
+       <h2 class="ms-1">{{ nickName }} 님이 작성하신 Q&A 게시글 입니다.</h2><br>
       </div> 
     </div>
     <table>
@@ -39,6 +39,7 @@ export default {
   name: "FindMyPostForm",
   data() {
       return {
+      nickName: JSON.parse(localStorage.getItem('userInfo')).nickName,
       currentPage: 1, 
       pageSize: 5, // 수정 가능
       searchQuery: '', // 검색어를 입력하는 input 요소의 v-model
