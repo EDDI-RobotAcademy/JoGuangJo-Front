@@ -55,7 +55,7 @@
               </v-card>
             </v-col>
           </v-row>
-          <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>
+          <v-pagination v-model="currentPage" :length="pageCount" color="#fee789" class="my-5"></v-pagination>
 
         </v-container>
       </div>

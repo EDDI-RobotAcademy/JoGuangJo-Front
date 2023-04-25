@@ -2,6 +2,7 @@
   <div class="notice-list">
     <div class="search">
       <v-select
+          color="#FFDE59"
           class="search-select"
           v-model="searchBy"
           :items="searchOptions"
@@ -54,7 +55,7 @@
           <td style="padding-left: auto; text-align: right;">{{ formattedDate(noticeBoard.regDate) }}</td>
         </tr>
       </table><br>
-      <v-pagination v-model="currentPage" :length="pageCount" class="my-5"></v-pagination>  
+      <v-pagination v-model="currentPage" :length="pageCount" color="#fee789" class="my-5"></v-pagination>  
 </div>
 
   

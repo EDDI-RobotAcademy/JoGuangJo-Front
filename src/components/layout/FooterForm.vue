@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     a.custom-link {
         text-decoration: none;
     }

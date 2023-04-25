@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .for-qna-modify{
         margin-top: 50px;
         margin-bottom: -15px;
