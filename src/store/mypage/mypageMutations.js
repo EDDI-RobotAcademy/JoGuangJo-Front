@@ -28,7 +28,10 @@ const mutations = {
   },
   [mypageMutationTypes.REQUEST_QNA_BOARD_LIST_TO_SPRING]: (state, memberTypeRequest) => {
     state.qnaBoards = memberTypeRequest;
-  }, 
+  },
+  [mypageMutationTypes.START_FROM_MYPAGE]: (state, visited) => {
+    state.fromMyPage = visited;
+  },
 };
 
 export default mutations;

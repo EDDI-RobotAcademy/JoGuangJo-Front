@@ -9,6 +9,7 @@ const state = {
     memberTypeRequest: {},
     qnaBoards: [],
     qnaBoard: {},
+    fromMyPage: false,
 };
 
 export default state;

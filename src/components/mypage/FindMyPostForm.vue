@@ -18,9 +18,9 @@
       <tr v-else v-for="qnaBoard in paginatedQnaBoards" :key="qnaBoard.qnaBoardId">
         <td :style="{ 'padding-left': '15px' }">{{ qnaBoard.qnaBoardId }} </td>
         <td :style="{ 'padding-left': '250px' }">
-          <router-link :to="{ name: 'QnaBoardReadView', params: { qnaBoardId: qnaBoard.qnaBoardId.toString() }}">
+          <div class="link" @click="onClick(qnaBoard.qnaBoardId)">
             {{ qnaBoard.title }}
-          </router-link>
+          </div>
         </td>
         <td style="padding-left: auto; text-align: right;">{{ qnaBoard.writer }}</td>
         <td style="padding-left: auto; text-align: right;">{{ formattedDate(qnaBoard.regDate) }}</td>
@@ -115,6 +115,12 @@ export default {
       }
       }
       this.currentPage = 1;
+  },
+  onClick(qnaBoardId) {
+    console.log("쳤냐?1");
+    this.$store.dispatch('mypage/checkStartIsMyPage', true);
+    this.$router.push({ name: 'QnaBoardReadView', params: { qnaBoardId: qnaBoardId.toString() } });
+    console.log("쳤냐?3");
   }
   }
 }

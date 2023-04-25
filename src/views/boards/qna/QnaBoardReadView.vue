@@ -5,16 +5,27 @@
         <qna-board-read-form v-if="qnaBoard" :qnaBoard="qnaBoard"/>
             <p v-else>로딩중 .......... </p>
             <div class="btn">
+              <div v-if="!fromMyPage">
+                <v-btn
+                   class="back-btn"
+                   color="#fee789"
+                   rounded
+                   @click="onClick('QnaBoardListView')"
+                >
+                  목록으로
+                </v-btn>
+              </div>
+              <div v-else>
+                <v-btn
+                   class="back-btn"
+                   color="#fee789"
+                   rounded
+                   @click="onClick('FindMyPostView')"
+                >
+                  목록으로
+                </v-btn>
+              </div>
             <div v-if="isCurrentUser()">
-              <v-btn
-                 class="back-btn"
-                 color="#fee789"
-                 rounded
-                 :to="{ name: 'QnaBoardListView' }"
-              >
-                목록으로
-              </v-btn>
-
               <v-btn
                 class="modify-btn"
                 color="#fee789"
@@ -69,7 +80,8 @@ export default {
         },
     },
     computed: {
-        ...mapState("qnaModule", ['qnaBoard', 'qnaComments'])
+        ...mapState("qnaModule", ['qnaBoard', 'qnaComments']),
+        ...mapState("mypage", ['fromMyPage'])
     },
     methods: {
         ...mapActions("qnaModule", [
@@ -96,6 +108,10 @@ export default {
                 params: { qnaBoardId: qnaBoard.data.qnaBoardId.toString() }
             })
         },
+        onClick(routeName) {
+          console.log("snfjTdna");
+          this.$router.push({ name: routeName });
+        },
     },
     created () {
         console.log('qnaBoardId: ' + this.qnaBoardId)
@@ -108,7 +124,13 @@ export default {
         this.currentUser = JSON.parse(userInfo).nickName
         console.log(this.currentUser, " : 로그인 한 유저의 닉네임")
     }
-    }
+    },
+    beforeDestroy() {
+      this.$store.dispatch('mypage/checkStartIsMyPage', false);
+    },     
+    destroyed() {
+      console.log("destroyed")
+    },
 }
 
 
