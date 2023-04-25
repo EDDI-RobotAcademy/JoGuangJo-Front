@@ -200,7 +200,7 @@ label {
 .form-buttons {
   display: flex;
   justify-content: center; /* add this line to center the buttons horizontally */
-  margin-top: 2.5rem;
+  margin-top: 6rem;
 }
 
 .form-buttons button:first-child {
