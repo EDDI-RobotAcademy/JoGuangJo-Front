@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .category-container {
   margin-bottom: 70px;
   margin-left: 40px;

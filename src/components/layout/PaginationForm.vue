@@ -36,7 +36,7 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   .pagination {
     display: flex;
     justify-content: center;
