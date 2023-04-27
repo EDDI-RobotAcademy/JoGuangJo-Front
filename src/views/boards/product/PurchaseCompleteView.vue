@@ -10,6 +10,7 @@
 
 <script>
 import axios from "axios";
+import axiosInst from '@/utility/axiosObject';
 
 export default {
   name: "PurchaseCompleteView",
@@ -23,8 +24,8 @@ export default {
 
     if (this.pgToken) {
       try {
-        const response = await axios.post(
-          "http://localhost:7777/order/kakaoPaySuccess",
+        const response = await axiosInst.post(
+          "/order/kakaoPaySuccess",
           {
             pgToken: this.pgToken,
           }

@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInst from '@/utility/axiosObject';
 
 export default {
   name: 'ProductOrderView',
@@ -103,7 +103,7 @@ export default {
     try {
       // 선택된 모든 상품 정보를 가져오기 위해 반복문을 사용합니다. productController의 read 메소드와 통신합니다.
       for (let i = 0; i < selectedProductIds.length; i++) {
-        const response = await axios.get(`http://localhost:7777/product/${selectedProductIds[i]}`);
+        const response = await axiosInst.get(`/product/${selectedProductIds[i]}`);
         this.product.push(response.data);
       }
     } catch (error) {
@@ -118,7 +118,7 @@ export default {
     },
     async KakaoPay() {
       try {
-        const response = await axios.post("http://localhost:7777/order/kakaoPay")
+        const response = await axiosInst.post("/order/kakaoPay")
         console.log(response.data);
         const box = response.data.next_redirect_pc_url;
         const paymentWindow = window.open(box);
@@ -126,7 +126,7 @@ export default {
         window.addEventListener('message', async (event) => {
           if (event.data === 'payment_success') {
             paymentWindow.close();
-            await axios.post("http://localhost:7777/order/kakaoPaySuccess", {
+            await axiosInst.post("/order/kakaoPaySuccess", {
               productId: this.product.id,
             });
             this.$router.push({ name: 'PurchaseComplete' });
