@@ -22,8 +22,8 @@
 
 
 <script>
-import axios from "axios";
 import { mapActions } from 'vuex';
+import axiosInst from '@/utility/axiosObject';
 
 export default {
     name: "QnaCommentListForm",
@@ -53,7 +53,7 @@ export default {
             this.commentModify = null;
             const { qnaCommentId, comment } = payload;
 
-            return axios.put(`http://localhost:7777/qnaBoard/qnaComment/${qnaCommentId}`, 
+            return axiosInst.put(`/qnaBoard/qnaComment/${qnaCommentId}`, 
                 {comment})
                 .then((res) => {
                     alert("질문 게시글의 댓글 " + qnaCommentId + "번 -> " + comment  +"로 수정 성공", res.data)
